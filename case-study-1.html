@@ -53,14 +53,14 @@
       text-transform: uppercase;
       font-size: 11px;
       font-weight: 700;
-      color: #B8862A;
+      color: #4F46E5;
     }
     .label-accent::before {
       content: '';
       display: block;
       width: 20px;
       height: 2px;
-      background: #C9962E;
+      background: #6366F1;
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -70,8 +70,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #F0EBE0;
-      color: #8A6520;
+      background: #EEF2FF;
+      color: #4338CA;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.04em;
@@ -99,12 +99,12 @@
       top: 40px;
       bottom: -24px;
       width: 2px;
-      background: linear-gradient(to bottom, #C9962E, #E8E5DF);
+      background: linear-gradient(to bottom, #6366F1, #E8E5DF);
     }
 
     /* Image placeholder — only shows bg when image fails to load */
     .img-placeholder {
-      background: linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);
+      background: linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);
     }
     /* When image loads, it fills the container naturally */
     .img-placeholder img {
@@ -114,8 +114,8 @@
 
     /* Callout box */
     .callout {
-      border-left: 3px solid #C9962E;
-      background: #FDF8EF;
+      border-left: 3px solid #6366F1;
+      background: #F5F3FF;
       border-radius: 0 8px 8px 0;
     }
 
@@ -143,7 +143,7 @@
       object-fit: cover;
       border: 2px solid #E8E5DF;
       flex-shrink: 0;
-      background: #F0EBE0;
+      background: #EEF2FF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -368,7 +368,7 @@
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, #C9962E, #E8C36A);
+      background: linear-gradient(90deg, #6366F1, #818CF8);
       z-index: 999;
       width: 0%;
       transition: width 0.1s linear;
@@ -400,7 +400,7 @@
       font-size: 28px;
       font-weight: 800;
       letter-spacing: -1px;
-      color: #E8C36A;
+      color: #818CF8;
       line-height: 1;
     }
     .tldr-metric-label {
@@ -430,7 +430,7 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, #C9962E, #E8C36A);
+      background: linear-gradient(90deg, #6366F1, #818CF8);
       opacity: 0;
       transition: opacity 0.2s;
     }
@@ -445,7 +445,7 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: #F0EBE0;
+      background: #EEF2FF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -486,8 +486,8 @@
       line-height: 1.5;
     }
     .tradeoff-chosen {
-      border-color: #C9962E;
-      background: #FFFBF3;
+      border-color: #6366F1;
+      background: #F5F3FF;
     }
     .tradeoff-badge {
       font-size: 9px;
@@ -526,7 +526,7 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: rgba(201,150,46,0.92);
+      background: rgba(99,102,241,0.92);
       border: 2.5px solid #FFFFFF;
       display: flex;
       align-items: center;
@@ -541,7 +541,7 @@
     }
     .hotspot:hover .hotspot-dot {
       transform: scale(1.15);
-      box-shadow: 0 4px 16px rgba(201,150,46,0.5);
+      box-shadow: 0 4px 16px rgba(99,102,241,0.5);
     }
     /* Pulse ring */
     .hotspot-dot::after {
@@ -549,7 +549,7 @@
       position: absolute;
       inset: -5px;
       border-radius: 50%;
-      border: 2px solid rgba(201,150,46,0.4);
+      border: 2px solid rgba(99,102,241,0.4);
       animation: hotspot-pulse 2.5s ease-out infinite;
     }
     @keyframes hotspot-pulse {
@@ -600,7 +600,7 @@
     .hotspot-tip-title {
       font-weight: 700;
       font-size: 12px;
-      color: #E8C36A;
+      color: #818CF8;
       margin-bottom: 4px;
       display: block;
     }
@@ -725,7 +725,7 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: #C9962E;
+      background: #6366F1;
       border-radius: 2px;
       opacity: 0;
       transition: opacity 0.2s;
@@ -816,7 +816,7 @@
   <section class="tldr-strip px-5 sm:px-20 py-8 sm:py-10 w-full">
     <div class="max-w-[1100px] mx-auto flex flex-col gap-5">
       <div class="flex items-center gap-3">
-        <div style="width:6px;height:6px;border-radius:50%;background:#E8C36A;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#818CF8;"></div>
         <span class="font-inter text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:rgba(255,255,255,0.5);">What I delivered</span>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
@@ -841,7 +841,7 @@
   </section>
 
   <!-- Cover image -->
-  <section class="w-full overflow-hidden" style="background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+  <section class="w-full overflow-hidden" style="background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
     <img src="./images/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full block" style="display:block;max-height:500px;object-fit:cover;"
       onerror="this.style.display='none'" />
   </section>
@@ -857,8 +857,8 @@
     <!-- ============================================ -->
     <div class="fade-up" style="background:#FFFFFF;border:1.5px solid #E8E5DF;border-radius:16px;padding:28px 28px 32px;box-shadow:0 2px 12px rgba(0,0,0,0.03);">
       <div class="flex items-center gap-2 mb-4">
-        <div style="width:6px;height:6px;border-radius:50%;background:#C9962E;"></div>
-        <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:#B8862A;">TL;DR &mdash; 30-second summary</span>
+        <div style="width:6px;height:6px;border-radius:50%;background:#6366F1;"></div>
+        <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:#4F46E5;">TL;DR &mdash; 30-second summary</span>
       </div>
       <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.85] max-w-[760px]">
         RWE&rsquo;s offshore wind technicians diagnosed turbine faults across 7 steps and 4 disconnected systems (SAP, PDFs, phone calls, tribal knowledge). As the sole UI/UX designer, I designed a unified troubleshooting platform that consolidates this into 3 steps within a single tool &mdash; with cross-site fault search, consolidated root cause comparison, and an integrated iPad documentation flow for offshore technicians. Delivered 15+ production-ready screens across 2 modules, aligned 11+ stakeholders in 3 review cycles, and handed off a prototype now in active development. <strong style="color:#111111;">The same enterprise B2B complexity &mdash; multi-user workflows, cross-team alignment, system-level thinking &mdash; that drives products at Freshworks, Razorpay, or Postman.</strong>
@@ -888,7 +888,7 @@
 
     <!-- Image: old tools -->
     <div class="image-block fade-up">
-      <div style="min-height:200px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+      <div style="min-height:200px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
         <img src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
           onerror="this.style.display='none'" style="display:block;" />
       </div>
@@ -913,7 +913,7 @@
 
         <div class="contrib-card">
           <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" stroke="#C9962E" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" stroke="#6366F1" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">End-to-end design</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Research, journey mapping, IA definition, wireframing, prototyping, and interaction specs &mdash; continuous from kickoff to handoff.</p>
@@ -921,7 +921,7 @@
 
         <div class="contrib-card">
           <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#C9962E" stroke-width="1.5"/><circle cx="5" cy="14" r="2.5" stroke="#C9962E" stroke-width="1.5"/><circle cx="15" cy="14" r="2.5" stroke="#C9962E" stroke-width="1.5"/><path d="M10 10V12M7 13L10 12M13 13L10 12" stroke="#C9962E" stroke-width="1.2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#6366F1" stroke-width="1.5"/><circle cx="5" cy="14" r="2.5" stroke="#6366F1" stroke-width="1.5"/><circle cx="15" cy="14" r="2.5" stroke="#6366F1" stroke-width="1.5"/><path d="M10 10V12M7 13L10 12M13 13L10 12" stroke="#6366F1" stroke-width="1.2"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">Design direction for BCG designer</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Set design principles, reviewed output against quality standards, and maintained consistency across 2 modules and 15+ screens.</p>
@@ -929,7 +929,7 @@
 
         <div class="contrib-card">
           <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#C9962E" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#6366F1" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">Stakeholder alignment</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Facilitated design reviews with 11+ stakeholders across Business Partners, Product Owners, Team Leads, and BCG consultants. Translated business requirements into design decisions.</p>
@@ -937,7 +937,7 @@
 
         <div class="contrib-card">
           <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#C9962E" stroke-width="1.5"/><path d="M10 6V10L13 12" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#6366F1" stroke-width="1.5"/><path d="M10 6V10L13 12" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">Research &rarr; strategy &rarr; execution</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Ran the full research arc &mdash; ~10 participant interviews, contextual shadowing sessions, journey mapping, and problem framing &mdash; then translated findings into a product vision that the entire team could rally around.</p>
@@ -966,7 +966,7 @@
           <div class="persona-header">
             <div class="persona-avatar">
               <img src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator" class="w-full h-full object-cover rounded-full"
-                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#C9962E\'>MC</span>'" />
+                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#6366F1\'>MC</span>'" />
             </div>
             <div>
               <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Maintenance Coordinator /<br>Lead Technician</h3>
@@ -999,7 +999,7 @@
           <div class="persona-header">
             <div class="persona-avatar">
               <img src="./images/persona-technician.jpg" alt="Technician" class="w-full h-full object-cover rounded-full"
-                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#C9962E\'>T</span>'" />
+                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#6366F1\'>T</span>'" />
             </div>
             <div>
               <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Technician</h3>
@@ -1067,7 +1067,7 @@
       <!-- Key findings -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#C9962E] tracking-[-1px]">0</span>
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#6366F1] tracking-[-1px]">0</span>
           <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Dedicated digital tools for troubleshooting &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
@@ -1095,9 +1095,9 @@
             <div class="img-placeholder h-[300px]" style="display:none;">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-                <rect x="4" y="12" width="32" height="2" rx="1" fill="#C9962E" opacity="0.3"/>
-                <rect x="4" y="18" width="28" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
-                <rect x="4" y="24" width="30" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+                <rect x="4" y="12" width="32" height="2" rx="1" fill="#6366F1" opacity="0.3"/>
+                <rect x="4" y="18" width="28" height="2" rx="1" fill="#6366F1" opacity="0.2"/>
+                <rect x="4" y="24" width="30" height="2" rx="1" fill="#6366F1" opacity="0.2"/>
               </svg>
               <span class="font-inter text-[#999999] text-[12px] font-medium">As-Is Journey Map &middot; Scroll to explore &rarr;</span>
             </div>
@@ -1107,7 +1107,7 @@
           <span style="display:flex;align-items:center;gap:6px;">
             As-is journey &mdash; SCADA alarm through post-trip documentation. Scroll to explore.
           </span>
-          <span style="color:#C9962E;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
+          <span style="color:#6366F1;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
         </div>
       </div>
     </div>
@@ -1130,8 +1130,8 @@
       <!-- 4 Scenario cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="scenario-card">
-          <div class="scenario-icon" style="background:#F0EBE0;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.5"/><path d="M9 5V9L12 11" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div class="scenario-icon" style="background:#EEF2FF;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#6366F1" stroke-width="1.5"/><path d="M9 5V9L12 11" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; own site</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has occurred before at this wind farm. The resolution is documented locally &mdash; the challenge is finding it quickly.</p>
@@ -1144,8 +1144,8 @@
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Another RWE wind farm has solved this exact fault. But knowledge doesn&rsquo;t travel between sites &mdash; it sits in someone&rsquo;s head or a local PDF.</p>
         </div>
         <div class="scenario-card">
-          <div class="scenario-icon" style="background:#F0EBE0;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#C9962E" stroke-width="1.5"/><path d="M6 9H12" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div class="scenario-icon" style="background:#EEF2FF;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#6366F1" stroke-width="1.5"/><path d="M6 9H12" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; multiple sites</h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has been resolved at multiple sites. Consolidating root causes and comparing approaches would save significant diagnosis time.</p>
@@ -1187,7 +1187,7 @@
 
       <div class="flex flex-wrap gap-3">
         <div class="stake-pill">
-          <div class="stake-dot" style="background:#C9962E;"></div>
+          <div class="stake-dot" style="background:#6366F1;"></div>
           <div class="flex flex-col">
             <span class="font-inter text-[12px] font-semibold text-[#111111]">3 BCG Consultants</span>
             <span class="font-inter text-[11px] text-[#888888]">Strategy &amp; operations</span>
@@ -1262,8 +1262,8 @@
         <!-- Step 1 -->
         <div class="flex gap-5 sm:gap-8 relative">
           <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#C9962E]">1</span>
+            <div class="w-10 h-10 rounded-full bg-[#EEF2FF] border-2 border-[#6366F1] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#6366F1]">1</span>
             </div>
             <div class="step-line"></div>
           </div>
@@ -1276,8 +1276,8 @@
         <!-- Step 2 -->
         <div class="flex gap-5 sm:gap-8 relative">
           <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#C9962E]">2</span>
+            <div class="w-10 h-10 rounded-full bg-[#EEF2FF] border-2 border-[#6366F1] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#6366F1]">2</span>
             </div>
             <div class="step-line"></div>
           </div>
@@ -1290,8 +1290,8 @@
         <!-- Step 3 -->
         <div class="flex gap-5 sm:gap-8 relative">
           <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#C9962E]">3</span>
+            <div class="w-10 h-10 rounded-full bg-[#EEF2FF] border-2 border-[#6366F1] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#6366F1]">3</span>
             </div>
             <div class="step-line"></div>
           </div>
@@ -1304,8 +1304,8 @@
         <!-- Step 4 -->
         <div class="flex gap-5 sm:gap-8 relative">
           <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#C9962E]">4</span>
+            <div class="w-10 h-10 rounded-full bg-[#EEF2FF] border-2 border-[#6366F1] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#6366F1]">4</span>
             </div>
             <div class="step-line"></div>
           </div>
@@ -1370,7 +1370,7 @@
           <span style="display:flex;align-items:center;gap:6px;">
             Vision journey &mdash; the new tool intervenes at control room and offshore. Scroll to explore.
           </span>
-          <span style="color:#C9962E;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
+          <span style="color:#6366F1;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
         </div>
       </div>
     </div>
@@ -1391,7 +1391,7 @@
     <!-- Workflow walkthrough — 3-screen connected flow -->
     <div class="fade-up" style="background:#111111;border-radius:16px;padding:28px 24px 32px;overflow:hidden;">
       <div class="flex items-center gap-2 mb-5">
-        <div style="width:6px;height:6px;border-radius:50%;background:#E8C36A;"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:#818CF8;"></div>
         <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:rgba(255,255,255,0.45);">The 3-screen flow</span>
       </div>
       <div class="grid grid-cols-3 gap-3 sm:gap-4 items-end">
@@ -1400,7 +1400,7 @@
             <img src="./images/screen-dashboard.jpg" alt="Step 1: Dashboard & fault search" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
           </div>
           <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#E8C36A;">1</span>
+            <span class="font-sora text-[11px] font-bold" style="color:#818CF8;">1</span>
             <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Search fault</span>
           </div>
         </div>
@@ -1409,7 +1409,7 @@
             <img src="./images/screen-work-order.jpg" alt="Step 2: Draft work order" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
           </div>
           <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#E8C36A;">2</span>
+            <span class="font-sora text-[11px] font-bold" style="color:#818CF8;">2</span>
             <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Draft work order</span>
           </div>
         </div>
@@ -1418,7 +1418,7 @@
             <img src="./images/screen-documentation.jpg" alt="Step 3: Document on iPad" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
           </div>
           <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#E8C36A;">3</span>
+            <span class="font-sora text-[11px] font-bold" style="color:#818CF8;">3</span>
             <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Document on iPad</span>
           </div>
         </div>
@@ -1435,7 +1435,7 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
       </div>
       <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
           <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1470,7 +1470,7 @@
     <div class="flex flex-col gap-3 fade-up">
       <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
       <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
           <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1509,7 +1509,7 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
       </div>
       <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
           <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1558,22 +1558,22 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#6366F1" stroke-width="1.3"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#6366F1" stroke-width="1.3"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#6366F1" stroke-width="1.3"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#6366F1" stroke-width="1.3"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Shared component library</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Fault cards, status indicators, search patterns, and form elements were designed as reusable components across both modules. New turbine types or fault categories could be added without designing new UI &mdash; just new data.</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V16M2 9H16" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.3"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V16M2 9H16" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="#6366F1" stroke-width="1.3"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Device-adaptive patterns</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 1 (desktop) and Module 2 (iPad) share the same data model and interaction grammar, but the UI adapts to context. Large tap targets and photo-first capture for offshore iPad use; dense data tables and keyboard-driven search for the control room.</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 12L9 6L15 12" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16L9 10L15 16" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 12L9 6L15 12" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16L9 10L15 16" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Edge case handling</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">What happens when a fault has zero matches? When a technician is offline at sea? When two sites document contradictory root causes? I designed empty states, offline indicators, and conflict resolution flows &mdash; not just the happy path.</p>
@@ -1601,29 +1601,29 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.3"/><path d="M6 9L8.5 11.5L12.5 6.5" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#6366F1" stroke-width="1.3"/><path d="M6 9L8.5 11.5L12.5 6.5" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Touch targets for gloved hands</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 2 (iPad) uses minimum 48&times;48px touch targets &mdash; 10px above Apple&rsquo;s guideline. Buttons are spaced with 12px gutters to prevent mis-taps. Photo capture is a single large button, not a small icon. Tested by simulating gloved interaction with thickened fingertips on the prototype.</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.3"/><path d="M5 9H13" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/><path d="M9 5V13" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#6366F1" stroke-width="1.3"/><path d="M5 9H13" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round"/><path d="M9 5V13" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Color contrast &amp; outdoor visibility</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">All status indicators use WCAG AA contrast ratios minimum. Critical fault statuses use both color and icon (red + warning triangle) to work for color-blind users. The iPad module uses higher contrast ratios (5.5:1+) because offshore screens compete with direct sunlight and salt spray.</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="5" width="12" height="8" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><path d="M2 7H16M6 5V13" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="5" width="12" height="8" rx="1.5" stroke="#6366F1" stroke-width="1.3"/><path d="M2 7H16M6 5V13" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Desktop &harr; iPad responsive logic</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Not just responsive breakpoints &mdash; a fundamentally different interaction model per device. Module 1 (desktop) prioritizes keyboard-driven search and data density for the control room. Module 2 (iPad) prioritizes one-handed operation, camera-first workflows, and progressive disclosure to reduce cognitive load while on a turbine.</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V4M9 14V16M2 9H4M14 9H16M4.2 4.2L5.6 5.6M12.4 12.4L13.8 13.8M4.2 13.8L5.6 12.4M12.4 5.6L13.8 4.2" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <div class="w-9 h-9 rounded-[8px] bg-[#EEF2FF] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V4M9 14V16M2 9H4M14 9H16M4.2 4.2L5.6 5.6M12.4 12.4L13.8 13.8M4.2 13.8L5.6 12.4M12.4 5.6L13.8 4.2" stroke="#6366F1" stroke-width="1.3" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-sora text-[14px] font-bold text-[#111111]">Offline-first architecture</h3>
           <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 2 works without network by default. All form data saves locally, photos store on-device, and a persistent sync status bar tells the technician exactly what&rsquo;s uploaded and what&rsquo;s pending. This wasn&rsquo;t a graceful degradation &mdash; it was the primary design constraint discovered during shadowing.</p>
@@ -1646,7 +1646,7 @@
         <!-- Decision A -->
         <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
           <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">A</span>
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#6366F1] leading-none shrink-0">A</span>
             <div class="flex flex-col gap-2">
               <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Cross-site fault search as the entry point</h3>
               <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">The biggest unlock was making fault resolutions searchable across all RWE wind farms. Previously, a technician at Site A had no way to know that Site B had already solved the exact same fault.</p>
@@ -1673,7 +1673,7 @@
         <!-- Decision B -->
         <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
           <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">B</span>
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#6366F1] leading-none shrink-0">B</span>
             <div class="flex flex-col gap-2">
               <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Consolidated root cause comparison</h3>
               <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">When a fault has been resolved at multiple sites, the tool shows all root causes side-by-side with frequency data. This eliminates one of the biggest time sinks in the as-is workflow &mdash; calling colleagues at other sites.</p>
@@ -1700,7 +1700,7 @@
         <!-- Decision C -->
         <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
           <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">C</span>
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#6366F1] leading-none shrink-0">C</span>
             <div class="flex flex-col gap-2">
               <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Integrated work order &rarr; documentation loop</h3>
               <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Work orders created in Module 1 flow directly into Module 2 as structured documentation templates on the technician&rsquo;s iPad. This closes the feedback loop: the diagnosis informs the task, and the task outcome feeds back into the knowledge base.</p>
@@ -1736,7 +1736,7 @@
 
       <!-- Metrics — concrete measurable impact -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:flex-row w-full">
-        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#C9962E]">
+        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#6366F1]">
           <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">7 &rarr; 3</span>
           <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Fault diagnosis workflow steps reduced &mdash; from 4 disconnected systems to 1 unified platform</p>
         </div>
@@ -1778,8 +1778,8 @@
 
         <div class="flex gap-4">
           <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#C9962E]">01</span>
+            <div class="w-8 h-8 rounded-[6px] bg-[#EEF2FF] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#6366F1]">01</span>
             </div>
           </div>
           <div class="flex flex-col gap-2">
@@ -1792,8 +1792,8 @@
 
         <div class="flex gap-4">
           <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#C9962E]">02</span>
+            <div class="w-8 h-8 rounded-[6px] bg-[#EEF2FF] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#6366F1]">02</span>
             </div>
           </div>
           <div class="flex flex-col gap-2">
@@ -1806,8 +1806,8 @@
 
         <div class="flex gap-4">
           <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#C9962E]">03</span>
+            <div class="w-8 h-8 rounded-[6px] bg-[#EEF2FF] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#6366F1]">03</span>
             </div>
           </div>
           <div class="flex flex-col gap-2">
@@ -1820,8 +1820,8 @@
 
         <div class="flex gap-4">
           <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#C9962E]">04</span>
+            <div class="w-8 h-8 rounded-[6px] bg-[#EEF2FF] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#6366F1]">04</span>
             </div>
           </div>
           <div class="flex flex-col gap-2">
@@ -1830,9 +1830,9 @@
               We validated through stakeholder reviews and workflow analysis, but I didn&rsquo;t get prototype-in-hand testing with actual end users until late in the process. If I did this again, here&rsquo;s the testing plan I&rsquo;d run:
             </p>
             <ul style="list-style:none;padding:0;margin:8px 0 0 0;display:flex;flex-direction:column;gap:8px;">
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#C9962E;font-weight:700;">1.</span><strong>Week 3 &mdash; First-click test</strong> with 3&ndash;4 onshore coordinators on a static Figma prototype of the dashboard. Goal: validate that search-first IA matches their mental model. Can run remotely in 20-minute sessions.</li>
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#C9962E;font-weight:700;">2.</span><strong>Week 6 &mdash; Task completion test</strong> with 2&ndash;3 coordinators using the interactive prototype. Three tasks: search a fault code, compare root causes, draft a work order. Measure completion rate and time-on-task.</li>
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#C9962E;font-weight:700;">3.</span><strong>Week 9 &mdash; Contextual walkthrough</strong> of Module 2 with 1&ndash;2 technicians on-site or via video call with screen share to an iPad. Test the documentation flow with gloved-hand simulation and offline scenario.</li>
+              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#6366F1;font-weight:700;">1.</span><strong>Week 3 &mdash; First-click test</strong> with 3&ndash;4 onshore coordinators on a static Figma prototype of the dashboard. Goal: validate that search-first IA matches their mental model. Can run remotely in 20-minute sessions.</li>
+              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#6366F1;font-weight:700;">2.</span><strong>Week 6 &mdash; Task completion test</strong> with 2&ndash;3 coordinators using the interactive prototype. Three tasks: search a fault code, compare root causes, draft a work order. Measure completion rate and time-on-task.</li>
+              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#6366F1;font-weight:700;">3.</span><strong>Week 9 &mdash; Contextual walkthrough</strong> of Module 2 with 1&ndash;2 technicians on-site or via video call with screen share to an iPad. Test the documentation flow with gloved-hand simulation and offline scenario.</li>
             </ul>
             <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]" style="margin-top:8px;">
               The logistics of offshore access made this genuinely hard &mdash; technicians are on rotating schedules and travel to turbines days in advance. But I should have prioritized the remote coordinator tests (steps 1&ndash;2), which had no logistical barrier. I&rsquo;d also invest more upfront in the component library, because the speed gains would have compounded through prototyping.
@@ -1854,7 +1854,7 @@
             <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
           </div>
           <div class="flex gap-3 shrink-0">
-            <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#C9962E;color:#FFFFFF;text-decoration:none;">Email me</a>
+            <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#6366F1;color:#FFFFFF;text-decoration:none;">Email me</a>
             <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn &nearr;</a>
           </div>
         </div>
@@ -1868,7 +1868,7 @@
     <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
-        <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#C9962E] transition-colors leading-[1.3]">
+        <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#6366F1] transition-colors leading-[1.3]">
           Personal finance app design &mdash; budgeting &amp; user flows &rarr;
         </a>
       </div>
