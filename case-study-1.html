@@ -513,8 +513,106 @@
       background: #E8E5DF;
     }
 
+    /* ── Screen annotation callouts ── */
+    .screen-annotated {
+      position: relative;
+    }
+    .screen-callout {
+      position: absolute;
+      background: #111111;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 200px;
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .screen-callout::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #111111;
+      border-radius: 2px;
+      transform: rotate(45deg);
+    }
+    .screen-callout-left::before {
+      left: -4px;
+      top: 50%;
+      margin-top: -4px;
+    }
+    .screen-callout-bottom::before {
+      bottom: -4px;
+      left: 50%;
+      margin-left: -4px;
+    }
+    .screen-callout-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #C9962E;
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 700;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+    .annotation-dot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(201,150,46,0.9);
+      border: 2px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: #FFFFFF;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      cursor: default;
+    }
+    .annotation-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .annotation-legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .annotation-legend-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #C9962E;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
     @media (max-width: 900px) {
       .screen-grid { grid-template-columns: 1fr; }
+      .annotation-dot { display: none; }
     }
 
     @media (max-width: 560px) {
@@ -554,13 +652,13 @@
       <div class="flex items-center gap-2 flex-wrap">
         <span class="tag">Energy &middot; B2B</span>
         <span class="tag tag-neutral">Internal Platform</span>
-        <span class="tag tag-neutral">Lead Product Designer</span>
+        <span class="tag tag-neutral">UI/UX Designer</span>
       </div>
       <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
         Designing a troubleshooting tool for offshore wind technicians at RWE
       </h1>
       <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75] max-w-[680px]">
-        Led end-to-end product design for a cross-site fault diagnosis platform &mdash; from user research with offshore technicians to a production-ready prototype that reduced troubleshooting time by 20% and diagnostic errors by 15%.
+        As the sole UI/UX designer on this project, I owned the end-to-end design workstream &mdash; from user research with offshore technicians to a production-ready prototype &mdash; while steering an external BCG designer and aligning 11+ stakeholders. Reduced troubleshooting time by 20% and diagnostic errors by 15%.
       </p>
     </div>
   </section>
@@ -570,7 +668,7 @@
     <div class="flex flex-wrap gap-x-12 gap-y-6">
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">Lead Product Designer</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">UI/UX Designer <span class="font-inter text-[12px] font-medium text-[#888888]">(sole designer; led the design workstream)</span></span>
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
@@ -648,7 +746,7 @@
           The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed by site, hard to find, and impossible to standardize across the fleet.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I was brought in as the <strong>lead product designer</strong> embedded within the RWE team, working alongside BCG consultants and internal stakeholders to design a new digital platform from scratch &mdash; owning the entire design workstream from research through to production-ready prototype.
+          I was brought in as the <strong>sole UI/UX designer</strong> embedded within the RWE team, working alongside BCG consultants and internal stakeholders to design a new digital platform from scratch. Despite not having a &ldquo;lead&rdquo; title, I functioned as the design lead in practice &mdash; owning the entire design workstream, steering an external BCG designer, and making all key design decisions from research through to production-ready prototype.
         </p>
       </div>
     </div>
@@ -680,7 +778,7 @@
         What I owned &mdash; and how I led
       </h2>
       <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
-        As the sole product designer on the RWE side, I didn&rsquo;t just push pixels. I drove the design vision, aligned cross-functional stakeholders, and steered an external BCG designer &mdash; owning the quality bar for every screen that went into the prototype.
+        My title was UI/UX Designer, but the scope was broader. As the only designer on the RWE side, I owned everything from research to final prototype &mdash; and functioned as the de facto design lead for this workstream. Here&rsquo;s what that actually looked like.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1146,9 +1244,13 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
       </div>
       <div class="image-block">
-        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative screen-annotated">
           <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full h-full object-contain"
             onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <!-- Annotation dots -->
+          <div class="annotation-dot" style="top:12%;left:35%;">1</div>
+          <div class="annotation-dot" style="top:35%;left:15%;">2</div>
+          <div class="annotation-dot" style="top:65%;right:20%;">3</div>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
             <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
             <rect x="6" y="8" width="28" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
@@ -1161,18 +1263,33 @@
           Dashboard overview with quick fault search, recent activity, and key metrics at a glance
         </div>
       </div>
-      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
-        <strong style="color:#666;">Design rationale:</strong> Search is the entry point, not navigation. The most common action (looking up a known fault) is the fastest path &mdash; zero clicks to reach the search bar.
-      </p>
+      <!-- Annotation legend -->
+      <div class="annotation-legend">
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">1</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Search bar as primary entry point</strong> &mdash; the coordinator arrives with a fault code and needs to go directly to results. Zero navigation clicks.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">2</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Cross-site filter</strong> &mdash; toggle between &ldquo;this site only&rdquo; and &ldquo;all RWE sites&rdquo; to control search scope. Default is all sites &mdash; the biggest value unlock.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">3</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Recent fault activity</strong> &mdash; shows faults in progress across the fleet. Designed for situational awareness, not just search &mdash; coordinators need to know what&rsquo;s happening now.</p>
+        </div>
+      </div>
     </div>
 
     <!-- Screen: Work Order Draft -->
     <div class="flex flex-col gap-3 fade-up">
       <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
       <div class="image-block">
-        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative screen-annotated">
           <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full h-full object-contain"
             onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <div class="annotation-dot" style="top:15%;left:50%;">1</div>
+          <div class="annotation-dot" style="top:50%;left:30%;">2</div>
+          <div class="annotation-dot" style="bottom:15%;right:25%;">3</div>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
             <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
             <rect x="6" y="8" width="16" height="2" rx="1" fill="#C9962E" opacity="0.3"/>
@@ -1185,9 +1302,20 @@
           Auto-populated work order draft with fault details, selected root cause, and recommended actions for the technician
         </div>
       </div>
-      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
-        <strong style="color:#666;">Design rationale:</strong> Work orders auto-populate from the selected root cause, reducing manual data entry and ensuring consistency. The coordinator reviews and edits &mdash; not writes from scratch.
-      </p>
+      <div class="annotation-legend">
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">1</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Auto-populated from root cause</strong> &mdash; fault details, selected root cause, and recommended actions pre-fill from Module 1&rsquo;s search. The coordinator edits, not writes from scratch.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">2</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Structured task fields</strong> &mdash; instead of free-text, each action is a discrete row. This ensures the technician gets clear, step-by-step instructions on their iPad.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">3</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Direct flow to Module 2</strong> &mdash; submitted work orders automatically appear in the technician&rsquo;s documentation queue. This is the handoff bridge between the two modules.</p>
+        </div>
+      </div>
     </div>
 
     <!-- Screen: Documentation Flow -->
@@ -1197,9 +1325,12 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
       </div>
       <div class="image-block">
-        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative screen-annotated">
           <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full h-full object-contain"
             onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <div class="annotation-dot" style="top:10%;left:45%;">1</div>
+          <div class="annotation-dot" style="top:40%;left:20%;">2</div>
+          <div class="annotation-dot" style="top:70%;right:30%;">3</div>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
             <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
             <rect x="10" y="6" width="20" height="28" rx="3" stroke="#C9962E" stroke-width="1.5" fill="none" opacity="0.3"/>
@@ -1212,9 +1343,66 @@
           Technician documentation flow on iPad &mdash; structured capture of repair outcomes, photos, and notes for knowledge transfer
         </div>
       </div>
-      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
-        <strong style="color:#666;">Design rationale:</strong> Optimized for gloved hands and harsh conditions. Large tap targets, structured capture (not free-text), and photo-first documentation &mdash; because the documentation module is the flywheel that feeds Module 1&rsquo;s knowledge base.
-      </p>
+      <div class="annotation-legend">
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">1</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Photo-first capture</strong> &mdash; large camera button at the top. Technicians photograph the fault first, then add structured metadata. Designed for gloved hands in harsh conditions.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">2</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Structured fields, not free-text</strong> &mdash; repair outcome, root cause confirmation, and parts used are dropdowns/selects, not text entry. This ensures consistent data that feeds back into Module 1&rsquo;s knowledge base.</p>
+        </div>
+        <div class="annotation-legend-item">
+          <div class="annotation-legend-num">3</div>
+          <p class="font-inter text-[#555555] text-[12px] leading-[1.5]"><strong style="color:#333;">Offline sync indicator</strong> &mdash; clear status showing whether data has synced to the server. Designed for unreliable offshore connectivity &mdash; the technician knows their work is saved locally even without network.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SYSTEMS THINKING — Scalability & patterns -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+      <span class="label-accent">Design system &amp; scalability</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Building patterns, not just screens</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          This project wasn&rsquo;t a one-off prototype. RWE planned to extend the tool to additional turbine types, new wind farm sites, and potentially onshore wind operations. Every design decision needed to account for that future scale &mdash; not just the immediate 3-month scope.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I built a modular component library in Figma that served both modules and both device contexts (desktop + iPad). Here&rsquo;s how I approached scalability:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#C9962E" stroke-width="1.3"/></svg>
+          </div>
+          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Shared component library</h3>
+          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Fault cards, status indicators, search patterns, and form elements were designed as reusable components across both modules. New turbine types or fault categories could be added without designing new UI &mdash; just new data.</p>
+        </div>
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V16M2 9H16" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.3"/></svg>
+          </div>
+          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Device-adaptive patterns</h3>
+          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 1 (desktop) and Module 2 (iPad) share the same data model and interaction grammar, but the UI adapts to context. Large tap targets and photo-first capture for offshore iPad use; dense data tables and keyboard-driven search for the control room.</p>
+        </div>
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <div class="w-9 h-9 rounded-[8px] bg-[#F0EBE0] flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 12L9 6L15 12" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16L9 10L15 16" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/></svg>
+          </div>
+          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Edge case handling</h3>
+          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">What happens when a fault has zero matches? When a technician is offline at sea? When two sites document contradictory root causes? I designed empty states, offline indicators, and conflict resolution flows &mdash; not just the happy path.</p>
+        </div>
+      </div>
+
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6">
+        <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
+          <strong>Why this matters for scalability:</strong> The component library and pattern system meant the BCG designer I steered could produce consistent screens faster. It also meant the development team (who received the handoff) had clear, repeatable patterns to implement &mdash; reducing the gap between design intent and production output. I documented every component with usage guidelines, not just visual specs.
+        </p>
+      </div>
     </div>
 
     <!-- ============================================ -->
@@ -1250,6 +1438,9 @@
                 <span class="font-inter text-[#888888]"><strong>Navigation-first IA</strong> &mdash; browse by site &rarr; turbine &rarr; fault. Too many clicks for the most common scenario.</span>
               </div>
             </div>
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> Navigation-first works when users browse. But in fault resolution, coordinators arrive with a specific SCADA alarm code in hand. They need to go from &ldquo;I have error code X&rdquo; to &ldquo;here&rsquo;s how other sites resolved it&rdquo; in one action. A search-first IA mirrors their mental model &mdash; they&rsquo;re not exploring, they&rsquo;re hunting. The IA needed to match that intent.
+            </p>
           </div>
         </div>
 
@@ -1274,6 +1465,9 @@
                 <span class="font-inter text-[#888888]"><strong>Flat list of resolutions</strong> &mdash; simpler to build but doesn&rsquo;t help the coordinator pick the most likely cause</span>
               </div>
             </div>
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> A flat list puts the cognitive burden on the coordinator &mdash; they have to read every resolution and mentally rank them. The consolidated view with frequency counts does that work for them. If 4 out of 5 sites resolved the same fault with &ldquo;sensor recalibration,&rdquo; that signal should be visually obvious, not buried in a list. This is about reducing decision-making time under pressure, not just information display.
+            </p>
           </div>
         </div>
 
@@ -1293,6 +1487,9 @@
                 The documentation flow is the flywheel, not a secondary feature. Without structured contributions from technicians, the fault database stays empty. I designed the documentation module to make contributing feel effortless &mdash; so the knowledge base would grow organically over time.
               </p>
             </div>
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> The BCG team initially wanted to treat documentation as a separate backlog item &mdash; &ldquo;ship troubleshooting first, add documentation later.&rdquo; I pushed back because the tool&rsquo;s value compounds over time &mdash; it only works if the knowledge base grows. Module 2 isn&rsquo;t a feature; it&rsquo;s the product strategy. Without the documentation loop, you&rsquo;re building a search engine with no content. I framed this as an operational risk, not a design preference, which is what finally got stakeholder buy-in.
+            </p>
           </div>
         </div>
 
@@ -1360,9 +1557,9 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Steering &ne; stepping back</h3>
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The scope fight that shaped the product</h3>
             <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Managing an external designer taught me that steering someone else&rsquo;s output requires <em>more</em> clarity than doing the work yourself. Every design decision needed to be articulated as a <strong>principle, not a preference</strong> &mdash; otherwise the work drifted between review cycles. This is a skill I&rsquo;ll carry into any leadership role.
+              The hardest moment in this project was Week 5, when BCG pushed to merge both modules into a single monolithic tool to &ldquo;simplify development.&rdquo; I argued that the two modules serve fundamentally different contexts (desktop control room vs. offshore iPad with gloved hands), and merging them would compromise both. The debate lasted two review cycles. I won it by showing the journey map with physical location transitions highlighted &mdash; you can&rsquo;t use the same UI in a control room and on a turbine nacelle. <strong>This taught me that defending a design decision requires evidence, not conviction.</strong>
             </p>
           </div>
         </div>
@@ -1374,9 +1571,9 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Shadowing &gt; interviews for industrial contexts</h3>
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Steering someone&rsquo;s output requires principles, not preferences</h3>
             <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              In interviews, participants described the &ldquo;official&rdquo; process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept things running. <strong>Designing for the real workflow, not the documented one, was the foundation of this project.</strong>
+              When I first reviewed the BCG designer&rsquo;s screens, the quality was inconsistent &mdash; not because they lacked skill, but because I hadn&rsquo;t given them clear enough constraints. Saying &ldquo;make the spacing feel better&rdquo; doesn&rsquo;t work across review cycles. I had to formalize my thinking into documented design principles: &ldquo;search is always the entry point,&rdquo; &ldquo;status information is visible without interaction,&rdquo; &ldquo;one primary action per screen.&rdquo; Once I did that, their output snapped into place. <strong>This is a skill I&rsquo;ll carry into any leadership role.</strong>
             </p>
           </div>
         </div>
@@ -1388,9 +1585,9 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The documentation module is the product strategy</h3>
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The technical constraint that improved the design</h3>
             <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              The tool&rsquo;s long-term value isn&rsquo;t the search UI &mdash; it&rsquo;s making one site&rsquo;s experience available to every other site. The documentation module is the flywheel: if contributing feels effortless, the knowledge base grows organically. <strong>I designed a system, not just screens.</strong>
+              Offshore iPad connectivity is unreliable &mdash; technicians often work with intermittent or no network access. This wasn&rsquo;t in the original brief; I discovered it during shadowing. It forced a design rethink: Module 2&rsquo;s documentation flow had to work offline-first, with sync-when-available. This constraint actually made the design better &mdash; structured capture fields instead of free-form text, local photo storage before upload, and clear sync status indicators. <strong>The best constraints come from real user environments, not product specs.</strong>
             </p>
           </div>
         </div>
@@ -1402,9 +1599,9 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Framing design decisions in business language builds trust</h3>
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">What I&rsquo;d do differently</h3>
             <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              In a room with BCG consultants and business partners, &ldquo;this reduces cognitive load&rdquo; doesn&rsquo;t land. But &ldquo;this cuts 3 steps from the critical path, saving ~8 minutes per fault resolution&rdquo; does. <strong>Learning to translate design thinking into operational language was the biggest personal growth from this project.</strong>
+              If I did this again, I&rsquo;d push for usability testing earlier &mdash; we validated through stakeholder reviews and workflow analysis, but I didn&rsquo;t get prototype-in-hand testing with actual offshore technicians until late in the process. The time and logistics of offshore access made this genuinely hard, but I should have found ways to do remote testing with onshore coordinators sooner. I&rsquo;d also invest more time upfront building the component library, because the speed gains would have compounded through the prototyping phase.
             </p>
           </div>
         </div>
