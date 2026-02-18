@@ -377,8 +377,8 @@
     /* ── Fade-in on scroll animation ── */
     .fade-up {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
     }
     .fade-up.is-visible {
       opacity: 1;
@@ -1825,8 +1825,15 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    fadeEls.forEach(function(el) { observer.observe(el); });
+    }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
+    fadeEls.forEach(function(el) {
+      // Immediately show elements already in viewport on load
+      if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+        el.classList.add('is-visible');
+      } else {
+        observer.observe(el);
+      }
+    });
 
     // ── Lightbox ──
     const hqMap = {
