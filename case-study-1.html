@@ -102,14 +102,14 @@
       background: linear-gradient(to bottom, #C9962E, #E8E5DF);
     }
 
-    /* Image placeholder */
+    /* Image placeholder — only shows bg when image fails to load */
     .img-placeholder {
       background: linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 8px;
+    }
+    /* When image loads, it fills the container naturally */
+    .img-placeholder img {
+      display: block;
+      width: 100%;
     }
 
     /* Callout box */
@@ -708,11 +708,11 @@
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer + 1 BCG designer I steered, 3 consultants, 2 TLs, 3 BPs, 2 POs</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer + 1 BCG designer, 3 consultants, 2 TLs, 3 BPs, 2 POs</span>
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Miro, SAP, Confluence</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Mural, SAP, Confluence</span>
       </div>
     </div>
   </section>
@@ -746,17 +746,9 @@
   </section>
 
   <!-- Cover image -->
-  <section class="w-full h-[240px] sm:h-[460px] img-placeholder overflow-hidden relative">
-    <img src="./images/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full h-full object-cover"
-      onerror="this.style.display='none';document.getElementById('cover-fallback').style.display='flex'" style="display:block" />
-    <div id="cover-fallback" class="absolute inset-0 flex-col items-center justify-center gap-3" style="display:none;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-        <path d="M12 14L20 10L28 14V26L20 30L12 26V14Z" stroke="#C9962E" stroke-width="1.5" fill="none" opacity="0.5"/>
-        <circle cx="20" cy="20" r="3" fill="#C9962E" opacity="0.4"/>
-      </svg>
-      <span class="font-inter text-[#C9962E] text-[13px] font-semibold">Cover &middot; RWE Troubleshooting Tool</span>
-    </div>
+  <section class="w-full overflow-hidden" style="background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
+    <img src="./images/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full block" style="display:block;max-height:500px;object-fit:cover;"
+      onerror="this.style.display='none'" />
   </section>
 
   <!-- Content -->
@@ -798,18 +790,11 @@
 
     <!-- Image: old tools -->
     <div class="image-block fade-up">
-      <div class="img-placeholder relative" style="min-height:200px;">
+      <div style="min-height:200px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
         <img src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
           onerror="this.style.display='none'" style="display:block;" />
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
-          <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-          <rect x="8" y="14" width="24" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
-          <rect x="8" y="20" width="18" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
-          <rect x="8" y="26" width="22" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
-        </svg>
       </div>
       <div class="image-caption">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><rect x="6.3" y="3.5" width="1.4" height="4" rx="0.7" fill="#BBBBBB"/><rect x="6.3" y="9" width="1.4" height="1.4" rx="0.7" fill="#BBBBBB"/></svg>
         Before: SAP transaction screens and PDF manuals &mdash; the only tools available for fault diagnosis. Click to zoom.
       </div>
     </div>
@@ -976,7 +961,7 @@
           </div>
           <div class="flex flex-col gap-1">
             <span class="font-sora text-[14px] font-bold text-[#111111]">Journey mapping workshops</span>
-            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Collaborative Miro sessions to validate pain points with cross-functional team</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Collaborative Mural sessions to validate pain points with cross-functional team</span>
           </div>
         </div>
       </div>
@@ -1022,7 +1007,6 @@
         </div>
         <div class="image-caption" style="justify-content:space-between;">
           <span style="display:flex;align-items:center;gap:6px;">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><path d="M4 7H10M7 4V10" stroke="#BBBBBB" stroke-width="1.2"/></svg>
             As-is journey &mdash; SCADA alarm through post-trip documentation. Scroll to explore.
           </span>
           <span style="color:#C9962E;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
@@ -1143,7 +1127,7 @@
 
       <div class="callout px-6 py-5 sm:px-8 sm:py-6">
         <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
-          <strong>How I managed this:</strong> Weekly design review rituals with a rotating set of stakeholders, design decisions framed as hypotheses tied to business metrics, and a shared Miro board as the single source of truth. When priorities conflicted, I grounded the argument in data from shadowing sessions.
+          <strong>How I managed this:</strong> Weekly design review rituals with a rotating set of stakeholders, design decisions framed as hypotheses tied to business metrics, and a shared Mural board as the single source of truth. When priorities conflicted, I grounded the argument in data from shadowing sessions.
         </p>
       </div>
 
@@ -1152,7 +1136,7 @@
         <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Process artifacts I created</span>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div style="background:#F9F8F5;border:1px solid #E8E5DF;border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;">
-            <span class="font-sora text-[13px] font-bold text-[#111111]">Shared Miro board</span>
+            <span class="font-sora text-[13px] font-bold text-[#111111]">Shared Mural board</span>
             <span class="font-inter text-[#777777] text-[11px] leading-[1.5]">Single source of truth for all design decisions. Journey maps, IA proposals, wireframe feedback, and scope decisions &mdash; all time-stamped and linked to review outcomes. Referenced by BCG and RWE teams throughout the project.</span>
           </div>
           <div style="background:#F9F8F5;border:1px solid #E8E5DF;border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;">
@@ -1201,7 +1185,7 @@
           </div>
           <div class="flex flex-col gap-2 pb-8">
             <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">As-is journey mapping <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 3&ndash;4</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm, control room diagnosis, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage. Validated with stakeholders in a collaborative Miro workshop.</p>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm, control room diagnosis, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage. Validated with stakeholders in a collaborative Mural workshop.</p>
           </div>
         </div>
 
@@ -1286,7 +1270,6 @@
         </div>
         <div class="image-caption" style="justify-content:space-between;">
           <span style="display:flex;align-items:center;gap:6px;">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><path d="M4 7H10M7 4V10" stroke="#BBBBBB" stroke-width="1.2"/></svg>
             Vision journey &mdash; the new tool intervenes at control room and offshore. Scroll to explore.
           </span>
           <span style="color:#C9962E;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
@@ -1354,7 +1337,7 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
       </div>
       <div class="image-block">
-        <div class="img-placeholder relative screen-annotated" style="min-height:280px;">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
           <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1379,16 +1362,8 @@
               Visual map of turbine assets and connections. Designed for spatial orientation &mdash; coordinators think in terms of physical topology, not lists.
             </div>
           </div>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
-            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-            <rect x="6" y="8" width="28" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
-            <rect x="6" y="14" width="20" height="3" rx="1.5" fill="#C9962E" opacity="0.2"/>
-            <rect x="6" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.15"/>
-            <rect x="22" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.15"/>
-          </svg>
         </div>
         <div class="image-caption">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><rect x="6.3" y="3.5" width="1.4" height="4" rx="0.7" fill="#BBBBBB"/><rect x="6.3" y="9" width="1.4" height="1.4" rx="0.7" fill="#BBBBBB"/></svg>
           Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
         </div>
     </div>
@@ -1397,7 +1372,7 @@
     <div class="flex flex-col gap-3 fade-up">
       <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
       <div class="image-block">
-        <div class="img-placeholder relative screen-annotated" style="min-height:280px;">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
           <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1422,16 +1397,8 @@
               Submitted work orders automatically appear in the technician&rsquo;s documentation queue. This is the handoff bridge between the two modules.
             </div>
           </div>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
-            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-            <rect x="6" y="8" width="16" height="2" rx="1" fill="#C9962E" opacity="0.3"/>
-            <rect x="6" y="14" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
-            <rect x="6" y="22" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
-            <rect x="6" y="30" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
-          </svg>
         </div>
         <div class="image-caption">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><rect x="6.3" y="3.5" width="1.4" height="4" rx="0.7" fill="#BBBBBB"/><rect x="6.3" y="9" width="1.4" height="1.4" rx="0.7" fill="#BBBBBB"/></svg>
           Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
         </div>
       </div>
@@ -1444,7 +1411,7 @@
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
       </div>
       <div class="image-block">
-        <div class="img-placeholder relative screen-annotated" style="min-height:280px;">
+        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
           <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
           <!-- Interactive hotspots -->
@@ -1469,16 +1436,8 @@
               Clear status showing whether data has synced to the server. Designed for unreliable offshore connectivity &mdash; the technician knows their work is saved locally even without network.
             </div>
           </div>
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
-            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-            <rect x="10" y="6" width="20" height="28" rx="3" stroke="#C9962E" stroke-width="1.5" fill="none" opacity="0.3"/>
-            <rect x="13" y="12" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
-            <rect x="13" y="18" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
-            <rect x="13" y="24" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
-          </svg>
         </div>
         <div class="image-caption">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><rect x="6.3" y="3.5" width="1.4" height="4" rx="0.7" fill="#BBBBBB"/><rect x="6.3" y="9" width="1.4" height="1.4" rx="0.7" fill="#BBBBBB"/></svg>
           Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
         </div>
       </div>
