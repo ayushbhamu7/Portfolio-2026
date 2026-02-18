@@ -655,12 +655,28 @@
       .tldr-metric-num { font-size: 22px; }
     }
 
+    /* ── Content + stepper layout ── */
+    .case-layout {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 0;
+    }
+    .case-layout > article {
+      flex: 1;
+      min-width: 0;
+    }
+
     /* ── Sidebar stepper navigation ── */
     .stepper-sidebar {
-      position: fixed;
-      top: 120px;
-      left: max(16px, calc((100vw - 1100px) / 2 - 200px));
-      width: 180px;
+      position: sticky;
+      top: 90px;
+      align-self: flex-start;
+      width: 160px;
+      flex-shrink: 0;
+      padding: 28px 0 0 0;
+      margin-top: 60px;
       z-index: 20;
       opacity: 0;
       transform: translateX(-8px);
@@ -693,9 +709,9 @@
     .stepper-link {
       display: block;
       position: relative;
-      padding: 8px 0 8px 16px;
+      padding: 7px 0 7px 14px;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       color: #AAAAAA;
       text-decoration: none;
@@ -725,8 +741,9 @@
       opacity: 1;
     }
 
-    @media (max-width: 1440px) {
+    @media (max-width: 768px) {
       .stepper-sidebar { display: none; }
+      .case-layout { padding: 0; }
     }
   </style>
 </head>
@@ -829,25 +846,11 @@
       onerror="this.style.display='none'" />
   </section>
 
-  <!-- Stepper sidebar (fixed position) -->
-  <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
-      <div class="stepper-title">On this page</div>
-      <ul class="stepper-list">
-        <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
-        <li><a href="#sec-users" class="stepper-link" data-section="sec-users">Users</a></li>
-        <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
-        <li><a href="#sec-framing" class="stepper-link" data-section="sec-framing">Problem framing</a></li>
-        <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
-        <li><a href="#sec-vision" class="stepper-link" data-section="sec-vision">Vision</a></li>
-        <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
-        <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
-        <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
-        <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
-      </ul>
-    </nav>
+  <!-- Content layout with stepper -->
+  <div class="case-layout">
 
     <!-- Content -->
-    <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-24">
+    <article class="px-5 sm:px-8 py-14 sm:py-20 w-full flex flex-col gap-16 sm:gap-24">
 
     <!-- ============================================ -->
     <!-- TL;DR — Executive Summary -->
@@ -1873,6 +1876,25 @@
     </div>
 
   </article>
+
+    <!-- Stepper sidebar -->
+    <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
+      <div class="stepper-title">On this page</div>
+      <ul class="stepper-list">
+        <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
+        <li><a href="#sec-users" class="stepper-link" data-section="sec-users">Users</a></li>
+        <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
+        <li><a href="#sec-framing" class="stepper-link" data-section="sec-framing">Problem framing</a></li>
+        <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
+        <li><a href="#sec-vision" class="stepper-link" data-section="sec-vision">Vision</a></li>
+        <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
+        <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
+        <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
+        <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- end case-layout -->
 
   <!-- Footer -->
   <footer class="py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
