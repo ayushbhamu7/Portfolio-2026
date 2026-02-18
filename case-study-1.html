@@ -829,53 +829,50 @@
     </div>
   </section>
 
-  <!-- Meta strip -->
-  <section class="section-tint px-5 sm:px-20 py-8 sm:py-10 w-full">
-    <div class="max-w-[1100px] mx-auto flex flex-wrap gap-x-12 gap-y-6">
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">UI/UX Designer <span class="font-inter text-[12px] font-medium text-[#888888]">(sole designer on the RWE side)</span></span>
-      </div>
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">3 months (Research &rarr; Prototype)</span>
-      </div>
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer + 1 BCG designer, 3 consultants, 2 TLs, 3 BPs, 2 POs</span>
-      </div>
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Mural, SAP, Confluence</span>
-      </div>
-    </div>
-  </section>
+  <!-- Project overview strip -->
+  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
+    <div class="max-w-[1100px] mx-auto flex flex-col gap-8">
 
-  <!-- TL;DR Strip — Quick Impact Summary -->
-  <section class="tldr-strip px-5 sm:px-20 py-8 sm:py-10 w-full">
-    <div class="max-w-[1100px] mx-auto flex flex-col gap-5">
-      <div class="flex items-center gap-3">
-        <div style="width:6px;height:6px;border-radius:50%;background:#14B8A6;"></div>
-        <span class="font-inter text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:rgba(255,255,255,0.5);">What I delivered</span>
-      </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-        <div class="tldr-metric">
-          <span class="tldr-metric-num">7 &rarr; 3</span>
-          <span class="tldr-metric-label">Diagnosis steps reduced (from 4 systems to 1 platform)</span>
+      <!-- Role & context — inline pills -->
+      <div class="flex flex-wrap gap-3">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Role</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">UI/UX Designer</span>
         </div>
-        <div class="tldr-metric">
-          <span class="tldr-metric-num">15+</span>
-          <span class="tldr-metric-label">Production-ready screens across 2 modules</span>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">3 months</span>
         </div>
-        <div class="tldr-metric">
-          <span class="tldr-metric-num">11+</span>
-          <span class="tldr-metric-label">Stakeholders aligned in 3 review cycles</span>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">11 stakeholders</span>
         </div>
-        <div class="tldr-metric">
-          <span class="tldr-metric-num">12 wk</span>
-          <span class="tldr-metric-label">Research to production-ready handoff</span>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">Figma, Mural, SAP</span>
         </div>
       </div>
+
+      <!-- Impact metrics — card grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">7 &rarr; 3</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Diagnosis steps reduced</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Production-ready screens</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Review cycles to alignment</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">12 wk</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Research to handoff</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
