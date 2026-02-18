@@ -745,6 +745,45 @@
       .stepper-sidebar { display: none; }
       .case-layout { padding: 0; }
     }
+
+    /* ── Screen tabs ── */
+    .screen-tabs {
+      display: flex;
+      gap: 2px;
+      background: #F4F3EF;
+      border-radius: 10px;
+      padding: 3px;
+    }
+    .screen-tab {
+      flex: 1;
+      padding: 10px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #888888;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .screen-tab:hover {
+      color: #555555;
+    }
+    .screen-tab.is-active {
+      background: #FFFFFF;
+      color: #111111;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .screen-panel {
+      display: none;
+    }
+    .screen-panel.is-active {
+      display: block;
+    }
   </style>
 </head>
 
@@ -1428,116 +1467,135 @@
       </p>
     </div>
 
-    <!-- Screen: Dashboard -->
-    <div class="flex flex-col gap-3 fade-up">
-      <div class="flex items-center gap-3 flex-wrap">
-        <span class="tag tag-teal">Module 1</span>
-        <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
+    <!-- Screen deep-dives — tabbed -->
+    <div class="flex flex-col gap-4 fade-up" id="screenTabs">
+      <!-- Tab buttons -->
+      <div class="screen-tabs">
+        <button class="screen-tab is-active" data-tab="tab-dashboard">
+          <span class="hidden sm:inline">Dashboard &amp; Fault Search</span>
+          <span class="sm:hidden">Dashboard</span>
+        </button>
+        <button class="screen-tab" data-tab="tab-workorder">
+          <span class="hidden sm:inline">Work Order Draft</span>
+          <span class="sm:hidden">Work Order</span>
+        </button>
+        <button class="screen-tab" data-tab="tab-documentation">
+          <span class="hidden sm:inline">Documentation (iPad)</span>
+          <span class="sm:hidden">Docs</span>
+        </button>
       </div>
-      <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
-          <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
-            onerror="this.style.display='none'" style="display:block;" />
-          <!-- Interactive hotspots -->
-          <div class="hotspot hotspot-below" style="top:11%;left:33%;">
-            <div class="hotspot-dot">1</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Fault Search modal</span>
-              Fault code entry as the primary action. Coordinator arrives with a SCADA alarm code and goes directly to search &mdash; zero navigation clicks.
-            </div>
-          </div>
-          <div class="hotspot hotspot-left" style="top:38%;left:4%;">
-            <div class="hotspot-dot">2</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Recent Alarms panel</span>
-              Active &amp; solved faults across the fleet with color-coded status. Gives coordinators situational awareness alongside search.
-            </div>
-          </div>
-          <div class="hotspot hotspot-right" style="top:66%;right:4%;">
-            <div class="hotspot-dot">3</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Site network overview</span>
-              Visual map of turbine assets and connections. Designed for spatial orientation &mdash; coordinators think in terms of physical topology, not lists.
-            </div>
-          </div>
-        </div>
-        <div class="image-caption">
-          Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
-        </div>
-      </div>
-    </div>
 
-    <!-- Screen: Work Order Draft -->
-    <div class="flex flex-col gap-3 fade-up">
-      <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
-      <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
-          <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
-            onerror="this.style.display='none'" style="display:block;" />
-          <!-- Interactive hotspots -->
-          <div class="hotspot hotspot-below" style="top:15%;left:50%;">
-            <div class="hotspot-dot">1</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Auto-populated from root cause</span>
-              Fault details, selected root cause, and recommended actions pre-fill from Module 1&rsquo;s search. The coordinator edits, not writes from scratch.
-            </div>
-          </div>
-          <div class="hotspot" style="top:50%;left:30%;">
-            <div class="hotspot-dot">2</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Structured task fields</span>
-              Instead of free-text, each action is a discrete row. This ensures the technician gets clear, step-by-step instructions on their iPad.
-            </div>
-          </div>
-          <div class="hotspot hotspot-left" style="bottom:15%;right:25%;">
-            <div class="hotspot-dot">3</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Direct flow to Module 2</span>
-              Submitted work orders automatically appear in the technician&rsquo;s documentation queue. This is the handoff bridge between the two modules.
-            </div>
-          </div>
+      <!-- Panel: Dashboard -->
+      <div class="screen-panel is-active" id="tab-dashboard">
+        <div class="flex items-center gap-3 flex-wrap mb-3">
+          <span class="tag tag-teal">Module 1</span>
+          <span class="font-inter text-[12px] text-[#888888]">Desktop &mdash; used by Maintenance Coordinators in control room</span>
         </div>
-        <div class="image-caption">
-          Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
+        <div class="image-block">
+          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
+            <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
+              onerror="this.style.display='none'" style="display:block;" />
+            <div class="hotspot hotspot-below" style="top:11%;left:33%;">
+              <div class="hotspot-dot">1</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Fault Search modal</span>
+                Fault code entry as the primary action. Coordinator arrives with a SCADA alarm code and goes directly to search &mdash; zero navigation clicks.
+              </div>
+            </div>
+            <div class="hotspot hotspot-left" style="top:38%;left:4%;">
+              <div class="hotspot-dot">2</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Recent Alarms panel</span>
+                Active &amp; solved faults across the fleet with color-coded status. Gives coordinators situational awareness alongside search.
+              </div>
+            </div>
+            <div class="hotspot hotspot-right" style="top:66%;right:4%;">
+              <div class="hotspot-dot">3</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Site network overview</span>
+                Visual map of turbine assets and connections. Designed for spatial orientation &mdash; coordinators think in terms of physical topology, not lists.
+              </div>
+            </div>
+          </div>
+          <div class="image-caption">
+            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Screen: Documentation Flow -->
-    <div class="flex flex-col gap-3 fade-up">
-      <div class="flex items-center gap-3 flex-wrap">
-        <span class="tag tag-teal">Module 2</span>
-        <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
-      </div>
-      <div class="image-block">
-        <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
-          <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full block"
-            onerror="this.style.display='none'" style="display:block;" />
-          <!-- Interactive hotspots -->
-          <div class="hotspot hotspot-below" style="top:10%;left:45%;">
-            <div class="hotspot-dot">1</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Photo-first capture</span>
-              Large camera button at the top. Technicians photograph the fault first, then add structured metadata. Designed for gloved hands in harsh conditions.
+      <!-- Panel: Work Order -->
+      <div class="screen-panel" id="tab-workorder">
+        <div class="flex items-center gap-3 flex-wrap mb-3">
+          <span class="tag tag-teal">Module 1</span>
+          <span class="font-inter text-[12px] text-[#888888]">Desktop &mdash; coordinator drafts tasks for the offshore technician</span>
+        </div>
+        <div class="image-block">
+          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
+            <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
+              onerror="this.style.display='none'" style="display:block;" />
+            <div class="hotspot hotspot-below" style="top:15%;left:50%;">
+              <div class="hotspot-dot">1</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Auto-populated from root cause</span>
+                Fault details, selected root cause, and recommended actions pre-fill from Module 1&rsquo;s search. The coordinator edits, not writes from scratch.
+              </div>
+            </div>
+            <div class="hotspot" style="top:50%;left:30%;">
+              <div class="hotspot-dot">2</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Structured task fields</span>
+                Instead of free-text, each action is a discrete row. This ensures the technician gets clear, step-by-step instructions on their iPad.
+              </div>
+            </div>
+            <div class="hotspot hotspot-left" style="bottom:15%;right:25%;">
+              <div class="hotspot-dot">3</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Direct flow to Module 2</span>
+                Submitted work orders automatically appear in the technician&rsquo;s documentation queue. This is the handoff bridge between the two modules.
+              </div>
             </div>
           </div>
-          <div class="hotspot hotspot-right" style="top:40%;left:20%;">
-            <div class="hotspot-dot">2</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Structured fields, not free-text</span>
-              Repair outcome, root cause confirmation, and parts used are dropdowns/selects, not text entry. Consistent data feeds back into Module 1&rsquo;s knowledge base.
-            </div>
-          </div>
-          <div class="hotspot" style="top:70%;right:30%;">
-            <div class="hotspot-dot">3</div>
-            <div class="hotspot-tip">
-              <span class="hotspot-tip-title">Offline sync indicator</span>
-              Clear status showing whether data has synced to the server. Designed for unreliable offshore connectivity &mdash; the technician knows their work is saved locally even without network.
-            </div>
+          <div class="image-caption">
+            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
           </div>
         </div>
-        <div class="image-caption">
-          Hover the numbered hotspots to explore design decisions. Click anywhere to zoom to full resolution.
+      </div>
+
+      <!-- Panel: Documentation -->
+      <div class="screen-panel" id="tab-documentation">
+        <div class="flex items-center gap-3 flex-wrap mb-3">
+          <span class="tag tag-teal">Module 2</span>
+          <span class="font-inter text-[12px] text-[#888888]">iPad &mdash; used by Technicians offshore with gloved hands</span>
+        </div>
+        <div class="image-block">
+          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #EEF2FF 0%, #EEF0F3 100%);">
+            <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full block"
+              onerror="this.style.display='none'" style="display:block;" />
+            <div class="hotspot hotspot-below" style="top:10%;left:45%;">
+              <div class="hotspot-dot">1</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Photo-first capture</span>
+                Large camera button at the top. Technicians photograph the fault first, then add structured metadata. Designed for gloved hands in harsh conditions.
+              </div>
+            </div>
+            <div class="hotspot hotspot-right" style="top:40%;left:20%;">
+              <div class="hotspot-dot">2</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Structured fields, not free-text</span>
+                Repair outcome, root cause confirmation, and parts used are dropdowns/selects, not text entry. Consistent data feeds back into Module 1&rsquo;s knowledge base.
+              </div>
+            </div>
+            <div class="hotspot" style="top:70%;right:30%;">
+              <div class="hotspot-dot">3</div>
+              <div class="hotspot-tip">
+                <span class="hotspot-tip-title">Offline sync indicator</span>
+                Clear status showing whether data has synced to the server. Designed for unreliable offshore connectivity &mdash; the technician knows their work is saved locally even without network.
+              </div>
+            </div>
+          </div>
+          <div class="image-caption">
+            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
+          </div>
         </div>
       </div>
     </div>
@@ -2122,6 +2180,20 @@
 
     window.addEventListener('scroll', updateStepper, { passive: true });
     updateStepper();
+
+    // ── Screen tabs ──
+    var tabs = document.querySelectorAll('.screen-tab');
+    var panels = document.querySelectorAll('.screen-panel');
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var targetId = tab.getAttribute('data-tab');
+        tabs.forEach(function(t) { t.classList.remove('is-active'); });
+        panels.forEach(function(p) { p.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        var target = document.getElementById(targetId);
+        if (target) target.classList.add('is-active');
+      });
+    });
   })();
   </script>
 
