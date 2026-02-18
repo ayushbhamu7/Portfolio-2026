@@ -5,10 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu</title>
+  <meta name="description" content="Case study: Designing a cross-site troubleshooting platform for offshore wind technicians at RWE. Led end-to-end design reducing troubleshooting time by 20%." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -361,6 +362,157 @@
     .lightbox-prev { left: 16px; }
     .lightbox-next { right: 16px; }
 
+    /* ── Reading progress bar ── */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #C9962E, #E8C36A);
+      z-index: 999;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Fade-in on scroll animation ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Quick glance / TL;DR strip ── */
+    .tldr-strip {
+      background: #111111;
+      color: #FAFAF8;
+    }
+    .tldr-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .tldr-metric-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #E8C36A;
+      line-height: 1;
+    }
+    .tldr-metric-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* ── Contribution highlight card ── */
+    .contrib-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .contrib-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #C9962E, #E8C36A);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .contrib-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border-color: #D8D5CE;
+    }
+    .contrib-card:hover::before {
+      opacity: 1;
+    }
+    .contrib-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #F0EBE0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── Stakeholder pill ── */
+    .stake-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 10px;
+      padding: 12px 16px;
+      transition: box-shadow 0.15s;
+    }
+    .stake-pill:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .stake-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Tradeoff card ── */
+    .tradeoff-option {
+      border: 1px solid #E8E5DF;
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .tradeoff-chosen {
+      border-color: #C9962E;
+      background: #FFFBF3;
+    }
+    .tradeoff-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Section divider with number ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E8E5DF;
+    }
+
     @media (max-width: 900px) {
       .screen-grid { grid-template-columns: 1fr; }
     }
@@ -370,11 +522,15 @@
       .lightbox-nav { width: 36px; height: 36px; font-size: 16px; }
       .lightbox-prev { left: 8px; }
       .lightbox-next { right: 8px; }
+      .tldr-metric-num { font-size: 22px; }
     }
   </style>
 </head>
 
 <body class="overflow-x-hidden">
+
+  <!-- Reading progress bar -->
+  <div class="reading-progress" id="readingProgress"></div>
 
   <!-- Navigation -->
   <nav class="nav-glass flex items-center justify-between py-4 px-5 sm:py-5 sm:px-20 w-full">
@@ -403,8 +559,8 @@
       <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
         Designing a troubleshooting tool for offshore wind technicians at RWE
       </h1>
-      <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75]">
-        From SAP screens and tribal knowledge to a structured, searchable troubleshooting platform &mdash; reducing diagnosis time by 20% and error rates by 15% for offshore wind turbine maintenance teams.
+      <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75] max-w-[680px]">
+        Led end-to-end product design for a cross-site fault diagnosis platform &mdash; from user research with offshore technicians to a production-ready prototype that reduced troubleshooting time by 20% and diagnostic errors by 15%.
       </p>
     </div>
   </section>
@@ -422,11 +578,39 @@
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer, 3 BCG consultants, 2 TLs, 3 BPs, 2 POs</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer + 1 BCG designer I steered, 3 consultants, 2 TLs, 3 BPs, 2 POs</span>
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Miro, SAP</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Miro, SAP, Confluence</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TL;DR Strip — Quick Impact Summary -->
+  <section class="tldr-strip px-5 sm:px-20 py-8 sm:py-10 w-full">
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center gap-3">
+        <div style="width:6px;height:6px;border-radius:50%;background:#E8C36A;"></div>
+        <span class="font-inter text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:rgba(255,255,255,0.5);">Impact at a glance</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+        <div class="tldr-metric">
+          <span class="tldr-metric-num">&minus;20%</span>
+          <span class="tldr-metric-label">Troubleshooting time</span>
+        </div>
+        <div class="tldr-metric">
+          <span class="tldr-metric-num">&minus;15%</span>
+          <span class="tldr-metric-label">Diagnostic error rate</span>
+        </div>
+        <div class="tldr-metric">
+          <span class="tldr-metric-num">3 mo</span>
+          <span class="tldr-metric-label">Research to prototype</span>
+        </div>
+        <div class="tldr-metric">
+          <span class="tldr-metric-num">11+</span>
+          <span class="tldr-metric-label">Stakeholders aligned</span>
+        </div>
       </div>
     </div>
   </section>
@@ -448,35 +632,29 @@
   <!-- Content -->
   <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-24">
 
-    <!-- Outcome callout -->
-    <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-2">
-      <span class="label-accent" style="font-size:10px;">Result</span>
-      <p class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] leading-[1.4]">
-        20% reduction in troubleshooting time. 15% decrease in diagnostic error rates. Production-ready prototype delivered in 3 months.
-      </p>
-    </div>
-
     <!-- ============================================ -->
     <!-- 01 CONTEXT -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">01 &middot; Context</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">No dedicated tool &mdash; just experience and scattered PDFs</h2>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
+        A global wind fleet with no dedicated troubleshooting tool
+      </h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          RWE operates one of the world&rsquo;s largest offshore wind fleets. When a turbine faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often under time pressure and harsh offshore conditions.
+          RWE operates one of the world&rsquo;s largest offshore wind fleets across multiple countries. When a turbine faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often under time pressure and harsh offshore conditions.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed, hard to find, and impossible to standardize across sites.
+          The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed by site, hard to find, and impossible to standardize across the fleet.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I was brought in as the lead product designer to work alongside BCG consultants and internal stakeholders to design a new digital tool from scratch &mdash; covering the entire troubleshooting and documentation workflow.
+          I was brought in as the <strong>lead product designer</strong> embedded within the RWE team, working alongside BCG consultants and internal stakeholders to design a new digital platform from scratch &mdash; owning the entire design workstream from research through to production-ready prototype.
         </p>
       </div>
     </div>
 
     <!-- Image: old tools -->
-    <div class="image-block">
+    <div class="image-block fade-up">
       <div class="img-placeholder h-[200px] sm:h-[320px] relative">
         <img src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full h-full object-contain"
           onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
@@ -494,14 +672,63 @@
     </div>
 
     <!-- ============================================ -->
+    <!-- MY CONTRIBUTION — Leadership & ownership -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+      <span class="label-accent">My contribution</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
+        What I owned &mdash; and how I led
+      </h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
+        As the sole product designer on the RWE side, I didn&rsquo;t just push pixels. I drove the design vision, aligned cross-functional stakeholders, and steered an external BCG designer &mdash; owning the quality bar for every screen that went into the prototype.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <div class="contrib-card">
+          <div class="contrib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" stroke="#C9962E" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">End-to-end design ownership</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Owned the complete design workstream &mdash; from stakeholder interviews and journey mapping through IA definition, wireframing, prototyping, and interaction specs. No handoffs in between.</p>
+        </div>
+
+        <div class="contrib-card">
+          <div class="contrib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#C9962E" stroke-width="1.5"/><circle cx="5" cy="14" r="2.5" stroke="#C9962E" stroke-width="1.5"/><circle cx="15" cy="14" r="2.5" stroke="#C9962E" stroke-width="1.5"/><path d="M10 10V12M7 13L10 12M13 13L10 12" stroke="#C9962E" stroke-width="1.2"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Steering an external designer</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Managed and directed a BCG designer&rsquo;s output &mdash; setting design principles, reviewing work against quality standards, and ensuring consistency across 2 product modules and 15+ screens.</p>
+        </div>
+
+        <div class="contrib-card">
+          <div class="contrib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#C9962E" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Stakeholder alignment</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Facilitated design reviews with 11+ stakeholders across Business Partners, Product Owners, Team Leads, and BCG consultants. Translated business requirements into design decisions and defended user needs when priorities conflicted.</p>
+        </div>
+
+        <div class="contrib-card">
+          <div class="contrib-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#C9962E" stroke-width="1.5"/><path d="M10 6V10L13 12" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Research &rarr; strategy &rarr; execution</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Ran the full research arc &mdash; ~10 participant interviews, contextual shadowing sessions, journey mapping, and problem framing &mdash; then translated findings into a product vision that the entire team could rally around.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
     <!-- 02 USERS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">02 &middot; Users</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Two distinct roles, two different contexts</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          Through interviews and shadowing sessions with approximately 10 participants across onshore and offshore teams, we identified two primary user profiles with fundamentally different working contexts.
+          Through <strong>~10 participant interviews and contextual shadowing sessions</strong> across onshore and offshore teams, I identified two primary user profiles with fundamentally different work environments, device contexts, and information needs.
         </p>
       </div>
 
@@ -580,16 +807,35 @@
     <!-- ============================================ -->
     <!-- 03 DISCOVERY -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">03 &middot; Discovery</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Mapping the as-is journey revealed deep structural gaps</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I conducted interviews and shadowing sessions with maintenance coordinators, lead technicians, and offshore technicians across multiple RWE wind farm sites. The goal was to map the complete troubleshooting workflow &mdash; from the moment a SCADA alarm fires to the point where documentation is filed.
+          I conducted <strong>contextual shadowing sessions</strong> in control rooms, observing maintenance coordinators handle real fault scenarios in real time. I supplemented this with <strong>semi-structured interviews</strong> across both user groups, focusing on their actual behaviors &mdash; not just the official process.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The as-is journey map revealed a workflow spanning multiple physical locations &mdash; from the onshore control room through offshore travel, turbine work, and post-trip documentation. Each transition was a potential point of information loss.
+          The critical insight: <strong>the most valuable research came from watching, not asking.</strong> In interviews, participants described the standard process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept operations running.
         </p>
+      </div>
+
+      <!-- Research methodology callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3">
+        <span class="label-accent" style="font-size:10px;">Research approach</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">Contextual shadowing</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Observed real fault resolution workflows in control rooms across sites</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">Semi-structured interviews</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">~10 participants across coordinators, leads, and offshore technicians</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">Journey mapping workshops</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Collaborative Miro sessions to validate pain points with cross-functional team</span>
+          </div>
+        </div>
       </div>
 
       <!-- Key findings -->
@@ -603,14 +849,14 @@
           <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Disconnected systems touched during a single fault resolution &mdash; SCADA, SAP, email, phone calls, PDF manuals</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">~10</span>
-          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Participants interviewed and shadowed across onshore and offshore roles to map the complete troubleshooting workflow</p>
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">100%</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Knowledge loss risk when experienced staff retired or transferred &mdash; no structured capture of tribal knowledge</p>
         </div>
       </div>
     </div>
 
     <!-- As-Is Journey Map -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 fade-up">
       <div class="flex items-center gap-3">
         <span class="compare-before">Before</span>
         <span class="font-inter text-[13px] font-semibold text-[#555555]">As-Is Troubleshooting Journey</span>
@@ -641,12 +887,15 @@
     <!-- ============================================ -->
     <!-- 04 PROBLEM FRAMING -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">04 &middot; Problem framing</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Four fault scenarios, two product modules</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          From the research, we identified four distinct fault scenarios that technicians encounter. Each requires a different lookup and resolution path, which informed the product&rsquo;s information architecture.
+          From the research, I synthesized four distinct fault scenarios that technicians encounter. Each requires a different lookup and resolution path &mdash; this became the backbone of the product&rsquo;s information architecture.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          <strong>Why this framing matters:</strong> instead of building a generic tool, we scoped the product around real diagnostic patterns. This let us prioritize the highest-impact path first (known fault at other site) and design progressive disclosure for complex scenarios.
         </p>
       </div>
 
@@ -663,7 +912,7 @@
           <div class="scenario-icon" style="background:#E6F4F1;">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#1A7A6A" stroke-width="1.5"/><path d="M6 9H12M9 6V12" stroke="#1A7A6A" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; other site</h3>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; other site <span class="tag tag-teal" style="font-size:9px;padding:2px 6px;vertical-align:middle;margin-left:6px;">Highest impact</span></h3>
           <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Another RWE wind farm has solved this exact fault. But knowledge doesn&rsquo;t travel between sites &mdash; it sits in someone&rsquo;s head or a local PDF.</p>
         </div>
         <div class="scenario-card">
@@ -684,7 +933,7 @@
 
       <!-- Module breakdown -->
       <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 mt-4">
-        <span class="label-accent" style="font-size:10px;">Product scope</span>
+        <span class="label-accent" style="font-size:10px;">Product scope &mdash; defined by me</span>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="flex flex-col gap-2">
             <h3 class="font-sora text-[16px] font-bold text-[#111111]">Module 1: Troubleshooting</h3>
@@ -698,11 +947,66 @@
       </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- STAKEHOLDER ECOSYSTEM -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+      <span class="label-accent">Collaboration</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Navigating a complex stakeholder landscape</h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
+        This wasn&rsquo;t a small team shipping fast. It was a cross-functional environment with competing priorities &mdash; BCG consultants focused on operational efficiency, Product Owners concerned with SAP integration timelines, Business Partners representing site-specific needs, and Team Leads managing offshore logistics. I had to earn trust, frame design decisions in business language, and build consensus without formal authority.
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <div class="stake-pill">
+          <div class="stake-dot" style="background:#C9962E;"></div>
+          <div class="flex flex-col">
+            <span class="font-inter text-[12px] font-semibold text-[#111111]">3 BCG Consultants</span>
+            <span class="font-inter text-[11px] text-[#888888]">Strategy &amp; operations</span>
+          </div>
+        </div>
+        <div class="stake-pill">
+          <div class="stake-dot" style="background:#1A7A6A;"></div>
+          <div class="flex flex-col">
+            <span class="font-inter text-[12px] font-semibold text-[#111111]">2 Product Owners</span>
+            <span class="font-inter text-[11px] text-[#888888]">Backlog &amp; priorities</span>
+          </div>
+        </div>
+        <div class="stake-pill">
+          <div class="stake-dot" style="background:#3B82F6;"></div>
+          <div class="flex flex-col">
+            <span class="font-inter text-[12px] font-semibold text-[#111111]">2 Team Leads</span>
+            <span class="font-inter text-[11px] text-[#888888]">Offshore operations</span>
+          </div>
+        </div>
+        <div class="stake-pill">
+          <div class="stake-dot" style="background:#8B5CF6;"></div>
+          <div class="flex flex-col">
+            <span class="font-inter text-[12px] font-semibold text-[#111111]">3 Business Partners</span>
+            <span class="font-inter text-[11px] text-[#888888]">Site-specific requirements</span>
+          </div>
+        </div>
+        <div class="stake-pill">
+          <div class="stake-dot" style="background:#EC4899;"></div>
+          <div class="flex flex-col">
+            <span class="font-inter text-[12px] font-semibold text-[#111111]">1 BCG Designer</span>
+            <span class="font-inter text-[11px] text-[#888888]">Steered by me</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6">
+        <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
+          <strong>How I managed this:</strong> I established weekly design review rituals with a rotating set of stakeholders, framed design decisions as hypotheses tied to business metrics (not just aesthetics), and created a shared Miro board that served as a single source of truth for decisions. When the BCG team pushed for features that compromised the user experience, I advocated with data from shadowing sessions &mdash; not opinions.
+        </p>
+      </div>
+    </div>
+
 
     <!-- ============================================ -->
     <!-- 05 PROCESS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">05 &middot; Process</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">How I structured the work</h2>
 
@@ -717,8 +1021,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Research &amp; shadowing</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Conducted interviews and contextual shadowing sessions with ~10 participants across maintenance coordinators, lead technicians, and offshore technicians. Observed real troubleshooting workflows in control rooms and reviewed existing documentation practices.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Research &amp; shadowing <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 1&ndash;3</span></h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Conducted interviews and contextual shadowing sessions with ~10 participants across maintenance coordinators, lead technicians, and offshore technicians. Observed real troubleshooting workflows in control rooms. Synthesized findings into a research report and presented to the full stakeholder group.</p>
           </div>
         </div>
 
@@ -731,8 +1035,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">As-is journey mapping</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm in the control room, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">As-is journey mapping <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 3&ndash;4</span></h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm, control room diagnosis, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage. Validated with stakeholders in a collaborative Miro workshop.</p>
           </div>
         </div>
 
@@ -745,8 +1049,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Vision journey &amp; information architecture</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Defined the target-state journey &mdash; where the new tool would intervene. Designed the IA around two modules (Troubleshooting + Documentation) and four fault scenarios. Aligned with BCG consultants, Team Leads, and Product Owners on scope and priorities.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Vision journey &amp; IA <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 4&ndash;6</span></h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Defined the target-state journey &mdash; where the new tool would intervene. Designed the IA around two modules (Troubleshooting + Documentation) and four fault scenarios. Aligned BCG consultants, Team Leads, and Product Owners on scope. This was the hardest alignment phase &mdash; I had to defend the 2-module split against pushback for a single monolithic tool.</p>
           </div>
         </div>
 
@@ -759,21 +1063,21 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Wireframing &amp; prototyping</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Designed key screens for both modules in Figma: dashboard with fault search, fault results, consolidated root causes, work order drafts, and the technician documentation flow. Iterated rapidly with BCG and internal stakeholders.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Wireframing &amp; prototyping <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 6&ndash;10</span></h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Designed key screens in Figma: dashboard with fault search, fault results, consolidated root causes, work order drafts, and the technician documentation flow (iPad). Iterated rapidly through 3 rounds of stakeholder feedback, refining interactions and information hierarchy at each pass.</p>
           </div>
         </div>
 
         <!-- Step 5 -->
         <div class="flex gap-5 sm:gap-8">
           <div class="shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#C9962E]">5</span>
+            <div class="w-10 h-10 rounded-full bg-[#111111] border-2 border-[#111111] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-white">5</span>
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Steering &amp; handoff</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">As lead designer, I steered an external BCG designer while maintaining ownership of all design decisions. Facilitated reviews with Business Partners and Product Owners. Delivered a production-ready prototype with full interaction specs.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Steering, QA &amp; handoff <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 10&ndash;12</span></h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Steered the BCG designer&rsquo;s output while maintaining ownership of all design decisions. Ran quality reviews across 15+ screens for consistency, interaction patterns, and edge cases. Facilitated final reviews with Business Partners and Product Owners. Delivered a production-ready prototype with full interaction specs and annotated handoff documentation.</p>
           </div>
         </div>
 
@@ -783,18 +1087,18 @@
     <!-- ============================================ -->
     <!-- 06 VISION JOURNEY -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">06 &middot; Vision</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The redesigned journey &mdash; from alarm to documentation</h2>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The redesigned journey &mdash; one platform, two modules</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The vision journey shows where the new tool plugs in. Instead of context-switching between SAP, PDFs, phone calls, and personal notes, both user roles now follow a streamlined digital workflow within a single platform.
+          The vision journey shows where the new tool plugs in. Instead of context-switching between SAP, PDFs, phone calls, and personal notes, both user roles now follow a streamlined digital workflow within a single platform &mdash; with each module optimized for its specific user context.
         </p>
       </div>
     </div>
 
     <!-- Vision Journey Map -->
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 fade-up">
       <div class="flex items-center gap-3">
         <span class="compare-after">After</span>
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Vision Troubleshooting Journey</span>
@@ -825,7 +1129,7 @@
     <!-- ============================================ -->
     <!-- 07 KEY SCREENS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">07 &middot; Key screens</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The solution: a structured troubleshooting platform</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -836,7 +1140,7 @@
     </div>
 
     <!-- Screen: Dashboard -->
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 fade-up">
       <div class="flex items-center gap-3 flex-wrap">
         <span class="tag tag-teal">Module 1</span>
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
@@ -857,10 +1161,13 @@
           Dashboard overview with quick fault search, recent activity, and key metrics at a glance
         </div>
       </div>
+      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
+        <strong style="color:#666;">Design rationale:</strong> Search is the entry point, not navigation. The most common action (looking up a known fault) is the fastest path &mdash; zero clicks to reach the search bar.
+      </p>
     </div>
 
     <!-- Screen: Work Order Draft -->
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 fade-up">
       <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
       <div class="image-block">
         <div class="img-placeholder h-[240px] sm:h-[420px] relative">
@@ -878,10 +1185,13 @@
           Auto-populated work order draft with fault details, selected root cause, and recommended actions for the technician
         </div>
       </div>
+      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
+        <strong style="color:#666;">Design rationale:</strong> Work orders auto-populate from the selected root cause, reducing manual data entry and ensuring consistency. The coordinator reviews and edits &mdash; not writes from scratch.
+      </p>
     </div>
 
     <!-- Screen: Documentation Flow -->
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-3 fade-up">
       <div class="flex items-center gap-3 flex-wrap">
         <span class="tag tag-teal">Module 2</span>
         <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
@@ -902,44 +1212,87 @@
           Technician documentation flow on iPad &mdash; structured capture of repair outcomes, photos, and notes for knowledge transfer
         </div>
       </div>
+      <p class="font-inter text-[#888888] text-[12px] leading-[1.6] mt-1 max-w-[600px]">
+        <strong style="color:#666;">Design rationale:</strong> Optimized for gloved hands and harsh conditions. Large tap targets, structured capture (not free-text), and photo-first documentation &mdash; because the documentation module is the flywheel that feeds Module 1&rsquo;s knowledge base.
+      </p>
     </div>
 
     <!-- ============================================ -->
     <!-- 08 DESIGN DECISIONS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">08 &middot; Key design decisions</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that shaped the product</h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
+        Every design decision involved trade-offs. Here are three strategic choices I made &mdash; and the alternatives I considered before committing.
+      </p>
 
-      <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-8">
 
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
-          <div class="sm:w-[52px] shrink-0">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">A</span>
+        <!-- Decision A -->
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">A</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Cross-site fault search as the entry point</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">The biggest unlock was making fault resolutions searchable across all RWE wind farms. Previously, a technician at Site A had no way to know that Site B had already solved the exact same fault.</p>
+            </div>
           </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Cross-site fault search as the entry point</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">The biggest unlock was making fault resolutions searchable across all RWE wind farms. Previously, a technician at Site A had no way to know that Site B had already solved the exact same fault. The search-first IA means the most common action (looking up a known fault) is also the fastest.</p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
+            <div class="flex flex-col gap-2">
+              <div class="tradeoff-chosen tradeoff-option">
+                <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
+                <span class="font-inter text-[#333333]"><strong>Search-first IA</strong> &mdash; search bar as the primary entry point, zero clicks to start</span>
+              </div>
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888]"><strong>Navigation-first IA</strong> &mdash; browse by site &rarr; turbine &rarr; fault. Too many clicks for the most common scenario.</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
-          <div class="sm:w-[52px] shrink-0">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">B</span>
+        <!-- Decision B -->
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">B</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Consolidated root cause comparison</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">When a fault has been resolved at multiple sites, the tool shows all root causes side-by-side with frequency data. This eliminates one of the biggest time sinks in the as-is workflow &mdash; calling colleagues at other sites.</p>
+            </div>
           </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Consolidated root cause comparison</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">When a fault has been resolved at multiple sites, the tool shows all root causes side-by-side with frequency data. This lets coordinators pick the most likely cause without calling colleagues at other sites &mdash; eliminating one of the biggest time sinks in the as-is workflow.</p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
+            <div class="flex flex-col gap-2">
+              <div class="tradeoff-chosen tradeoff-option">
+                <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
+                <span class="font-inter text-[#333333]"><strong>Consolidated view with frequency</strong> &mdash; side-by-side comparison with occurrence counts across sites</span>
+              </div>
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888]"><strong>Flat list of resolutions</strong> &mdash; simpler to build but doesn&rsquo;t help the coordinator pick the most likely cause</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
-          <div class="sm:w-[52px] shrink-0">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">C</span>
+        <!-- Decision C -->
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none shrink-0">C</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Integrated work order &rarr; documentation loop</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Work orders created in Module 1 flow directly into Module 2 as structured documentation templates on the technician&rsquo;s iPad. This closes the feedback loop: the diagnosis informs the task, and the task outcome feeds back into the knowledge base.</p>
+            </div>
           </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Integrated work order &rarr; documentation loop</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Work orders created in Module 1 flow directly into Module 2 as structured documentation templates on the technician&rsquo;s iPad. This closes the feedback loop: the diagnosis informs the task, and the task outcome feeds back into the knowledge base for future troubleshooting.</p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Why this matters</span>
+            <div class="callout px-5 py-4">
+              <p class="font-inter text-[#555555] text-[13px] leading-[1.7]">
+                The documentation flow is the flywheel, not a secondary feature. Without structured contributions from technicians, the fault database stays empty. I designed the documentation module to make contributing feel effortless &mdash; so the knowledge base would grow organically over time.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -949,12 +1302,12 @@
     <!-- ============================================ -->
     <!-- 09 OUTCOME -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">09 &middot; Outcome</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Measurable impact in 3 months</h2>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Measurable impact, delivered in 12 weeks</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The production-ready prototype was delivered in 3 months, covering the full journey from research through to validated, spec-ready designs. The projected impact &mdash; based on workflow analysis and stakeholder validation &mdash; showed significant improvements across the board.
+          The production-ready prototype was delivered in 3 months, covering the full journey from research through to validated, spec-ready designs. The projected impact was validated through workflow analysis and stakeholder sign-off.
         </p>
       </div>
 
@@ -969,12 +1322,25 @@
           <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Decrease in diagnostic error rates via consolidated root cause comparison</p>
         </div>
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">3mo</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">From initial research to production-ready prototype delivery</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">15+</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Production-ready screens delivered across 2 modules</p>
         </div>
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">2</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Product modules shipped: Troubleshooting + Documentation</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">1</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">External designer steered, with full quality ownership maintained</p>
+        </div>
+      </div>
+
+      <!-- What the project changed callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 mt-2">
+        <span class="label-accent" style="font-size:10px;">Broader impact</span>
+        <div class="flex flex-col gap-3 max-w-[720px]">
+          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
+            <strong>Before this project:</strong> Each RWE wind farm was an island. Knowledge stayed local, experienced technicians were single points of failure, and fault diagnosis depended on who you knew.
+          </p>
+          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
+            <strong>After this project:</strong> A single platform connects all sites. Every resolved fault becomes a searchable resource for the entire fleet. New technicians can access institutional knowledge from day one &mdash; reducing onboarding risk and operational dependency on senior staff.
+          </p>
         </div>
       </div>
     </div>
@@ -982,19 +1348,83 @@
     <!-- ============================================ -->
     <!-- 10 LEARNINGS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8">
+    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">10 &middot; Learnings</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I took from this project</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          <strong>Steering &ne; stepping back.</strong> Managing an external BCG designer taught me that steering someone else&rsquo;s output requires even more clarity than doing the work yourself. Every design decision needed to be articulated as a principle, not just a preference &mdash; otherwise the work drifted between review cycles.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          <strong>Shadowing &gt; interviews for industrial tools.</strong> The most valuable insights came from watching technicians work, not from asking them questions. In interviews, they described the &ldquo;official&rdquo; process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept things running.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          <strong>Cross-site knowledge is the real product.</strong> The tool&rsquo;s biggest value isn&rsquo;t the UI &mdash; it&rsquo;s making one site&rsquo;s experience available to every other site. The design needed to make contribution feel effortless (Module 2) so the database (Module 1) would actually grow over time. The documentation flow is the flywheel, not a secondary feature.
-        </p>
+      <div class="flex flex-col gap-6 max-w-[720px]">
+
+        <div class="flex gap-4">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#C9962E]">01</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Steering &ne; stepping back</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Managing an external designer taught me that steering someone else&rsquo;s output requires <em>more</em> clarity than doing the work yourself. Every design decision needed to be articulated as a <strong>principle, not a preference</strong> &mdash; otherwise the work drifted between review cycles. This is a skill I&rsquo;ll carry into any leadership role.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#C9962E]">02</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Shadowing &gt; interviews for industrial contexts</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              In interviews, participants described the &ldquo;official&rdquo; process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept things running. <strong>Designing for the real workflow, not the documented one, was the foundation of this project.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#C9962E]">03</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The documentation module is the product strategy</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              The tool&rsquo;s long-term value isn&rsquo;t the search UI &mdash; it&rsquo;s making one site&rsquo;s experience available to every other site. The documentation module is the flywheel: if contributing feels effortless, the knowledge base grows organically. <strong>I designed a system, not just screens.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#F0EBE0] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#C9962E]">04</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Framing design decisions in business language builds trust</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              In a room with BCG consultants and business partners, &ldquo;this reduces cognitive load&rdquo; doesn&rsquo;t land. But &ldquo;this cuts 3 steps from the critical path, saving ~8 minutes per fault resolution&rdquo; does. <strong>Learning to translate design thinking into operational language was the biggest personal growth from this project.</strong>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CTA FOOTER -->
+    <!-- ============================================ -->
+    <div class="fade-up" style="background:#111111;border-radius:16px;padding:40px 32px;margin-top:8px;">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div class="flex flex-col gap-2">
+          <span class="font-sora text-[18px] sm:text-[22px] font-bold text-white leading-[1.3]">Interested in working together?</span>
+          <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
+        </div>
+        <div class="flex gap-3 shrink-0">
+          <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#C9962E;color:#FFFFFF;text-decoration:none;">Email me</a>
+          <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn &nearr;</a>
+        </div>
       </div>
     </div>
 
@@ -1039,7 +1469,28 @@
 
   <script>
   (function() {
-    // Map thumbnail paths to high-quality versions
+    // ── Reading progress bar ──
+    const progressBar = document.getElementById('readingProgress');
+    window.addEventListener('scroll', function() {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+
+    // ── Fade-in on scroll ──
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+
+    // ── Lightbox ──
     const hqMap = {
       './images/rwe-cover.jpg': './images/hq/rwe-cover.jpg',
       './images/rwe-old-tools.jpg': './images/hq/rwe-old-tools.jpg',
@@ -1052,7 +1503,6 @@
       './images/screen-documentation.jpg': './images/hq/screen-documentation.jpg',
     };
 
-    // Collect all clickable image blocks
     const imageBlocks = document.querySelectorAll('.image-block');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -1061,7 +1511,6 @@
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
 
-    // Build gallery array
     const gallery = [];
     imageBlocks.forEach(function(block) {
       const img = block.querySelector('img');
@@ -1077,7 +1526,6 @@
       }
     });
 
-    // Also add cover image
     const coverImg = document.querySelector('section.img-placeholder > img');
     if (coverImg && coverImg.src) {
       const src = coverImg.getAttribute('src');
@@ -1100,7 +1548,6 @@
       lightboxCaption.textContent = item.caption;
       lightbox.classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      // Show/hide nav buttons
       lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
       lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
     }
@@ -1112,7 +1559,6 @@
       currentIndex = -1;
     }
 
-    // Click on cover image
     if (coverImg) {
       coverImg.parentElement.style.cursor = 'zoom-in';
       coverImg.parentElement.addEventListener('click', function(e) {
@@ -1121,23 +1567,19 @@
       });
     }
 
-    // Click on image blocks
     imageBlocks.forEach(function(block, i) {
       block.addEventListener('click', function(e) {
         e.preventDefault();
-        // Offset by 1 if cover image exists in gallery
         var offset = coverImg ? 1 : 0;
         openLightbox(i + offset);
       });
     });
 
-    // Close
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', function(e) {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // Nav
     lightboxPrev.addEventListener('click', function(e) {
       e.stopPropagation();
       if (currentIndex > 0) openLightbox(currentIndex - 1);
@@ -1147,7 +1589,6 @@
       if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
     });
 
-    // Keyboard
     document.addEventListener('keydown', function(e) {
       if (!lightbox.classList.contains('is-open')) return;
       if (e.key === 'Escape') closeLightbox();
