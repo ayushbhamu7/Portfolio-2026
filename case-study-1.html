@@ -880,9 +880,13 @@
   </section>
 
   <!-- Cover image -->
-  <section class="w-full overflow-hidden" style="background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-    <img src="./images/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full block" style="display:block;max-height:500px;object-fit:cover;"
-      onerror="this.style.display='none'" />
+  <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
+    <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
+      <div style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
+        <img id="coverImg" src="./images/hq/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full block" style="display:block;"
+          onerror="this.src='./images/rwe-cover.jpg'" />
+      </div>
+    </div>
   </section>
 
   <!-- Content layout with stepper -->
@@ -2049,7 +2053,7 @@
       }
     });
 
-    const coverImg = document.querySelector('section.img-placeholder > img');
+    const coverImg = document.getElementById('coverImg');
     if (coverImg && coverImg.src) {
       const src = coverImg.getAttribute('src');
       gallery.unshift({
