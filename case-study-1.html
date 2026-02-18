@@ -654,6 +654,81 @@
       .lightbox-next { right: 8px; }
       .tldr-metric-num { font-size: 22px; }
     }
+
+    /* ── Sidebar stepper navigation ── */
+    .case-layout {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+    }
+    .stepper-sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+      width: 200px;
+      flex-shrink: 0;
+      padding: 0 0 0 20px;
+      margin-right: -20px;
+      height: fit-content;
+      z-index: 20;
+    }
+    .stepper-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      margin-bottom: 16px;
+    }
+    .stepper-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 2px solid #E8E5DF;
+    }
+    .stepper-link {
+      display: block;
+      position: relative;
+      padding: 8px 0 8px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #AAAAAA;
+      text-decoration: none;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+    .stepper-link::before {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #C9962E;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .stepper-link:hover {
+      color: #555555;
+    }
+    .stepper-link.is-active {
+      color: #111111;
+      font-weight: 600;
+    }
+    .stepper-link.is-active::before {
+      opacity: 1;
+    }
+
+    @media (max-width: 1360px) {
+      .stepper-sidebar { display: none; }
+    }
   </style>
 </head>
 
@@ -663,7 +738,8 @@
   <div class="reading-progress" id="readingProgress"></div>
 
   <!-- Navigation -->
-  <nav class="nav-glass flex items-center justify-between py-4 px-5 sm:py-5 sm:px-20 w-full">
+  <nav class="nav-glass py-4 px-5 sm:py-5 sm:px-20 w-full">
+    <div class="max-w-[1100px] mx-auto flex items-center justify-between">
     <a href="./index.html" class="flex items-center gap-2.5">
       <div class="w-8 h-8 rounded-[6px] bg-[#111111] flex items-center justify-center shrink-0">
         <span class="font-sora text-[15px] font-bold text-white">A</span>
@@ -676,10 +752,12 @@
       <a href="./index.html#contact"
         class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Contact</a>
     </div>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="px-5 sm:px-20 pt-14 sm:pt-20 pb-12 sm:pb-16 w-full" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(212, 168, 83, 0.10) 0%, transparent 70%), #FAFAF8;">
+    <div class="max-w-[1100px] mx-auto">
     <div class="max-w-[820px] flex flex-col gap-5 sm:gap-6">
       <div class="flex items-center gap-2 flex-wrap">
         <span class="tag">Energy &middot; B2B</span>
@@ -693,11 +771,12 @@
         As the sole UI/UX designer on this project, I owned the end-to-end design workstream &mdash; from user research with offshore technicians to a production-ready prototype. Reduced fault diagnosis from 7 steps across 4 systems to 3 steps in 1 platform. Delivered 15+ screens, a validated design system, and aligned 11+ stakeholders in 12 weeks.
       </p>
     </div>
+    </div>
   </section>
 
   <!-- Meta strip -->
   <section class="section-tint px-5 sm:px-20 py-8 sm:py-10 w-full">
-    <div class="flex flex-wrap gap-x-12 gap-y-6">
+    <div class="max-w-[1100px] mx-auto flex flex-wrap gap-x-12 gap-y-6">
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
         <span class="font-inter text-[#111111] text-[14px] font-semibold">UI/UX Designer <span class="font-inter text-[12px] font-medium text-[#888888]">(sole designer on the RWE side)</span></span>
@@ -719,7 +798,7 @@
 
   <!-- TL;DR Strip — Quick Impact Summary -->
   <section class="tldr-strip px-5 sm:px-20 py-8 sm:py-10 w-full">
-    <div class="flex flex-col gap-5">
+    <div class="max-w-[1100px] mx-auto flex flex-col gap-5">
       <div class="flex items-center gap-3">
         <div style="width:6px;height:6px;border-radius:50%;background:#E8C36A;"></div>
         <span class="font-inter text-[11px] font-semibold tracking-[0.12em] uppercase" style="color:rgba(255,255,255,0.5);">What I delivered</span>
@@ -751,8 +830,28 @@
       onerror="this.style.display='none'" />
   </section>
 
-  <!-- Content -->
-  <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-24">
+  <!-- Content layout with stepper sidebar -->
+  <div class="case-layout">
+
+    <!-- Stepper sidebar -->
+    <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
+      <div class="stepper-title">On this page</div>
+      <ul class="stepper-list">
+        <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
+        <li><a href="#sec-users" class="stepper-link" data-section="sec-users">Users</a></li>
+        <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
+        <li><a href="#sec-framing" class="stepper-link" data-section="sec-framing">Problem framing</a></li>
+        <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
+        <li><a href="#sec-vision" class="stepper-link" data-section="sec-vision">Vision</a></li>
+        <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
+        <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
+        <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
+        <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
+      </ul>
+    </nav>
+
+    <!-- Content -->
+    <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-24">
 
     <!-- ============================================ -->
     <!-- TL;DR — Executive Summary -->
@@ -770,7 +869,7 @@
     <!-- ============================================ -->
     <!-- 01 CONTEXT -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-context" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">01 &middot; Context</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
         A global wind fleet with no dedicated troubleshooting tool
@@ -851,7 +950,7 @@
     <!-- ============================================ -->
     <!-- 02 USERS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-users" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">02 &middot; Users</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Two distinct roles, two different contexts</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -935,7 +1034,7 @@
     <!-- ============================================ -->
     <!-- 03 DISCOVERY -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-discovery" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">03 &middot; Discovery</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Mapping the as-is journey revealed deep structural gaps</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -1017,7 +1116,7 @@
     <!-- ============================================ -->
     <!-- 04 PROBLEM FRAMING -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-framing" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">04 &middot; Problem framing</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Four fault scenarios, two product modules</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -1155,7 +1254,7 @@
     <!-- ============================================ -->
     <!-- 05 PROCESS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-process" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">05 &middot; Process</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">How I structured the work</h2>
 
@@ -1236,7 +1335,7 @@
     <!-- ============================================ -->
     <!-- 06 VISION JOURNEY -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-vision" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">06 &middot; Vision</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The redesigned journey &mdash; one platform, two modules</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -1280,7 +1379,7 @@
     <!-- ============================================ -->
     <!-- 07 KEY SCREENS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-screens" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">07 &middot; Key screens</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The solution: a structured troubleshooting platform</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -1536,7 +1635,7 @@
     <!-- ============================================ -->
     <!-- 08 DESIGN DECISIONS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-decisions" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">08 &middot; Key design decisions</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that shaped the product</h2>
       <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
@@ -1627,7 +1726,7 @@
     <!-- ============================================ -->
     <!-- 09 OUTCOME -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-outcome" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">09 &middot; Outcome</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I shipped in 12 weeks</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
@@ -1673,7 +1772,7 @@
     <!-- ============================================ -->
     <!-- 10 LEARNINGS -->
     <!-- ============================================ -->
-    <div class="flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-learnings" class="flex flex-col gap-6 sm:gap-8 fade-up">
       <span class="label-accent">10 &middot; Learnings</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I took from this project</h2>
       <div class="flex flex-col gap-6 max-w-[720px]">
@@ -1779,8 +1878,11 @@
 
   </article>
 
+  </div><!-- end case-layout -->
+
   <!-- Footer -->
-  <footer class="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
+  <footer class="py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
+    <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
     <div class="flex items-center gap-2.5">
       <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
         <span class="font-sora text-[11px] font-bold text-white">A</span>
@@ -1791,6 +1893,7 @@
       <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
       <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
       <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
+    </div>
     </div>
   </footer>
 
@@ -1940,6 +2043,48 @@
       if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
       if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
     });
+
+    // ── Stepper sidebar scroll tracking ──
+    var stepperLinks = document.querySelectorAll('.stepper-link');
+    var sectionIds = [];
+    stepperLinks.forEach(function(link) {
+      sectionIds.push(link.getAttribute('data-section'));
+    });
+
+    // Smooth scroll on click
+    stepperLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(link.getAttribute('data-section'));
+        if (target) {
+          var offset = 120;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Highlight active section on scroll
+    function updateStepper() {
+      var scrollPos = window.pageYOffset + 160;
+      var activeId = sectionIds[0];
+      for (var i = 0; i < sectionIds.length; i++) {
+        var el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          activeId = sectionIds[i];
+        }
+      }
+      stepperLinks.forEach(function(link) {
+        if (link.getAttribute('data-section') === activeId) {
+          link.classList.add('is-active');
+        } else {
+          link.classList.remove('is-active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateStepper, { passive: true });
+    updateStepper();
   })();
   </script>
 
