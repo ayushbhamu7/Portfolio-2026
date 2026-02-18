@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lending Workflow Redesign — Ayush Bhamu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAFAF8;
+      color: #111111;
+    }
+
+    .font-sora { font-family: 'Sora', sans-serif; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+
+    /* Frosted glass nav */
+    .nav-glass {
+      background: rgba(250, 250, 248, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Sticky nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    /* Soft section alternation */
+    .section-tint {
+      background: #F4F3EF;
+    }
+
+    /* Accent underline for section labels */
+    .label-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      color: #B8862A;
+    }
+    .label-accent::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #C9962E;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Pill tag */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F0EBE0;
+      color: #8A6520;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .tag-neutral {
+      background: #EFEFEF;
+      color: #555555;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F4F3EF; }
+    ::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+
+    /* Process step connector line */
+    .step-line {
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: -24px;
+      width: 2px;
+      background: linear-gradient(to bottom, #C9962E, #E8E5DF);
+    }
+
+    /* Image placeholder */
+    .img-placeholder {
+      background: linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Callout box */
+    .callout {
+      border-left: 3px solid #C9962E;
+      background: #FDF8EF;
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="nav-glass flex items-center justify-between py-4 px-5 sm:py-5 sm:px-20 w-full">
+    <a href="./index.html" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-[6px] bg-[#111111] flex items-center justify-center shrink-0">
+        <span class="font-sora text-[15px] font-bold text-white">A</span>
+      </div>
+      <span class="font-sora text-[15px] sm:text-[16px] font-semibold text-[#111111]">Ayush Bhamu</span>
+    </a>
+    <div class="flex items-center gap-1">
+      <a href="./index.html#work"
+        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">← All work</a>
+      <a href="./index.html#contact"
+        class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="px-5 sm:px-20 pt-14 sm:pt-20 pb-12 sm:pb-16 w-full" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(212, 168, 83, 0.10) 0%, transparent 70%), #FAFAF8;">
+    <div class="max-w-[820px] flex flex-col gap-5 sm:gap-6">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="tag">Fintech</span>
+        <span class="tag tag-neutral">B2B SaaS</span>
+        <span class="tag tag-neutral">Lead Product Designer</span>
+      </div>
+      <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
+        Redesigning the lending workflow for a Series B fintech
+      </h1>
+      <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75]">
+        An end-to-end redesign of a loan origination platform — from discovery to handoff — that cut processing time by 40% and lifted application completion from 52% to 81%.
+      </p>
+    </div>
+  </section>
+
+  <!-- Meta strip -->
+  <section class="section-tint px-5 sm:px-20 py-8 sm:py-10 w-full">
+    <div class="flex flex-wrap gap-x-12 gap-y-6">
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">Lead Product Designer</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">4 months</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer, 2 PMs, 6 engineers</span>
+      </div>
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Maze, Miro, Jira</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover image -->
+  <section class="w-full h-[240px] sm:h-[460px] img-placeholder overflow-hidden">
+    <img src="./images/generated-1771409451844.png" alt="Lending workflow redesign screens" class="w-full h-full object-cover"
+      onerror="this.style.display='none';document.getElementById('cover-fallback').style.display='flex'" style="display:block" />
+    <div id="cover-fallback" class="flex-col items-center gap-2" style="display:none">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+        <rect x="6" y="10" width="28" height="3" rx="1.5" fill="#C9962E" opacity="0.5"/>
+        <rect x="6" y="16" width="20" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
+        <rect x="6" y="22" width="24" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
+        <rect x="6" y="28" width="16" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
+      </svg>
+      <span class="font-inter text-[#C9962E] text-[13px] font-semibold">Cover image · Lending Platform</span>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-20">
+
+    <!-- Outcome callout -->
+    <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-2">
+      <span class="label-accent" style="font-size:10px;">Result</span>
+      <p class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] leading-[1.4]">
+        Loan processing time dropped 40%. Application completion rose from 52% → 81%. Shipped in 4 months across 3 sprint cycles.
+      </p>
+    </div>
+
+    <!-- 01 Context -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">01 · Context</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The problem: a 9-step form nobody finished</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The client — a Series B NBFC — had a digital loan origination flow that had grown organically over two years. What started as a 4-step form had ballooned to 9 steps, each owned by a different team. The result: a 52% completion rate, and a median processing time of 6.5 days per application.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I was brought in as the lead designer to audit the existing product, define the redesign scope, and own the UX end-to-end — from research to final handoff with annotated specs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Image: old flow -->
+    <div class="w-full rounded-[12px] overflow-hidden border border-[#E8E5DF]">
+      <div class="img-placeholder h-[200px] sm:h-[300px]">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+          <rect x="8" y="14" width="24" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
+          <rect x="8" y="20" width="18" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
+          <rect x="8" y="26" width="22" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
+        </svg>
+        <span class="font-inter text-[#999999] text-[12px] font-medium">Existing flow audit · 9-step application map</span>
+      </div>
+    </div>
+
+    <!-- 02 Discovery -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">02 · Discovery</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What the data and users told us</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I ran a 3-week discovery sprint. This included session recordings from Hotjar across 1,200 sessions, 8 user interviews with both borrowers and internal loan officers, and a stakeholder alignment workshop with the product and ops teams.
+        </p>
+      </div>
+
+      <!-- Findings grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#C9962E] tracking-[-1px]">68%</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">of drop-offs happened at step 5 — document upload — due to unsupported file types and unclear size limits</p>
+        </div>
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">3.2×</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">loan officers re-entered the same data the borrower had already provided — no data handoff between steps</p>
+        </div>
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">6.5d</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">median time to process a complete application, driven largely by manual review queues and unclear status</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 Process -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">03 · Process</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">How I structured the work</h2>
+
+      <div class="flex flex-col gap-8">
+
+        <!-- Step 1 -->
+        <div class="flex gap-5 sm:gap-8 relative">
+          <div class="relative shrink-0">
+            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#C9962E]">1</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2 pb-8">
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Journey mapping &amp; problem taxonomy</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the full borrower journey from awareness to disbursement. Identified 14 distinct friction points and grouped them into 4 categories: information overload, poor error feedback, broken progress logic, and unclear status communication.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex gap-5 sm:gap-8 relative">
+          <div class="relative shrink-0">
+            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#C9962E]">2</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2 pb-8">
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Prioritisation with the PM</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Used a RICE framework to stack-rank each fix. The top 6 items covered 82% of the projected impact. Agreed to descope the "loan advisor" chat feature for v1 — it added complexity without addressing core completion rate issues.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex gap-5 sm:gap-8 relative">
+          <div class="relative shrink-0">
+            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#C9962E]">3</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2 pb-8">
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Low-fi wireframes &amp; concept testing</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Wireframed 3 structural approaches for collapsing the 9 steps. Ran unmoderated tests on Maze with 28 participants. Concept C — a linear-with-sidebar-progress layout — had a 94% task completion rate vs 61% for the accordion approach.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex gap-5 sm:gap-8 relative">
+          <div class="relative shrink-0">
+            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#C9962E]">4</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2 pb-8">
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">High-fidelity design &amp; component library</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Built a full component library in Figma — 48 components across form elements, status states, upload flows, and notification patterns. Every component was documented with usage rules and accessibility notes.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="flex gap-5 sm:gap-8">
+          <div class="shrink-0">
+            <div class="w-10 h-10 rounded-full bg-[#F0EBE0] border-2 border-[#C9962E] flex items-center justify-center">
+              <span class="font-sora text-[13px] font-bold text-[#C9962E]">5</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Handoff, QA &amp; iteration</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Delivered annotated specs in Figma with interaction notes for every state. Did 3 rounds of design QA with the engineering team before each sprint release. Tracked 11 edge-case bugs through Jira and resolved all before go-live.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Image: wireframes/screens -->
+    <div class="w-full rounded-[12px] overflow-hidden border border-[#E8E5DF]">
+      <div class="img-placeholder h-[220px] sm:h-[360px]">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+          <rect x="6" y="8" width="12" height="24" rx="2" fill="#C9962E" opacity="0.3"/>
+          <rect x="22" y="8" width="12" height="11" rx="2" fill="#C9962E" opacity="0.5"/>
+          <rect x="22" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.3"/>
+        </svg>
+        <span class="font-inter text-[#999999] text-[12px] font-medium">High-fidelity screens · Borrower application flow</span>
+      </div>
+    </div>
+
+    <!-- 04 Key decisions -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">04 · Key design decisions</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that drove the outcome</h2>
+
+      <div class="flex flex-col gap-5">
+
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
+          <div class="sm:w-[52px] shrink-0">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">A</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Collapsing 9 steps into 4 logical stages</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Restructured the flow into: Identity, Financials, Documents, and Review. Each stage had a clear completion signal and saved progress automatically every 30 seconds. This alone accounted for a 22% lift in completion at the document step.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
+          <div class="sm:w-[52px] shrink-0">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">B</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Inline document upload with real-time validation</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Replaced the multi-page document step with an inline upload component that validated file type, size, and resolution instantly. Added a "mobile handoff" option — borrowers could SMS a link to themselves to upload from their phone camera.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-7 flex flex-col sm:flex-row gap-4 sm:gap-8">
+          <div class="sm:w-[52px] shrink-0">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">C</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Unified loan officer dashboard with application queue</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Built a parallel internal dashboard for loan officers. All borrower-submitted data flowed directly into a structured review queue — eliminating the manual re-entry that was causing 1–2 day delays per application. Status updates synced back to the borrower in real time.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 05 Outcome -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">05 · Outcome</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What shipped and what it changed</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The redesigned flow went live in 3 phases over 4 months. We tracked completion rate, processing time, and officer re-entry rate as primary metrics. All three moved significantly within the first 30 days post-launch.
+        </p>
+      </div>
+
+      <!-- Metrics -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:flex-row w-full">
+        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#C9962E]">
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">81%</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Application completion rate (was 52%)</p>
+        </div>
+        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">−40%</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Loan processing time (6.5d → 3.9d)</p>
+        </div>
+        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">0×</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Manual data re-entry by loan officers</p>
+        </div>
+        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">4.6</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">CSAT score post-launch (out of 5)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 Learnings -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">06 · Learnings</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I'd do differently</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The biggest miss was not involving loan officers in the early discovery phase. I had strong borrower insight but had to backtrack two weeks when we found that the officer-side queue design conflicted with how approvals were routed internally. Getting ops involved in week 1, not week 6, would have saved us a full sprint.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I also underestimated the mobile handoff feature — it became one of the most-used features and wasn't in the original scope. It came from a single user interview comment. That reinforced for me: don't dismiss offhand remarks. They often surface the real workaround.
+        </p>
+      </div>
+    </div>
+
+    <!-- Next case study -->
+    <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
+        <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#C9962E] transition-colors leading-[1.3]">
+          Building an ops dashboard from 0→1 for a global capability center →
+        </a>
+      </div>
+      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">← All work</a>
+    </div>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
+    <div class="flex items-center gap-2.5">
+      <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
+        <span class="font-sora text-[11px] font-bold text-white">A</span>
+      </div>
+      <span class="font-inter text-[#999999] text-[12px]">© 2025 Ayush Bhamu · Bangalore, India.</span>
+    </div>
+    <div class="flex items-center gap-5 sm:gap-6">
+      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
+      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
+      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Twitter</a>
+      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Dribbble</a>
+    </div>
+  </footer>
+
+</body>
+
+</html>
