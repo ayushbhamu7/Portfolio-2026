@@ -656,22 +656,21 @@
     }
 
     /* ── Sidebar stepper navigation ── */
-    .case-layout {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      position: relative;
-    }
     .stepper-sidebar {
-      position: sticky;
-      top: 100px;
-      align-self: flex-start;
-      width: 200px;
-      flex-shrink: 0;
-      padding: 0 0 0 20px;
-      margin-right: -20px;
-      height: fit-content;
+      position: fixed;
+      top: 120px;
+      left: max(16px, calc((100vw - 1100px) / 2 - 200px));
+      width: 180px;
       z-index: 20;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    .stepper-sidebar.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
     }
     .stepper-title {
       font-family: 'Inter', sans-serif;
@@ -726,7 +725,7 @@
       opacity: 1;
     }
 
-    @media (max-width: 1360px) {
+    @media (max-width: 1440px) {
       .stepper-sidebar { display: none; }
     }
   </style>
@@ -830,11 +829,8 @@
       onerror="this.style.display='none'" />
   </section>
 
-  <!-- Content layout with stepper sidebar -->
-  <div class="case-layout">
-
-    <!-- Stepper sidebar -->
-    <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
+  <!-- Stepper sidebar (fixed position) -->
+  <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
       <div class="stepper-title">On this page</div>
       <ul class="stepper-list">
         <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
@@ -1878,8 +1874,6 @@
 
   </article>
 
-  </div><!-- end case-layout -->
-
   <!-- Footer -->
   <footer class="py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
     <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
@@ -2064,9 +2058,25 @@
       });
     });
 
-    // Highlight active section on scroll
+    // Highlight active section and show/hide stepper on scroll
+    var stepperNav = document.getElementById('stepperSidebar');
+    var articleEl = document.querySelector('article');
+
     function updateStepper() {
       var scrollPos = window.pageYOffset + 160;
+
+      // Show stepper only when article is in view
+      if (articleEl) {
+        var artTop = articleEl.offsetTop - 200;
+        var artBottom = articleEl.offsetTop + articleEl.offsetHeight - 300;
+        if (scrollPos > artTop && scrollPos < artBottom) {
+          stepperNav.classList.add('is-visible');
+        } else {
+          stepperNav.classList.remove('is-visible');
+        }
+      }
+
+      // Update active link
       var activeId = sectionIds[0];
       for (var i = 0; i < sectionIds.length; i++) {
         var el = document.getElementById(sectionIds[i]);
