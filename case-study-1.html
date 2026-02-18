@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lending Workflow Redesign — Ayush Bhamu</title>
+  <title>RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -81,6 +81,10 @@
       background: #EFEFEF;
       color: #555555;
     }
+    .tag-teal {
+      background: #E6F4F1;
+      color: #1A7A6A;
+    }
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
@@ -113,6 +117,154 @@
       background: #FDF8EF;
       border-radius: 0 8px 8px 0;
     }
+
+    /* Persona card */
+    .persona-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .persona-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .persona-header {
+      padding: 28px 28px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .persona-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #E8E5DF;
+      flex-shrink: 0;
+      background: #F0EBE0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .persona-body {
+      padding: 0 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .persona-attr {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .persona-attr-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+    }
+    .persona-attr-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: #333333;
+      line-height: 1.5;
+    }
+
+    /* Scenario card */
+    .scenario-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.2s;
+    }
+    .scenario-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+    .scenario-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Image with caption */
+    .image-block {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #E8E5DF;
+    }
+    .image-block img {
+      width: 100%;
+      display: block;
+    }
+    .image-caption {
+      padding: 12px 16px;
+      background: #F9F8F5;
+      border-top: 1px solid #E8E5DF;
+      font-size: 12px;
+      color: #888888;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Before/after compare */
+    .compare-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .compare-before {
+      background: #FEF0F0;
+      color: #C44B4B;
+    }
+    .compare-after {
+      background: #E6F4F1;
+      color: #1A7A6A;
+    }
+
+    /* Screen showcase */
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    /* Horizontal scroll for journey images */
+    .journey-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+    }
+    .journey-scroll::-webkit-scrollbar { height: 4px; }
+    .journey-scroll::-webkit-scrollbar-track { background: transparent; }
+    .journey-scroll::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+
+    @media (max-width: 900px) {
+      .screen-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .persona-header { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 
@@ -128,7 +280,7 @@
     </a>
     <div class="flex items-center gap-1">
       <a href="./index.html#work"
-        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">← All work</a>
+        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">&larr; All work</a>
       <a href="./index.html#contact"
         class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Contact</a>
     </div>
@@ -138,15 +290,15 @@
   <section class="px-5 sm:px-20 pt-14 sm:pt-20 pb-12 sm:pb-16 w-full" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(212, 168, 83, 0.10) 0%, transparent 70%), #FAFAF8;">
     <div class="max-w-[820px] flex flex-col gap-5 sm:gap-6">
       <div class="flex items-center gap-2 flex-wrap">
-        <span class="tag">Fintech</span>
-        <span class="tag tag-neutral">B2B SaaS</span>
+        <span class="tag">Energy &middot; B2B</span>
+        <span class="tag tag-neutral">Internal Platform</span>
         <span class="tag tag-neutral">Lead Product Designer</span>
       </div>
       <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
-        Redesigning the lending workflow for a Series B fintech
+        Designing a troubleshooting tool for offshore wind technicians at RWE
       </h1>
       <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75]">
-        An end-to-end redesign of a loan origination platform — from discovery to handoff — that cut processing time by 40% and lifted application completion from 52% to 81%.
+        From SAP screens and tribal knowledge to a structured, searchable troubleshooting platform &mdash; reducing diagnosis time by 20% and error rates by 15% for offshore wind turbine maintenance teams.
       </p>
     </div>
   </section>
@@ -160,103 +312,292 @@
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">4 months</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">3 months (Research &rarr; Prototype)</span>
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer, 2 PMs, 6 engineers</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">1 designer, 3 BCG consultants, 2 TLs, 3 BPs, 2 POs</span>
       </div>
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
-        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Maze, Miro, Jira</span>
+        <span class="font-inter text-[#111111] text-[14px] font-semibold">Figma, Miro, SAP</span>
       </div>
     </div>
   </section>
 
   <!-- Cover image -->
-  <section class="w-full h-[240px] sm:h-[460px] img-placeholder overflow-hidden">
-    <img src="./images/generated-1771409451844.png" alt="Lending workflow redesign screens" class="w-full h-full object-cover"
+  <section class="w-full h-[240px] sm:h-[460px] img-placeholder overflow-hidden relative">
+    <img src="./images/rwe-cover.png" alt="RWE Troubleshooting Tool — Key screens" class="w-full h-full object-cover"
       onerror="this.style.display='none';document.getElementById('cover-fallback').style.display='flex'" style="display:block" />
-    <div id="cover-fallback" class="flex-col items-center gap-2" style="display:none">
+    <div id="cover-fallback" class="absolute inset-0 flex-col items-center justify-center gap-3" style="display:none;background:linear-gradient(135deg, #F0EBE0 0%, #EEF0F3 100%);">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-        <rect x="6" y="10" width="28" height="3" rx="1.5" fill="#C9962E" opacity="0.5"/>
-        <rect x="6" y="16" width="20" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
-        <rect x="6" y="22" width="24" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
-        <rect x="6" y="28" width="16" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
+        <path d="M12 14L20 10L28 14V26L20 30L12 26V14Z" stroke="#C9962E" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <circle cx="20" cy="20" r="3" fill="#C9962E" opacity="0.4"/>
       </svg>
-      <span class="font-inter text-[#C9962E] text-[13px] font-semibold">Cover image · Lending Platform</span>
+      <span class="font-inter text-[#C9962E] text-[13px] font-semibold">Cover &middot; RWE Troubleshooting Tool</span>
     </div>
   </section>
 
   <!-- Content -->
-  <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-20">
+  <article class="px-5 sm:px-20 py-14 sm:py-20 w-full max-w-[1100px] mx-auto flex flex-col gap-16 sm:gap-24">
 
     <!-- Outcome callout -->
     <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-2">
       <span class="label-accent" style="font-size:10px;">Result</span>
       <p class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] leading-[1.4]">
-        Loan processing time dropped 40%. Application completion rose from 52% → 81%. Shipped in 4 months across 3 sprint cycles.
+        20% reduction in troubleshooting time. 15% decrease in diagnostic error rates. Production-ready prototype delivered in 3 months.
       </p>
     </div>
 
-    <!-- 01 Context -->
+    <!-- ============================================ -->
+    <!-- 01 CONTEXT -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">01 · Context</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The problem: a 9-step form nobody finished</h2>
+      <span class="label-accent">01 &middot; Context</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">No dedicated tool &mdash; just experience and scattered PDFs</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The client — a Series B NBFC — had a digital loan origination flow that had grown organically over two years. What started as a 4-step form had ballooned to 9 steps, each owned by a different team. The result: a 52% completion rate, and a median processing time of 6.5 days per application.
+          RWE operates one of the world&rsquo;s largest offshore wind fleets. When a turbine faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often under time pressure and harsh offshore conditions.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I was brought in as the lead designer to audit the existing product, define the redesign scope, and own the UX end-to-end — from research to final handoff with annotated specs.
+          The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed, hard to find, and impossible to standardize across sites.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I was brought in as the lead product designer to work alongside BCG consultants and internal stakeholders to design a new digital tool from scratch &mdash; covering the entire troubleshooting and documentation workflow.
         </p>
       </div>
     </div>
 
-    <!-- Image: old flow -->
-    <div class="w-full rounded-[12px] overflow-hidden border border-[#E8E5DF]">
-      <div class="img-placeholder h-[200px] sm:h-[300px]">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Image: old tools -->
+    <div class="image-block">
+      <div class="img-placeholder h-[200px] sm:h-[320px] relative">
+        <img src="./images/rwe-old-tools.png" alt="Existing tools — SAP screens and PDF manuals" class="w-full h-full object-contain"
+          onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
           <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
           <rect x="8" y="14" width="24" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
           <rect x="8" y="20" width="18" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
           <rect x="8" y="26" width="22" height="3" rx="1.5" fill="#C9962E" opacity="0.4"/>
         </svg>
-        <span class="font-inter text-[#999999] text-[12px] font-medium">Existing flow audit · 9-step application map</span>
+      </div>
+      <div class="image-caption">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><rect x="6.3" y="3.5" width="1.4" height="4" rx="0.7" fill="#BBBBBB"/><rect x="6.3" y="9" width="1.4" height="1.4" rx="0.7" fill="#BBBBBB"/></svg>
+        Before: SAP transaction screens and PDF manuals &mdash; the only tools available for fault diagnosis
       </div>
     </div>
 
-    <!-- 02 Discovery -->
+    <!-- ============================================ -->
+    <!-- 02 USERS -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">02 · Discovery</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What the data and users told us</h2>
+      <span class="label-accent">02 &middot; Users</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Two distinct roles, two different contexts</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I ran a 3-week discovery sprint. This included session recordings from Hotjar across 1,200 sessions, 8 user interviews with both borrowers and internal loan officers, and a stakeholder alignment workshop with the product and ops teams.
+          Through interviews and shadowing sessions with approximately 10 participants across onshore and offshore teams, we identified two primary user profiles with fundamentally different working contexts.
         </p>
       </div>
 
-      <!-- Findings grid -->
+      <!-- Persona cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+        <!-- Persona 1: Maintenance Coordinator -->
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">
+              <img src="./images/persona-coordinator.png" alt="Maintenance Coordinator" class="w-full h-full object-cover rounded-full"
+                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#C9962E\'>MC</span>'" />
+            </div>
+            <div>
+              <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Maintenance Coordinator /<br>Lead Technician</h3>
+              <span class="font-inter text-[12px] text-[#888888] mt-1 block">Onshore &middot; Control Room &middot; Desktop</span>
+            </div>
+          </div>
+          <div class="persona-body">
+            <div class="persona-attr">
+              <span class="persona-attr-label">Context</span>
+              <span class="persona-attr-val">Works from the onshore control room, monitoring turbine fleets via SCADA systems. Coordinates remote teams and manages fault resolution workflows.</span>
+            </div>
+            <div class="persona-attr">
+              <span class="persona-attr-label">Primary tasks</span>
+              <span class="persona-attr-val">Diagnose faults remotely, search for known root causes across sites, draft and assign work orders to offshore technicians.</span>
+            </div>
+            <div class="persona-attr">
+              <span class="persona-attr-label">Pain points</span>
+              <span class="persona-attr-val">Information scattered across SAP, PDFs, and colleagues&rsquo; memory. No way to search previous fault resolutions from other wind farms.</span>
+            </div>
+            <div class="flex gap-2 flex-wrap">
+              <span class="tag tag-teal">Desktop</span>
+              <span class="tag tag-neutral">SCADA / SAP</span>
+              <span class="tag tag-neutral">Control Room</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 2: Technician -->
+        <div class="persona-card">
+          <div class="persona-header">
+            <div class="persona-avatar">
+              <img src="./images/persona-technician.png" alt="Technician" class="w-full h-full object-cover rounded-full"
+                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#C9962E\'>T</span>'" />
+            </div>
+            <div>
+              <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Technician</h3>
+              <span class="font-inter text-[12px] text-[#888888] mt-1 block">Offshore &middot; Turbine &middot; iPad</span>
+            </div>
+          </div>
+          <div class="persona-body">
+            <div class="persona-attr">
+              <span class="persona-attr-label">Context</span>
+              <span class="persona-attr-val">Works directly on turbines offshore, often in physically demanding and time-constrained conditions. Needs clear, glanceable instructions on a tablet.</span>
+            </div>
+            <div class="persona-attr">
+              <span class="persona-attr-label">Primary tasks</span>
+              <span class="persona-attr-val">Execute repairs based on work orders, document completed work and findings, capture photos and notes for knowledge transfer.</span>
+            </div>
+            <div class="persona-attr">
+              <span class="persona-attr-label">Pain points</span>
+              <span class="persona-attr-val">Relies heavily on personal experience. No structured way to access troubleshooting guides on-site. Documentation is an afterthought done post-trip.</span>
+            </div>
+            <div class="flex gap-2 flex-wrap">
+              <span class="tag tag-teal">iPad</span>
+              <span class="tag tag-neutral">Offshore</span>
+              <span class="tag tag-neutral">Hands-on</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 03 DISCOVERY -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">03 &middot; Discovery</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Mapping the as-is journey revealed deep structural gaps</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I conducted interviews and shadowing sessions with maintenance coordinators, lead technicians, and offshore technicians across multiple RWE wind farm sites. The goal was to map the complete troubleshooting workflow &mdash; from the moment a SCADA alarm fires to the point where documentation is filed.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The as-is journey map revealed a workflow spanning multiple physical locations &mdash; from the onshore control room through offshore travel, turbine work, and post-trip documentation. Each transition was a potential point of information loss.
+        </p>
+      </div>
+
+      <!-- Key findings -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#C9962E] tracking-[-1px]">68%</span>
-          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">of drop-offs happened at step 5 — document upload — due to unsupported file types and unclear size limits</p>
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#C9962E] tracking-[-1px]">0</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Dedicated digital tools for troubleshooting &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">3.2×</span>
-          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">loan officers re-entered the same data the borrower had already provided — no data handoff between steps</p>
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">4+</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Disconnected systems touched during a single fault resolution &mdash; SCADA, SAP, email, phone calls, PDF manuals</p>
         </div>
         <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">6.5d</span>
-          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">median time to process a complete application, driven largely by manual review queues and unclear status</p>
+          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#111111] tracking-[-1px]">~10</span>
+          <p class="font-inter text-[#555555] text-[13px] leading-[1.6]">Participants interviewed and shadowed across onshore and offshore roles to map the complete troubleshooting workflow</p>
         </div>
       </div>
     </div>
 
-    <!-- 03 Process -->
+    <!-- As-Is Journey Map -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-3">
+        <span class="compare-before">Before</span>
+        <span class="font-inter text-[13px] font-semibold text-[#555555]">As-Is Troubleshooting Journey</span>
+      </div>
+      <div class="image-block">
+        <div class="journey-scroll">
+          <div style="min-width: 1200px;" class="relative">
+            <img src="./images/journey-as-is.png" alt="As-Is troubleshooting user journey map" class="w-full block"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block" />
+            <div class="img-placeholder h-[300px]" style="display:none;">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+                <rect x="4" y="12" width="32" height="2" rx="1" fill="#C9962E" opacity="0.3"/>
+                <rect x="4" y="18" width="28" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+                <rect x="4" y="24" width="30" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+              </svg>
+              <span class="font-inter text-[#999999] text-[12px] font-medium">As-Is Journey Map &middot; Scroll to explore &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="image-caption">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><path d="M4 7H10M7 4V10" stroke="#BBBBBB" stroke-width="1.2"/></svg>
+          As-is troubleshooting journey &mdash; spanning SCADA alarm, control room, offshore travel, turbine work, and documentation. Scroll horizontally to explore.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 04 PROBLEM FRAMING -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">03 · Process</span>
+      <span class="label-accent">04 &middot; Problem framing</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Four fault scenarios, two product modules</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          From the research, we identified four distinct fault scenarios that technicians encounter. Each requires a different lookup and resolution path, which informed the product&rsquo;s information architecture.
+        </p>
+      </div>
+
+      <!-- 4 Scenario cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="scenario-card">
+          <div class="scenario-icon" style="background:#F0EBE0;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#C9962E" stroke-width="1.5"/><path d="M9 5V9L12 11" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; own site</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has occurred before at this wind farm. The resolution is documented locally &mdash; the challenge is finding it quickly.</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon" style="background:#E6F4F1;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#1A7A6A" stroke-width="1.5"/><path d="M6 9H12M9 6V12" stroke="#1A7A6A" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; other site</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Another RWE wind farm has solved this exact fault. But knowledge doesn&rsquo;t travel between sites &mdash; it sits in someone&rsquo;s head or a local PDF.</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon" style="background:#F0EBE0;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#C9962E" stroke-width="1.5"/><path d="M6 9H12" stroke="#C9962E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; multiple sites</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has been resolved at multiple sites. Consolidating root causes and comparing approaches would save significant diagnosis time.</p>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon" style="background:#FEF0F0;">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 15H2L9 2Z" stroke="#C44B4B" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 7V10" stroke="#C44B4B" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.75" fill="#C44B4B"/></svg>
+          </div>
+          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Unknown fault</h3>
+          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">A completely new fault with no prior resolution. Requires on-site investigation, hypothesis testing, and thorough documentation for future reference.</p>
+        </div>
+      </div>
+
+      <!-- Module breakdown -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 mt-4">
+        <span class="label-accent" style="font-size:10px;">Product scope</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Module 1: Troubleshooting</h3>
+            <p class="font-inter text-[#666666] text-[13px] leading-[1.7]">Fault search, root cause lookup across sites, consolidated cause comparison, and work order drafting. Primarily used by the Maintenance Coordinator on desktop.</p>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Module 2: Documentation</h3>
+            <p class="font-inter text-[#666666] text-[13px] leading-[1.7]">Structured capture of repair outcomes, photos, notes, and knowledge transfer. Primarily used by Technicians on iPad while offshore or immediately post-trip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ============================================ -->
+    <!-- 05 PROCESS -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">05 &middot; Process</span>
       <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">How I structured the work</h2>
 
       <div class="flex flex-col gap-8">
@@ -270,8 +611,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Journey mapping &amp; problem taxonomy</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the full borrower journey from awareness to disbursement. Identified 14 distinct friction points and grouped them into 4 categories: information overload, poor error feedback, broken progress logic, and unclear status communication.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Research &amp; shadowing</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Conducted interviews and contextual shadowing sessions with ~10 participants across maintenance coordinators, lead technicians, and offshore technicians. Observed real troubleshooting workflows in control rooms and reviewed existing documentation practices.</p>
           </div>
         </div>
 
@@ -284,8 +625,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Prioritisation with the PM</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Used a RICE framework to stack-rank each fix. The top 6 items covered 82% of the projected impact. Agreed to descope the "loan advisor" chat feature for v1 — it added complexity without addressing core completion rate issues.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">As-is journey mapping</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm in the control room, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage.</p>
           </div>
         </div>
 
@@ -298,8 +639,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Low-fi wireframes &amp; concept testing</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Wireframed 3 structural approaches for collapsing the 9 steps. Ran unmoderated tests on Maze with 28 participants. Concept C — a linear-with-sidebar-progress layout — had a 94% task completion rate vs 61% for the accordion approach.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Vision journey &amp; information architecture</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Defined the target-state journey &mdash; where the new tool would intervene. Designed the IA around two modules (Troubleshooting + Documentation) and four fault scenarios. Aligned with BCG consultants, Team Leads, and Product Owners on scope and priorities.</p>
           </div>
         </div>
 
@@ -312,8 +653,8 @@
             <div class="step-line"></div>
           </div>
           <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">High-fidelity design &amp; component library</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Built a full component library in Figma — 48 components across form elements, status states, upload flows, and notification patterns. Every component was documented with usage rules and accessibility notes.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Wireframing &amp; prototyping</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Designed key screens for both modules in Figma: dashboard with fault search, fault results, consolidated root causes, work order drafts, and the technician documentation flow. Iterated rapidly with BCG and internal stakeholders.</p>
           </div>
         </div>
 
@@ -325,31 +666,144 @@
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Handoff, QA &amp; iteration</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Delivered annotated specs in Figma with interaction notes for every state. Did 3 rounds of design QA with the engineering team before each sprint release. Tracked 11 edge-case bugs through Jira and resolved all before go-live.</p>
+            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Steering &amp; handoff</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">As lead designer, I steered an external BCG designer while maintaining ownership of all design decisions. Facilitated reviews with Business Partners and Product Owners. Delivered a production-ready prototype with full interaction specs.</p>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Image: wireframes/screens -->
-    <div class="w-full rounded-[12px] overflow-hidden border border-[#E8E5DF]">
-      <div class="img-placeholder h-[220px] sm:h-[360px]">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-          <rect x="6" y="8" width="12" height="24" rx="2" fill="#C9962E" opacity="0.3"/>
-          <rect x="22" y="8" width="12" height="11" rx="2" fill="#C9962E" opacity="0.5"/>
-          <rect x="22" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.3"/>
-        </svg>
-        <span class="font-inter text-[#999999] text-[12px] font-medium">High-fidelity screens · Borrower application flow</span>
+    <!-- ============================================ -->
+    <!-- 06 VISION JOURNEY -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">06 &middot; Vision</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The redesigned journey &mdash; from alarm to documentation</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The vision journey shows where the new tool plugs in. Instead of context-switching between SAP, PDFs, phone calls, and personal notes, both user roles now follow a streamlined digital workflow within a single platform.
+        </p>
       </div>
     </div>
 
-    <!-- 04 Key decisions -->
+    <!-- Vision Journey Map -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-3">
+        <span class="compare-after">After</span>
+        <span class="font-inter text-[13px] font-semibold text-[#555555]">Vision Troubleshooting Journey</span>
+      </div>
+      <div class="image-block">
+        <div class="journey-scroll">
+          <div style="min-width: 1200px;" class="relative">
+            <img src="./images/journey-vision.png" alt="Vision troubleshooting user journey map with new tool" class="w-full block"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block" />
+            <div class="img-placeholder h-[300px]" style="display:none;">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+                <rect x="4" y="12" width="32" height="2" rx="1" fill="#1A7A6A" opacity="0.3"/>
+                <rect x="4" y="18" width="28" height="2" rx="1" fill="#1A7A6A" opacity="0.2"/>
+                <rect x="4" y="24" width="30" height="2" rx="1" fill="#1A7A6A" opacity="0.2"/>
+              </svg>
+              <span class="font-inter text-[#999999] text-[12px] font-medium">Vision Journey Map &middot; Scroll to explore &rarr;</span>
+            </div>
+          </div>
+        </div>
+        <div class="image-caption">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#BBBBBB" stroke-width="1.2"/><path d="M4 7H10M7 4V10" stroke="#BBBBBB" stroke-width="1.2"/></svg>
+          Vision journey &mdash; the new tool intervenes at the control room (troubleshooting module) and offshore (documentation module). Scroll horizontally to explore.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 07 KEY SCREENS -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">04 · Key design decisions</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that drove the outcome</h2>
+      <span class="label-accent">07 &middot; Key screens</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The solution: a structured troubleshooting platform</h2>
+      <div class="flex flex-col gap-4 max-w-[720px]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The final design centers around a searchable fault database, consolidated root cause views, and integrated work order creation &mdash; all in one tool. Here are the key screens from Module 1 (Troubleshooting) and Module 2 (Documentation).
+        </p>
+      </div>
+    </div>
+
+    <!-- Screen: Dashboard -->
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="tag tag-teal">Module 1</span>
+        <span class="font-inter text-[13px] font-semibold text-[#555555]">Dashboard &amp; Fault Search</span>
+      </div>
+      <div class="image-block">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+          <img src="./images/screen-dashboard.png" alt="Dashboard with fault search" class="w-full h-full object-contain"
+            onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
+            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+            <rect x="6" y="8" width="28" height="3" rx="1.5" fill="#C9962E" opacity="0.3"/>
+            <rect x="6" y="14" width="20" height="3" rx="1.5" fill="#C9962E" opacity="0.2"/>
+            <rect x="6" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.15"/>
+            <rect x="22" y="22" width="12" height="10" rx="2" fill="#C9962E" opacity="0.15"/>
+          </svg>
+        </div>
+        <div class="image-caption">
+          Dashboard overview with quick fault search, recent activity, and key metrics at a glance
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen: Work Order Draft -->
+    <div class="flex flex-col gap-3">
+      <span class="font-inter text-[13px] font-semibold text-[#555555]">Work Order Draft</span>
+      <div class="image-block">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+          <img src="./images/screen-work-order.png" alt="Work order draft" class="w-full h-full object-contain"
+            onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
+            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+            <rect x="6" y="8" width="16" height="2" rx="1" fill="#C9962E" opacity="0.3"/>
+            <rect x="6" y="14" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
+            <rect x="6" y="22" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
+            <rect x="6" y="30" width="28" height="4" rx="2" fill="#C9962E" opacity="0.12"/>
+          </svg>
+        </div>
+        <div class="image-caption">
+          Auto-populated work order draft with fault details, selected root cause, and recommended actions for the technician
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen: Documentation Flow -->
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="tag tag-teal">Module 2</span>
+        <span class="font-inter text-[13px] font-semibold text-[#555555]">Documentation Flow (iPad)</span>
+      </div>
+      <div class="image-block">
+        <div class="img-placeholder h-[240px] sm:h-[420px] relative">
+          <img src="./images/screen-documentation.png" alt="Documentation flow for technicians on iPad" class="w-full h-full object-contain"
+            onerror="this.style.display='none'" style="display:block;position:absolute;inset:0;" />
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:0;">
+            <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
+            <rect x="10" y="6" width="20" height="28" rx="3" stroke="#C9962E" stroke-width="1.5" fill="none" opacity="0.3"/>
+            <rect x="13" y="12" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+            <rect x="13" y="18" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+            <rect x="13" y="24" width="14" height="2" rx="1" fill="#C9962E" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="image-caption">
+          Technician documentation flow on iPad &mdash; structured capture of repair outcomes, photos, and notes for knowledge transfer
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 08 DESIGN DECISIONS -->
+    <!-- ============================================ -->
+    <div class="flex flex-col gap-6 sm:gap-8">
+      <span class="label-accent">08 &middot; Key design decisions</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that shaped the product</h2>
 
       <div class="flex flex-col gap-5">
 
@@ -358,8 +812,8 @@
             <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">A</span>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Collapsing 9 steps into 4 logical stages</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Restructured the flow into: Identity, Financials, Documents, and Review. Each stage had a clear completion signal and saved progress automatically every 30 seconds. This alone accounted for a 22% lift in completion at the document step.</p>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Cross-site fault search as the entry point</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">The biggest unlock was making fault resolutions searchable across all RWE wind farms. Previously, a technician at Site A had no way to know that Site B had already solved the exact same fault. The search-first IA means the most common action (looking up a known fault) is also the fastest.</p>
           </div>
         </div>
 
@@ -368,8 +822,8 @@
             <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">B</span>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Inline document upload with real-time validation</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Replaced the multi-page document step with an inline upload component that validated file type, size, and resolution instantly. Added a "mobile handoff" option — borrowers could SMS a link to themselves to upload from their phone camera.</p>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Consolidated root cause comparison</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">When a fault has been resolved at multiple sites, the tool shows all root causes side-by-side with frequency data. This lets coordinators pick the most likely cause without calling colleagues at other sites &mdash; eliminating one of the biggest time sinks in the as-is workflow.</p>
           </div>
         </div>
 
@@ -378,55 +832,62 @@
             <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#C9962E] leading-none">C</span>
           </div>
           <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Unified loan officer dashboard with application queue</h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Built a parallel internal dashboard for loan officers. All borrower-submitted data flowed directly into a structured review queue — eliminating the manual re-entry that was causing 1–2 day delays per application. Status updates synced back to the borrower in real time.</p>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Integrated work order &rarr; documentation loop</h3>
+            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Work orders created in Module 1 flow directly into Module 2 as structured documentation templates on the technician&rsquo;s iPad. This closes the feedback loop: the diagnosis informs the task, and the task outcome feeds back into the knowledge base for future troubleshooting.</p>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- 05 Outcome -->
+    <!-- ============================================ -->
+    <!-- 09 OUTCOME -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">05 · Outcome</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What shipped and what it changed</h2>
+      <span class="label-accent">09 &middot; Outcome</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Measurable impact in 3 months</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The redesigned flow went live in 3 phases over 4 months. We tracked completion rate, processing time, and officer re-entry rate as primary metrics. All three moved significantly within the first 30 days post-launch.
+          The production-ready prototype was delivered in 3 months, covering the full journey from research through to validated, spec-ready designs. The projected impact &mdash; based on workflow analysis and stakeholder validation &mdash; showed significant improvements across the board.
         </p>
       </div>
 
       <!-- Metrics -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:flex-row w-full">
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#C9962E]">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">81%</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Application completion rate (was 52%)</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">&minus;20%</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Troubleshooting time reduction through structured search and cross-site data</p>
         </div>
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">−40%</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Loan processing time (6.5d → 3.9d)</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">&minus;15%</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Decrease in diagnostic error rates via consolidated root cause comparison</p>
         </div>
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">0×</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Manual data re-entry by loan officers</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">3mo</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">From initial research to production-ready prototype delivery</p>
         </div>
         <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">4.6</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">CSAT score post-launch (out of 5)</p>
+          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">2</span>
+          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Product modules shipped: Troubleshooting + Documentation</p>
         </div>
       </div>
     </div>
 
-    <!-- 06 Learnings -->
+    <!-- ============================================ -->
+    <!-- 10 LEARNINGS -->
+    <!-- ============================================ -->
     <div class="flex flex-col gap-6 sm:gap-8">
-      <span class="label-accent">06 · Learnings</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I'd do differently</h2>
+      <span class="label-accent">10 &middot; Learnings</span>
+      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I took from this project</h2>
       <div class="flex flex-col gap-4 max-w-[720px]">
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The biggest miss was not involving loan officers in the early discovery phase. I had strong borrower insight but had to backtrack two weeks when we found that the officer-side queue design conflicted with how approvals were routed internally. Getting ops involved in week 1, not week 6, would have saved us a full sprint.
+          <strong>Steering &ne; stepping back.</strong> Managing an external BCG designer taught me that steering someone else&rsquo;s output requires even more clarity than doing the work yourself. Every design decision needed to be articulated as a principle, not just a preference &mdash; otherwise the work drifted between review cycles.
         </p>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I also underestimated the mobile handoff feature — it became one of the most-used features and wasn't in the original scope. It came from a single user interview comment. That reinforced for me: don't dismiss offhand remarks. They often surface the real workaround.
+          <strong>Shadowing &gt; interviews for industrial tools.</strong> The most valuable insights came from watching technicians work, not from asking them questions. In interviews, they described the &ldquo;official&rdquo; process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept things running.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          <strong>Cross-site knowledge is the real product.</strong> The tool&rsquo;s biggest value isn&rsquo;t the UI &mdash; it&rsquo;s making one site&rsquo;s experience available to every other site. The design needed to make contribution feel effortless (Module 2) so the database (Module 1) would actually grow over time. The documentation flow is the flywheel, not a secondary feature.
         </p>
       </div>
     </div>
@@ -436,10 +897,10 @@
       <div class="flex flex-col gap-1">
         <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
         <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#C9962E] transition-colors leading-[1.3]">
-          Building an ops dashboard from 0→1 for a global capability center →
+          Personal finance app design &mdash; budgeting &amp; user flows &rarr;
         </a>
       </div>
-      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">← All work</a>
+      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr; All work</a>
     </div>
 
   </article>
@@ -450,13 +911,12 @@
       <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
         <span class="font-sora text-[11px] font-bold text-white">A</span>
       </div>
-      <span class="font-inter text-[#999999] text-[12px]">© 2025 Ayush Bhamu · Bangalore, India.</span>
+      <span class="font-inter text-[#999999] text-[12px]">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
     </div>
     <div class="flex items-center gap-5 sm:gap-6">
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Twitter</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Dribbble</a>
+      <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
+      <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
+      <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
     </div>
   </footer>
 
