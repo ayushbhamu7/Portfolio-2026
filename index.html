@@ -5,449 +5,1318 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayush Bhamu — Product Designer</title>
+  <meta name="description" content="Product Designer with 5+ years building B2B SaaS, energy, and fintech products. Based in India, open to full-time roles." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0E0E0E;
+      --bg-2:      #161616;
+      --bg-3:      #1E1E1E;
+      --line:      #272727;
+      --txt-1:     #F0EEE9;
+      --txt-2:     #888888;
+      --txt-3:     #555555;
+      --accent:    #D4A853;
+      --accent-lo: rgba(212,168,83,0.10);
+      --accent-mid:rgba(212,168,83,0.18);
+      --green:     #3ECF8E;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #FAFAF8;
-      color: #111111;
+      background: var(--bg);
+      color: var(--txt-1);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .font-sora { font-family: 'Sora', sans-serif; }
-    .font-inter { font-family: 'Inter', sans-serif; }
-    .font-manrope { font-family: 'Inter', sans-serif; }
-    .font-playfair { font-family: 'Sora', sans-serif; }
+    /* ── Scrollbar ─────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
 
-    /* Frosted glass nav */
-    .nav-glass {
-      background: rgba(250, 250, 248, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+    /* ── Nav ───────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 60px;
+      background: rgba(14,14,14,0.80);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: background 0.3s;
     }
-
-    /* Hero gradient — warm amber glow top-right */
-    .hero-bg {
-      background:
-        radial-gradient(ellipse 70% 60% at 100% 0%, rgba(212, 168, 83, 0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 0% 100%, rgba(212, 168, 83, 0.05) 0%, transparent 60%),
-        #FAFAF8;
-    }
-
-    /* Soft section alternation */
-    .section-tint {
-      background: #F4F3EF;
-    }
-
-    /* Card hover lift */
-    .card-lift {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card-lift:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    }
-
-    /* Case study card hover */
-    .case-card {
-      transition: box-shadow 0.2s ease;
-    }
-    .case-card:hover {
-      box-shadow: 0 8px 40px rgba(0,0,0,0.09);
-    }
-
-    /* Accent underline for section labels */
-    .label-accent {
-      display: inline-flex;
+    .nav-logo {
+      display: flex;
       align-items: center;
       gap: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 11px;
-      font-weight: 700;
-      color: #B8862A;
+      text-decoration: none;
     }
-    .label-accent::before {
+    .nav-logo-mark {
+      width: 30px; height: 30px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: #0E0E0E;
+      flex-shrink: 0;
+    }
+    .nav-logo-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--txt-1);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--txt-2);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--txt-1); background: var(--bg-3); }
+    .nav-cta {
+      margin-left: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 7px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* Mobile nav */
+    .nav-mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--txt-1);
+    }
+
+    /* ── Layout containers ─────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section { padding: 100px 0; }
+    .section-sm { padding: 72px 0; }
+
+    /* ── Section label ─────────────────────── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
       content: '';
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #C9962E;
+      width: 16px; height: 1.5px;
+      background: var(--accent);
       border-radius: 2px;
       flex-shrink: 0;
     }
 
-    /* Pill tag */
+    /* ── Pill tag ──────────────────────────── */
     .tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: #F0EBE0;
-      color: #8A6520;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      padding: 4px 10px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 3px 10px;
       border-radius: 100px;
+      border: 1px solid var(--line);
+      color: var(--txt-2);
+      background: var(--bg-2);
     }
-    .tag-neutral {
-      background: #EFEFEF;
-      color: #555555;
-    }
-
-    /* Metric number gradient */
-    .metric-num {
-      background: linear-gradient(135deg, #111111 0%, #555555 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .tag-accent {
+      border-color: rgba(212,168,83,0.30);
+      color: var(--accent);
+      background: var(--accent-lo);
     }
 
-    /* Sticky nav */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
+    /* ── Divider ───────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--line); }
 
-    /* Primary button */
-    .btn-primary {
-      background: #111111;
-      color: #FFFFFF;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 12px 24px;
-      transition: background 0.18s ease, transform 0.15s ease;
-      cursor: pointer;
-      border: none;
+    /* ── Buttons ───────────────────────────── */
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-    .btn-primary:hover {
-      background: #2A2A2A;
-      transform: translateY(-1px);
-    }
-
-    /* Ghost button */
-    .btn-ghost {
-      background: transparent;
-      color: #333333;
-      border-radius: 8px;
+      font-size: 13.5px;
       font-weight: 500;
-      font-size: 14px;
-      padding: 12px 24px;
-      border: 1.5px solid #D8D5CE;
-      transition: border-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
-      cursor: pointer;
-    }
-    .btn-ghost:hover {
-      border-color: #999999;
-      color: #111111;
-      transform: translateY(-1px);
-    }
-
-    /* Amber CTA button */
-    .btn-amber {
-      background: #C9962E;
-      color: #FFFFFF;
+      padding: 11px 22px;
       border-radius: 8px;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 12px 24px;
-      border: none;
-      transition: background 0.18s ease, transform 0.15s ease;
+      text-decoration: none;
       cursor: pointer;
-      text-align: center;
+      border: none;
+      transition: transform 0.15s, opacity 0.15s, background 0.15s;
     }
-    .btn-amber:hover {
-      background: #B8852A;
-      transform: translateY(-1px);
+    .btn:hover { transform: translateY(-2px); }
+    .btn-dark {
+      background: var(--txt-1);
+      color: var(--bg);
+    }
+    .btn-dark:hover { background: #ffffff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--txt-2);
+      border: 1px solid var(--line);
+    }
+    .btn-outline:hover { color: var(--txt-1); border-color: #444; }
+
+    /* ── Grain overlay ─────────────────────── */
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      z-index: 0;
     }
 
-    /* Contact card */
-    .contact-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 60px; /* nav height */
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      top: -160px; right: -160px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,168,83,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,168,83,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-avail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      background: rgba(62,207,142,0.08);
+      border: 1px solid rgba(62,207,142,0.20);
+      padding: 5px 14px;
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 32px;
+    }
+    .hero-avail-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(52px, 8vw, 88px);
+      line-height: 1.00;
+      letter-spacing: -0.03em;
+      color: var(--txt-1);
+      margin-bottom: 20px;
+    }
+    .hero-name-accent { color: var(--accent); }
+
+    .hero-role {
+      font-size: clamp(16px, 2vw, 19px);
+      font-weight: 400;
+      color: var(--txt-2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-role strong { color: var(--txt-1); font-weight: 500; }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 64px;
+    }
+
+    .hero-strip {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+    .hero-strip-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+    }
+    .hero-strip-companies {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--txt-3);
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .hero-company:hover { color: var(--txt-2); }
+
+    /* ════════════════════════════════════════
+       METRICS BAR
+    ════════════════════════════════════════ */
+    .metrics-bar {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+    .metrics-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .metric-item {
+      padding: 40px 0;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .metric-item:last-child { border-right: none; }
+    .metric-item + .metric-item { padding-left: 40px; }
+    .metric-num {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--txt-1);
+      line-height: 1;
+    }
+    .metric-num span { color: var(--accent); }
+    .metric-label {
+      font-size: 13px;
+      color: var(--txt-2);
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════════════
+       WORK / CASE STUDIES
+    ════════════════════════════════════════ */
+    .work-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 24px;
+    }
+    .work-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 3.5vw, 40px);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      max-width: 480px;
+    }
+    .work-subtitle {
+      font-size: 14px;
+      color: var(--txt-2);
+      line-height: 1.6;
+      max-width: 300px;
+      text-align: right;
+    }
+
+    /* Case study card — FEATURED (first, full width) */
+    .cs-featured {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .cs-featured:hover { border-color: #333; }
+    .cs-featured:hover .cs-arrow { transform: translate(3px, -3px); }
+
+    .cs-img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .cs-img-placeholder {
+      width: 100%;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--txt-3);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--bg-3);
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,168,83,0.04) 0%, transparent 60%);
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F4F3EF; }
-    ::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+    /* Placeholder UI mockup lines */
+    .mock {
+      position: absolute;
+      border-radius: 3px;
+      background: var(--line);
+    }
+
+    .cs-body {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .cs-body-top { display: flex; flex-direction: column; gap: 16px; }
+    .cs-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cs-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--txt-3);
+      text-transform: uppercase;
+    }
+    .cs-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 2vw, 26px);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--txt-1);
+    }
+    .cs-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--txt-2);
+    }
+    .cs-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+    }
+    .cs-meta-val {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--txt-1);
+    }
+    .cs-meta-val-accent { color: var(--accent); }
+    .cs-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      width: fit-content;
+      transition: gap 0.15s;
+    }
+    .cs-link:hover { gap: 10px; }
+    .cs-arrow {
+      transition: transform 0.2s;
+      font-size: 14px;
+    }
+
+    /* Case study card — GRID (secondary, 2-col) */
+    .cs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .cs-card {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .cs-card:hover { border-color: #333; }
+    .cs-card:hover .cs-arrow { transform: translate(3px, -3px); }
+    .cs-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .cs-card-img-placeholder {
+      width: 100%;
+      height: 220px;
+      background: var(--bg-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--txt-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-card-img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,168,83,0.04) 0%, transparent 60%);
+    }
+    .cs-card-body {
+      padding: 28px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    /* "Coming Soon" state for placeholder cards */
+    .cs-coming {
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-coming-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* ════════════════════════════════════════
+       ABOUT / APPROACH
+    ════════════════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-bio {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--txt-2);
+    }
+    .about-bio p + p { margin-top: 20px; }
+    .about-bio strong { color: var(--txt-1); font-weight: 500; }
+
+    .about-bio-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .about-right { display: flex; flex-direction: column; gap: 36px; }
+
+    /* Experience mini-table */
+    .exp-table { display: flex; flex-direction: column; gap: 0; }
+    .exp-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .exp-row:first-child { border-top: 1px solid var(--line); }
+    .exp-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--txt-1);
+    }
+    .exp-role { font-size: 13px; color: var(--txt-2); }
+    .exp-date {
+      font-size: 12px;
+      color: var(--txt-3);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* Tool icons row */
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tool-chip {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--txt-2);
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      padding: 5px 12px;
+      border-radius: 6px;
+    }
+
+    /* ════════════════════════════════════════
+       APPROACH / WHAT I DO
+    ════════════════════════════════════════ */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .approach-item {
+      background: var(--bg-2);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .approach-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--txt-3);
+      text-transform: uppercase;
+    }
+    .approach-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--txt-1);
+      line-height: 1.3;
+    }
+    .approach-desc {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--txt-2);
+    }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+    .contact-wrap {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    .contact-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .contact-heading em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    .contact-sub {
+      font-size: 15px;
+      color: var(--txt-2);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .contact-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 240px;
+    }
+    .contact-info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 16px 20px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .contact-info-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--txt-3);
+    }
+    .contact-info-val {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--txt-1);
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: var(--txt-3);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-link {
+      font-size: 12px;
+      color: var(--txt-3);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-link:hover { color: var(--txt-2); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav { padding: 0 24px; }
+      .nav-links .nav-link { display: none; }
+      .nav-links .nav-cta { display: none; }
+      .nav-mobile-toggle { display: flex; }
+
+      .container { padding: 0 24px; }
+      .section { padding: 72px 0; }
+
+      .hero { min-height: auto; padding: 100px 0 60px; }
+      .hero-strip { gap: 20px; }
+
+      .metrics-inner { grid-template-columns: repeat(2, 1fr); }
+      .metric-item { border-right: 1px solid var(--line); }
+      .metric-item:nth-child(2) { border-right: none; }
+      .metric-item:nth-child(3) { border-top: 1px solid var(--line); }
+      .metric-item:nth-child(4) { border-right: none; border-top: 1px solid var(--line); }
+      .metric-item + .metric-item { padding-left: 24px; }
+      .metric-item:nth-child(3), .metric-item:nth-child(4) { padding-left: 0; }
+      .metric-item:nth-child(4) { padding-left: 24px; }
+
+      .work-header { flex-direction: column; align-items: flex-start; }
+      .work-subtitle { text-align: left; }
+
+      .cs-featured { grid-template-columns: 1fr; }
+      .cs-img-placeholder { min-height: 260px; }
+      .cs-body { padding: 32px; }
+
+      .cs-grid { grid-template-columns: 1fr; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      .approach-grid { grid-template-columns: 1fr; }
+
+      .contact-wrap { grid-template-columns: 1fr; padding: 40px 32px; gap: 32px; }
+      .contact-right { flex-direction: row; flex-wrap: wrap; }
+      .contact-info-row { flex: 1; min-width: 140px; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav { padding: 0 16px; }
+      .container { padding: 0 16px; }
+      .cs-meta-row { grid-template-columns: 1fr 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { justify-content: center; }
+      .contact-wrap { padding: 28px 20px; }
+      .exp-row { grid-template-columns: 1fr 1fr; }
+      .exp-date { grid-column: 1 / -1; text-align: left; color: var(--txt-3); font-size: 11px; }
+    }
   </style>
 </head>
 
-<body class="overflow-x-hidden">
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav-glass flex items-center justify-between py-4 px-5 sm:py-5 sm:px-20 w-full">
-    <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-[6px] bg-[#111111] flex items-center justify-center shrink-0">
-        <span class="font-sora text-[15px] font-bold text-white">A</span>
-      </div>
-      <span class="font-sora text-[15px] sm:text-[16px] font-semibold text-[#111111]">Ayush Bhamu</span>
+  <!-- ══ NAV ═══════════════════════════════════════════ -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">AB</div>
+      <span class="nav-logo-name">Ayush Bhamu</span>
+    </a>
+    <div class="nav-links">
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="nav-cta">Resume ↗</a>
     </div>
-    <div class="flex items-center gap-1">
-      <a href="#work"
-        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">Work</a>
-      <a href="#contact"
-        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">Contact</a>
-      <a href="#resume"
-        class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Resume ↗</a>
-    </div>
+    <!-- Mobile hamburger (functional via JS below) -->
+    <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect y="4" width="22" height="1.8" rx="1" fill="currentColor"/>
+        <rect y="10.1" width="22" height="1.8" rx="1" fill="currentColor"/>
+        <rect y="16.2" width="22" height="1.8" rx="1" fill="currentColor"/>
+      </svg>
+    </button>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-bg px-5 sm:px-20 pt-14 sm:pt-24 pb-16 sm:pb-24 flex flex-col gap-7 sm:gap-8 w-full">
+  <!-- ══ HERO ══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="container" style="position:relative;z-index:1;">
 
-    <!-- Status badge -->
-    <div class="inline-flex items-center gap-2 bg-white border border-[#E8E5DF] rounded-full px-4 py-2 w-fit shadow-sm">
-      <span class="w-2 h-2 rounded-full bg-[#22C55E] shrink-0 animate-pulse"></span>
-      <span class="font-inter text-[12px] font-medium text-[#333333]">Open to opportunities</span>
-    </div>
-
-    <!-- Label -->
-    <span class="label-accent">Product Designer · AI &amp; Enterprise Platforms</span>
-
-    <!-- Heading -->
-    <h1 class="font-sora text-[40px] sm:text-[64px] font-bold text-[#111111] leading-[1.05] tracking-[-1.5px] sm:tracking-[-2.5px] max-w-[820px]">
-      Ayush Bhamu
-    </h1>
-
-    <!-- Sub -->
-    <p class="font-inter text-[#555555] text-[15px] sm:text-[18px] leading-[1.7] max-w-[620px]">
-      Product Designer with 5+ years building AI-assisted tools, data platforms, and scalable workflows across
-      enterprise, fintech, and consumer products. I turn complex systems into clear, measurable outcomes.
-    </p>
-
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-      <button class="btn-primary justify-center sm:justify-start">
-        View Selected Work <span>↓</span>
-      </button>
-      <button class="btn-ghost">
-        Download Resume
-      </button>
-    </div>
-
-    <!-- Social proof strip -->
-    <div class="flex items-center gap-4 pt-2 flex-wrap">
-      <span class="font-inter text-[12px] text-[#999999]">Worked with</span>
-      <span class="font-inter text-[12px] font-semibold text-[#555555]">Series B Fintech</span>
-      <span class="text-[#D8D5CE]">·</span>
-      <span class="font-inter text-[12px] font-semibold text-[#555555]">Global GCC</span>
-      <span class="text-[#D8D5CE]">·</span>
-      <span class="font-inter text-[12px] font-semibold text-[#555555]">Enterprise SaaS</span>
-    </div>
-  </section>
-
-  <!-- Impact Metrics -->
-  <section class="section-tint px-5 py-12 sm:px-20 sm:py-16 flex flex-col gap-8 sm:gap-10 w-full">
-    <span class="label-accent">Impact by the numbers</span>
-    <div class="flex flex-col sm:flex-row gap-0 sm:gap-10 w-full">
-      <div class="flex-1 flex flex-col gap-2 py-6 sm:py-8 border-t-2 border-[#C9962E]">
-        <span class="font-sora text-[42px] sm:text-[52px] font-bold metric-num tracking-[-2px]">5+</span>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.5]">Years in product design</p>
-      </div>
-      <div class="flex-1 flex flex-col gap-2 py-6 sm:py-8 border-t-2 border-[#DDDDDD]">
-        <span class="font-sora text-[42px] sm:text-[52px] font-bold metric-num tracking-[-2px]">12+</span>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.5]">Products shipped end-to-end</p>
-      </div>
-      <div class="flex-1 flex flex-col gap-2 py-6 sm:py-8 border-t-2 border-[#DDDDDD]">
-        <span class="font-sora text-[42px] sm:text-[52px] font-bold metric-num tracking-[-2px]">3</span>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.5]">Domains: SaaS, fintech, enterprise</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- What I Do -->
-  <section class="px-5 py-14 sm:px-20 sm:py-20 flex flex-col gap-10 sm:gap-14 w-full">
-    <div class="flex flex-col gap-4 sm:gap-5">
-      <span class="label-accent">What I do</span>
-      <h2 class="font-sora text-[26px] sm:text-[36px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px] max-w-[600px]">
-        Building enterprise products that simplify complex workflows.
-      </h2>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-4 sm:gap-5 w-full">
-
-      <div class="card-lift flex-1 flex flex-col gap-5 bg-white rounded-[16px] p-6 sm:p-8 border border-[#E8E5DF] shadow-sm">
-        <div class="w-10 h-10 rounded-[10px] bg-[#F0EBE0] flex items-center justify-center">
-          <span class="font-sora text-[14px] font-bold text-[#C9962E]">01</span>
-        </div>
-        <h3 class="font-sora text-[17px] sm:text-[19px] font-bold text-[#111111] leading-[1.3]">Product Discovery &amp; Problem Framing</h3>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.65]">Translate ambiguous business problems into structured product opportunities. Define workflows, map user journeys, align stakeholders, and establish measurable success criteria before design begins.</p>
+      <div class="hero-avail">
+        <div class="hero-avail-dot"></div>
+        Open to full-time roles
       </div>
 
-      <div class="card-lift flex-1 flex flex-col gap-5 bg-white rounded-[16px] p-6 sm:p-8 border border-[#E8E5DF] shadow-sm">
-        <div class="w-10 h-10 rounded-[10px] bg-[#F0EBE0] flex items-center justify-center">
-          <span class="font-sora text-[14px] font-bold text-[#C9962E]">02</span>
-        </div>
-        <h3 class="font-sora text-[17px] sm:text-[19px] font-bold text-[#111111] leading-[1.3]">Systems &amp; Workflow Design</h3>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.65]">Design information architecture, role-based dashboards, and multi-step workflows that reduce manual effort and scale across teams. Build reusable component systems to ensure consistency and long-term maintainability.</p>
-      </div>
+      <h1 class="hero-name">
+        Designing products<br>people <span class="hero-name-accent">actually use.</span>
+      </h1>
 
-      <div class="card-lift flex-1 flex flex-col gap-5 bg-white rounded-[16px] p-6 sm:p-8 border border-[#E8E5DF] shadow-sm">
-        <div class="w-10 h-10 rounded-[10px] bg-[#F0EBE0] flex items-center justify-center">
-          <span class="font-sora text-[14px] font-bold text-[#C9962E]">03</span>
-        </div>
-        <h3 class="font-sora text-[17px] sm:text-[19px] font-bold text-[#111111] leading-[1.3]">Execution, Validation &amp; Scale</h3>
-        <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.65]">Prototype, test, and refine solutions through usability testing and stakeholder feedback. Collaborate closely with engineering in Agile environments to ship reliable, production-ready experiences.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Selected Work -->
-  <section id="work" class="section-tint py-14 sm:py-20 px-5 sm:px-20 flex flex-col gap-8 sm:gap-10 w-full">
-    <!-- Header -->
-    <div class="flex flex-col gap-3 sm:gap-4">
-      <span class="label-accent">Selected work</span>
-      <h2 class="font-sora text-[26px] sm:text-[36px] font-bold text-[#111111] tracking-[-0.5px]">Enterprise systems. Measurable outcomes.</h2>
-    </div>
-
-    <!-- Case Study 1 -->
-    <div class="case-card bg-white rounded-[16px] border border-[#E8E5DF] overflow-hidden flex flex-col">
-      <div class="w-full h-[200px] sm:h-[320px] bg-[#F0EBE0] overflow-hidden">
-        <img src="./images/generated-1771409451844.png" alt="Lending workflow redesign" class="w-full h-full object-cover"
-          onerror="this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.remove();this.parentElement.innerHTML+='<span style=\'font-family:Inter,sans-serif;color:#C9962E;font-size:13px;font-weight:600\'>Case study preview</span>'" />
-      </div>
-      <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 p-6 sm:p-8">
-        <div class="flex-1 flex flex-col gap-3 sm:gap-4">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="tag">Fintech</span>
-            <span class="tag tag-neutral">B2B SaaS</span>
-          </div>
-          <h3 class="font-sora text-[20px] sm:text-[23px] font-bold text-[#111111] leading-[1.3]">Redesigning the lending workflow for a Series B fintech</h3>
-          <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.65]">Reduced loan processing time by 40%. Application completion rates went from 52% to 81%. Designed end-to-end: research, flows, UI, specs, QA.</p>
-          <a href="case-study-1.html" class="font-inter text-[#C9962E] text-[13px] font-semibold hover:text-[#A07020] transition-colors w-fit group">
-            Read case study <span class="group-hover:translate-x-1 inline-block transition-transform">→</span>
-          </a>
-        </div>
-        <div class="flex flex-row sm:flex-col gap-4 sm:gap-6 sm:w-[190px] sm:shrink-0 sm:border-l sm:border-[#F0EDE8] sm:pl-8">
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
-            <span class="font-inter text-[#111111] text-[13px] font-semibold">Lead Product Designer</span>
-          </div>
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
-            <span class="font-inter text-[#111111] text-[13px] font-semibold">4 months</span>
-          </div>
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Impact</span>
-            <span class="font-inter text-[#C9962E] text-[13px] font-bold">40% faster processing</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Case Study 2 -->
-    <div class="case-card bg-white rounded-[16px] border border-[#E8E5DF] overflow-hidden flex flex-col">
-      <div class="w-full h-[200px] sm:h-[320px] bg-[#EEF0F3] overflow-hidden">
-        <img src="./images/generated-1771409460281.png" alt="Ops dashboard" class="w-full h-full object-cover"
-          onerror="this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.remove();this.parentElement.innerHTML+='<span style=\'font-family:Inter,sans-serif;color:#C9962E;font-size:13px;font-weight:600\'>Case study preview</span>'" />
-      </div>
-      <div class="flex flex-col sm:flex-row gap-6 sm:gap-12 p-6 sm:p-8">
-        <div class="flex-1 flex flex-col gap-3 sm:gap-4">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="tag">Enterprise</span>
-            <span class="tag tag-neutral">Internal tools</span>
-          </div>
-          <h3 class="font-sora text-[20px] sm:text-[23px] font-bold text-[#111111] leading-[1.3]">Building an ops dashboard from 0→1 for a global capability center</h3>
-          <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.65]">Consolidated 5 disconnected tools into one platform. Ops teams saved 12 hours/week. Error rates dropped 67%. Engineering shipped it in phases because specs were unambiguous.</p>
-          <a href="#" class="font-inter text-[#C9962E] text-[13px] font-semibold hover:text-[#A07020] transition-colors w-fit group">
-            Read case study <span class="group-hover:translate-x-1 inline-block transition-transform">→</span>
-          </a>
-        </div>
-        <div class="flex flex-row sm:flex-col gap-4 sm:gap-6 sm:w-[190px] sm:shrink-0 sm:border-l sm:border-[#F0EDE8] sm:pl-8">
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">My role</span>
-            <span class="font-inter text-[#111111] text-[13px] font-semibold">Sole Product Designer</span>
-          </div>
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
-            <span class="font-inter text-[#111111] text-[13px] font-semibold">6 months, 0→1</span>
-          </div>
-          <div class="flex flex-col gap-1 flex-1 sm:flex-none">
-            <span class="font-inter text-[10px] sm:text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Impact</span>
-            <span class="font-inter text-[#C9962E] text-[13px] font-bold">12 hrs/week saved</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-14 sm:py-24 px-5 sm:px-20 flex flex-col sm:flex-row gap-10 sm:gap-16 w-full">
-    <!-- Left -->
-    <div class="flex-1 flex flex-col gap-5 sm:gap-6">
-      <div class="inline-flex items-center gap-2 w-fit">
-        <span class="w-2 h-2 rounded-full bg-[#22C55E] shrink-0"></span>
-        <span class="font-inter text-[#22C55E] text-[12px] font-semibold tracking-[0.04em]">Available now</span>
-      </div>
-      <h2 class="font-sora text-[26px] sm:text-[38px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
-        Let's talk if you're building something that matters.
-      </h2>
-      <p class="font-inter text-[#666666] text-[14px] sm:text-[15px] leading-[1.75]">
-        I'm looking for a product design role at a company where design has a seat at the table — not just a ticket queue.
-        B2B SaaS, fintech, or enterprise. Full-time or long-term contract. Based in Bangalore, open to hybrid or remote.
+      <p class="hero-role">
+        I'm <strong>Ayush Bhamu</strong> — a Product Designer with <strong>5+ years</strong> turning complex workflows into clean, measurable outcomes across <strong>energy, fintech, and B2B SaaS</strong>. Currently at RWE. M.Sc. in HCI.
       </p>
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-        <button class="btn-amber">ayush@email.com</button>
-        <button class="btn-ghost">LinkedIn ↗</button>
+
+      <div class="hero-tags">
+        <span class="tag tag-accent">UX Research</span>
+        <span class="tag tag-accent">Interaction Design</span>
+        <span class="tag tag-accent">Design Systems</span>
+        <span class="tag">B2B SaaS</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Agile</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-dark">View Case Studies ↓</a>
+        <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="btn btn-outline">Download Resume ↗</a>
+      </div>
+
+      <div class="hero-strip">
+        <span class="hero-strip-label">Experience at</span>
+        <div class="hero-strip-companies">
+          <span class="hero-company">RWE</span>
+          <span style="color:var(--line)">·</span>
+          <span class="hero-company">Grassrootlab</span>
+          <span style="color:var(--line)">·</span>
+          <span class="hero-company">Betterhalf.ai</span>
+          <span style="color:var(--line)">·</span>
+          <span class="hero-company">Codalyze</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ METRICS BAR ════════════════════════════════════ -->
+  <div class="metrics-bar">
+    <div class="container">
+      <div class="metrics-inner">
+
+        <div class="metric-item">
+          <div class="metric-num">5<span>+</span></div>
+          <div class="metric-label">Years of product design experience</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-num">20<span>%</span></div>
+          <div class="metric-label">Workflow efficiency gains at RWE in 6 months</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-num">30<span>%</span></div>
+          <div class="metric-label">Reduction in data errors through interaction design</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-num">3</div>
+          <div class="metric-label">Domains: energy, fintech & consumer SaaS</div>
+        </div>
+
       </div>
     </div>
+  </div>
 
-    <!-- Right: What I'm looking for card -->
-    <div class="contact-card sm:w-[340px] sm:shrink-0 flex flex-col gap-5 p-6 sm:p-8">
-      <span class="label-accent" style="font-size:10px;">What I'm looking for</span>
-      <div class="flex flex-col gap-3">
-        <div class="flex items-start gap-3">
-          <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#C9962E] shrink-0"></span>
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.6]">A product team that treats design as strategy, not decoration</p>
+  <!-- ══ WORK ══════════════════════════════════════════ -->
+  <section class="section" id="work">
+    <div class="container">
+
+      <div class="work-header">
+        <div>
+          <div class="eyebrow">Selected work</div>
+          <h2 class="work-title">End-to-end design.<br>Real outcomes.</h2>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#CCCCCC] shrink-0"></span>
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.6]">Ownership of a problem space, not just a feature backlog</p>
+        <p class="work-subtitle">3 case studies covering B2B platforms, internal tools, and consumer finance.</p>
+      </div>
+
+      <!-- ── FEATURED: Case Study 1 ── -->
+      <a href="./case-study-1.html" class="cs-featured">
+
+        <!-- Left: image / mockup -->
+        <div class="cs-img-placeholder">
+          <img src="./images/generated-1771409451844.png" alt="RWE Internal Platform" class="cs-img"
+            onerror="this.style.display='none'">
+          <!-- decorative placeholder lines when image missing -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:40px;">
+            <div style="width:100%;max-width:280px;display:flex;flex-direction:column;gap:8px;">
+              <div style="height:10px;background:var(--line);border-radius:3px;width:60%"></div>
+              <div style="height:6px;background:var(--bg-2);border-radius:3px;width:85%"></div>
+              <div style="height:6px;background:var(--bg-2);border-radius:3px;width:70%"></div>
+              <div style="height:40px;background:var(--bg-3);border-radius:6px;margin-top:8px;width:100%"></div>
+              <div style="height:40px;background:var(--bg-3);border-radius:6px;width:100%"></div>
+              <div style="height:40px;background:var(--bg-3);border-radius:6px;width:100%"></div>
+            </div>
+          </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#CCCCCC] shrink-0"></span>
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.6]">A company where shipping matters more than process theatre</p>
+
+        <!-- Right: content -->
+        <div class="cs-body">
+          <div class="cs-body-top">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="cs-tags">
+                <span class="tag tag-accent">Energy · B2B</span>
+                <span class="tag">Internal Platform</span>
+              </div>
+              <span class="cs-num">01</span>
+            </div>
+            <h3 class="cs-title">Redesigning internal analyst workflows for a global energy company</h3>
+            <p class="cs-desc">Led B2B product design for multiple internal platforms at RWE, reducing manual workflows by 20% in 6 months through clearer information architecture and task-focused interfaces.</p>
+          </div>
+
+          <div class="cs-meta">
+            <div class="cs-meta-row">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">My role</span>
+                <span class="cs-meta-val">UI/UX Designer</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Company</span>
+                <span class="cs-meta-val">RWE · Oct 2023–Present</span>
+              </div>
+            </div>
+            <div class="cs-meta-row">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Outcome</span>
+                <span class="cs-meta-val cs-meta-val-accent">−20% manual workflows</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Focus</span>
+                <span class="cs-meta-val">IA · Interaction · Systems</span>
+              </div>
+            </div>
+            <span class="cs-link">
+              Read case study <span class="cs-arrow">↗</span>
+            </span>
+          </div>
         </div>
-        <div class="flex items-start gap-3">
-          <span class="mt-1 w-1.5 h-1.5 rounded-full bg-[#CCCCCC] shrink-0"></span>
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.6]">A culture that values clarity and data over opinions</p>
+      </a>
+
+      <!-- ── GRID: Case Studies 2 & 3 ── -->
+      <div class="cs-grid">
+
+        <!-- Case Study 2 -->
+        <a href="#" class="cs-card cs-coming">
+          <div class="cs-card-img-placeholder">
+            <img src="./images/generated-1771409460281.png" alt="Finance App" class="cs-card-img" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+              onerror="this.style.display='none'">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
+              <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
+                <div style="height:8px;background:var(--line);border-radius:3px;width:50%"></div>
+                <div style="height:5px;background:var(--bg-2);border-radius:3px;width:80%"></div>
+                <div style="height:5px;background:var(--bg-2);border-radius:3px;width:65%"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+                  <div style="height:36px;background:var(--bg-3);border-radius:5px;"></div>
+                  <div style="height:36px;background:var(--bg-3);border-radius:5px;"></div>
+                </div>
+              </div>
+            </div>
+            <span class="cs-coming-badge">Coming soon</span>
+          </div>
+          <div class="cs-card-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="cs-tags">
+                <span class="tag tag-accent">Fintech · Consumer</span>
+              </div>
+              <span class="cs-num">02</span>
+            </div>
+            <h3 class="cs-title" style="font-size:20px;">Personal finance app design — budgeting & user flows</h3>
+            <p class="cs-desc" style="font-size:13px;">Led product design for a formula-based personal finance app at Grassrootlab. Defined user flows, IA, and interaction patterns across core budgeting experiences. Built and maintained a scalable design system reducing design-to-dev effort by ~30%.</p>
+            <div class="cs-meta-row" style="margin-top:auto;">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Company</span>
+                <span class="cs-meta-val" style="font-size:12px;">Grassrootlab · 2020–2023</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Outcome</span>
+                <span class="cs-meta-val cs-meta-val-accent" style="font-size:12px;">−30% design-to-dev effort</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Case Study 3 -->
+        <a href="#" class="cs-card cs-coming">
+          <div class="cs-card-img-placeholder">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
+              <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
+                <div style="height:8px;background:var(--line);border-radius:3px;width:55%"></div>
+                <div style="height:5px;background:var(--bg-2);border-radius:3px;width:75%"></div>
+                <div style="height:60px;background:var(--bg-3);border-radius:8px;margin-top:6px;width:100%;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:var(--line);"></div>
+                </div>
+                <div style="height:5px;background:var(--bg-2);border-radius:3px;width:60%"></div>
+              </div>
+            </div>
+            <span class="cs-coming-badge">Coming soon</span>
+          </div>
+          <div class="cs-card-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="cs-tags">
+                <span class="tag tag-accent">Consumer · Mobile</span>
+              </div>
+              <span class="cs-num">03</span>
+            </div>
+            <h3 class="cs-title" style="font-size:20px;">Improving engagement & navigation for a consumer matchmaking app</h3>
+            <p class="cs-desc" style="font-size:13px;">Increased user engagement by ~10% at Betterhalf.ai through improved navigation and usability enhancements across key mobile flows. Established a Material Design-aligned design system, reducing development effort by ~15%.</p>
+            <div class="cs-meta-row" style="margin-top:auto;">
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Company</span>
+                <span class="cs-meta-val" style="font-size:12px;">Betterhalf.ai · 2019–2020</span>
+              </div>
+              <div class="cs-meta-item">
+                <span class="cs-meta-label">Outcome</span>
+                <span class="cs-meta-val cs-meta-val-accent" style="font-size:12px;">+10% user engagement</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ APPROACH ═══════════════════════════════════════ -->
+  <div style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container section-sm">
+      <div class="eyebrow">How I work</div>
+      <div class="approach-grid">
+        <div class="approach-item">
+          <div class="approach-num">01</div>
+          <div class="approach-title">Research before pixels</div>
+          <div class="approach-desc">I map journeys, run usability tests, and validate assumptions with real users before any Figma frame opens. Decisions should be traceable to evidence.</div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">02</div>
+          <div class="approach-title">Systems over screens</div>
+          <div class="approach-desc">I build scalable component libraries and information architectures that let teams ship consistently — not one-off screens that break at edge cases.</div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">03</div>
+          <div class="approach-title">Outcomes over deliverables</div>
+          <div class="approach-desc">A design isn't done at handoff. I measure against the original metric, iterate post-launch, and treat QA as part of the design role — not someone else's job.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ABOUT ══════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: Bio -->
+        <div>
+          <div class="eyebrow">About</div>
+          <div class="about-bio">
+            <p>
+              I'm a <strong>UI/UX and Product Designer</strong> with 5+ years of experience building scalable digital products across <strong>energy, fintech, and SaaS</strong>. I currently design internal platforms at <strong>RWE</strong>, where I've improved analyst efficiency and cut manual workflows by 20% through clearer information architecture and interaction design.
+            </p>
+            <p>
+              Before that, I led product design at <strong>Grassrootlab</strong> (a US fintech startup), owned the full design process — research, wireframes, prototyping, usability testing — and built the design system from scratch. I hold an <strong>M.Sc. in Usability Engineering (HCI)</strong> from Rhine-Waal University of Applied Sciences, Germany.
+            </p>
+            <p>
+              I'm strongest in B2B product design: complex workflows, role-based dashboards, and data-heavy interfaces where clarity is the hard problem. I'm based in <strong>Ajmer, India</strong> and open to full-time roles — hybrid or remote.
+            </p>
+          </div>
+          <div class="about-bio-links">
+            <a href="mailto:ayushbhamu7@gmail.com" class="btn btn-dark" style="font-size:13px;padding:10px 20px;">ayushbhamu7@gmail.com</a>
+            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="btn btn-outline" style="font-size:13px;padding:10px 20px;">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <!-- Right: Experience + Tools -->
+        <div class="about-right">
+
+          <!-- Experience -->
+          <div>
+            <div class="eyebrow" style="margin-bottom:12px;">Experience</div>
+            <div class="exp-table">
+              <div class="exp-row">
+                <span class="exp-company">RWE</span>
+                <span class="exp-role">UI/UX Designer</span>
+                <span class="exp-date">Oct 2023 – Present</span>
+              </div>
+              <div class="exp-row">
+                <span class="exp-company">Grassrootlab LLC</span>
+                <span class="exp-role">Product Designer</span>
+                <span class="exp-date">Feb 2020 – Jan 2023</span>
+              </div>
+              <div class="exp-row">
+                <span class="exp-company">Betterhalf.ai</span>
+                <span class="exp-role">UI/UX Design Intern</span>
+                <span class="exp-date">Oct 2019 – Jan 2020</span>
+              </div>
+              <div class="exp-row">
+                <span class="exp-company">Codalyze Technologies</span>
+                <span class="exp-role">UI/UX Design Intern</span>
+                <span class="exp-date">Apr 2019 – Jun 2019</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <div class="eyebrow" style="margin-bottom:12px;">Education</div>
+            <div class="exp-table">
+              <div class="exp-row">
+                <span class="exp-company" style="font-size:13px;grid-column:1/-1;">M.Sc. Usability Engineering (HCI)</span>
+                <span class="exp-role" style="grid-column:1/-1;margin-top:-10px;">Rhine-Waal University of Applied Sciences</span>
+                <span class="exp-date" style="grid-column:1/-1;margin-top:-4px;">2022 – 2025</span>
+              </div>
+              <div class="exp-row">
+                <span class="exp-company" style="font-size:13px;grid-column:1/-1;">Bachelor of Computer Applications (BCA)</span>
+                <span class="exp-role" style="grid-column:1/-1;margin-top:-10px;">Maharshi Dayanand Saraswati University</span>
+                <span class="exp-date" style="grid-column:1/-1;margin-top:-4px;">2018 – 2021</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div>
+            <div class="eyebrow" style="margin-bottom:12px;">Tools & skills</div>
+            <div class="tools-row">
+              <span class="tool-chip">Figma</span>
+              <span class="tool-chip">Adobe XD</span>
+              <span class="tool-chip">Sketch</span>
+              <span class="tool-chip">Maze</span>
+              <span class="tool-chip">Miro</span>
+              <span class="tool-chip">Jira</span>
+              <span class="tool-chip">UX Research</span>
+              <span class="tool-chip">Usability Testing</span>
+              <span class="tool-chip">Journey Mapping</span>
+              <span class="tool-chip">Design Systems</span>
+              <span class="tool-chip">Interaction Design</span>
+              <span class="tool-chip">Agile / Scrum</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
-    <div class="flex items-center gap-2.5">
-      <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
-        <span class="font-sora text-[11px] font-bold text-white">A</span>
+  <!-- ══ CONTACT ════════════════════════════════════════ -->
+  <section class="section-sm" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div>
+          <h2 class="contact-heading">Let's build something<br><em>worth using.</em></h2>
+          <p class="contact-sub">
+            I'm looking for a product design role where design has a seat at the table — not just a ticket queue. B2B SaaS, fintech, or enterprise. Full-time. Based in India, open to hybrid or remote.
+          </p>
+          <div class="contact-ctas">
+            <a href="mailto:ayushbhamu7@gmail.com" class="btn btn-dark">Send me an email ↗</a>
+            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <div class="contact-info-row">
+            <span class="contact-info-label">Location</span>
+            <span class="contact-info-val">Ajmer, India</span>
+          </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Availability</span>
+            <span class="contact-info-val" style="color:var(--green);">● Open to work</span>
+          </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Preferred format</span>
+            <span class="contact-info-val">Full-time · Remote / Hybrid</span>
+          </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Phone</span>
+            <span class="contact-info-val">+91 63775 25244</span>
+          </div>
+        </div>
       </div>
-      <span class="font-inter text-[#999999] text-[12px]">© 2025 Ayush Bhamu · Bangalore, India.</span>
     </div>
-    <div class="flex items-center gap-5 sm:gap-6">
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Twitter</a>
-      <a href="#" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Dribbble</a>
+  </section>
+
+  <!-- ══ FOOTER ═════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <div class="nav-logo-mark" style="width:24px;height:24px;font-size:11px;">AB</div>
+          <span class="footer-copy">© 2025 Ayush Bhamu · Ajmer, India</span>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:ayushbhamu7@gmail.com" class="footer-link">Email</a>
+          <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="footer-link">LinkedIn</a>
+          <a href="https://bhamu.framer.website/" target="_blank" class="footer-link">Framer ↗</a>
+          <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="footer-link">Resume ↗</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-</body>
+  <script>
+    // Mobile nav toggle — shows nav links inline
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.querySelector('.nav-links');
+    let open = false;
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        open = !open;
+        if (open) {
+          navLinks.style.display = 'flex';
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '60px';
+          navLinks.style.left = '0';
+          navLinks.style.right = '0';
+          navLinks.style.background = 'var(--bg-2)';
+          navLinks.style.borderBottom = '1px solid var(--line)';
+          navLinks.style.padding = '12px 16px 16px';
+          navLinks.style.gap = '2px';
+          // Show all children including nav-link and nav-cta
+          navLinks.querySelectorAll('.nav-link, .nav-cta').forEach(el => {
+            el.style.display = 'block';
+          });
+        } else {
+          navLinks.style.cssText = '';
+          navLinks.querySelectorAll('.nav-link').forEach(el => el.style.cssText = '');
+          navLinks.querySelector('.nav-cta').style.cssText = '';
+        }
+      });
+    }
 
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (open) toggle.click();
+      });
+    });
+  </script>
+
+</body>
 </html>
