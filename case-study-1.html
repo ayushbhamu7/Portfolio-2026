@@ -258,12 +258,118 @@
     .journey-scroll::-webkit-scrollbar-track { background: transparent; }
     .journey-scroll::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
 
+    /* Clickable image hint */
+    .image-block { cursor: zoom-in; }
+    .image-block:hover { border-color: #CCCCCC; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .image-block img { transition: transform 0.2s; }
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+      cursor: zoom-out;
+    }
+    .lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-img-wrap {
+      position: relative;
+      max-width: 95vw;
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      border-radius: 8px;
+    }
+    .lightbox-img-wrap img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transition: transform 0.25s;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.15s;
+      z-index: 210;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #CCCCCC;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      z-index: 210;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: background 0.15s;
+      z-index: 210;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+
     @media (max-width: 900px) {
       .screen-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
       .persona-header { flex-direction: column; align-items: flex-start; }
+      .lightbox-nav { width: 36px; height: 36px; font-size: 16px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
     }
   </style>
 </head>
@@ -919,6 +1025,137 @@
       <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
     </div>
   </footer>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <script>
+  (function() {
+    // Map thumbnail paths to high-quality versions
+    const hqMap = {
+      './images/rwe-cover.jpg': './images/hq/rwe-cover.jpg',
+      './images/rwe-old-tools.jpg': './images/hq/rwe-old-tools.jpg',
+      './images/persona-coordinator.jpg': './images/hq/persona-coordinator.jpg',
+      './images/persona-technician.jpg': './images/hq/persona-technician.jpg',
+      './images/journey-as-is.jpg': './images/hq/journey-as-is.jpg',
+      './images/journey-vision.jpg': './images/hq/journey-vision.jpg',
+      './images/screen-dashboard.jpg': './images/hq/screen-dashboard.jpg',
+      './images/screen-work-order.jpg': './images/hq/screen-work-order.jpg',
+      './images/screen-documentation.jpg': './images/hq/screen-documentation.jpg',
+    };
+
+    // Collect all clickable image blocks
+    const imageBlocks = document.querySelectorAll('.image-block');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    // Build gallery array
+    const gallery = [];
+    imageBlocks.forEach(function(block) {
+      const img = block.querySelector('img');
+      const caption = block.querySelector('.image-caption');
+      if (img && img.src) {
+        const src = img.getAttribute('src');
+        gallery.push({
+          src: src,
+          hq: hqMap[src] || src,
+          alt: img.alt || '',
+          caption: caption ? caption.textContent.trim() : ''
+        });
+      }
+    });
+
+    // Also add cover image
+    const coverImg = document.querySelector('section.img-placeholder > img');
+    if (coverImg && coverImg.src) {
+      const src = coverImg.getAttribute('src');
+      gallery.unshift({
+        src: src,
+        hq: hqMap[src] || src,
+        alt: coverImg.alt || '',
+        caption: 'RWE Troubleshooting Tool — Cover'
+      });
+    }
+
+    let currentIndex = -1;
+
+    function openLightbox(index) {
+      if (index < 0 || index >= gallery.length) return;
+      currentIndex = index;
+      const item = gallery[currentIndex];
+      lightboxImg.src = item.hq;
+      lightboxImg.alt = item.alt;
+      lightboxCaption.textContent = item.caption;
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      // Show/hide nav buttons
+      lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
+      lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    // Click on cover image
+    if (coverImg) {
+      coverImg.parentElement.style.cursor = 'zoom-in';
+      coverImg.parentElement.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(0);
+      });
+    }
+
+    // Click on image blocks
+    imageBlocks.forEach(function(block, i) {
+      block.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Offset by 1 if cover image exists in gallery
+        var offset = coverImg ? 1 : 0;
+        openLightbox(i + offset);
+      });
+    });
+
+    // Close
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Nav
+    lightboxPrev.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentIndex > 0) openLightbox(currentIndex - 1);
+    });
+    lightboxNext.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+    });
+  })();
+  </script>
 
 </body>
 
