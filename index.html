@@ -105,7 +105,7 @@
       border: none;
       transition: transform 0.15s, opacity 0.15s, background 0.15s;
     }
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover { opacity: 0.92; }
     .btn-dark {
       background: #111111;
       color: #FAFAF8;
@@ -708,10 +708,25 @@
       font-size: 12px;
       color: #999999;
       text-decoration: none;
-      transition: color 0.15s;
+      transition: color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       font-weight: 500;
+      position: relative;
+    }
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #0D7377;
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .footer-link:hover { color: #111111; }
+    .footer-link:hover::after { transform: scaleX(1); }
 
     /* ── Nav logo ─────────────────────────── */
     .nav-logo-mark {
@@ -738,9 +753,24 @@
       text-decoration: none;
       padding: 6px 12px;
       border-radius: 6px;
-      transition: color 0.15s, background 0.15s;
+      transition: color 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
     }
-    .nav-link:hover { color: #111111; background: rgba(0,0,0,0.04); }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 12px;
+      right: 12px;
+      height: 1.5px;
+      background: #0D7377;
+      border-radius: 1px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .nav-link:hover { color: #111111; }
+    .nav-link:hover::after { transform: scaleX(1); }
     .nav-cta {
       margin-left: 8px;
       font-size: 13px;
@@ -772,6 +802,120 @@
     .mock-block {
       border-radius: 6px;
       background: #ECFDF5;
+    }
+
+    /* ════════════════════════════════════════
+       HERO TEXT REVEAL
+    ════════════════════════════════════════ */
+    .hero-line {
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-line-inner {
+      display: block;
+      transform: translateY(105%);
+      transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .hero-loaded .hero-line-inner {
+      transform: translateY(0);
+    }
+    .hero-line:nth-child(2) .hero-line-inner {
+      transition-delay: 0.12s;
+    }
+    .hero-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+                  transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .hero-loaded .hero-reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-loaded .hero-avail.hero-reveal  { transition-delay: 0.0s; }
+    .hero-loaded .hero-role.hero-reveal   { transition-delay: 0.35s; }
+    .hero-loaded .hero-tags.hero-reveal   { transition-delay: 0.5s; }
+    .hero-loaded .hero-ctas.hero-reveal   { transition-delay: 0.6s; }
+    .hero-loaded .hero-strip.hero-reveal  { transition-delay: 0.75s; }
+
+    /* ════════════════════════════════════════
+       HERO DOT GRID
+    ════════════════════════════════════════ */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease-out 0.3s;
+    }
+    .hero-loaded .hero-grid {
+      opacity: 1;
+    }
+
+    /* ════════════════════════════════════════
+       SCROLL-TRIGGERED REVEALS
+    ════════════════════════════════════════ */
+    .scroll-reveal {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+                  transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-up    { transform: translateY(40px); }
+    .reveal-left  { transform: translateX(-40px); }
+    .reveal-right { transform: translateX(40px); }
+    .reveal-scale { transform: scale(0.95); }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    .scroll-reveal[data-delay="1"] { transition-delay: 0.12s; }
+    .scroll-reveal[data-delay="2"] { transition-delay: 0.24s; }
+    .scroll-reveal[data-delay="3"] { transition-delay: 0.36s; }
+
+    /* ════════════════════════════════════════
+       ENHANCED CARD HOVERS
+    ════════════════════════════════════════ */
+    .cs-img,
+    .cs-card-img {
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .cs-featured:hover .cs-img,
+    .cs-card:hover .cs-card-img {
+      transform: scale(1.04);
+    }
+    .cs-card {
+      transition: border-color 0.3s, box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .cs-card:hover {
+      border-color: #C8C5BE;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+      transform: translateY(-4px);
+    }
+    .cs-featured {
+      transition: border-color 0.3s, box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .cs-featured:hover {
+      border-color: #C8C5BE;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .cs-featured:hover .cs-arrow,
+    .cs-card:hover .cs-arrow {
+      transform: translate(4px, -4px);
+    }
+
+    /* ════════════════════════════════════════
+       MAGNETIC BUTTONS
+    ════════════════════════════════════════ */
+    .btn, .nav-cta {
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.15s,
+                  background 0.15s,
+                  color 0.15s,
+                  border-color 0.15s;
+      will-change: transform;
     }
 
     /* ════════════════════════════════════════
@@ -828,6 +972,23 @@
       .exp-row { grid-template-columns: 1fr 1fr; }
       .exp-date { grid-column: 1 / -1; text-align: left; font-size: 11px; }
     }
+
+    /* ════════════════════════════════════════
+       ACCESSIBILITY — REDUCED MOTION
+    ════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-line-inner,
+      .hero-reveal,
+      .scroll-reveal,
+      .hero-grid {
+        transform: none !important;
+        opacity: 1 !important;
+        transition: none !important;
+      }
+      .cs-img, .cs-card-img {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -858,22 +1019,43 @@
   <section class="hero" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(201,150,46,0.08) 0%, transparent 70%), #FAFAF8;">
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
+
+    <!-- Signature dot grid -->
+    <div class="hero-grid" aria-hidden="true">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dotGrid" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.8" fill="#111111" opacity="0.06"/>
+          </pattern>
+          <radialGradient id="gridFade" cx="30%" cy="40%" r="60%">
+            <stop offset="0%" stop-opacity="1"/>
+            <stop offset="100%" stop-opacity="0"/>
+          </radialGradient>
+          <mask id="gridMask">
+            <rect width="100%" height="100%" fill="url(#gridFade)"/>
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dotGrid)" mask="url(#gridMask)"/>
+      </svg>
+    </div>
+
     <div class="container" style="position:relative;z-index:1;">
 
-      <div class="hero-avail">
+      <div class="hero-avail hero-reveal">
         <div class="hero-avail-dot"></div>
         Open to full-time roles
       </div>
 
       <h1 class="hero-name">
-        Designing products<br>people <span class="hero-name-accent">actually use.</span>
+        <span class="hero-line"><span class="hero-line-inner">Designing products</span></span>
+        <span class="hero-line"><span class="hero-line-inner">people <span class="hero-name-accent">actually use.</span></span></span>
       </h1>
 
-      <p class="hero-role">
+      <p class="hero-role hero-reveal">
         I'm <strong>Ayush Bhamu</strong> — a Product Designer with <strong>5+ years</strong> turning complex workflows into clean, measurable outcomes across <strong>energy, fintech, and B2B SaaS</strong>. Currently at RWE. M.Sc. in HCI.
       </p>
 
-      <div class="hero-tags">
+      <div class="hero-tags hero-reveal">
         <span class="tag">UX Research</span>
         <span class="tag">Interaction Design</span>
         <span class="tag">Design Systems</span>
@@ -882,12 +1064,12 @@
         <span class="tag tag-neutral">Agile</span>
       </div>
 
-      <div class="hero-ctas">
+      <div class="hero-ctas hero-reveal">
         <a href="#work" class="btn btn-dark">View Case Studies ↓</a>
         <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="btn btn-outline">Download Resume ↗</a>
       </div>
 
-      <div class="hero-strip">
+      <div class="hero-strip hero-reveal">
         <span class="hero-strip-label">Experience at</span>
         <div class="hero-strip-companies">
           <span class="hero-company">RWE</span>
@@ -909,22 +1091,22 @@
       <div class="metrics-inner">
 
         <div class="metric-item">
-          <div class="metric-num">5<span>+</span></div>
+          <div class="metric-num" data-count="5" data-suffix="+"><span class="count-num">0</span><span style="color:#0D7377">+</span></div>
           <div class="metric-label">Years of product design experience</div>
         </div>
 
         <div class="metric-item">
-          <div class="metric-num">20<span>%</span></div>
+          <div class="metric-num" data-count="20" data-suffix="%"><span class="count-num">0</span><span style="color:#0D7377">%</span></div>
           <div class="metric-label">Workflow efficiency gains at RWE in 6 months</div>
         </div>
 
         <div class="metric-item">
-          <div class="metric-num">30<span>%</span></div>
+          <div class="metric-num" data-count="30" data-suffix="%"><span class="count-num">0</span><span style="color:#0D7377">%</span></div>
           <div class="metric-label">Reduction in data errors through interaction design</div>
         </div>
 
         <div class="metric-item">
-          <div class="metric-num">3</div>
+          <div class="metric-num" data-count="3" data-suffix=""><span class="count-num">0</span></div>
           <div class="metric-label">Domains: energy, fintech & consumer SaaS</div>
         </div>
 
@@ -937,15 +1119,15 @@
     <div class="container">
 
       <div class="work-header">
-        <div>
+        <div class="scroll-reveal reveal-left">
           <div class="label-accent" style="margin-bottom:20px;">Selected work</div>
           <h2 class="work-title">End-to-end design.<br>Real outcomes.</h2>
         </div>
-        <p class="work-subtitle">3 case studies covering B2B platforms, internal tools, and consumer finance.</p>
+        <p class="work-subtitle scroll-reveal reveal-right">3 case studies covering B2B platforms, internal tools, and consumer finance.</p>
       </div>
 
       <!-- ── FEATURED: Case Study 1 ── -->
-      <a href="./case-study-1.html" class="cs-featured">
+      <a href="./case-study-1.html" class="cs-featured scroll-reveal reveal-up">
 
         <!-- Left: image / mockup -->
         <div class="cs-img-placeholder">
@@ -1010,7 +1192,7 @@
       <div class="cs-grid">
 
         <!-- Case Study 2 -->
-        <a href="./case-study-2.html" class="cs-card">
+        <a href="./case-study-2.html" class="cs-card scroll-reveal reveal-up" data-delay="0">
           <div class="cs-card-img-placeholder">
             <img src="./images/Delphi hero image.png" alt="Delphi Performance Analysis" class="cs-card-img"
               onerror="this.style.display='none'">
@@ -1052,7 +1234,7 @@
         </a>
 
         <!-- Case Study 3 -->
-        <a href="#" class="cs-card cs-coming">
+        <a href="#" class="cs-card cs-coming scroll-reveal reveal-up" data-delay="1">
           <div class="cs-card-img-placeholder">
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
               <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
@@ -1097,22 +1279,22 @@
     <div class="container">
       <div class="label-accent" style="margin-bottom:20px;">How I work</div>
       <div class="approach-grid">
-        <div class="approach-item">
+        <div class="approach-item scroll-reveal reveal-up" data-delay="0">
           <div class="approach-num">01</div>
           <div class="approach-title">Research before pixels</div>
           <div class="approach-desc">I map journeys, run usability tests, and validate assumptions with real users before any Figma frame opens. Decisions should be traceable to evidence.</div>
         </div>
-        <div class="approach-item">
+        <div class="approach-item scroll-reveal reveal-up" data-delay="1">
           <div class="approach-num">02</div>
           <div class="approach-title">Systems over screens</div>
           <div class="approach-desc">I build scalable component libraries and information architectures that let teams ship consistently — not one-off screens that break at edge cases.</div>
         </div>
-        <div class="approach-item">
+        <div class="approach-item scroll-reveal reveal-up" data-delay="2">
           <div class="approach-num">03</div>
           <div class="approach-title">Outcomes over deliverables</div>
           <div class="approach-desc">A design isn't done at handoff. I measure against the original metric, iterate post-launch, and treat QA as part of the design role — not someone else's job.</div>
         </div>
-        <div class="approach-item">
+        <div class="approach-item scroll-reveal reveal-up" data-delay="3">
           <div class="approach-num">04</div>
           <div class="approach-title">Design for AI readiness</div>
           <div class="approach-desc">I structure interfaces to accommodate intelligent features &mdash; confidence scores, explainability patterns, and human-in-the-loop controls &mdash; so AI capabilities plug in without redesign.</div>
@@ -1127,7 +1309,7 @@
       <div class="about-grid">
 
         <!-- Left: Bio -->
-        <div>
+        <div class="scroll-reveal reveal-left">
           <div class="label-accent" style="margin-bottom:20px;">About</div>
           <div class="about-bio">
             <p>
@@ -1147,7 +1329,7 @@
         </div>
 
         <!-- Right: Experience + Tools -->
-        <div class="about-right">
+        <div class="about-right scroll-reveal reveal-right">
 
           <!-- Experience -->
           <div>
@@ -1220,7 +1402,7 @@
   <!-- ══ CONTACT ════════════════════════════════════════ -->
   <section class="section-sm" id="contact">
     <div class="container">
-      <div class="contact-wrap">
+      <div class="contact-wrap scroll-reveal reveal-scale">
         <div>
           <h2 class="contact-heading">Let's build something<br><em>worth using.</em></h2>
           <p class="contact-sub">
@@ -1272,7 +1454,7 @@
   </footer>
 
   <script>
-    // Mobile nav toggle
+    // ── Mobile nav toggle ──
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.querySelector('.nav-links');
     let open = false;
@@ -1300,13 +1482,106 @@
         }
       });
     }
-
-    // Close mobile menu on nav link click
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        if (open) toggle.click();
+      link.addEventListener('click', () => { if (open) toggle.click(); });
+    });
+
+    // ── Hero entrance animation ──
+    document.fonts.ready.then(function() {
+      requestAnimationFrame(function() {
+        var hero = document.querySelector('.hero');
+        if (hero) hero.classList.add('hero-loaded');
       });
     });
+
+    // ── Hero dot grid parallax ──
+    (function() {
+      var heroGrid = document.querySelector('.hero-grid');
+      if (!heroGrid || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      window.addEventListener('scroll', function() {
+        var scrollY = window.pageYOffset;
+        if (scrollY < window.innerHeight) {
+          heroGrid.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
+        }
+      }, { passive: true });
+    })();
+
+    // ── Scroll-triggered reveals ──
+    (function() {
+      var scrollEls = document.querySelectorAll('.scroll-reveal');
+      if (!scrollEls.length) return;
+      var scrollObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            scrollObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+      scrollEls.forEach(function(el) {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('is-visible');
+        } else {
+          scrollObserver.observe(el);
+        }
+      });
+    })();
+
+    // ── Metrics counter animation ──
+    (function() {
+      var counted = false;
+      var metricsBar = document.querySelector('.metrics-bar');
+      if (!metricsBar) return;
+
+      function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+      function animateCounter(el, target, duration) {
+        var start = performance.now();
+        var numEl = el.querySelector('.count-num');
+        if (!numEl) return;
+        function tick(now) {
+          var elapsed = now - start;
+          var progress = Math.min(elapsed / duration, 1);
+          numEl.textContent = Math.round(easeOutQuart(progress) * target);
+          if (progress < 1) requestAnimationFrame(tick);
+          else numEl.textContent = target;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      var counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            var items = metricsBar.querySelectorAll('.metric-num[data-count]');
+            items.forEach(function(item, i) {
+              var target = parseInt(item.getAttribute('data-count'), 10);
+              setTimeout(function() { animateCounter(item, target, 1200); }, i * 80);
+            });
+            counterObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      counterObserver.observe(metricsBar);
+    })();
+
+    // ── Magnetic button effect ──
+    (function() {
+      if (window.matchMedia('(hover: none)').matches) return;
+      var magnetEls = document.querySelectorAll('.btn, .nav-cta');
+      var strength = 0.3;
+      magnetEls.forEach(function(el) {
+        el.addEventListener('mousemove', function(e) {
+          var rect = el.getBoundingClientRect();
+          var x = e.clientX - rect.left - rect.width / 2;
+          var y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = 'translate(' + (x * strength) + 'px, ' + (y * strength) + 'px)';
+        });
+        el.addEventListener('mouseleave', function() {
+          el.style.transform = 'translate(0, 0)';
+        });
+      });
+    })();
   </script>
 
 </body>
