@@ -1108,6 +1108,34 @@
         </p>
       </div>
 
+      <!-- Designing for AI callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="border-left-color:#7C3AED;">
+        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing for AI &mdash; where this product goes next</span>
+        <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+          Delphi&rsquo;s architecture was designed with intelligent automation in mind. Several features I designed are the foundation for AI-powered capabilities the team is now scoping:
+        </p>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Anomaly detection surfacing</strong> &mdash; The event overlay system I designed (Decision B) was built to display machine-flagged anomalies, not just manual event entries. The color-coded severity system and expandable tooltips were designed to handle ML-generated confidence scores, so when the data engineering team ships anomaly detection, the UI already supports it without redesign.
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Smart filter suggestions</strong> &mdash; The &ldquo;recent filters&rdquo; feature I shipped is the manual version of what will become AI-recommended filter configurations. I designed the progressive disclosure system to accommodate a &ldquo;Suggested&rdquo; section above the primary filters &mdash; where the system recommends parameter combinations based on the analyst&rsquo;s current context (selected turbine, time range, common investigation patterns).
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Trust calibration as a design problem</strong> &mdash; The biggest design challenge for AI features in this domain isn&rsquo;t the AI itself &mdash; it&rsquo;s trust. Analysts won&rsquo;t act on an anomaly flag they can&rsquo;t verify. That&rsquo;s why I designed the split-panel layout with bidirectional linking: the chart surfaces the insight, the data table lets the analyst verify it. This &ldquo;show your work&rdquo; pattern is the same principle that makes explainable AI usable &mdash; I built it into the interaction model from day one.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- Iteration evidence callout -->
       <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up">
         <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Specific iterations that shaped the product</span>

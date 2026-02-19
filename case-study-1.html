@@ -1902,6 +1902,34 @@
         </div>
 
       </div>
+
+      <!-- Designing for AI callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 max-w-[720px]" style="border-left-color:#7C3AED;">
+        <span class="font-inter text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing for AI &mdash; the intelligence layer this platform needs</span>
+        <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+          This project is a knowledge retrieval system at its core &mdash; and that&rsquo;s exactly where AI creates the most impact. The design decisions I made were shaped by awareness of where intelligent features would eventually plug in:
+        </p>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">NLP-powered fault search</strong> &mdash; The search-first IA I chose (Decision A) assumed keyword-based search initially, but I structured the search results UI to display relevance scores and confidence indicators. This was deliberate: when NLP-based semantic search replaces keyword matching, the interface already supports ranked results with &ldquo;why this matched&rdquo; context &mdash; a core explainability pattern for AI-driven retrieval.
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Automated root cause ranking</strong> &mdash; The consolidated comparison view (Decision B) displays frequency counts across sites. This is the manual version of what becomes a probabilistic recommendation: &ldquo;based on fleet-wide data, the most likely root cause is X with 78% confidence.&rdquo; I designed the comparison cards with expandable detail sections specifically to accommodate richer metadata like confidence scores and contributing factors.
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">The documentation flywheel as training data</strong> &mdash; Module 2&rsquo;s structured documentation flow (Decision C) captures fault resolutions in categorised, machine-readable fields &mdash; not free-form text. This wasn&rsquo;t accidental. Structured data is what makes the knowledge base useful for both human search and future ML models. Every resolved fault documented through the system becomes training data for smarter recommendations.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- ============================================ -->
