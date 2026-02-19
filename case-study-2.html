@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delphi: Wind Turbine Performance Analysis — Ayush Bhamu</title>
+  <meta name="description" content="Case study: Designing a performance analysis tool for offshore wind operations at RWE. Sole UI/UX designer — 15+ screens, progressive filters, interactive charts, 10+ months." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #FAFAF8;
+      color: #111111;
+    }
+
+    .font-sora { font-family: 'Epilogue', sans-serif; }
+    .font-inter { font-family: 'DM Sans', sans-serif; }
+
+    /* Frosted glass nav */
+    .nav-glass {
+      background: rgba(250, 250, 248, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Sticky nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    /* Accent underline for section labels */
+    .label-accent {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0A5C5F;
+    }
+    .label-accent::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #0D7377;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Pill tag */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #065456;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .tag-neutral {
+      background: #EFEFEF;
+      color: #555555;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F4F3EF; }
+    ::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+
+    /* Callout box */
+    .callout {
+      border-left: 3px solid #0D7377;
+      background: #F0FDFA;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Image with caption */
+    .image-block {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #E8E5DF;
+      cursor: zoom-in;
+    }
+    .image-block:hover { border-color: #CCCCCC; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .image-block img {
+      width: 100%;
+      display: block;
+    }
+    .image-caption {
+      padding: 14px 18px;
+      background: #F9F8F5;
+      border-top: 1px solid #E8E5DF;
+      font-size: 13px;
+      color: #777777;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Image placeholder */
+    .img-placeholder {
+      background: linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 300px;
+      border-radius: 12px;
+      border: 1px solid #E8E5DF;
+      color: #999999;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ── Reading progress bar ── */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0D7377, #14B8A6);
+      z-index: 999;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ── Fade-in on scroll animation ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    }
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Process step connector line ── */
+    .step-line {
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: -24px;
+      width: 2px;
+      background: linear-gradient(to bottom, #0D7377, #E8E5DF);
+    }
+
+    /* ── Section divider with number ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E8E5DF;
+    }
+
+    /* ── Content + stepper layout ── */
+    .case-layout {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      gap: 0;
+    }
+    .case-layout > article {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ── Sidebar stepper navigation ── */
+    .stepper-sidebar {
+      position: sticky;
+      top: 90px;
+      align-self: flex-start;
+      width: 160px;
+      flex-shrink: 0;
+      padding: 28px 0 0 0;
+      margin-top: 60px;
+      z-index: 20;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    .stepper-sidebar.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .stepper-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #AAAAAA;
+      margin-bottom: 16px;
+    }
+    .stepper-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 2px solid #E8E5DF;
+    }
+    .stepper-link {
+      display: block;
+      position: relative;
+      padding: 7px 0 7px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #AAAAAA;
+      text-decoration: none;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+    .stepper-link::before {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #0D7377;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .stepper-link:hover {
+      color: #555555;
+    }
+    .stepper-link.is-active {
+      color: #111111;
+      font-weight: 600;
+    }
+    .stepper-link.is-active::before {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .stepper-sidebar { display: none; }
+      .case-layout { padding: 0; }
+    }
+
+    /* ── Decision card ── */
+    .decision-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .decision-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #0D7377, #14B8A6);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .decision-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border-color: #D8D5CE;
+    }
+    .decision-card:hover::before {
+      opacity: 1;
+    }
+
+    /* ── Stat card ── */
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+    .stat-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    }
+
+    /* ── Screen grid ── */
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .screen-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .lightbox-nav { width: 36px; height: 36px; font-size: 16px; }
+    }
+
+    /* ── Lightbox overlay ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+      cursor: zoom-out;
+    }
+    .lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-img-wrap {
+      position: relative;
+      max-width: 95vw;
+      max-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+      border-radius: 8px;
+    }
+    .lightbox-img-wrap img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.15s;
+      z-index: 210;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #CCCCCC;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      z-index: 210;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      transition: background 0.15s;
+      z-index: 210;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+  </style>
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Reading progress bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass py-4 px-5 sm:py-5 sm:px-20 w-full">
+    <div class="max-w-[1100px] mx-auto flex items-center justify-between">
+    <a href="./index.html" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-[6px] bg-[#111111] flex items-center justify-center shrink-0">
+        <span class="font-sora text-[15px] font-bold text-white">A</span>
+      </div>
+      <span class="font-sora text-[15px] sm:text-[16px] font-semibold text-[#111111]">Ayush Bhamu</span>
+    </a>
+    <div class="flex items-center gap-1">
+      <a href="./index.html#work"
+        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">&larr; All work</a>
+      <a href="./index.html#contact"
+        class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Contact</a>
+    </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="px-5 sm:px-20 pt-14 sm:pt-20 pb-12 sm:pb-16 w-full" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(13,115,119,0.08) 0%, transparent 70%), #FAFAF8;">
+    <div class="max-w-[1100px] mx-auto">
+    <div class="max-w-[820px] flex flex-col gap-5 sm:gap-6">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="tag">Energy &middot; B2B</span>
+        <span class="tag tag-neutral">Internal Platform</span>
+        <span class="tag tag-neutral">Sole UI/UX Designer</span>
+      </div>
+      <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
+        Designing a performance analysis tool for offshore wind operations
+      </h1>
+      <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75] max-w-[680px]">
+        Replaced fragmented PI Vision / SCADA workflows with a purpose-built web application &mdash; giving analysts and engineers interactive charts, event overlays, and a progressive filter system to diagnose turbine issues in minutes instead of hours.
+      </p>
+    </div>
+    </div>
+  </section>
+
+  <!-- Project overview strip -->
+  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
+    <div class="max-w-[1100px] mx-auto flex flex-col gap-8">
+
+      <!-- Role & context — inline pills -->
+      <div class="flex flex-wrap gap-3">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Role</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">Sole UI/UX Designer</span>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">10+ months (ongoing)</span>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">5+ cross-functional</span>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">Figma, Jira, Mural</span>
+        </div>
+      </div>
+
+      <!-- Impact metrics — card grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">High-fidelity screens designed</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr; 1</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Tools consolidated into one</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr; Min</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Time to identify critical issues</p>
+        </div>
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Adopted</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Shipped &amp; used by analysts daily</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cover Image -->
+  <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
+    <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
+      <div style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
+        <div class="img-placeholder" id="coverImg" style="min-height:400px;aspect-ratio:16/9;border:none;border-radius:0;">
+          <span style="font-size:32px;opacity:0.4;">&#128202;</span>
+          <span class="font-inter text-[13px] text-[#999999]">[SCREEN: Delphi main dashboard / chart view]</span>
+        </div>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center mt-4">Delphi &middot; Wind turbine ad-hoc performance analysis platform</p>
+    </div>
+  </section>
+
+  <!-- Result banner -->
+  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="callout p-6 sm:p-8 fade-up">
+        <div class="font-inter text-[11px] font-semibold tracking-[0.08em] uppercase mb-2" style="color:#0D7377;">Result</div>
+        <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.8]">
+          Shipped and adopted across the performance analysis team. Designed 15+ screens covering interactive time-series charts, event diagnostics, turbine comparison, and data export. Reduced the time to identify critical turbine issues from hours of manual data digging to minutes of visual analysis.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main content with stepper -->
+  <div class="case-layout">
+
+  <article class="px-5 sm:px-8 w-full flex flex-col gap-16 sm:gap-24 pb-20">
+
+    <!-- ============================================ -->
+    <!-- 01 · CONTEXT -->
+    <!-- ============================================ -->
+    <div id="sec-context" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">01 &middot; Context</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        The problem: finding a needle in a data haystack
+      </h2>
+      <div class="flex flex-col gap-4">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          RWE operates thousands of wind turbines across offshore and onshore sites. When a turbine underperforms or triggers an event &mdash; a pitch fault, a grid dropout, an unexpected shutdown &mdash; performance analysts and engineers need to investigate quickly. The question is always the same: <em>what happened, when, and why?</em>
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The existing workflow relied on PI Vision and SCADA dashboards &mdash; powerful but generic tools designed for real-time monitoring, not for ad-hoc investigation. Analysts would pull 10-minute interval data into Excel, manually cross-reference event logs, build their own charts, and compare turbines side by side &mdash; all in disconnected tools. A single investigation could take hours of data wrangling before any actual analysis began.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I was brought in as the sole UI/UX designer to help build <strong>Delphi</strong> &mdash; a purpose-built web application that would consolidate event data and historical performance metrics into a single interface with interactive, visual charting. The goal: let analysts go from question to answer without leaving the tool.
+        </p>
+      </div>
+
+      <!-- Before state image -->
+      <div class="img-placeholder fade-up" style="aspect-ratio:16/10;">
+        <span style="font-size:28px;opacity:0.4;">&#128260;</span>
+        <span class="font-inter text-[12px] text-[#999999]">[SCREEN: Fragmented PI Vision / SCADA / Excel workflow diagram]</span>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center -mt-4">Before Delphi &middot; Analysts juggled 3&ndash;4 disconnected tools for a single investigation</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 02 · DISCOVERY -->
+    <!-- ============================================ -->
+    <div id="sec-discovery" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">02 &middot; Discovery</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        Understanding how analysts actually investigate
+      </h2>
+      <div class="flex flex-col gap-4">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          I started with requirement gathering sessions with the Product Owner, translating business needs into well-defined PBIs. In parallel, I conducted user interviews with performance analysts and site engineers to understand their actual investigation workflows &mdash; not what documentation said they did, but what they <em>really</em> did day to day.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          Three patterns surfaced clearly across every conversation:
+        </p>
+      </div>
+
+      <!-- Discovery stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">3&ndash;4</span>
+          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">disconnected tools required for a single investigation &mdash; PI Vision, SCADA exports, Excel, and sometimes Python scripts</p>
+        </div>
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
+          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">filter parameters analysts wanted &mdash; but couldn&rsquo;t specify upfront. They explored iteratively, narrowing as they went</p>
+        </div>
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">Hours</span>
+          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">spent on data preparation before actual analysis. Most time was wasted formatting and cross-referencing, not thinking</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 03 · PROCESS -->
+    <!-- ============================================ -->
+    <div id="sec-process" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">03 &middot; Process</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        How I structured the work
+      </h2>
+
+      <div class="flex flex-col gap-8">
+        <!-- Step 1 -->
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1 relative">
+            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[14px] font-bold text-[#0D7377]">1</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Requirement gathering &amp; PBI refinement</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Worked closely with the PO to translate business objectives into prioritised product backlog items. Defined acceptance criteria for each feature and identified dependencies between the charting engine, event system, and filter infrastructure &mdash; ensuring design and development stayed aligned sprint over sprint.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1 relative">
+            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[14px] font-bold text-[#0D7377]">2</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">User interviews &amp; workflow mapping</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Interviewed performance analysts and engineers to map their actual investigation process. Documented the typical path from alert &rarr; data pull &rarr; chart creation &rarr; comparison &rarr; root-cause hypothesis. This revealed that the investigation flow was non-linear &mdash; users backtrack, re-filter, and compare constantly. The UI needed to support that fluidity.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1 relative">
+            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[14px] font-bold text-[#0D7377]">3</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Low-fidelity wireframes &amp; concept exploration</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Explored 3 layout approaches for the core analysis view: a single-panel chart with overlay controls, a split-panel chart + data table view, and a modular dashboard with draggable chart tiles. Tested with users &mdash; the split-panel approach won clearly because analysts needed raw data alongside the visual for validation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1 relative">
+            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[14px] font-bold text-[#0D7377]">4</span>
+            </div>
+            <div class="step-line"></div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">High-fidelity design &amp; usability testing</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Built 15+ high-fidelity screens in Figma covering the dashboard, chart views, event overlays, filter panels, turbine comparison, data tables, and export flows. Ran usability tests on interactive prototypes with analysts &mdash; iterated on filter behaviour, chart interaction patterns, and information density based on direct feedback.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1">
+            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[14px] font-bold text-[#0D7377]">5</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Iterative delivery &amp; ongoing refinement</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Delphi shipped in phases over 10+ months. Each sprint included design QA, developer pairing on interaction details, and feedback loops with the analyst team. The ongoing nature of the project meant I continuously refined features post-release based on real usage patterns &mdash; not just initial assumptions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wireframes image -->
+      <div class="img-placeholder fade-up" style="aspect-ratio:16/10;">
+        <span style="font-size:28px;opacity:0.4;">&#9998;</span>
+        <span class="font-inter text-[12px] text-[#999999]">[SCREEN: Low-fi wireframes or Figma workspace showing exploration / iterations]</span>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center -mt-4">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis view</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 04 · KEY DESIGN DECISIONS -->
+    <!-- ============================================ -->
+    <div id="sec-decisions" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">04 &middot; Key design decisions</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        Three decisions that shaped the product
+      </h2>
+
+      <div class="flex flex-col gap-6">
+        <!-- Decision A -->
+        <div class="decision-card fade-up">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+              <span class="font-sora text-[13px] font-bold text-white">A</span>
+            </div>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Progressive filter system &mdash; show less, let users dig deeper</h3>
+          </div>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            Analysts needed 15+ filter parameters. Showing all at once was overwhelming; hiding them behind a single search bar meant too many clicks. The solution was progressive disclosure: 4 most-used parameters visible by default, with &ldquo;Advanced filters&rdquo; expanding to reveal the rest grouped by category. Each filter showed active state counts so analysts could see constraints at a glance.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar investigations, the system remembered their last 5 filter combinations. This came directly from a user interview where an analyst said he kept a sticky note with his common filter setups.
+          </p>
+        </div>
+
+        <!-- Decision B -->
+        <div class="decision-card fade-up">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+              <span class="font-sora text-[13px] font-bold text-white">B</span>
+            </div>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Event overlays on time-series charts &mdash; making incidents visible in context</h3>
+          </div>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            The core value was interactive time-series charts plotting 10-minute interval data. But raw performance data alone doesn&rsquo;t tell the story. I designed event markers as vertical annotations on the chart timeline &mdash; color-coded by severity (critical, warning, informational) with expandable tooltips on hover. Users could toggle event categories on and off so the chart wouldn&rsquo;t become cluttered during dense-event periods.
+          </p>
+        </div>
+
+        <!-- Decision C -->
+        <div class="decision-card fade-up">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+              <span class="font-sora text-[13px] font-bold text-white">C</span>
+            </div>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Split-panel layout &mdash; charts and raw data, side by side</h3>
+          </div>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            In usability testing, analysts would look at the chart, then immediately scroll down to the data table to validate a specific point. The chart told them <em>where</em> to look; the table told them <em>what the numbers actually were</em>. The final design used a resizable split-panel: chart on top (60% default), data table below. Clicking a point on the chart highlighted the corresponding row in the table (and vice versa). This bidirectional linking became one of the most-used interaction patterns.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- KEY SCREENS -->
+    <!-- ============================================ -->
+    <div id="sec-screens" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot; Key screens</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        The core interface
+      </h2>
+
+      <div class="screen-grid">
+        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
+          <span style="font-size:24px;opacity:0.4;">&#128269;</span>
+          <span class="font-inter text-[12px] text-[#999999]">[Progressive filter panel]</span>
+        </div>
+        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
+          <span style="font-size:24px;opacity:0.4;">&#128200;</span>
+          <span class="font-inter text-[12px] text-[#999999]">[Time-series chart with event overlays]</span>
+        </div>
+        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
+          <span style="font-size:24px;opacity:0.4;">&#128203;</span>
+          <span class="font-inter text-[12px] text-[#999999]">[Split-panel chart + data table]</span>
+        </div>
+        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
+          <span style="font-size:24px;opacity:0.4;">&#9889;</span>
+          <span class="font-inter text-[12px] text-[#999999]">[Turbine comparison or export view]</span>
+        </div>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center">Key screens &middot; Filter panel, event overlays, split-panel layout, turbine comparison</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 06 · OUTCOME -->
+    <!-- ============================================ -->
+    <div id="sec-outcome" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot; Outcome</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        What shipped and what it changed
+      </h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+        Delphi shipped in phases and is now actively used by the performance analysis team at RWE for ad-hoc wind turbine investigation. The tool consolidated what previously required 3&ndash;4 disconnected tools into a single interface &mdash; and the visual, interactive approach to data analysis fundamentally changed how analysts work.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens &mdash; dashboard, charts, filters, comparison, tables, exports</p>
+        </div>
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr; 1</span>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced PI Vision / SCADA / Excel with one platform</p>
+        </div>
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr; Min</span>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Time to identify critical issues via visual charts</p>
+        </div>
+        <div class="stat-card fade-up">
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Adopted</span>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Shipped and used by analysts &amp; engineers for daily workflows</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 07 · LEARNINGS -->
+    <!-- ============================================ -->
+    <div id="sec-learnings" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">07 &middot; Learnings</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        What I&rsquo;d do differently
+      </h2>
+
+      <div class="flex flex-col gap-6">
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#0D7377]">01</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Progressive disclosure only works if the &ldquo;default visible&rdquo; set is right</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              The first iteration of the filter system was too conservative &mdash; I hid too many parameters behind the &ldquo;Advanced&rdquo; toggle, and analysts felt they had to click twice to get to filters they used daily. I had to revise what counted as &ldquo;primary&rdquo; filters twice after watching real usage. The lesson: progressive disclosure only works if the default covers 80% of use cases.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#0D7377]">02</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Chart interaction density needs intelligent throttling</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              In early prototypes, I designed hover tooltips that showed every data point. During usability testing, analysts told me the tooltips were too noisy at high zoom levels (months of data at 10-minute intervals means thousands of data points). I switched to a &ldquo;snap to nearest point&rdquo; model with an intelligent tooltip that only appeared at meaningful intervals. That small interaction change made the charts genuinely usable for long time ranges.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 fade-up">
+          <div class="shrink-0 mt-1">
+            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
+              <span class="font-sora text-[12px] font-bold text-[#0D7377]">03</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Enterprise tools are never &ldquo;done&rdquo; &mdash; structure for iteration</h3>
+            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+              Working on a 10+ month, ongoing project taught me that features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding of analyst workflows deepened. Designing for enterprise tools means building in the expectation that you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CTA FOOTER -->
+    <!-- ============================================ -->
+    <div class="fade-up" style="background:#111111;border-radius:16px;padding:40px 32px;margin-top:8px;">
+      <div class="flex flex-col gap-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div class="flex flex-col gap-2">
+            <span class="font-sora text-[18px] sm:text-[22px] font-bold text-white leading-[1.3]">Interested in working together?</span>
+            <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
+          </div>
+          <div class="flex gap-3 shrink-0">
+            <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#0D7377;color:#FFFFFF;text-decoration:none;">Email me</a>
+            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn &nearr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next case study -->
+    <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div class="flex flex-col gap-1">
+        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Previous case study</span>
+        <a href="./case-study-1.html" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
+          RWE Offshore Wind Troubleshooting Tool &larr;
+        </a>
+      </div>
+      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr; All work</a>
+    </div>
+
+  </article>
+
+    <!-- Stepper sidebar -->
+    <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
+      <div class="stepper-title">On this page</div>
+      <ul class="stepper-list">
+        <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
+        <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
+        <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
+        <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
+        <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
+        <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
+        <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- end case-layout -->
+
+  <!-- Footer -->
+  <footer class="py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
+    <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
+    <div class="flex items-center gap-2.5">
+      <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
+        <span class="font-sora text-[11px] font-bold text-white">A</span>
+      </div>
+      <span class="font-inter text-[#999999] text-[12px]">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
+    </div>
+    <div class="flex items-center gap-5 sm:gap-6">
+      <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
+      <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
+      <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
+    </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <script>
+  (function() {
+    // ── Reading progress bar ──
+    const progressBar = document.getElementById('readingProgress');
+    window.addEventListener('scroll', function() {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+
+    // ── Fade-in on scroll ──
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
+    fadeEls.forEach(function(el) {
+      if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+        el.classList.add('is-visible');
+      } else {
+        observer.observe(el);
+      }
+    });
+
+    // ── Lightbox ──
+    const imageBlocks = document.querySelectorAll('.image-block');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+
+    const gallery = [];
+    imageBlocks.forEach(function(block) {
+      const img = block.querySelector('img');
+      const caption = block.querySelector('.image-caption');
+      if (img && img.src) {
+        gallery.push({
+          src: img.getAttribute('src'),
+          alt: img.alt || '',
+          caption: caption ? caption.textContent.trim() : ''
+        });
+      }
+    });
+
+    let currentIndex = -1;
+
+    function openLightbox(index) {
+      if (index < 0 || index >= gallery.length) return;
+      currentIndex = index;
+      const item = gallery[currentIndex];
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
+      lightboxCaption.textContent = item.caption;
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
+      lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+      currentIndex = -1;
+    }
+
+    imageBlocks.forEach(function(block, i) {
+      block.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(i);
+      });
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightboxPrev.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentIndex > 0) openLightbox(currentIndex - 1);
+    });
+    lightboxNext.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+    });
+
+    // ── Stepper sidebar scroll tracking ──
+    var stepperLinks = document.querySelectorAll('.stepper-link');
+    var sectionIds = [];
+    stepperLinks.forEach(function(link) {
+      sectionIds.push(link.getAttribute('data-section'));
+    });
+
+    stepperLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(link.getAttribute('data-section'));
+        if (target) {
+          var offset = 120;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    var stepperNav = document.getElementById('stepperSidebar');
+    var articleEl = document.querySelector('article');
+
+    function getDocTop(el) {
+      return el.getBoundingClientRect().top + window.pageYOffset;
+    }
+
+    function updateStepper() {
+      var scrollPos = window.pageYOffset + 160;
+      if (articleEl) {
+        var artTop = getDocTop(articleEl) - 200;
+        var artBottom = artTop + articleEl.offsetHeight - 100;
+        if (scrollPos > artTop && scrollPos < artBottom) {
+          stepperNav.classList.add('is-visible');
+        } else {
+          stepperNav.classList.remove('is-visible');
+        }
+      }
+      var activeId = sectionIds[0];
+      for (var i = 0; i < sectionIds.length; i++) {
+        var el = document.getElementById(sectionIds[i]);
+        if (el && getDocTop(el) <= scrollPos) {
+          activeId = sectionIds[i];
+        }
+      }
+      stepperLinks.forEach(function(link) {
+        if (link.getAttribute('data-section') === activeId) {
+          link.classList.add('is-active');
+        } else {
+          link.classList.remove('is-active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateStepper);
+    updateStepper();
+  })();
+  </script>
+
+</body>
+</html>
