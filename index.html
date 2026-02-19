@@ -22,7 +22,6 @@
       color: #111111;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      cursor: default;
     }
 
     html { scroll-behavior: smooth; }
@@ -52,51 +51,6 @@
 
     .font-sora { font-family: 'Epilogue', sans-serif; }
     .font-inter { font-family: 'DM Sans', sans-serif; }
-
-    /* ── Custom cursor ────────────────────── */
-    .cursor-dot,
-    .cursor-ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 10000;
-      mix-blend-mode: difference;
-    }
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: #FAFAF8;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-    }
-    .cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid rgba(250, 250, 248, 0.5);
-      transform: translate(-50%, -50%);
-      transition: width 0.25s cubic-bezier(0.19, 1, 0.22, 1),
-                  height 0.25s cubic-bezier(0.19, 1, 0.22, 1),
-                  border-color 0.2s,
-                  background 0.2s;
-    }
-    .cursor-hover .cursor-dot {
-      width: 0;
-      height: 0;
-    }
-    .cursor-hover .cursor-ring {
-      width: 56px;
-      height: 56px;
-      background: rgba(250, 250, 248, 0.08);
-      border-color: rgba(250, 250, 248, 0.6);
-    }
-    @media (hover: hover) and (min-width: 901px) {
-      * { cursor: none !important; }
-    }
-    @media (hover: none), (max-width: 900px) {
-      .cursor-dot, .cursor-ring { display: none !important; }
-    }
 
     /* ── Scrollbar ─────────────────────────── */
     ::-webkit-scrollbar { width: 6px; }
@@ -1171,9 +1125,6 @@
       .cs-img, .cs-card-img {
         transition: none !important;
       }
-      .cursor-dot, .cursor-ring {
-        display: none !important;
-      }
       .scroll-progress {
         display: none !important;
       }
@@ -1189,10 +1140,6 @@
 </head>
 
 <body>
-
-  <!-- Custom cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -1801,69 +1748,6 @@
         el.addEventListener('mouseleave', function() {
           el.style.transform = 'translate(0, 0)';
         });
-      });
-    })();
-
-    // ── Custom cursor ──
-    (function() {
-      if (window.matchMedia('(hover: none)').matches || window.matchMedia('(max-width: 900px)').matches) return;
-      var dot = document.getElementById('cursorDot');
-      var ring = document.getElementById('cursorRing');
-      if (!dot || !ring) return;
-
-      var mouseX = 0, mouseY = 0;
-      var ringX = 0, ringY = 0;
-      var isVisible = false;
-
-      document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
-        if (!isVisible) {
-          dot.style.opacity = '1';
-          ring.style.opacity = '1';
-          isVisible = true;
-        }
-      });
-
-      // Smooth ring follow with lerp
-      function animateRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
-        requestAnimationFrame(animateRing);
-      }
-      animateRing();
-
-      // Hide cursor initially
-      dot.style.opacity = '0';
-      ring.style.opacity = '0';
-
-      // Hover detection for interactive elements
-      var hoverTargets = 'a, button, .btn, .nav-cta, .cs-featured, .cs-card, .approach-item, .tool-chip, .hero-company';
-      document.addEventListener('mouseover', function(e) {
-        if (e.target.closest(hoverTargets)) {
-          document.body.classList.add('cursor-hover');
-        }
-      });
-      document.addEventListener('mouseout', function(e) {
-        if (e.target.closest(hoverTargets)) {
-          document.body.classList.remove('cursor-hover');
-        }
-      });
-
-      // Hide cursor when leaving window
-      document.addEventListener('mouseleave', function() {
-        dot.style.opacity = '0';
-        ring.style.opacity = '0';
-        isVisible = false;
-      });
-      document.addEventListener('mouseenter', function() {
-        dot.style.opacity = '1';
-        ring.style.opacity = '1';
-        isVisible = true;
       });
     })();
 
