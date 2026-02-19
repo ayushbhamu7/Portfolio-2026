@@ -319,8 +319,49 @@
       gap: 16px;
     }
 
+    .screen-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .screen-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      background: rgba(17, 17, 17, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-radius: 0 0 11px 11px;
+    }
+
+    .showcase-image-block {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #E8E5DF;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      cursor: zoom-in;
+    }
+    .showcase-image-block:hover {
+      border-color: #CCCCCC;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .showcase-image-block img {
+      width: 100%;
+      display: block;
+    }
+
     @media (max-width: 900px) {
       .screen-grid { grid-template-columns: 1fr; }
+      .screen-grid-4 { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 560px) {
@@ -484,7 +525,7 @@
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">5+ cross-functional</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">5+ cross-functional (PO, devs, data engineers)</span>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
@@ -518,7 +559,7 @@
   <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
     <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
       <div style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
-        <img id="coverImg" src="./images/Delphi hero image.png" alt="Delphi — Alarms view with filter panel and time-series chart" class="w-full block" style="display:block;" />
+        <img id="coverImg" src="./images/Delphi hero image.png" alt="Delphi main interface — Parameters panel with filters on the left, interactive time-series chart results on the right" class="w-full block" style="display:block;" />
       </div>
       <p class="font-inter text-[12px] text-[#999999] text-center mt-4">Delphi &middot; Wind turbine ad-hoc performance analysis platform</p>
     </div>
@@ -565,8 +606,8 @@
 
       <!-- Before state image -->
       <div class="image-block fade-up">
-        <img src="./images/Before state.png" alt="Before Delphi — Issue Management table with fragmented filters and data" />
-        <div class="image-caption">Before Delphi &middot; Analysts juggled disconnected tools like this Issue Management table for investigations</div>
+        <img src="./images/Before state.png" alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
+        <div class="image-caption">Before Delphi &middot; The existing Issue Management tool exposed 15+ filters at once &mdash; functional but overwhelming for ad-hoc investigation</div>
       </div>
     </div>
 
@@ -700,8 +741,8 @@
 
       <!-- Wireframes image -->
       <div class="image-block fade-up">
-        <img src="./images/Wireframes.png" alt="Low-fidelity wireframes exploring layout approaches for Delphi" />
-        <div class="image-caption">Wireframe exploration &middot; Testing layout approaches for the Alarms and Scatter Plot views</div>
+        <img src="./images/Wireframes.png" alt="Low-fidelity wireframes exploring navigation structure, filter layouts, and chart view configurations" />
+        <div class="image-caption">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis view</div>
       </div>
     </div>
 
@@ -713,7 +754,7 @@
         <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">04 &middot; Key design decisions</span>
       </div>
       <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        Three decisions that shaped the product
+        Four decisions that shaped the product
       </h2>
 
       <div class="flex flex-col gap-6">
@@ -726,10 +767,13 @@
             <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Progressive filter system &mdash; show less, let users dig deeper</h3>
           </div>
           <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Analysts needed 15+ filter parameters. Showing all at once was overwhelming; hiding them behind a single search bar meant too many clicks. The solution was progressive disclosure: 4 most-used parameters visible by default, with &ldquo;Advanced filters&rdquo; expanding to reveal the rest grouped by category. Each filter showed active state counts so analysts could see constraints at a glance.
+            This was the hardest design problem on the project. Analysts needed 15+ filter parameters &mdash; turbine ID, site, date range, event type, severity, operational status, wind speed range, power curve deviation, and more. Showing all of them at once was overwhelming. Hiding them behind a single search bar meant too many clicks.
           </p>
           <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar investigations, the system remembered their last 5 filter combinations. This came directly from a user interview where an analyst said he kept a sticky note with his common filter setups.
+            The solution was a progressive disclosure model: the filter panel opens with the 4 most-used parameters (site, turbine, date range, event type) visible by default. Below that, an &ldquo;Advanced filters&rdquo; section expands to reveal the remaining parameters grouped by category &mdash; operational, environmental, and event-specific. Each filter showed active state counts so analysts could see at a glance how many constraints were applied.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            Critically, I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar investigations, the system remembered their last 5 filter combinations. This came directly from a user interview where an analyst said he kept a sticky note with his common filter setups.
           </p>
         </div>
 
@@ -742,7 +786,10 @@
             <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Event overlays on time-series charts &mdash; making incidents visible in context</h3>
           </div>
           <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The core value was interactive time-series charts plotting 10-minute interval data. But raw performance data alone doesn&rsquo;t tell the story. I designed event markers as vertical annotations on the chart timeline &mdash; color-coded by severity (critical, warning, informational) with expandable tooltips on hover. Users could toggle event categories on and off so the chart wouldn&rsquo;t become cluttered during dense-event periods.
+            The core value of Delphi was the interactive time-series chart plotting 10-minute interval data &mdash; power output, wind speed, rotor RPM, pitch angle &mdash; over user-defined time ranges. But raw performance data alone doesn&rsquo;t tell the story. Analysts needed to see <em>when events happened</em> in the context of the performance curve.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            I designed event markers as vertical annotations on the chart timeline &mdash; color-coded by severity (critical, warning, informational) with expandable tooltips showing event details on hover. Users could toggle event categories on and off so the chart wouldn&rsquo;t become cluttered during dense-event periods. For multi-turbine comparisons, events from different turbines used distinct marker styles to remain distinguishable.
           </p>
         </div>
 
@@ -752,13 +799,106 @@
             <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
               <span class="font-sora text-[13px] font-bold text-white">C</span>
             </div>
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Split-panel layout &mdash; charts and raw data, side by side</h3>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Modular onboarding &mdash; per-chart-type walkthroughs with progress tracking</h3>
           </div>
           <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            In usability testing, analysts would look at the chart, then immediately scroll down to the data table to validate a specific point. The chart told them <em>where</em> to look; the table told them <em>what the numbers actually were</em>. The final design used a resizable split-panel: chart on top (60% default), data table below. Clicking a point on the chart highlighted the corresponding row in the table (and vice versa). This bidirectional linking became one of the most-used interaction patterns.
+            Delphi was replacing workflows analysts had used for years. Even though the new tool was more efficient, the switch itself was a friction point &mdash; people don&rsquo;t abandon familiar tools willingly. The challenge: Delphi had multiple chart types (Scatter Plot, Time Series, Box Plot, Wind Roses) each with their own parameter sets and interaction patterns. A single generic walkthrough wouldn&rsquo;t work because each module had different controls and concepts to learn.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            The solution was a modular onboarding system. On first login, users see a welcome modal (&ldquo;Welcome to Delphi&rdquo;) with a clear choice: &ldquo;Skip For Now&rdquo; or &ldquo;Yes, Let&rsquo;s Go!&rdquo; &mdash; respecting the user&rsquo;s autonomy from the first interaction. If they opt in, the tour begins with the Alarms module, then offers to continue to Scatter Plot, Time Series, and so on. Each module has its own dedicated walkthrough.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            Within each module tour, a progress stepper at the top (Parameters &rarr; Assets &rarr; Scatter Measures &rarr; Color Gradient) shows users exactly where they are and how much is left. The walkthrough highlights relevant UI sections with a spotlight border and presents contextual tooltips explaining what each control does and how to use it &mdash; including shortcut tips like &ldquo;select &lsquo;Power Curves&rsquo; to automatically populate X and Y axes.&rdquo; A persistent &ldquo;Skip Tour&rdquo; option in the header lets users exit at any point without penalty.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            At the end of each module tour, a completion screen gives users two paths: &ldquo;Continue To Time Series Onboarding&rdquo; to keep learning, or &ldquo;Finish&rdquo; to start working &mdash; with a reminder that they can always re-access the tour from the help icon. This modular approach meant experienced users could skip modules they already understood and only tour the ones that were new to them, while new hires could walk through the entire system end to end.
+          </p>
+        </div>
+
+        <!-- Decision D -->
+        <div class="decision-card fade-up">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+              <span class="font-sora text-[13px] font-bold text-white">D</span>
+            </div>
+            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Dedicated Feedback Area &mdash; making user input a first-class feature, not an afterthought</h3>
+          </div>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            Since Delphi was an ongoing, iteratively shipped product, I needed a mechanism to capture user feedback continuously &mdash; not just during scheduled usability tests. Analysts are busy; they won&rsquo;t send an email or fill out an external survey when something frustrates them. They&rsquo;ll work around the issue and move on. The feedback channel needed to be built into the tool itself, not bolted on.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            Rather than a small floating widget that limits what users can express, I designed a dedicated Feedback Area as a full page in the main navigation &mdash; giving it the same status as Alarms, Scatter Plot, or Time Series. The page has two tabs: &ldquo;Leave Feedback&rdquo; for submission and &ldquo;Reported Feedback&rdquo; for tracking.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            The submission form lets users categorise their feedback upfront &mdash; Issue or Bug, Enhancement or New Feature Request, or Other Feedback &mdash; with a title, a rich-text description field (supporting formatting, lists, and emphasis for detailed bug reports), and a drag-and-drop attachment zone for screenshots, videos, or supporting files (up to 5 files, 8MB each). This structure meant the PO and I received consistently well-formatted, actionable feedback instead of vague one-liners.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+            The &ldquo;Reported Feedback&rdquo; tab was equally important &mdash; it showed users a table of all submitted feedback with priority levels (High, Medium, Low), current status (New, In Progress, Recognized, Done, Rejected), reporter name, release target, and a direct &ldquo;View in ADO&rdquo; link to the Azure DevOps work item. This transparency closed the loop: users could see that their feedback was acknowledged, prioritised, and tracked &mdash; not disappearing into a void. It also reduced duplicate submissions because users could check if an issue was already reported before filing a new one.
           </p>
         </div>
       </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ONBOARDING FLOW SHOWCASE -->
+    <!-- ============================================ -->
+    <div id="sec-onboarding" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Onboarding flow</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        The complete walkthrough sequence
+      </h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+        Four stages of the modular onboarding &mdash; from the initial welcome prompt through module-specific guided tours to completion.
+      </p>
+
+      <div class="screen-grid-4">
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Onboarding Walkthrough v1 - 1.png" alt="Step 1 — Welcome to Delphi modal with Skip For Now and Yes Let's Go options" />
+          <div class="screen-label">1 &middot; Welcome prompt</div>
+        </div>
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Scatter Plot Onboarding v1 - 2.png" alt="Step 2 — Welcome to Scatter Plot Onboarding module-specific entry" />
+          <div class="screen-label">2 &middot; Module entry</div>
+        </div>
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Scatter Plot Onboarding v1 - 16.png" alt="Step 3 — Mid-tour with highlighted section, tooltip, and progress stepper" />
+          <div class="screen-label">3 &middot; Guided tooltip tour</div>
+        </div>
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Scatter Plot Onboarding v1 - 13.png" alt="Step 4 — Tour completion with option to continue to next module or finish" />
+          <div class="screen-label">4 &middot; Completion + next module</div>
+        </div>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Onboarding flow &middot; Welcome &rarr; Module-specific tour &rarr; Guided tooltips with progress &rarr; Completion with continuation option</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FEEDBACK AREA SHOWCASE -->
+    <!-- ============================================ -->
+    <div id="sec-feedback" class="fade-up flex flex-col gap-6">
+      <div class="section-divider">
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Feedback Area</span>
+      </div>
+      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+        Submission and tracking &mdash; both sides of the loop
+      </h2>
+      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+        The Feedback Area lives in the main navigation and has two tabs: a structured submission form for reporting issues and requesting features, and a transparent tracker showing all reported feedback with priority, status, and ADO integration.
+      </p>
+
+      <div class="screen-grid">
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Feedback Area v1 - 1.png" alt="Leave Feedback tab — categorised form with rich text editor and file attachments" />
+          <div class="screen-label">Leave Feedback &middot; Submission form</div>
+        </div>
+        <div class="showcase-image-block fade-up">
+          <img src="./images/Feedback Area v1 - 3.png" alt="Reported Feedback tab — tracker table with priority, status, reporter, and ADO link" />
+          <div class="screen-label">Reported Feedback &middot; Status tracker</div>
+        </div>
+      </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Feedback Area &middot; Structured submission form (left) and transparent feedback tracker with ADO integration (right)</p>
     </div>
 
     <!-- ============================================ -->
@@ -766,30 +906,28 @@
     <!-- ============================================ -->
     <div id="sec-screens" class="fade-up flex flex-col gap-6">
       <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot; Key screens</span>
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Key screens</span>
       </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        The core interface
-      </h2>
 
       <div class="screen-grid">
         <div class="image-block fade-up">
-          <img src="./images/Filters extended.png" alt="Scatter Plot view with progressive filter panel fully expanded" />
+          <img src="./images/Filters extended.png" alt="Progressive filter panel — Scatter Plot view with grouped parameters: Assets, Scatter Measures, and Other Options" />
           <div class="image-caption">Progressive filter panel &middot; Scatter Plot parameters</div>
         </div>
         <div class="image-block fade-up">
-          <img src="./images/Dummy chart.png" alt="Time-series chart with event overlays and hover tooltip" />
-          <div class="image-caption">Time-series chart &middot; Multi-line data with event tooltip</div>
+          <img src="./images/Dummy chart.png" alt="Expanded chart view with interactive tooltip showing data point details on hover" />
+          <div class="image-caption">Expanded chart &middot; Interactive tooltip on hover</div>
         </div>
         <div class="image-block fade-up">
-          <img src="./images/Feedback Area v1 - 1.png" alt="Feedback Area — Leave feedback form with rich text editor" />
-          <div class="image-caption">Feedback Area &middot; Leave feedback with attachments</div>
+          <img src="./images/Scatter Plot Onboarding v1 - 16.png" alt="Onboarding walkthrough — highlighted UI section with tooltip explanation and progress stepper" />
+          <div class="image-caption">Onboarding mid-tour &middot; Guided tooltip with progress</div>
         </div>
         <div class="image-block fade-up">
-          <img src="./images/Feedback Area v1 - 3.png" alt="Feedback Area — Reported feedback data table with status and priority" />
-          <div class="image-caption">Reported Feedback &middot; Status tracking data table</div>
+          <img src="./images/Feedback Area v1 - 1.png" alt="Feedback Area — Leave Feedback tab with type selector, title, rich text description, and file attachments" />
+          <div class="image-caption">Feedback submission &middot; Categorised form with attachments</div>
         </div>
       </div>
+      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Core interface screens &middot; Progressive filter panel, expanded chart with tooltip, onboarding mid-tour, feedback submission</p>
     </div>
 
     <!-- ============================================ -->
@@ -797,7 +935,7 @@
     <!-- ============================================ -->
     <div id="sec-outcome" class="fade-up flex flex-col gap-6">
       <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot; Outcome</span>
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot; Outcome</span>
       </div>
       <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
         What shipped and what it changed
@@ -809,19 +947,19 @@
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div class="stat-card fade-up">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens &mdash; dashboard, charts, filters, comparison, tables, exports</p>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed &mdash; dashboard, charts, filters, comparison, data tables, export flows</p>
         </div>
         <div class="stat-card fade-up">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr; 1</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced PI Vision / SCADA / Excel with one platform</p>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced fragmented PI Vision / SCADA / Excel workflow with a single platform</p>
         </div>
         <div class="stat-card fade-up">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr; Min</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Time to identify critical issues via visual charts</p>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Time to identify critical issues &mdash; visual charts surface problems that previously required hours of manual data digging</p>
         </div>
         <div class="stat-card fade-up">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Adopted</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Shipped and used by analysts &amp; engineers for daily workflows</p>
+          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Shipped and actively used by performance analysts and engineers across the team for daily investigation workflows</p>
         </div>
       </div>
     </div>
@@ -831,81 +969,31 @@
     <!-- ============================================ -->
     <div id="sec-learnings" class="fade-up flex flex-col gap-6">
       <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">07 &middot; Learnings</span>
+        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot; Learnings</span>
       </div>
       <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
         What I&rsquo;d do differently
       </h2>
 
-      <div class="flex flex-col gap-6">
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">01</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Progressive disclosure only works if the &ldquo;default visible&rdquo; set is right</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              The first iteration of the filter system was too conservative &mdash; I hid too many parameters behind the &ldquo;Advanced&rdquo; toggle, and analysts felt they had to click twice to get to filters they used daily. I had to revise what counted as &ldquo;primary&rdquo; filters twice after watching real usage. The lesson: progressive disclosure only works if the default covers 80% of use cases.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">02</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Chart interaction density needs intelligent throttling</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              In early prototypes, I designed hover tooltips that showed every data point. During usability testing, analysts told me the tooltips were too noisy at high zoom levels (months of data at 10-minute intervals means thousands of data points). I switched to a &ldquo;snap to nearest point&rdquo; model with an intelligent tooltip that only appeared at meaningful intervals. That small interaction change made the charts genuinely usable for long time ranges.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">03</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Enterprise tools are never &ldquo;done&rdquo; &mdash; structure for iteration</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Working on a 10+ month, ongoing project taught me that features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding of analyst workflows deepened. Designing for enterprise tools means building in the expectation that you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- CTA FOOTER -->
-    <!-- ============================================ -->
-    <div class="fade-up" style="background:#111111;border-radius:16px;padding:40px 32px;margin-top:8px;">
-      <div class="flex flex-col gap-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div class="flex flex-col gap-2">
-            <span class="font-sora text-[18px] sm:text-[22px] font-bold text-white leading-[1.3]">Interested in working together?</span>
-            <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
-          </div>
-          <div class="flex gap-3 shrink-0">
-            <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#0D7377;color:#FFFFFF;text-decoration:none;">Email me</a>
-            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn &nearr;</a>
-          </div>
-        </div>
+      <div class="flex flex-col gap-4">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+          The progressive filter system works well now, but the first iteration was too conservative &mdash; I hid too many parameters behind the &ldquo;Advanced&rdquo; toggle, and analysts felt they had to click twice to get to filters they used daily. The lesson: progressive disclosure only works if the &ldquo;default visible&rdquo; set genuinely covers 80% of use cases. I had to revise what counted as &ldquo;primary&rdquo; filters twice after watching real usage.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+          The other insight was about chart interaction density. In early prototypes, I designed hover tooltips that showed every data point on the chart. During usability testing, analysts told me the tooltips were too noisy at high zoom levels (months of data at 10-minute intervals means thousands of data points). I switched to a &ldquo;snap to nearest point&rdquo; model with an intelligent tooltip that only appeared at meaningful intervals. That small interaction change made the charts genuinely usable for long time ranges.
+        </p>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+          Working on a 10+ month, ongoing project also taught me that the design is never &ldquo;done&rdquo; &mdash; features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding of analyst workflows deepened. Designing for enterprise tools means building in the expectation that you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
+        </p>
       </div>
     </div>
 
     <!-- Next case study -->
     <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div class="flex flex-col gap-1">
-        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Previous case study</span>
-        <a href="./case-study-1.html" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
-          RWE Offshore Wind Troubleshooting Tool &larr;
+        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
+        <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
+          Personal finance app &mdash; product design at Grassrootlab &rarr;
         </a>
       </div>
       <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr; All work</a>
@@ -921,6 +1009,8 @@
         <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
         <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
         <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
+        <li><a href="#sec-onboarding" class="stepper-link" data-section="sec-onboarding">Onboarding flow</a></li>
+        <li><a href="#sec-feedback" class="stepper-link" data-section="sec-feedback">Feedback area</a></li>
         <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
         <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
         <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
@@ -942,6 +1032,7 @@
       <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
       <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
       <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
+      <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Resume</a>
     </div>
     </div>
   </footer>
@@ -987,7 +1078,7 @@
     });
 
     // ── Lightbox ──
-    const imageBlocks = document.querySelectorAll('.image-block');
+    const imageBlocks = document.querySelectorAll('.image-block, .showcase-image-block');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
@@ -1003,13 +1094,13 @@
       gallery.push({
         src: coverImg.getAttribute('src'),
         alt: coverImg.alt || '',
-        caption: 'Delphi — Alarms view with filter panel and time-series chart'
+        caption: 'Delphi — Parameters panel with filters and interactive time-series chart'
       });
     }
 
     imageBlocks.forEach(function(block) {
       const img = block.querySelector('img');
-      const caption = block.querySelector('.image-caption');
+      const caption = block.querySelector('.image-caption') || block.querySelector('.screen-label');
       if (img && img.src) {
         gallery.push({
           src: img.getAttribute('src'),
