@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal & Virtual Analyst — Ayush Bhamu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #FAFAF8;
+            --color-surface: #FFFFFF;
+            --color-text: #1A1A1A;
+            --color-text-secondary: #6B6B6B;
+            --color-text-tertiary: #999999;
+            --color-accent: #1A1A1A;
+            --color-border: #E8E8E4;
+            --color-border-light: #F0F0EC;
+            --color-tag-bg: #F2F2EE;
+            --color-highlight: #E8F4E8;
+            --font-sans: 'DM Sans', -apple-system, sans-serif;
+            --font-serif: 'Epilogue', Georgia, serif;
+            --max-width: 720px;
+            --max-width-wide: 960px;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: #1A1A1A; color: #fff; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ── Navigation ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(250, 250, 248, 0.85);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .nav-inner {
+            max-width: var(--max-width-wide); margin: 0 auto; padding: 16px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            width: 36px; height: 36px; background: var(--color-text); color: #fff;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-weight: 600; font-size: 14px;
+        }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { font-size: 14px; color: var(--color-text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-text); }
+
+        /* ── Hero ── */
+        .hero { max-width: var(--max-width); margin: 0 auto; padding: 140px 32px 48px; }
+        .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .tag {
+            font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+            padding: 6px 14px; background: var(--color-tag-bg);
+            border-radius: 100px; color: var(--color-text-secondary);
+        }
+        .hero h1 {
+            font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 2.75rem);
+            font-weight: 500; line-height: 1.25; letter-spacing: -0.02em;
+            margin-bottom: 20px; color: var(--color-text);
+        }
+        .hero-subtitle { font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); max-width: 600px; }
+
+        /* ── Meta Grid ── */
+        .meta-grid {
+            max-width: var(--max-width); margin: 0 auto; padding: 32px 32px 48px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        }
+        .meta-item label {
+            display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 6px;
+        }
+        .meta-item span { font-size: 14px; color: var(--color-text); line-height: 1.5; }
+
+        /* ── Cover Image ── */
+        .cover-image { max-width: var(--max-width-wide); margin: 0 auto 16px; padding: 0 32px; }
+        .cover-image .image-frame {
+            background: #E8ECF0; border-radius: 16px; overflow: hidden;
+            aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;
+            position: relative; border: 1px solid var(--color-border);
+        }
+        .cover-image .image-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .image-caption {
+            max-width: var(--max-width-wide); margin: 0 auto; padding: 0 32px;
+            font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-bottom: 64px;
+        }
+
+        /* ── Result Banner ── */
+        .result-banner { max-width: var(--max-width); margin: 0 auto 72px; padding: 0 32px; }
+        .result-banner-inner {
+            background: var(--color-highlight); border-radius: 12px;
+            padding: 28px 32px; border-left: 3px solid #4A9A4A;
+        }
+        .result-banner-inner .label {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: #4A9A4A; margin-bottom: 8px;
+        }
+        .result-banner-inner p { font-size: 15px; line-height: 1.7; color: var(--color-text); }
+
+        /* ── Section ── */
+        .section { max-width: var(--max-width); margin: 0 auto; padding: 0 32px 72px; }
+        .section-number { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--color-text-tertiary); margin-bottom: 16px; }
+        .section h2 {
+            font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 1.85rem);
+            font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 24px;
+        }
+        .section p { font-size: 15px; line-height: 1.8; color: var(--color-text-secondary); margin-bottom: 16px; }
+        .section p:last-child { margin-bottom: 0; }
+
+        /* ── Stats Grid ── */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+        .stat-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: var(--color-text); line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.02em; }
+        .stat-card .desc { font-size: 13px; line-height: 1.6; color: var(--color-text-secondary); }
+
+        /* ── Process Steps ── */
+        .process-steps { margin-top: 32px; }
+        .process-step { display: grid; grid-template-columns: 40px 1fr; gap: 16px; margin-bottom: 32px; align-items: start; }
+        .process-step:last-child { margin-bottom: 0; }
+        .step-number {
+            width: 40px; height: 40px; background: var(--color-tag-bg); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px; font-weight: 600; color: var(--color-text); flex-shrink: 0;
+        }
+        .step-content h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--color-text); }
+        .step-content p { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 0; }
+
+        /* ── Key Decisions ── */
+        .decisions { margin-top: 32px; }
+        .decision { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--color-border-light); }
+        .decision:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .decision-letter {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 32px; height: 32px; background: var(--color-text); color: #fff;
+            border-radius: 8px; font-size: 13px; font-weight: 600; margin-bottom: 14px;
+        }
+        .decision h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; color: var(--color-text); }
+        .decision p { font-size: 14px; line-height: 1.8; color: var(--color-text-secondary); }
+
+        /* ── Outcome Grid ── */
+        .outcome-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 36px; }
+        .outcome-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 28px; }
+        .outcome-card .number { font-size: 2.2rem; font-weight: 700; color: var(--color-text); line-height: 1.1; margin-bottom: 6px; letter-spacing: -0.02em; }
+        .outcome-card .desc { font-size: 13px; line-height: 1.5; color: var(--color-text-secondary); }
+
+        /* ── Inline Image ── */
+        .inline-image { max-width: var(--max-width-wide); margin: 0 auto 16px; padding: 0 32px; }
+        .inline-image .image-frame {
+            background: #F4F4F0; border-radius: 12px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--color-border);
+        }
+        .inline-image .image-frame img { width: 100%; height: auto; object-fit: contain; }
+        .inline-image-caption {
+            max-width: var(--max-width-wide); margin: 0 auto; padding: 0 32px;
+            font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-bottom: 48px;
+        }
+
+        /* ── Screen Showcase ── */
+        .screen-showcase { max-width: var(--max-width-wide); margin: 0 auto 48px; padding: 0 32px; }
+        .screen-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .screen-grid .image-frame {
+            background: #F4F4F0; border-radius: 10px; overflow: hidden;
+            min-height: 280px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--color-border); position: relative;
+        }
+        .screen-grid .image-frame img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+        .screen-showcase-caption {
+            max-width: var(--max-width-wide); margin: 0 auto; padding: 8px 32px 0;
+            font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-bottom: 48px;
+        }
+        .screen-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .screen-grid-4 .image-frame { min-height: 200px; position: relative; }
+        .screen-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 8px 12px; background: rgba(26, 26, 26, 0.75);
+            backdrop-filter: blur(4px); color: #fff; font-size: 11px;
+            font-weight: 500; letter-spacing: 0.02em; border-radius: 0 0 10px 10px;
+        }
+
+        /* ── Next Case Study ── */
+        .next-case-study {
+            max-width: var(--max-width); margin: 0 auto; padding: 48px 32px;
+            border-top: 1px solid var(--color-border); text-align: center;
+        }
+        .next-case-study .label { font-size: 12px; font-weight: 500; color: var(--color-text-tertiary); margin-bottom: 8px; }
+        .next-case-study a {
+            font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500;
+            color: var(--color-text); transition: opacity 0.2s;
+        }
+        .next-case-study a:hover { opacity: 0.6; }
+
+        /* ── Back Link ── */
+        .back-link { max-width: var(--max-width); margin: 0 auto; padding: 32px 32px 48px; text-align: center; }
+        .back-link a { font-size: 14px; color: var(--color-text-secondary); transition: color 0.2s; }
+        .back-link a:hover { color: var(--color-text); }
+
+        /* ── Footer ── */
+        .footer { border-top: 1px solid var(--color-border); padding: 32px; text-align: center; }
+        .footer-inner {
+            max-width: var(--max-width-wide); margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer p { font-size: 13px; color: var(--color-text-tertiary); }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { font-size: 13px; color: var(--color-text-tertiary); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--color-text); }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .meta-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: 1fr; }
+            .outcome-grid { grid-template-columns: 1fr; }
+            .screen-grid { grid-template-columns: 1fr; }
+            .screen-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .hero { padding-top: 110px; }
+            .footer-inner { flex-direction: column; gap: 16px; }
+        }
+        @media (max-width: 480px) {
+            .meta-grid { grid-template-columns: 1fr; }
+            .nav-inner { padding: 14px 20px; }
+            .hero, .section, .meta-grid, .cover-image, .inline-image, .screen-showcase, .result-banner, .next-case-study, .back-link { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" style="position:sticky;top:0;">
+        <div class="nav-inner" style="max-width:1100px;">
+            <a href="./index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <div style="width:32px;height:32px;border-radius:6px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span style="font-family:'Epilogue',sans-serif;font-size:15px;font-weight:700;color:#fff;">A</span>
+                </div>
+                <span style="font-family:'Epilogue',sans-serif;font-size:15px;font-weight:600;color:#1A1A1A;">Ayush Bhamu</span>
+            </a>
+            <div class="nav-links">
+                <a href="./index.html#work">&larr; All work</a>
+                <a href="./index.html#contact" style="font-weight:600;color:#1A1A1A;padding:6px 16px;border-radius:6px;border:1px solid #D8D5CE;">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-tags">
+            <span class="tag">Energy · B2B</span>
+            <span class="tag">Internal Platform</span>
+            <span class="tag">Sole UI/UX Designer</span>
+        </div>
+        <h1>Building a semi-automatic incident management portal for wind & solar operations</h1>
+        <p class="hero-subtitle">
+            Replaced a fragmented workflow of Excel, email, and SharePoint with a dedicated portal — enabling analysts to categorise, annotate, and relay incidents to stakeholders through a structured pipeline, augmented by an AI-powered Virtual Analyst for NLP-based data querying.
+        </p>
+    </header>
+
+    <!-- Meta -->
+    <div class="meta-grid">
+        <div class="meta-item">
+            <label>My role</label>
+            <span>Sole UI/UX Designer</span>
+        </div>
+        <div class="meta-item">
+            <label>Timeline</label>
+            <span>10+ months (ongoing)</span>
+        </div>
+        <div class="meta-item">
+            <label>Team</label>
+            <span>5+ cross-functional (PO, devs, AI/data engineers)</span>
+        </div>
+        <div class="meta-item">
+            <label>Tools</label>
+            <span>Figma, Jira, Mural</span>
+        </div>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="cover-image">
+        <div class="image-frame">
+            <img src="./images/Main dashboard.png" alt="TPA Next Evolution — Analysis Results dashboard with turbine card view grouped by site, severity indicators, and filtering controls">
+        </div>
+    </div>
+    <p class="image-caption">TPA Next Evolution · Analysis Results dashboard with turbine-level severity indicators across sites</p>
+
+    <!-- Result Banner -->
+    <div class="result-banner">
+        <div class="result-banner-inner">
+            <div class="label">Result</div>
+            <p>Shipped and adopted across the performance analysis team. Designed 15+ screens covering incident management, analysis results, a multi-step incident creation wizard, and an AI-powered Virtual Analyst. Replaced a fragmented Excel/email/SharePoint workflow with a single platform — and redesigned incident creation from a flat 15-field form into a 3-step guided wizard with smart pre-fill, now in production.</p>
+        </div>
+    </div>
+
+    <!-- 01 · Context -->
+    <section class="section">
+        <div class="section-number">01 · Context</div>
+        <h2>The problem: incidents lost between spreadsheets, emails, and SharePoint</h2>
+        <p>
+            RWE manages thousands of wind turbines and solar assets across offshore and onshore sites in multiple countries. When a turbine or solar panel exhibits abnormal behaviour — a gearbox temperature spike, a power curve deviation, a blade pitch fault — performance analysts need to investigate, categorise the incident, and relay findings to operations stakeholders so corrective action can be taken.
+        </p>
+        <p>
+            The existing workflow was held together with duct tape. Analysts pulled data from SCADA and monitoring systems, documented findings in Excel spreadsheets, emailed incident reports to stakeholders, and tracked status updates in SharePoint. There was no single source of truth for incident status, no structured categorisation, and no way for stakeholders to see what was being investigated in real time. Incidents slipped through the cracks, duplicates were common, and the handoff from analyst to operations was slow and error-prone.
+        </p>
+        <p>
+            I was brought in as the sole UI/UX designer to help build the TPA Next Evolution portal — a purpose-built web application that would consolidate the entire incident lifecycle into one platform: from automated detection through analyst categorisation to stakeholder communication. The project also included a Virtual Analyst — an AI-powered chatbot built on Azure AI that lets analysts query data and generate reports using natural language.
+        </p>
+    </section>
+
+    <!-- Before State -->
+    <div class="inline-image">
+        <div class="image-frame">
+            <img src="./images/Old way of creating incidents.png" alt="Before — the old Create Incident form with all 15+ fields exposed on a single page, no guidance or grouping">
+        </div>
+    </div>
+    <p class="inline-image-caption">Before · The original incident creation form — all fields on a single page, no progressive disclosure, no smart pre-fill</p>
+
+    <!-- 02 · Discovery -->
+    <section class="section">
+        <div class="section-number">02 · Discovery</div>
+        <h2>Understanding the analyst's daily reality</h2>
+        <p>
+            I started with requirement gathering sessions with the Product Owner, translating business objectives into well-defined PBIs for the development backlog. In parallel, I conducted user interviews with performance analysts and stakeholders to understand their actual workflows — how they investigated, what information they needed, and where the existing process broke down.
+        </p>
+        <p>
+            Three patterns surfaced across every conversation:
+        </p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">4+</div>
+                <div class="desc">disconnected tools in the workflow — SCADA data, Excel for documentation, email for handoff, SharePoint for tracking. No single source of truth.</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">15+</div>
+                <div class="desc">fields on the incident creation form — all visible at once, with no grouping, no guidance, and no data pre-filled from the analysis that triggered the incident</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">Manual</div>
+                <div class="desc">every step of the process was manual — from categorisation to stakeholder notification. Analysts spent more time on administration than on actual analysis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 · Process -->
+    <section class="section">
+        <div class="section-number">03 · Process</div>
+        <h2>How I structured the work</h2>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Requirement gathering & PBI refinement</h3>
+                    <p>Worked closely with the PO to define the scope across two product pillars: the Portal (incident management, analysis results, stakeholder communication) and the Virtual Analyst (AI-powered NLP querying). Broke each pillar into prioritised backlog items with clear acceptance criteria and front-end developer alignment.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>User interviews & workflow mapping</h3>
+                    <p>Interviewed performance analysts and stakeholders to map the full incident lifecycle: detection → investigation → categorisation → documentation → handoff → resolution tracking. Identified that the biggest time sink wasn't investigation — it was the administrative overhead of documenting and communicating findings through disconnected tools.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Design exploration & concept testing</h3>
+                    <p>Explored multiple approaches for the incident creation flow — the most critical workflow in the system. Tested a single-page form (the existing pattern), a two-panel layout, and a multi-step wizard with smart pre-fill. Ran usability tests on prototypes with analysts. The multi-step wizard with pre-filled data won decisively — users loved that context from the analysis carried forward automatically.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>High-fidelity design & front-end steering</h3>
+                    <p>Built 15+ high-fidelity screens in Figma covering the analysis results dashboard, incident list, incident detail, creation wizard, Virtual Analyst chatbot, and component analysis views. Worked directly with front-end developers — not just handing off specs but steering implementation decisions around interaction patterns, component behaviour, and responsive states.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Iterative delivery & ongoing refinement</h3>
+                    <p>The portal shipped in phases over 10+ months. Each sprint included design QA, developer pairing, and feedback loops with the analyst team. The incident creation wizard — after testing and iteration — is now in production and actively used across the organisation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04 · Key Design Decisions -->
+    <section class="section">
+        <div class="section-number">04 · Key design decisions</div>
+        <h2>Four decisions that shaped the product</h2>
+
+        <div class="decisions">
+            <div class="decision">
+                <div class="decision-letter">A</div>
+                <h3>Multi-step wizard with smart pre-fill — balancing automation and analyst control</h3>
+                <p>
+                    This was the hardest design problem on the project. The old incident creation form had 15+ fields on a single page — Incident Details, Device information, Issue specifics, Additional Details — all visible at once with no hierarchy, no grouping, and critically, no data carried forward from the analysis that triggered the incident. Analysts had to manually re-enter information they'd already seen during investigation.
+                </p>
+                <p>
+                    The solution was a 3-step guided wizard: Device → Incident Details → Additional Details. Each step focused on one category of information, with a progress stepper at the top showing where the user was. The key innovation was the live Summary sidebar on the right — as analysts filled in each field, the summary updated in real time, giving them a running view of the complete incident before submission. This addressed a common complaint: "I fill everything out and then realise I selected the wrong device at the top."
+                </p>
+                <p>
+                    The "semi-automatic" part was the smart pre-fill. When an analyst clicked "Create Incident" from an analysis result, the system pre-populated Device, Technology, Site, Component, and the relevant analysis data — pulling directly from the context the analyst was already working in. Analysts could review and override any pre-filled field, keeping them in control while eliminating redundant data entry. This balance between automation and manual control was critical: analysts needed to trust the data, not feel like the system was making decisions for them.
+                </p>
+                <p>
+                    During usability testing, this was the feature that got the strongest positive reaction. Analysts described it as "finally, the system remembers what I was just looking at." The wizard is now in production.
+                </p>
+            </div>
+
+            <div class="decision">
+                <div class="decision-letter">B</div>
+                <h3>Virtual Analyst — designing a conversational AI interface for domain experts</h3>
+                <p>
+                    The Virtual Analyst was an AI-powered chatbot built on Azure AI capabilities that let analysts query incident data, generate reports, and analyse patterns using natural language. The design challenge wasn't building a chat interface — it was designing one that domain experts would actually trust and use. Engineers and analysts are sceptical of AI tools that feel like toys. The interface needed to feel like a professional tool, not a consumer chatbot.
+                </p>
+                <p>
+                    I designed a split-panel layout: a chat history sidebar on the left (with saved conversations, similar to how analysts bookmark investigations) and the conversation panel on the right. The conversation UI supported natural language queries like "How many incidents are currently open at Site 1?" with structured responses from the Virtual Analyst. Critically, I added a "Download Chat" feature and the ability to request SQL queries behind the responses — because analysts wanted to verify the AI's answers against their own data sources. Transparency built trust.
+                </p>
+                <p>
+                    Voice input was also included (microphone icon in the input bar) for analysts who preferred speaking over typing — especially useful during hands-busy field scenarios. The interface balanced conversational ease with the data rigor that domain experts demand.
+                </p>
+            </div>
+
+            <div class="decision">
+                <div class="decision-letter">C</div>
+                <h3>Analysis Results dashboard — turbine-level visibility at a glance</h3>
+                <p>
+                    The Analysis Results page needed to answer a simple question: "Which turbines need attention right now?" The dashboard shows turbines as visual cards grouped by site, each with color-coded severity badges (red, orange, green) indicating the number and severity of active issues. Analysts can toggle between a KPI View (metrics-focused) and a Card View (visual overview), and filter by score, analysis type, review status, and device.
+                </p>
+                <p>
+                    The card-based layout was a deliberate choice over a table. During interviews, analysts told me they mentally map turbines spatially — by site and physical location — not as rows in a spreadsheet. The card view mirrored their mental model: "I see Bartelsdorf A, I see turbine 821085 has a red badge, I click in." From the card, they could drill into the component-level analysis view showing detailed results with embedded charts and one-click incident creation.
+                </p>
+            </div>
+
+            <div class="decision">
+                <div class="decision-letter">D</div>
+                <h3>Structured incident detail with tabbed information architecture</h3>
+                <p>
+                    Each incident accumulates a lot of context over its lifecycle: metadata, descriptions, proposed actions, SAP work orders, comments from multiple analysts, change logs, performance plots, and watchers. Putting all of this on a single scrollable page would recreate the same overwhelm problem as the old form.
+                </p>
+                <p>
+                    I structured the incident detail view with a tabbed layout: Incident Details (core metadata + description + plots), Comments (threaded discussion), Change Log (audit trail), Work Orders (SAP integration), and Watchers (notification subscriptions). The default tab showed the most critical information — incident metadata, severity, the full description, proposed action, and embedded performance charts — so analysts could assess the situation without switching tabs. Secondary information lived one click away but never cluttered the primary view.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Incident Creation Wizard Showcase -->
+    <div class="section">
+        <div class="section-number">Incident creation flow</div>
+        <h2>From flat form to guided wizard — the before and after</h2>
+        <p>The old single-page form (15+ fields, no guidance) was replaced with a 3-step wizard with smart pre-fill and a live Summary sidebar. This flow is now in production.</p>
+    </div>
+
+    <div class="screen-showcase">
+        <div class="screen-grid screen-grid-4">
+            <div class="image-frame">
+                <img src="./images/Old way of creating incidents.png" alt="Before — old flat form with all fields visible">
+                <div class="screen-label">Before · Flat form</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Desing testing 1.png" alt="Step 2 — Incident Details with severity, detection areas, status, and live Summary sidebar">
+                <div class="screen-label">Step 2 · Incident Details</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Design testing 2.png" alt="Step 3 — Additional Details with description, proposed action, image upload, and Report to Ops">
+                <div class="screen-label">Step 3 · Additional Details</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Design testing 4.png" alt="Success — Incident Created Successfully confirmation modal">
+                <div class="screen-label">Success · Incident created</div>
+            </div>
+        </div>
+    </div>
+    <p class="screen-showcase-caption">Incident creation · Old flat form → 3-step wizard with smart pre-fill and live Summary → Success confirmation</p>
+
+    <!-- Key Screens -->
+    <div class="section">
+        <div class="section-number">Key screens</div>
+        <h2>The core interfaces</h2>
+        <p>Four views that cover the primary workflows: analysis drill-down, incident detail, the AI chatbot, and the wizard with asset selection.</p>
+    </div>
+
+    <div class="screen-showcase">
+        <div class="screen-grid">
+            <div class="image-frame">
+                <img src="./images/Analysis.png" alt="Analysis Results detail — component-level view with Gearbox analysis, Oil Pressure Difference, embedded chart, and incident creation actions">
+                <div class="screen-label">Analysis detail · Component view</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Incident detail.png" alt="Incident detail — tabbed layout with metadata, SAP integration, proposed action, and embedded performance plots">
+                <div class="screen-label">Incident detail · Tabbed layout</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Virtual analyst.png" alt="Virtual Analyst — AI chatbot with chat history sidebar, NLP querying, and Download Chat feature">
+                <div class="screen-label">Virtual Analyst · AI chatbot</div>
+            </div>
+            <div class="image-frame">
+                <img src="./images/Design testing 3.png" alt="Incident wizard Step 2 — asset selector showing German sites with device selection chips">
+                <div class="screen-label">Wizard · Asset selection</div>
+            </div>
+        </div>
+    </div>
+    <p class="screen-showcase-caption">Core interfaces · Analysis drill-down, incident detail with tabs, Virtual Analyst chatbot, wizard asset selection</p>
+
+    <!-- 05 · Outcome -->
+    <section class="section">
+        <div class="section-number">05 · Outcome</div>
+        <h2>What shipped and what it changed</h2>
+        <p>
+            The TPA Next Evolution portal shipped in phases and is now actively used by the performance analysis team at RWE. The incident creation wizard — the centrepiece of the redesign — is in production and has replaced the old flat form entirely. The Virtual Analyst is providing analysts with a new way to query and generate insights from incident data using natural language.
+        </p>
+
+        <div class="outcome-grid">
+            <div class="outcome-card">
+                <div class="number">15+</div>
+                <div class="desc">High-fidelity screens designed — dashboard, analysis detail, incidents, creation wizard, Virtual Analyst, and component views</div>
+            </div>
+            <div class="outcome-card">
+                <div class="number">4→1</div>
+                <div class="desc">Tools consolidated — replaced Excel + email + SharePoint + SCADA exports with a single incident management platform</div>
+            </div>
+            <div class="outcome-card">
+                <div class="number">3-step</div>
+                <div class="desc">Guided wizard with smart pre-fill replaced a flat 15-field form — now in production, with strong positive user feedback</div>
+            </div>
+            <div class="outcome-card">
+                <div class="number">AI-powered</div>
+                <div class="desc">Virtual Analyst shipped — NLP-based querying and report generation built on Azure AI, integrated into the analyst workflow</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 · Learnings -->
+    <section class="section">
+        <div class="section-number">06 · Learnings</div>
+        <h2>What I'd do differently</h2>
+        <p>
+            The balance between automation and analyst control was the defining challenge of this project, and the lesson I took away is that trust has to be earned incrementally. The smart pre-fill feature was well received precisely because analysts could see and override every pre-filled field. Early in the design process, I explored a version where the system auto-submitted low-severity incidents without analyst review — the team rejected it immediately. Analysts need to feel that they are the decision-makers, with the system supporting them, not replacing them. That principle shaped every automation decision after.
+        </p>
+        <p>
+            The Virtual Analyst also taught me that designing AI interfaces for domain experts is fundamentally different from designing consumer chatbots. The "Download Chat" and "show SQL" features were not in my original design — they came from usability testing when analysts said they wouldn't trust answers they couldn't verify. Transparency features that might seem like edge cases in a consumer product are table stakes in enterprise AI tools.
+        </p>
+        <p>
+            Front-end developer steering was another key learning. On this project, I didn't just hand off specs — I worked directly with developers on interaction details, component behaviour, and edge cases. This reduced the gap between design intent and implementation significantly, and I'd advocate for this working model on any future project. The designer's job doesn't end at the Figma file.
+        </p>
+    </section>
+
+    <!-- Next Case Study -->
+    <div class="next-case-study">
+        <div class="label">Next case study</div>
+        <a href="./case-study-1.html">RWE Offshore Wind Troubleshooting Tool &rarr;</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:24px;height:24px;border-radius:4px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#fff;">A</span>
+                </div>
+                <span style="font-size:12px;color:#999;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India</span>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:ayushbhamu7@gmail.com">Email</a>
+                <a href="https://linkedin.com/in/ayushbhamu" target="_blank">LinkedIn</a>
+                <a href="https://bhamu.framer.website/" target="_blank">Framer &nearr;</a>
+                <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank">Resume</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
