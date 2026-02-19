@@ -154,6 +154,54 @@
       transform: translateY(0);
     }
 
+    /* ── Before / After comparison labels ── */
+    .compare-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+    }
+    .compare-before {
+      background: #FEE2E2;
+      color: #B91C1C;
+    }
+    .compare-after {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    /* ── Trade-off option styling ── */
+    .tradeoff-option {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      background: #F9F8F5;
+      border: 1px solid #E8E5DF;
+    }
+    .tradeoff-chosen {
+      background: #F0FDFA;
+      border-color: #0D7377;
+    }
+    .tradeoff-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     /* ── Process step connector line ── */
     .step-line {
       position: absolute;
@@ -604,10 +652,28 @@
         </p>
       </div>
 
-      <!-- Before state image -->
-      <div class="image-block fade-up">
-        <img src="./images/Before state.png" alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
-        <div class="image-caption">Before Delphi &middot; The existing Issue Management tool exposed 15+ filters at once &mdash; functional but overwhelming for ad-hoc investigation</div>
+      <!-- Before → After comparison -->
+      <div class="flex flex-col gap-6 fade-up">
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3">
+            <span class="compare-before compare-label">Before</span>
+            <span class="font-inter text-[15px] font-semibold text-[#333333]">Existing Issue Management tool</span>
+          </div>
+          <div class="image-block">
+            <img src="./images/Before state.png" alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
+            <div class="image-caption">15+ filters exposed at once &mdash; functional but overwhelming for ad-hoc investigation</div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3">
+            <span class="compare-after compare-label">After</span>
+            <span class="font-inter text-[15px] font-semibold text-[#333333]">Delphi &mdash; purpose-built analysis platform</span>
+          </div>
+          <div class="image-block">
+            <img src="./images/Delphi hero image.png" alt="Delphi main interface — Parameters panel with progressive filters on the left, interactive time-series chart on the right" />
+            <div class="image-caption">Progressive filters + interactive charts &mdash; analysts go from question to answer in one tool</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -628,6 +694,25 @@
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
           Three patterns surfaced clearly across every conversation:
         </p>
+      </div>
+
+      <!-- Research methodology callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 fade-up">
+        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Research approach</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">Requirement gathering</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Working sessions with PO to translate business needs into prioritised PBIs with clear acceptance criteria</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">User interviews</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Performance analysts and site engineers; focused on actual investigation workflows, not documented processes</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-sora text-[14px] font-bold text-[#111111]">Iterative usability testing</span>
+            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Prototype walkthroughs with analysts; tested filter behaviour, chart interactions, and information density</span>
+          </div>
+        </div>
       </div>
 
       <!-- Discovery stats -->
@@ -707,6 +792,25 @@
           </div>
         </div>
 
+        <!-- Alternatives explored callout -->
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="margin-left:56px;">
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">3 layout approaches tested</span>
+          <div class="flex flex-col gap-3">
+            <div class="tradeoff-option">
+              <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+              <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single-panel chart</strong> with overlay controls &mdash; analysts needed raw data alongside visuals for validation</span>
+            </div>
+            <div class="tradeoff-option">
+              <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+              <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Modular dashboard</strong> with draggable tiles &mdash; too much flexibility created cognitive overload for focused investigation</span>
+            </div>
+            <div class="tradeoff-chosen tradeoff-option">
+              <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
+              <span class="font-inter text-[#333333] text-[13px]"><strong>Split-panel: chart + data table</strong> &mdash; analysts validated specific data points directly from the chart; bidirectional linking was the key interaction pattern</span>
+            </div>
+          </div>
+        </div>
+
         <!-- Step 4 -->
         <div class="flex gap-4 fade-up">
           <div class="shrink-0 mt-1 relative">
@@ -775,6 +879,23 @@
           <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
             Critically, I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar investigations, the system remembered their last 5 filter combinations. This came directly from a user interview where an analyst said he kept a sticky note with his common filter setups.
           </p>
+          <div class="flex flex-col gap-2 mt-2">
+            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
+            <div class="flex flex-col gap-2">
+              <div class="tradeoff-chosen tradeoff-option">
+                <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
+                <span class="font-inter text-[#333333] text-[13px]"><strong>Progressive disclosure</strong> &mdash; 4 primary filters visible, &ldquo;Advanced&rdquo; section for the rest, grouped by category</span>
+              </div>
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Show all 15+ filters</strong> &mdash; overwhelming; analysts couldn&rsquo;t parse constraints at a glance</span>
+              </div>
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single search bar</strong> &mdash; too many clicks; analysts explore iteratively, not with exact queries</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Decision B -->
@@ -985,6 +1106,31 @@
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
           Working on a 10+ month, ongoing project also taught me that the design is never &ldquo;done&rdquo; &mdash; features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding of analyst workflows deepened. Designing for enterprise tools means building in the expectation that you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
         </p>
+      </div>
+
+      <!-- Iteration evidence callout -->
+      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up">
+        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Specific iterations that shaped the product</span>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Filter defaults revised twice</strong> &mdash; First iteration hid too many parameters behind &ldquo;Advanced&rdquo;; revised the primary set to cover 80% of daily use cases after observing real analysis sessions
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Tooltip model redesigned</strong> &mdash; Switched from showing every data point to a &ldquo;snap to nearest&rdquo; model after usability testing revealed tooltip noise at high zoom levels
+            </p>
+          </div>
+          <div class="flex gap-3 items-start">
+            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+              <strong class="text-[#111111]">Onboarding added mid-project</strong> &mdash; Not in original scope; emerged from watching analysts struggle with the tool switch during early rollout phases
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
