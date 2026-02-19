@@ -518,10 +518,7 @@
   <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
     <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
       <div style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
-        <div class="img-placeholder" id="coverImg" style="min-height:400px;aspect-ratio:16/9;border:none;border-radius:0;">
-          <span style="font-size:32px;opacity:0.4;">&#128202;</span>
-          <span class="font-inter text-[13px] text-[#999999]">[SCREEN: Delphi main dashboard / chart view]</span>
-        </div>
+        <img id="coverImg" src="./images/Delphi hero image.png" alt="Delphi — Alarms view with filter panel and time-series chart" class="w-full block" style="display:block;" />
       </div>
       <p class="font-inter text-[12px] text-[#999999] text-center mt-4">Delphi &middot; Wind turbine ad-hoc performance analysis platform</p>
     </div>
@@ -567,11 +564,10 @@
       </div>
 
       <!-- Before state image -->
-      <div class="img-placeholder fade-up" style="aspect-ratio:16/10;">
-        <span style="font-size:28px;opacity:0.4;">&#128260;</span>
-        <span class="font-inter text-[12px] text-[#999999]">[SCREEN: Fragmented PI Vision / SCADA / Excel workflow diagram]</span>
+      <div class="image-block fade-up">
+        <img src="./images/Before state.png" alt="Before Delphi — Issue Management table with fragmented filters and data" />
+        <div class="image-caption">Before Delphi &middot; Analysts juggled disconnected tools like this Issue Management table for investigations</div>
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center -mt-4">Before Delphi &middot; Analysts juggled 3&ndash;4 disconnected tools for a single investigation</p>
     </div>
 
     <!-- ============================================ -->
@@ -703,11 +699,10 @@
       </div>
 
       <!-- Wireframes image -->
-      <div class="img-placeholder fade-up" style="aspect-ratio:16/10;">
-        <span style="font-size:28px;opacity:0.4;">&#9998;</span>
-        <span class="font-inter text-[12px] text-[#999999]">[SCREEN: Low-fi wireframes or Figma workspace showing exploration / iterations]</span>
+      <div class="image-block fade-up">
+        <img src="./images/Wireframes.png" alt="Low-fidelity wireframes exploring layout approaches for Delphi" />
+        <div class="image-caption">Wireframe exploration &middot; Testing layout approaches for the Alarms and Scatter Plot views</div>
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center -mt-4">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis view</p>
     </div>
 
     <!-- ============================================ -->
@@ -778,24 +773,23 @@
       </h2>
 
       <div class="screen-grid">
-        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
-          <span style="font-size:24px;opacity:0.4;">&#128269;</span>
-          <span class="font-inter text-[12px] text-[#999999]">[Progressive filter panel]</span>
+        <div class="image-block fade-up">
+          <img src="./images/Filters extended.png" alt="Scatter Plot view with progressive filter panel fully expanded" />
+          <div class="image-caption">Progressive filter panel &middot; Scatter Plot parameters</div>
         </div>
-        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
-          <span style="font-size:24px;opacity:0.4;">&#128200;</span>
-          <span class="font-inter text-[12px] text-[#999999]">[Time-series chart with event overlays]</span>
+        <div class="image-block fade-up">
+          <img src="./images/Dummy chart.png" alt="Time-series chart with event overlays and hover tooltip" />
+          <div class="image-caption">Time-series chart &middot; Multi-line data with event tooltip</div>
         </div>
-        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
-          <span style="font-size:24px;opacity:0.4;">&#128203;</span>
-          <span class="font-inter text-[12px] text-[#999999]">[Split-panel chart + data table]</span>
+        <div class="image-block fade-up">
+          <img src="./images/Feedback Area v1 - 1.png" alt="Feedback Area — Leave feedback form with rich text editor" />
+          <div class="image-caption">Feedback Area &middot; Leave feedback with attachments</div>
         </div>
-        <div class="img-placeholder fade-up" style="aspect-ratio:4/3;">
-          <span style="font-size:24px;opacity:0.4;">&#9889;</span>
-          <span class="font-inter text-[12px] text-[#999999]">[Turbine comparison or export view]</span>
+        <div class="image-block fade-up">
+          <img src="./images/Feedback Area v1 - 3.png" alt="Feedback Area — Reported feedback data table with status and priority" />
+          <div class="image-caption">Reported Feedback &middot; Status tracking data table</div>
         </div>
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center">Key screens &middot; Filter panel, event overlays, split-panel layout, turbine comparison</p>
     </div>
 
     <!-- ============================================ -->
@@ -1002,6 +996,17 @@
     const lightboxNext = document.getElementById('lightboxNext');
 
     const gallery = [];
+
+    // Add cover image first
+    const coverImg = document.getElementById('coverImg');
+    if (coverImg && coverImg.src) {
+      gallery.push({
+        src: coverImg.getAttribute('src'),
+        alt: coverImg.alt || '',
+        caption: 'Delphi — Alarms view with filter panel and time-series chart'
+      });
+    }
+
     imageBlocks.forEach(function(block) {
       const img = block.querySelector('img');
       const caption = block.querySelector('.image-caption');
@@ -1036,10 +1041,20 @@
       currentIndex = -1;
     }
 
+    // Cover image click
+    if (coverImg) {
+      coverImg.parentElement.style.cursor = 'zoom-in';
+      coverImg.parentElement.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(0);
+      });
+    }
+
     imageBlocks.forEach(function(block, i) {
       block.addEventListener('click', function(e) {
         e.preventDefault();
-        openLightbox(i);
+        var offset = coverImg ? 1 : 0;
+        openLightbox(i + offset);
       });
     });
 
