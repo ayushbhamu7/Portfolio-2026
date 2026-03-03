@@ -19,10 +19,17 @@
       font-family: 'DM Sans', sans-serif;
       background-color: #FAFAF8;
       color: #111111;
+      line-height: 1.6;
     }
 
     .font-sora { font-family: 'Epilogue', sans-serif; }
     .font-inter { font-family: 'DM Sans', sans-serif; }
+
+    /* Bulletproof Flex/Grid Utility Classes */
+    .flex-center { display: flex; align-items: center; }
+    .flex-col { display: flex; flex-direction: column; }
+    .w-full { width: 100%; }
+    .shrink-0 { flex-shrink: 0; }
 
     /* Frosted glass nav */
     .nav-glass {
@@ -77,27 +84,25 @@
     .cs-hero-inner { max-width: 820px; display: flex; flex-direction: column; gap: 20px; }
     .cs-tag-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .cs-hero-title {
-      font-family: 'Epilogue', sans-serif; font-size: 30px; font-weight: 700;
+      font-family: 'Epilogue', sans-serif; font-size: clamp(30px, 5vw, 48px); font-weight: 700;
       color: #111111; line-height: 1.1; letter-spacing: -1px;
     }
     .cs-hero-desc {
-      font-family: 'DM Sans', sans-serif; font-size: 15px; color: #555555;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; color: #555555;
       line-height: 1.75; max-width: 680px;
     }
 
     /* Grids */
     .cs-pill-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .cs-grid-2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .cs-grid-3 { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .cs-grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .cs-flex-col { display: flex; flex-direction: column; }
-    .cs-gap-4 { gap: 16px; }
-    .cs-gap-6 { gap: 24px; }
-    .cs-gap-8 { gap: 32px; }
-
-    /* Article content */
-    .cs-article { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    .cs-article img { max-width: 100%; height: auto; }
+    .cs-grid-2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .cs-grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .cs-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    
+    @media (min-width: 640px) {
+      .cs-grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .cs-grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .cs-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
 
     /* Footer */
     .cs-footer { border-top: 1px solid #E8E5DF; padding: 32px 20px; }
@@ -107,7 +112,7 @@
       gap: 16px; flex-wrap: wrap;
     }
 
-    /* Responsive */
+    /* Responsive Spacing */
     @media (min-width: 640px) {
       .nav-glass { padding: 20px 80px; }
       .cs-container { padding: 0 80px; }
@@ -115,765 +120,144 @@
       .cs-section-hero { padding: 80px 80px 64px; }
       .cs-section-cover { padding: 48px 80px; }
       .cs-hero-inner { gap: 24px; }
-      .cs-hero-title { font-size: 48px; letter-spacing: -2px; }
-      .cs-hero-desc { font-size: 17px; }
-      .cs-grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .cs-grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .cs-grid-4 { grid-template-columns: repeat(4, 1fr); }
-      .cs-article { padding: 0 80px; }
       .cs-footer { padding: 32px 80px; }
       .cs-nav-logo-name { font-size: 16px; }
     }
 
     /* Soft section alternation */
-    .section-tint {
-      background: #F4F3EF;
-    }
+    .section-tint { background: #F4F3EF; }
 
     /* Accent underline for section labels */
     .label-accent {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 11px;
-      font-weight: 700;
-      color: #0A5C5F;
+      display: inline-flex; align-items: center; gap: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 11px; font-weight: 700; color: #0A5C5F;
     }
     .label-accent::before {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #0D7377;
-      border-radius: 2px;
-      flex-shrink: 0;
+      content: ''; display: block; width: 20px; height: 2px;
+      background: #0D7377; border-radius: 2px; flex-shrink: 0;
     }
 
     /* Pill tag */
     .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #ECFDF5;
-      color: #065456;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      padding: 4px 10px;
-      border-radius: 100px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #ECFDF5; color: #065456;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+      padding: 4px 10px; border-radius: 100px;
     }
-    .tag-neutral {
-      background: #EFEFEF;
-      color: #555555;
-    }
-    .tag-teal {
-      background: #E6F4F1;
-      color: #1A7A6A;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F4F3EF; }
-    ::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+    .tag-neutral { background: #EFEFEF; color: #555555; }
+    .tag-teal { background: #E6F4F1; color: #1A7A6A; }
 
     /* Process step connector line */
     .step-line {
-      position: absolute;
-      left: 19px;
-      top: 40px;
-      bottom: -24px;
-      width: 2px;
-      background: linear-gradient(to bottom, #0D7377, #E8E5DF);
-    }
-
-    /* Image placeholder — only shows bg when image fails to load */
-    .img-placeholder {
-      background: linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);
-    }
-    /* When image loads, it fills the container naturally */
-    .img-placeholder img {
-      display: block;
-      width: 100%;
+      position: absolute; left: 19px; top: 40px; bottom: -24px;
+      width: 2px; background: linear-gradient(to bottom, #0D7377, #E8E5DF);
     }
 
     /* Callout box */
     .callout {
-      border-left: 3px solid #0D7377;
-      background: #F0FDFA;
-      border-radius: 0 8px 8px 0;
-    }
-
-    /* Persona card */
-    .persona-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-    .persona-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
-    }
-    .persona-header {
-      padding: 28px 28px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .persona-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #E8E5DF;
-      flex-shrink: 0;
-      background: #ECFDF5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .persona-body {
-      padding: 0 28px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .persona-attr {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .persona-attr-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: #AAAAAA;
-    }
-    .persona-attr-val {
-      font-size: 13px;
-      font-weight: 500;
-      color: #333333;
-      line-height: 1.5;
-    }
-
-    /* Scenario card */
-    .scenario-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: box-shadow 0.2s;
-    }
-    .scenario-card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
-    }
-    .scenario-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      margin-bottom: 4px;
+      border-left: 3px solid #0D7377; background: #F0FDFA;
+      border-radius: 0 8px 8px 0; padding: 24px;
     }
 
     /* Image with caption */
-    .image-block {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #E8E5DF;
-    }
-    .image-block img {
-      width: 100%;
-      display: block;
-    }
-    .image-caption {
-      padding: 14px 18px;
-      background: #F9F8F5;
-      border-top: 1px solid #E8E5DF;
-      font-size: 13px;
-      color: #777777;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Before/after compare */
-    .compare-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 100px;
-    }
-    .compare-before {
-      background: #FEE2E2;
-      color: #B91C1C;
-    }
-    .compare-after {
-      background: #D1FAE5;
-      color: #065F46;
-    }
-
-    /* Screen showcase */
-    .screen-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    /* Horizontal scroll for journey images */
-    .journey-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 8px;
-    }
-    .journey-scroll::-webkit-scrollbar { height: 4px; }
-    .journey-scroll::-webkit-scrollbar-track { background: transparent; }
-    .journey-scroll::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
-
-    /* Clickable image hint */
-    .image-block { cursor: zoom-in; }
+    .image-block { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid #E8E5DF; cursor: zoom-in; }
+    .image-block img { width: 100%; display: block; transition: transform 0.2s; }
     .image-block:hover { border-color: #CCCCCC; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
-    .image-block img { transition: transform 0.2s; }
-
-    /* Lightbox overlay */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(0,0,0,0.88);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s, visibility 0.25s;
-      cursor: zoom-out;
-    }
-    .lightbox.is-open {
-      opacity: 1;
-      visibility: visible;
-    }
-    .lightbox-img-wrap {
-      position: relative;
-      max-width: 95vw;
-      max-height: 92vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: auto;
-      border-radius: 8px;
-    }
-    .lightbox-img-wrap img {
-      max-width: 95vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      transition: transform 0.25s;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 18px;
-      transition: background 0.15s;
-      z-index: 210;
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
-    .lightbox-caption {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      color: #CCCCCC;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 100px;
-      white-space: nowrap;
-      max-width: 90vw;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      z-index: 210;
-    }
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 20px;
-      transition: background 0.15s;
-      z-index: 210;
-    }
-    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
-    .lightbox-prev { left: 16px; }
-    .lightbox-next { right: 16px; }
-
-    /* ── Reading progress bar ── */
-    .reading-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #0D7377, #14B8A6);
-      z-index: 999;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    /* ── Fade-in on scroll animation ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-    }
-    .fade-up.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Quick glance / TL;DR strip ── */
-    .tldr-strip {
-      background: #111111;
-      color: #FAFAF8;
-    }
-    .tldr-metric {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .tldr-metric-num {
-      font-family: 'Epilogue', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #14B8A6;
-      line-height: 1;
-    }
-    .tldr-metric-label {
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.4;
-    }
-
-    /* ── Contribution highlight card ── */
-    .contrib-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 12px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .contrib-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #0D7377, #14B8A6);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .contrib-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      border-color: #D8D5CE;
-    }
-    .contrib-card:hover::before {
-      opacity: 1;
-    }
-    .contrib-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: #ECFDF5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    /* ── Stakeholder pill ── */
-    .stake-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 10px;
-      padding: 14px 18px;
-      transition: box-shadow 0.15s;
-    }
-    .stake-pill:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-    .stake-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* ── Tradeoff card ── */
-    .tradeoff-option {
-      border: 1px solid #E8E5DF;
-      border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-    .tradeoff-chosen {
-      border-color: #0D7377;
-      background: #F0FDFA;
-    }
-    .tradeoff-badge {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    /* ── Section divider with number ── */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #E8E5DF;
-    }
-
-    /* ── Interactive annotation hotspots ── */
-    .screen-annotated {
-      position: relative;
-    }
-    .hotspot {
-      position: absolute;
-      z-index: 12;
-      cursor: pointer;
-    }
-    .hotspot-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(13,115,119,0.92);
-      border: 2.5px solid #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      color: #FFFFFF;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-    }
-    .hotspot:hover .hotspot-dot {
-      transform: scale(1.15);
-      box-shadow: 0 4px 16px rgba(13,115,119,0.5);
-    }
-    /* Pulse ring */
-    .hotspot-dot::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      border: 2px solid rgba(13,115,119,0.4);
-      animation: hotspot-pulse 2.5s ease-out infinite;
-    }
-    @keyframes hotspot-pulse {
-      0% { transform: scale(1); opacity: 0.7; }
-      70% { transform: scale(1.5); opacity: 0; }
-      100% { transform: scale(1.5); opacity: 0; }
-    }
-    .hotspot:hover .hotspot-dot::after {
-      animation: none;
-      opacity: 0;
-    }
-    /* Tooltip */
-    .hotspot-tip {
-      position: absolute;
-      bottom: calc(100% + 12px);
-      left: 50%;
-      transform: translateX(-50%) translateY(6px);
-      background: #111111;
-      color: #FFFFFF;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.5;
-      padding: 10px 14px;
-      border-radius: 10px;
-      width: 240px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-      pointer-events: none;
-    }
-    .hotspot-tip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -6px;
-      border-width: 6px;
-      border-style: solid;
-      border-color: #111111 transparent transparent transparent;
-    }
-    .hotspot:hover .hotspot-tip {
-      opacity: 1;
-      visibility: visible;
-      transform: translateX(-50%) translateY(0);
-    }
-    .hotspot-tip-title {
-      font-weight: 700;
-      font-size: 12px;
-      color: #14B8A6;
-      margin-bottom: 4px;
-      display: block;
-    }
-    /* Flip tooltip below on top hotspots */
-    .hotspot-below .hotspot-tip {
-      bottom: auto;
-      top: calc(100% + 12px);
-      transform: translateX(-50%) translateY(-6px);
-    }
-    .hotspot-below:hover .hotspot-tip {
-      transform: translateX(-50%) translateY(0);
-    }
-    .hotspot-below .hotspot-tip::after {
-      top: auto;
-      bottom: 100%;
-      border-color: transparent transparent #111111 transparent;
-    }
-    /* Shift tooltip left/right when near edges */
-    .hotspot-right .hotspot-tip {
-      left: auto;
-      right: -10px;
-      transform: translateX(0) translateY(6px);
-    }
-    .hotspot-right:hover .hotspot-tip {
-      transform: translateX(0) translateY(0);
-    }
-    .hotspot-right .hotspot-tip::after {
-      left: auto;
-      right: 20px;
-    }
-    .hotspot-left .hotspot-tip {
-      left: -10px;
-      transform: translateX(0) translateY(6px);
-    }
-    .hotspot-left:hover .hotspot-tip {
-      transform: translateX(0) translateY(0);
-    }
-    .hotspot-left .hotspot-tip::after {
-      left: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .screen-grid { grid-template-columns: 1fr; }
-      .hotspot { display: none; }
-    }
-
-    @media (max-width: 560px) {
-      .persona-header { flex-direction: column; align-items: flex-start; }
-      .lightbox-nav { width: 36px; height: 36px; font-size: 16px; }
-      .lightbox-prev { left: 8px; }
-      .lightbox-next { right: 8px; }
-      .tldr-metric-num { font-size: 22px; }
+    .image-caption {
+      padding: 14px 18px; background: #F9F8F5; border-top: 1px solid #E8E5DF;
+      font-size: 13px; color: #777777; font-weight: 500; display: flex; align-items: center; gap: 6px;
     }
 
     /* ── Content + stepper layout ── */
     .case-layout {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      gap: 0;
+      display: flex; max-width: 1200px; margin: 0 auto; padding: 0 20px; gap: 0;
     }
-    .case-layout > article {
-      flex: 1;
-      min-width: 0;
+    .case-layout > article { flex: 1; min-width: 0; padding: 56px 0; display: flex; flex-direction: column; gap: 64px; }
+    
+    @media (min-width: 640px) {
+      .case-layout > article { padding: 80px 20px; gap: 96px; }
     }
 
-    /* ── Sidebar stepper navigation ── */
-    .stepper-sidebar {
-      position: sticky;
-      top: 90px;
-      align-self: flex-start;
-      width: 160px;
-      flex-shrink: 0;
-      padding: 28px 0 0 0;
-      margin-top: 60px;
-      z-index: 20;
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity 0.3s, transform 0.3s;
-      pointer-events: none;
+    /* ── Contribution & standard cards ── */
+    .info-card {
+      background: #FFFFFF; border: 1px solid #E8E5DF; border-radius: 12px;
+      padding: 24px; display: flex; flex-direction: column; gap: 12px;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
-    .stepper-sidebar.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-    .stepper-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #AAAAAA;
-      margin-bottom: 16px;
-    }
-    .stepper-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border-left: 2px solid #E8E5DF;
-    }
-    .stepper-link {
-      display: block;
-      position: relative;
-      padding: 7px 0 7px 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 11.5px;
-      font-weight: 500;
-      color: #AAAAAA;
-      text-decoration: none;
-      transition: color 0.2s;
-      line-height: 1.4;
-    }
-    .stepper-link::before {
-      content: '';
-      position: absolute;
-      left: -2px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #0D7377;
-      border-radius: 2px;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .stepper-link:hover {
-      color: #555555;
-    }
-    .stepper-link.is-active {
-      color: #111111;
-      font-weight: 600;
-    }
-    .stepper-link.is-active::before {
-      opacity: 1;
-    }
+    .info-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.04); border-color: #D8D5CE; }
 
-    @media (max-width: 768px) {
-      .stepper-sidebar { display: none; }
-      .case-layout { padding: 0; }
+    /* ── Fade-in on scroll animation ── */
+    .fade-up {
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+    .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Reading progress bar ── */
+    .reading-progress {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, #0D7377, #14B8A6); z-index: 999; width: 0%;
     }
 
     /* ── Screen tabs ── */
     .screen-tabs {
-      display: flex;
-      gap: 2px;
-      background: #F4F3EF;
-      border-radius: 10px;
-      padding: 3px;
+      display: flex; gap: 2px; background: #F4F3EF; border-radius: 10px; padding: 3px;
     }
     .screen-tab {
-      flex: 1;
-      padding: 10px 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: #888888;
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-      line-height: 1.3;
+      flex: 1; padding: 10px 12px; font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 500; color: #888888; background: transparent;
+      border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s;
     }
-    .screen-tab:hover {
-      color: #555555;
-    }
+    .screen-tab:hover { color: #555555; }
     .screen-tab.is-active {
-      background: #FFFFFF;
-      color: #111111;
-      font-weight: 600;
+      background: #FFFFFF; color: #111111; font-weight: 600;
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-    .screen-panel {
-      display: none;
+    .screen-panel { display: none; }
+    .screen-panel.is-active { display: block; }
+    
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; cursor: zoom-out;
     }
-    .screen-panel.is-active {
-      display: block;
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+    .lightbox-img-wrap img { max-width: 95vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .lightbox-close, .lightbox-nav {
+      position: absolute; width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: #FFFFFF; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 20px; transition: background 0.15s; z-index: 210;
     }
+    .lightbox-close { top: 16px; right: 16px; }
+    .lightbox-nav { top: 50%; transform: translateY(-50%); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-caption {
+      position: absolute; bottom: 16px; background: rgba(0,0,0,0.7);
+      color: #CCCCCC; font-size: 12px; padding: 8px 16px; border-radius: 100px;
+    }
+
+    /* Stepper */
+    .stepper-sidebar {
+      position: sticky; top: 90px; align-self: flex-start; width: 160px;
+      padding: 28px 0 0 0; margin-top: 60px; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .stepper-sidebar.is-visible { opacity: 1; pointer-events: auto; }
+    .stepper-link {
+      display: block; padding: 7px 0 7px 14px; font-size: 11.5px;
+      color: #AAAAAA; text-decoration: none; position: relative; border-left: 2px solid #E8E5DF;
+      margin-left: -2px;
+    }
+    .stepper-link.is-active { color: #111111; font-weight: 600; border-left-color: #0D7377; }
+    @media (max-width: 900px) { .stepper-sidebar { display: none; } }
   </style>
 </head>
 
-<body class="overflow-x-hidden">
+<body>
 
   <div class="reading-progress" id="readingProgress"></div>
 
@@ -909,43 +293,43 @@
   </section>
 
   <section class="cs-section" style="padding-top:40px;padding-bottom:56px;">
-    <div class="cs-container cs-flex-col cs-gap-8">
+    <div class="cs-container flex-col" style="gap:32px;">
 
       <div class="cs-pill-row">
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
-          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Role</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">UI/UX Designer</span>
+          <span style="font-size:10px; font-weight:600; color:#AAAAAA; letter-spacing:0.08em; text-transform:uppercase;">Role</span>
+          <span style="font-size:13px; font-weight:600; color:#111111;">UI/UX Designer</span>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
-          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">3 months</span>
+          <span style="font-size:10px; font-weight:600; color:#AAAAAA; letter-spacing:0.08em; text-transform:uppercase;">Timeline</span>
+          <span style="font-size:13px; font-weight:600; color:#111111;">3 months</span>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
-          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">11 stakeholders</span>
+          <span style="font-size:10px; font-weight:600; color:#AAAAAA; letter-spacing:0.08em; text-transform:uppercase;">Team</span>
+          <span style="font-size:13px; font-weight:600; color:#111111;">11 stakeholders</span>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
-          <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">Figma, Mural, SAP</span>
+          <span style="font-size:10px; font-weight:600; color:#AAAAAA; letter-spacing:0.08em; text-transform:uppercase;">Tools</span>
+          <span style="font-size:13px; font-weight:600; color:#111111;">Figma, Mural, SAP</span>
         </div>
       </div>
 
       <div class="cs-grid-4">
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">7 &rarr; 3</span>
-          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Diagnosis steps reduced</p>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:28px; font-weight:700; color:#0D7377; letter-spacing:-1px;">7 &rarr; 3</span>
+          <p style="font-size:12px; color:#888888; line-height:1.5; margin:0;">Diagnosis steps reduced</p>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Production-ready screens</p>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:28px; font-weight:700; color:#0D7377; letter-spacing:-1px;">15+</span>
+          <p style="font-size:12px; color:#888888; line-height:1.5; margin:0;">Production-ready screens</p>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3</span>
-          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Review cycles to alignment</p>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:28px; font-weight:700; color:#0D7377; letter-spacing:-1px;">3</span>
+          <p style="font-size:12px; color:#888888; line-height:1.5; margin:0;">Review cycles to alignment</p>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">12 wk</span>
-          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Research to handoff</p>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:28px; font-weight:700; color:#0D7377; letter-spacing:-1px;">12 wk</span>
+          <p style="font-size:12px; color:#888888; line-height:1.5; margin:0;">Research to handoff</p>
         </div>
       </div>
 
@@ -954,1074 +338,338 @@
 
   <section class="cs-section-cover" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
     <div style="max-width:1000px;margin:0 auto;padding:0 20px;">
-      <div id="coverContainer" style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
-        <img id="coverImg" src="./images/hq/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" class="w-full block" style="display:block;width:100%;"
-          onerror="this.src='./images/rwe-cover.jpg'" />
+      <div id="coverContainer" style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10); border:1px solid rgba(0,0,0,0.06); cursor:zoom-in;">
+        <img id="coverImg" src="./images/hq/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens" style="display:block;width:100%;" onerror="this.src='./images/rwe-cover.jpg'" />
       </div>
-      <p style="font-size:12px;color:#999999;text-align:center;margin-top:16px;">Fault search results &amp; cross-site root cause comparison &mdash; the core screen of Module 1</p>
+      <p style="font-size:12px;color:#999999;text-align:center;margin-top:16px;">Fault search results &amp; cross-site root cause comparison</p>
     </div>
   </section>
 
   <div class="case-layout">
+    <article>
 
-    <article class="cs-flex-col px-5 sm:px-8 py-14 sm:py-20 w-full flex flex-col gap-16 sm:gap-24" style="padding:56px 20px;gap:64px;">
-
-    <div class="fade-up" style="background:#FFFFFF;border:1.5px solid #E8E5DF;border-radius:16px;padding:28px 28px 32px;box-shadow:0 2px 12px rgba(0,0,0,0.03);">
-      <div class="flex items-center gap-2 mb-4">
-        <div style="width:6px;height:6px;border-radius:50%;background:#0D7377;"></div>
-        <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:#0A5C5F;">TL;DR &mdash; 30-second summary</span>
+    <div class="fade-up info-card" style="padding: 32px;">
+      <div class="flex-center" style="gap:8px; margin-bottom:16px;">
+        <div style="width:6px; height:6px; border-radius:50%; background:#0D7377;"></div>
+        <span style="font-size:10px; font-weight:700; color:#0A5C5F; letter-spacing:0.14em; text-transform:uppercase;">TL;DR &mdash; 30-second summary</span>
       </div>
-      <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.85] max-w-[760px]">
-        RWE&rsquo;s offshore wind technicians diagnosed turbine faults across 7 steps and 4 disconnected systems (SAP, PDFs, phone calls, tribal knowledge). As the sole UI/UX designer, I designed a unified troubleshooting platform that consolidates this into 3 steps within a single tool &mdash; with cross-site fault search, consolidated root cause comparison, and an integrated iPad documentation flow for offshore technicians. Delivered 15+ production-ready screens across 2 modules, aligned 11+ stakeholders in 3 review cycles, and handed off a prototype now in active development. <strong style="color:#111111;">The same enterprise B2B complexity &mdash; multi-user workflows, cross-team alignment, system-level thinking &mdash; that drives products at Freshworks, Razorpay, or Postman.</strong>
+      <p style="font-size:15px; color:#333333; line-height:1.85; max-width:760px; margin:0;">
+        RWE&rsquo;s offshore wind technicians diagnosed turbine faults across 7 steps and 4 disconnected systems (SAP, PDFs, phone calls, tribal knowledge). As the sole UI/UX designer, I designed a unified troubleshooting platform that consolidates this into 3 steps within a single tool &mdash; with cross-site fault search, consolidated root cause comparison, and an integrated iPad documentation flow for offshore technicians. Delivered 15+ production-ready screens across 2 modules, aligned 11+ stakeholders in 3 review cycles, and handed off a prototype now in active development.
       </p>
     </div>
 
-    <div id="sec-context" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-context" class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">01 &middot; Context</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
-        A global wind fleet with no dedicated troubleshooting tool
-      </h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          RWE operates one of the world&rsquo;s largest offshore wind fleets across multiple countries. When a turbine faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often under time pressure and harsh offshore conditions.
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">A global wind fleet with no dedicated troubleshooting tool</h2>
+      <div class="flex-col" style="gap:16px; max-width:720px;">
+        <p style="font-size:15px; color:#444444; line-height:1.8;">
+          RWE operates one of the world&rsquo;s largest offshore wind fleets. When a turbine faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often under time pressure.
         </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed by site, hard to find, and impossible to standardize across the fleet.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I joined as the <strong>sole UI/UX designer</strong> on the RWE side, working alongside BCG consultants and internal stakeholders to design a new digital platform from scratch &mdash; owning research, IA, prototyping, and handoff across both modules.
+        <p style="font-size:15px; color:#444444; line-height:1.8;">
+          The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction codes, scattered PDF manuals, and the tribal knowledge of experienced technicians. Information was siloed by site, hard to find, and impossible to standardize.
         </p>
       </div>
     </div>
 
     <div class="image-block fade-up">
-      <div style="min-height:200px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-        <img src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
-          onerror="this.style.display='none'" style="display:block;" />
-      </div>
-      <div class="image-caption">
-        Before: SAP transaction screens and PDF manuals &mdash; the only tools available for fault diagnosis. Click to zoom.
-      </div>
+      <img src="./images/hq/rwe-old-tools.jpg" alt="Existing tools" style="background:#ECFDF5;" />
+      <div class="image-caption">Before: SAP transaction screens and PDF manuals. Click to zoom.</div>
     </div>
 
-    <div class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">My contribution</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
-        What I owned
-      </h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
-        As the only designer on the RWE side, I was responsible for the full design workstream &mdash; from initial research through to production-ready handoff. Here&rsquo;s the breakdown.
-      </p>
-
-      <div class="cs-grid-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-        <div class="contrib-card">
-          <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" stroke="#0D7377" stroke-width="1.5" stroke-linejoin="round" fill="none"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">End-to-end design</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Research, journey mapping, IA definition, wireframing, prototyping, and interaction specs &mdash; continuous from kickoff to handoff.</p>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">What I owned</h2>
+      <div class="cs-grid-2">
+        <div class="info-card">
+          <div style="width:40px; height:40px; border-radius:10px; background:#ECFDF5; display:flex; align-items:center; justify-content:center; color:#0D7377;">✏️</div>
+          <h3 class="font-sora" style="font-size:15px; font-weight:700; color:#111111; margin:0;">End-to-end design</h3>
+          <p style="font-size:13px; color:#666666; margin:0;">Research, journey mapping, IA definition, wireframing, prototyping, and interaction specs.</p>
         </div>
-
-        <div class="contrib-card">
-          <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#0D7377" stroke-width="1.5"/><circle cx="5" cy="14" r="2.5" stroke="#0D7377" stroke-width="1.5"/><circle cx="15" cy="14" r="2.5" stroke="#0D7377" stroke-width="1.5"/><path d="M10 10V12M7 13L10 12M13 13L10 12" stroke="#0D7377" stroke-width="1.2"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Design direction for BCG designer</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Set design principles, reviewed output against quality standards, and maintained consistency across 2 modules and 15+ screens.</p>
+        <div class="info-card">
+          <div style="width:40px; height:40px; border-radius:10px; background:#ECFDF5; display:flex; align-items:center; justify-content:center; color:#0D7377;">🎯</div>
+          <h3 class="font-sora" style="font-size:15px; font-weight:700; color:#111111; margin:0;">Stakeholder alignment</h3>
+          <p style="font-size:13px; color:#666666; margin:0;">Facilitated design reviews with 11+ stakeholders across Business Partners, Product Owners, and Team Leads.</p>
         </div>
-
-        <div class="contrib-card">
-          <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="3" stroke="#0D7377" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="#0D7377" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Stakeholder alignment</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Facilitated design reviews with 11+ stakeholders across Business Partners, Product Owners, Team Leads, and BCG consultants. Translated business requirements into design decisions.</p>
-        </div>
-
-        <div class="contrib-card">
-          <div class="contrib-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#0D7377" stroke-width="1.5"/><path d="M10 6V10L13 12" stroke="#0D7377" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Research &rarr; strategy &rarr; execution</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Ran the full research arc &mdash; ~10 participant interviews, contextual shadowing sessions, journey mapping, and problem framing &mdash; then translated findings into a product vision that the entire team could rally around.</p>
-        </div>
-
       </div>
     </div>
 
-    <div id="sec-users" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-users" class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">02 &middot; Users</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Two distinct roles, two different contexts</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          Through <strong>~10 participant interviews and contextual shadowing sessions</strong> across onshore and offshore teams, I identified two primary user profiles with fundamentally different work environments, device contexts, and information needs.
-        </p>
-      </div>
-
-      <div class="cs-grid-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-
-        <div class="persona-card">
-          <div class="persona-header">
-            <div class="persona-avatar">
-              <img src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator" class="w-full h-full object-cover rounded-full"
-                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#0D7377\'>MC</span>'" />
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">Two distinct roles, two different contexts</h2>
+      <div class="cs-grid-2">
+        <div class="info-card" style="padding:0; overflow:hidden;">
+          <div class="flex-center" style="padding:24px; gap:16px; border-bottom:1px solid #E8E5DF; background:#FAFAF8;">
+            <div style="width:56px; height:56px; border-radius:50%; background:#E8E5DF; flex-shrink:0;">
+              <img src="./images/hq/persona-coordinator.jpg" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" onerror="this.style.display='none'" />
             </div>
             <div>
-              <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Maintenance Coordinator /<br>Lead Technician</h3>
-              <span class="font-inter text-[12px] text-[#888888] mt-1 block">Onshore &middot; Control Room &middot; Desktop</span>
+              <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin:0;">Maintenance Coordinator</h3>
+              <span style="font-size:12px; color:#888;">Onshore &middot; Desktop</span>
             </div>
           </div>
-          <div class="persona-body">
-            <div class="persona-attr">
-              <span class="persona-attr-label">Context</span>
-              <span class="persona-attr-val">Works from the onshore control room, monitoring turbine fleets via SCADA systems. Coordinates remote teams and manages fault resolution workflows.</span>
-            </div>
-            <div class="persona-attr">
-              <span class="persona-attr-label">Primary tasks</span>
-              <span class="persona-attr-val">Diagnose faults remotely, search for known root causes across sites, draft and assign work orders to offshore technicians.</span>
-            </div>
-            <div class="persona-attr">
-              <span class="persona-attr-label">Pain points</span>
-              <span class="persona-attr-val">Information scattered across SAP, PDFs, and colleagues&rsquo; memory. No way to search previous fault resolutions from other wind farms.</span>
-            </div>
-            <div class="flex gap-2 flex-wrap">
-              <span class="tag tag-teal">Desktop</span>
-              <span class="tag tag-neutral">SCADA / SAP</span>
-              <span class="tag tag-neutral">Control Room</span>
-            </div>
+          <div class="flex-col" style="padding:24px; gap:12px;">
+            <p style="font-size:13px; color:#444; margin:0;"><strong>Pain points:</strong> Information scattered across SAP, PDFs, and colleagues&rsquo; memory. No cross-site lookup.</p>
           </div>
         </div>
-
-        <div class="persona-card">
-          <div class="persona-header">
-            <div class="persona-avatar">
-              <img src="./images/persona-technician.jpg" alt="Technician" class="w-full h-full object-cover rounded-full"
-                onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-sora font-size:20px;font-weight:700;color:#0D7377\'>T</span>'" />
+        <div class="info-card" style="padding:0; overflow:hidden;">
+          <div class="flex-center" style="padding:24px; gap:16px; border-bottom:1px solid #E8E5DF; background:#FAFAF8;">
+            <div style="width:56px; height:56px; border-radius:50%; background:#E8E5DF; flex-shrink:0;">
+              <img src="./images/hq/persona-technician.jpg" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" onerror="this.style.display='none'" />
             </div>
             <div>
-              <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Technician</h3>
-              <span class="font-inter text-[12px] text-[#888888] mt-1 block">Offshore &middot; Turbine &middot; iPad</span>
+              <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin:0;">Offshore Technician</h3>
+              <span style="font-size:12px; color:#888;">Offshore &middot; iPad</span>
             </div>
           </div>
-          <div class="persona-body">
-            <div class="persona-attr">
-              <span class="persona-attr-label">Context</span>
-              <span class="persona-attr-val">Works directly on turbines offshore, often in physically demanding and time-constrained conditions. Needs clear, glanceable instructions on a tablet.</span>
-            </div>
-            <div class="persona-attr">
-              <span class="persona-attr-label">Primary tasks</span>
-              <span class="persona-attr-val">Execute repairs based on work orders, document completed work and findings, capture photos and notes for knowledge transfer.</span>
-            </div>
-            <div class="persona-attr">
-              <span class="persona-attr-label">Pain points</span>
-              <span class="persona-attr-val">Relies heavily on personal experience. No structured way to access troubleshooting guides on-site. Documentation is an afterthought done post-trip.</span>
-            </div>
-            <div class="flex gap-2 flex-wrap">
-              <span class="tag tag-teal">iPad</span>
-              <span class="tag tag-neutral">Offshore</span>
-              <span class="tag tag-neutral">Hands-on</span>
-            </div>
+          <div class="flex-col" style="padding:24px; gap:12px;">
+            <p style="font-size:13px; color:#444; margin:0;"><strong>Pain points:</strong> Harsh conditions, gloved hands, relies heavily on personal memory. Documentation is done poorly post-trip.</p>
           </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="sec-discovery" class="cs-flex-col cs-gap-6 fade-up" style="display: flex; flex-direction: column; gap: 32px; margin-bottom: 40px;">
-      
-      <div>
-        <span class="label-accent" style="margin-bottom: 16px;">03 &middot; Discovery</span>
-        <h2 class="font-sora text-[#111111]" style="font-size: clamp(24px, 3.5vw, 30px); font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 24px;">
-          Mapping the as-is journey revealed deep structural gaps
-        </h2>
-        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 720px;">
-          <p class="font-inter text-[#444444]" style="font-size: 15px; line-height: 1.8;">
-            I conducted <strong>contextual shadowing sessions</strong> in control rooms, observing maintenance coordinators handle real fault scenarios in real time. I supplemented this with <strong>semi-structured interviews</strong> across both user groups, focusing on their actual behaviors &mdash; not just the official process.
-          </p>
-          <p class="font-inter text-[#444444]" style="font-size: 15px; line-height: 1.8;">
-            The critical insight: <strong>the most valuable research came from watching, not asking.</strong> In interviews, participants described the standard process. In shadowing, I saw the workarounds &mdash; the sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that actually kept operations running.
-          </p>
-        </div>
-      </div>
-
-      <div class="callout" style="padding: 24px 32px; display: flex; flex-direction: column; gap: 24px;">
-        <span class="label-accent" style="font-size: 10px;">Research approach</span>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <strong class="font-sora text-[#111111]" style="font-size: 15px;">Contextual shadowing</strong>
-            <span class="font-inter text-[#666666]" style="font-size: 13.5px; line-height: 1.6;">Observed real fault resolution workflows in control rooms across sites</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <strong class="font-sora text-[#111111]" style="font-size: 15px;">Semi-structured interviews</strong>
-            <span class="font-inter text-[#666666]" style="font-size: 13.5px; line-height: 1.6;">~10 participants across coordinators, leads, and offshore technicians</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <strong class="font-sora text-[#111111]" style="font-size: 15px;">Journey mapping workshops</strong>
-            <span class="font-inter text-[#666666]" style="font-size: 13.5px; line-height: 1.6;">Collaborative Mural sessions to validate pain points with cross-functional team</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
-        <div style="background: #FFFFFF; border: 1px solid #E8E5DF; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-          <span class="font-sora text-[#0D7377]" style="font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1;">0</span>
-          <p class="font-inter text-[#444444]" style="font-size: 14px; line-height: 1.7; margin: 0;">Dedicated digital tools for troubleshooting &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
-        </div>
-        <div style="background: #FFFFFF; border: 1px solid #E8E5DF; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-          <span class="font-sora text-[#0D7377]" style="font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1;">4+</span>
-          <p class="font-inter text-[#444444]" style="font-size: 14px; line-height: 1.7; margin: 0;">Disconnected systems touched during a single fault resolution &mdash; SCADA, SAP, email, phone calls, PDF manuals</p>
-        </div>
-        <div style="background: #FFFFFF; border: 1px solid #E8E5DF; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-          <span class="font-sora text-[#0D7377]" style="font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1;">100%</span>
-          <p class="font-inter text-[#444444]" style="font-size: 14px; line-height: 1.7; margin: 0;">Knowledge loss risk when experienced staff retired or transferred &mdash; no structured capture of tribal knowledge</p>
         </div>
       </div>
     </div>
 
-      <div class="cs-grid-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-6 sm:p-7 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#0D7377] tracking-[-1px]">0</span>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.7]">Dedicated digital tools for troubleshooting &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
+    <div id="sec-discovery" class="flex-col fade-up" style="gap:24px;">
+      <span class="label-accent">03 &middot; Discovery</span>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">Mapping the as-is journey revealed deep structural gaps</h2>
+      <p style="font-size:15px; color:#444; line-height:1.8; max-width:720px;">
+        I conducted <strong>contextual shadowing sessions</strong> in control rooms, observing coordinators handle real fault scenarios. The critical insight: <strong>the most valuable research came from watching, not asking.</strong> I saw the hidden workarounds &mdash; sticky notes on monitors, WhatsApp groups for advice, and informal knowledge networks.
+      </p>
+
+      <div class="callout cs-grid-3">
+        <div class="flex-col" style="gap:4px;">
+          <strong class="font-sora" style="font-size:14px; color:#111;">Contextual shadowing</strong>
+          <span style="font-size:13px; color:#555;">Observed workflows in control rooms</span>
         </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-6 sm:p-7 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#0D7377] tracking-[-1px]">4+</span>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.7]">Disconnected systems touched during a single fault resolution &mdash; SCADA, SAP, email, phone calls, PDF manuals</p>
+        <div class="flex-col" style="gap:4px;">
+          <strong class="font-sora" style="font-size:14px; color:#111;">Semi-structured interviews</strong>
+          <span style="font-size:13px; color:#555;">~10 cross-functional participants</span>
         </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-6 sm:p-7 flex flex-col gap-3">
-          <span class="font-sora text-[32px] sm:text-[38px] font-bold text-[#0D7377] tracking-[-1px]">100%</span>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.7]">Knowledge loss risk when experienced staff retired or transferred &mdash; no structured capture of tribal knowledge</p>
+        <div class="flex-col" style="gap:4px;">
+          <strong class="font-sora" style="font-size:14px; color:#111;">Journey mapping</strong>
+          <span style="font-size:13px; color:#555;">Collaborative Mural validation sessions</span>
+        </div>
+      </div>
+
+      <div class="cs-grid-3">
+        <div class="info-card">
+          <span class="font-sora" style="font-size:38px; font-weight:700; color:#0D7377; line-height:1;">0</span>
+          <p style="font-size:13px; color:#444; margin:0;">Dedicated digital tools for troubleshooting &mdash; teams relied on SAP/PDFs.</p>
+        </div>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:38px; font-weight:700; color:#0D7377; line-height:1;">4+</span>
+          <p style="font-size:13px; color:#444; margin:0;">Disconnected systems touched during a single fault resolution.</p>
+        </div>
+        <div class="info-card">
+          <span class="font-sora" style="font-size:38px; font-weight:700; color:#0D7377; line-height:1;">100%</span>
+          <p style="font-size:13px; color:#444; margin:0;">Knowledge loss risk when experienced staff retired or transferred.</p>
         </div>
       </div>
     </div>
 
-    <div class="flex flex-col gap-4 fade-up">
-      <div class="flex items-center gap-3">
-        <span class="compare-before compare-label">Before</span>
-        <span class="font-inter text-[15px] font-semibold text-[#333333]">As-Is Troubleshooting Journey</span>
-      </div>
+    <div class="flex-col fade-up" style="gap:16px;">
       <div class="image-block">
         <div class="journey-scroll">
-          <div style="min-width: 1400px;" class="relative">
-            <img src="./images/journey-as-is.jpg" alt="As-Is troubleshooting user journey map" class="w-full block"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block" />
-            <div class="img-placeholder h-[300px]" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-                <rect x="4" y="12" width="32" height="2" rx="1" fill="#0D7377" opacity="0.3"/>
-                <rect x="4" y="18" width="28" height="2" rx="1" fill="#0D7377" opacity="0.2"/>
-                <rect x="4" y="24" width="30" height="2" rx="1" fill="#0D7377" opacity="0.2"/>
-              </svg>
-              <span class="font-inter text-[#999999] text-[12px] font-medium">As-Is Journey Map &middot; Scroll to explore &rarr;</span>
-            </div>
+          <div style="min-width: 1400px;">
+            <img src="./images/hq/journey-as-is.jpg" alt="As-Is Journey Map" onerror="this.style.display='none'" />
           </div>
         </div>
         <div class="image-caption" style="justify-content:space-between;">
-          <span style="display:flex;align-items:center;gap:6px;">
-            As-is journey &mdash; SCADA alarm through post-trip documentation. Scroll to explore.
-          </span>
-          <span style="color:#0D7377;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
+          <span>As-is journey map &mdash; scroll horizontally to explore.</span>
+          <span style="color:#0D7377; font-size:11px; cursor:pointer;">Click to zoom</span>
         </div>
       </div>
     </div>
 
-    <div id="sec-framing" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-framing" class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">04 &middot; Problem framing</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Four fault scenarios, two product modules</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          From the research, I synthesized four distinct fault scenarios that technicians encounter. Each requires a different lookup and resolution path &mdash; this became the backbone of the product&rsquo;s information architecture.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          <strong>Why this framing matters:</strong> instead of building a generic tool, we scoped the product around real diagnostic patterns. This let us prioritize the highest-impact path first (known fault at other site) and design progressive disclosure for complex scenarios.
-        </p>
-      </div>
-
-      <div class="cs-grid-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="scenario-card">
-          <div class="scenario-icon" style="background:#ECFDF5;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#0D7377" stroke-width="1.5"/><path d="M9 5V9L12 11" stroke="#0D7377" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; own site</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has occurred before at this wind farm. The resolution is documented locally &mdash; the challenge is finding it quickly.</p>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">Four fault scenarios, two product modules</h2>
+      
+      <div class="cs-grid-2">
+        <div class="info-card">
+          <h3 class="font-sora" style="font-size:15px; font-weight:700; color:#111; margin:0;">Known fault &mdash; own site</h3>
+          <p style="font-size:13px; color:#666; margin:0;">Resolution is documented locally. Challenge is finding it quickly.</p>
         </div>
-        <div class="scenario-card">
-          <div class="scenario-icon" style="background:#E6F4F1;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#1A7A6A" stroke-width="1.5"/><path d="M6 9H12M9 6V12" stroke="#1A7A6A" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; other site <span class="tag tag-teal" style="font-size:9px;padding:2px 6px;vertical-align:middle;margin-left:6px;">Highest impact</span></h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">Another RWE wind farm has solved this exact fault. But knowledge doesn&rsquo;t travel between sites &mdash; it sits in someone&rsquo;s head or a local PDF.</p>
-        </div>
-        <div class="scenario-card">
-          <div class="scenario-icon" style="background:#ECFDF5;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#0D7377" stroke-width="1.5"/><path d="M6 9H12" stroke="#0D7377" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Known fault &mdash; multiple sites</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">The fault has been resolved at multiple sites. Consolidating root causes and comparing approaches would save significant diagnosis time.</p>
-        </div>
-        <div class="scenario-card">
-          <div class="scenario-icon" style="background:#FEF0F0;">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 15H2L9 2Z" stroke="#C44B4B" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 7V10" stroke="#C44B4B" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.75" fill="#C44B4B"/></svg>
-          </div>
-          <h3 class="font-sora text-[15px] font-bold text-[#111111]">Unknown fault</h3>
-          <p class="font-inter text-[#666666] text-[13px] leading-[1.6]">A completely new fault with no prior resolution. Requires on-site investigation, hypothesis testing, and thorough documentation for future reference.</p>
+        <div class="info-card" style="border-color:#0D7377; background:#F0FDFA;">
+          <h3 class="font-sora" style="font-size:15px; font-weight:700; color:#0D7377; margin:0;">Known fault &mdash; other site</h3>
+          <p style="font-size:13px; color:#555; margin:0;">Highest impact area. Knowledge doesn&rsquo;t currently travel between sites.</p>
         </div>
       </div>
 
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 mt-4">
-        <span class="label-accent" style="font-size:10px;">Product scope</span>
-        <div class="cs-grid-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Module 1: Troubleshooting</h3>
-            <p class="font-inter text-[#666666] text-[13px] leading-[1.7]">Fault search, root cause lookup across sites, consolidated cause comparison, and work order drafting. Primarily used by the Maintenance Coordinator on desktop.</p>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Module 2: Documentation</h3>
-            <p class="font-inter text-[#666666] text-[13px] leading-[1.7]">Structured capture of repair outcomes, photos, notes, and knowledge transfer. Primarily used by Technicians on iPad while offshore or immediately post-trip.</p>
-          </div>
+      <div class="callout cs-grid-2" style="margin-top:16px;">
+        <div>
+          <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Module 1: Desktop</h3>
+          <p style="font-size:13px; color:#555;">Fault search, cross-site lookup, and work order drafting for Coordinators.</p>
+        </div>
+        <div>
+          <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Module 2: iPad</h3>
+          <p style="font-size:13px; color:#555;">Structured capture of repairs and photos for Technicians on-site.</p>
         </div>
       </div>
     </div>
 
-    <div class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-      <span class="label-accent">Collaboration</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Navigating a complex stakeholder landscape</h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
-        A cross-functional environment with competing priorities &mdash; BCG consultants focused on operational efficiency, Product Owners concerned with SAP integration timelines, Business Partners representing site-specific needs, and Team Leads managing offshore logistics.
-      </p>
-
-      <div class="flex flex-wrap gap-3">
-        <div class="stake-pill">
-          <div class="stake-dot" style="background:#0D7377;"></div>
-          <div class="flex flex-col">
-            <span class="font-inter text-[13px] font-semibold text-[#111111]">3 BCG Consultants</span>
-            <span class="font-inter text-[12px] text-[#777777]">Strategy &amp; operations</span>
-          </div>
-        </div>
-        <div class="stake-pill">
-          <div class="stake-dot" style="background:#1A7A6A;"></div>
-          <div class="flex flex-col">
-            <span class="font-inter text-[13px] font-semibold text-[#111111]">2 Product Owners</span>
-            <span class="font-inter text-[12px] text-[#777777]">Backlog &amp; priorities</span>
-          </div>
-        </div>
-        <div class="stake-pill">
-          <div class="stake-dot" style="background:#3B82F6;"></div>
-          <div class="flex flex-col">
-            <span class="font-inter text-[13px] font-semibold text-[#111111]">2 Team Leads</span>
-            <span class="font-inter text-[12px] text-[#777777]">Offshore operations</span>
-          </div>
-        </div>
-        <div class="stake-pill">
-          <div class="stake-dot" style="background:#8B5CF6;"></div>
-          <div class="flex flex-col">
-            <span class="font-inter text-[13px] font-semibold text-[#111111]">3 Business Partners</span>
-            <span class="font-inter text-[12px] text-[#777777]">Site-specific requirements</span>
-          </div>
-        </div>
-        <div class="stake-pill">
-          <div class="stake-dot" style="background:#EC4899;"></div>
-          <div class="flex flex-col">
-            <span class="font-inter text-[13px] font-semibold text-[#111111]">1 BCG Designer</span>
-            <span class="font-inter text-[12px] text-[#777777]">Design execution</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6">
-        <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
-          <strong>How I managed this:</strong> Weekly design review rituals with a rotating set of stakeholders, design decisions framed as hypotheses tied to business metrics, and a shared Mural board as the single source of truth. When priorities conflicted, I grounded the argument in data from shadowing sessions.
-        </p>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <span class="font-inter text-[11px] font-semibold tracking-[0.10em] uppercase text-[#999999]">Process artifacts I created</span>
-        <div class="cs-grid-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">Shared Mural board</span>
-            <span class="font-inter text-[#555555] text-[13px] leading-[1.6]">Single source of truth for all design decisions. Journey maps, IA proposals, wireframe feedback, and scope decisions &mdash; all time-stamped and linked to review outcomes.</span>
-          </div>
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">Design principles doc</span>
-            <span class="font-inter text-[#555555] text-[13px] leading-[1.6]">7 formalized principles to steer the BCG designer. Examples: &ldquo;Search is always the entry point,&rdquo; &ldquo;Status visible without interaction,&rdquo; &ldquo;One primary action per screen.&rdquo;</span>
-          </div>
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">Annotated handoff specs</span>
-            <span class="font-inter text-[#555555] text-[13px] leading-[1.6]">15+ screens with interaction annotations, component documentation, edge case specs, and responsive behavior notes. Delivered via Figma with linked Confluence pages.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div id="sec-process" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-process" class="flex-col fade-up" style="gap:32px;">
       <span class="label-accent">05 &middot; Process</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">How I structured the work</h2>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">How I structured the work</h2>
 
-      <div class="flex flex-col gap-8">
-
-        <div class="flex gap-5 sm:gap-8 relative">
-          <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#ECFDF5] border-2 border-[#0D7377] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#0D7377]">1</span>
-            </div>
-            <div class="step-line"></div>
+      <div class="flex-col" style="gap:32px;">
+        <div style="display:flex; gap:24px; position:relative;">
+          <div class="step-line"></div>
+          <div style="width:40px; height:40px; border-radius:50%; background:#ECFDF5; border:2px solid #0D7377; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span class="font-sora" style="font-size:14px; font-weight:700; color:#0D7377;">1</span>
           </div>
-          <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Research &amp; shadowing <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 1&ndash;3</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Conducted interviews and contextual shadowing sessions with ~10 participants across maintenance coordinators, lead technicians, and offshore technicians. Observed real troubleshooting workflows in control rooms. Synthesized findings into a research report and presented to the full stakeholder group.</p>
+          <div>
+            <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Research &amp; Shadowing</h3>
+            <p style="font-size:14px; color:#555;">Conducted interviews and contextual shadowing sessions in control rooms.</p>
           </div>
         </div>
 
-        <div class="flex gap-5 sm:gap-8 relative">
-          <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#ECFDF5] border-2 border-[#0D7377] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#0D7377]">2</span>
-            </div>
-            <div class="step-line"></div>
+        <div style="display:flex; gap:24px; position:relative;">
+          <div class="step-line"></div>
+          <div style="width:40px; height:40px; border-radius:50%; background:#ECFDF5; border:2px solid #0D7377; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span class="font-sora" style="font-size:14px; font-weight:700; color:#0D7377;">2</span>
           </div>
-          <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">As-is journey mapping <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 3&ndash;4</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Mapped the end-to-end troubleshooting journey across both user roles, covering every location transition &mdash; SCADA alarm, control room diagnosis, offshore travel, turbine-level work, and post-trip documentation. Identified critical pain points and information gaps at each stage. Validated with stakeholders in a collaborative Mural workshop.</p>
+          <div>
+            <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Vision Journey &amp; IA</h3>
+            <p style="font-size:14px; color:#555;">Defined the target-state journey and designed the Information Architecture around two modules.</p>
           </div>
         </div>
 
-        <div class="flex gap-5 sm:gap-8 relative">
-          <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#ECFDF5] border-2 border-[#0D7377] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#0D7377]">3</span>
-            </div>
-            <div class="step-line"></div>
+        <div style="display:flex; gap:24px; position:relative;">
+          <div style="width:40px; height:40px; border-radius:50%; background:#111111; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span class="font-sora" style="font-size:14px; font-weight:700; color:#FFF;">3</span>
           </div>
-          <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Vision journey &amp; IA <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 4&ndash;6</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Defined the target-state journey &mdash; where the new tool would intervene. Designed the IA around two modules (Troubleshooting + Documentation) and four fault scenarios. Aligned BCG consultants, Team Leads, and Product Owners on scope. This was the hardest alignment phase &mdash; I had to defend the 2-module split against pushback for a single monolithic tool.</p>
+          <div>
+            <h3 class="font-sora" style="font-size:16px; font-weight:700; color:#111; margin-bottom:8px;">Prototyping &amp; Handoff</h3>
+            <p style="font-size:14px; color:#555;">Designed 15+ screens in Figma, handled stakeholder reviews, and delivered annotated interaction specs.</p>
           </div>
         </div>
-
-        <div class="flex gap-5 sm:gap-8 relative">
-          <div class="relative shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#ECFDF5] border-2 border-[#0D7377] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-[#0D7377]">4</span>
-            </div>
-            <div class="step-line"></div>
-          </div>
-          <div class="flex flex-col gap-2 pb-8">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">Wireframing &amp; prototyping <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 6&ndash;10</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Designed key screens in Figma: dashboard with fault search, fault results, consolidated root causes, work order drafts, and the technician documentation flow (iPad). Iterated rapidly through 3 rounds of stakeholder feedback, refining interactions and information hierarchy at each pass.</p>
-          </div>
-        </div>
-
-        <div class="flex gap-5 sm:gap-8">
-          <div class="shrink-0">
-            <div class="w-10 h-10 rounded-full bg-[#111111] border-2 border-[#111111] flex items-center justify-center">
-              <span class="font-sora text-[13px] font-bold text-white">5</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111]">QA &amp; handoff <span class="font-inter text-[12px] font-medium text-[#AAAAAA] ml-2">Week 10&ndash;12</span></h3>
-            <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Quality reviews across 15+ screens for consistency, interaction patterns, and edge cases. Directed the BCG designer&rsquo;s remaining screens. Final reviews with Business Partners and Product Owners. Delivered a production-ready prototype with interaction specs and annotated handoff documentation.</p>
-          </div>
-        </div>
-
       </div>
     </div>
 
-    <div id="sec-vision" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-vision" class="flex-col fade-up" style="gap:16px;">
       <span class="label-accent">06 &middot; Vision</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The redesigned journey &mdash; one platform, two modules</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The vision journey shows where the new tool plugs in. Instead of context-switching between SAP, PDFs, phone calls, and personal notes, both user roles now follow a streamlined digital workflow within a single platform &mdash; with each module optimized for its specific user context.
-        </p>
-      </div>
-    </div>
-
-    <div class="flex flex-col gap-4 fade-up">
-      <div class="flex items-center gap-3">
-        <span class="compare-after compare-label">After</span>
-        <span class="font-inter text-[15px] font-semibold text-[#333333]">Vision Troubleshooting Journey</span>
-      </div>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">The redesigned journey</h2>
       <div class="image-block">
         <div class="journey-scroll">
-          <div style="min-width: 1400px;" class="relative">
-            <img src="./images/journey-vision.jpg" alt="Vision troubleshooting user journey map with new tool" class="w-full block"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:block" />
-            <div class="img-placeholder h-[300px]" style="display:none;">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="8" fill="#E8E5DF"/>
-                <rect x="4" y="12" width="32" height="2" rx="1" fill="#1A7A6A" opacity="0.3"/>
-                <rect x="4" y="18" width="28" height="2" rx="1" fill="#1A7A6A" opacity="0.2"/>
-                <rect x="4" y="24" width="30" height="2" rx="1" fill="#1A7A6A" opacity="0.2"/>
-              </svg>
-              <span class="font-inter text-[#999999] text-[12px] font-medium">Vision Journey Map &middot; Scroll to explore &rarr;</span>
-            </div>
+          <div style="min-width: 1400px;">
+            <img src="./images/hq/journey-vision.jpg" alt="Vision Journey Map" onerror="this.style.display='none'" />
           </div>
         </div>
         <div class="image-caption" style="justify-content:space-between;">
-          <span style="display:flex;align-items:center;gap:6px;">
-            Vision journey &mdash; the new tool intervenes at control room and offshore. Scroll to explore.
-          </span>
-          <span style="color:#0D7377;font-weight:600;white-space:nowrap;font-size:11px;cursor:pointer;">Click to zoom &uarr;</span>
+          <span>Vision journey map with the new digital tool intervening.</span>
+          <span style="color:#0D7377; font-size:11px; cursor:pointer;">Click to zoom</span>
         </div>
       </div>
     </div>
 
-    <div id="sec-screens" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-screens" class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">07 &middot; Key screens</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">The solution: a structured troubleshooting platform</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The final design centers around a searchable fault database, consolidated root cause views, and integrated work order creation &mdash; all in one tool. Here are the key screens from Module 1 (Troubleshooting) and Module 2 (Documentation).
-        </p>
-      </div>
-    </div>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">A structured troubleshooting platform</h2>
 
-    <div class="fade-up" style="background:#111111;border-radius:16px;padding:28px 24px 32px;overflow:hidden;">
-      <div class="flex items-center gap-2 mb-5">
-        <div style="width:6px;height:6px;border-radius:50%;background:#14B8A6;"></div>
-        <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:rgba(255,255,255,0.45);">The 3-screen flow</span>
-      </div>
-      <div class="grid grid-cols-3 gap-3 sm:gap-4 items-end">
-        <div class="flex flex-col gap-2">
-          <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-            <img src="./images/screen-dashboard.jpg" alt="Step 1: Dashboard & fault search" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#14B8A6;">1</span>
-            <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Search fault</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-            <img src="./images/screen-work-order.jpg" alt="Step 2: Draft work order" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#14B8A6;">2</span>
-            <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Draft work order</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-            <img src="./images/screen-documentation.jpg" alt="Step 3: Document on iPad" class="w-full block" style="display:block;" onerror="this.parentElement.style.display='none'" />
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="font-sora text-[11px] font-bold" style="color:#14B8A6;">3</span>
-            <span class="font-inter text-[11px] font-medium" style="color:rgba(255,255,255,0.6);">Document on iPad</span>
-          </div>
-        </div>
-      </div>
-      <p class="font-inter text-[11px] sm:text-[12px] leading-[1.6] mt-4" style="color:rgba(255,255,255,0.35);max-width:600px;">
-        Coordinator searches a fault code &rarr; reviews cross-site root causes &rarr; drafts a work order &rarr; technician receives it on iPad offshore and documents the repair. The documentation feeds back into the search database. Scroll down for annotated deep-dives of each screen.
-      </p>
-    </div>
-
-    <div class="flex flex-col gap-4 fade-up" id="screenTabs">
       <div class="screen-tabs">
-        <button type="button" class="screen-tab is-active" data-tab="tab-dashboard">
-          <span class="hidden sm:inline">Dashboard &amp; Fault Search</span>
-          <span class="sm:hidden">Dashboard</span>
-        </button>
-        <button type="button" class="screen-tab" data-tab="tab-workorder">
-          <span class="hidden sm:inline">Work Order Draft</span>
-          <span class="sm:hidden">Work Order</span>
-        </button>
-        <button type="button" class="screen-tab" data-tab="tab-documentation">
-          <span class="hidden sm:inline">Documentation (iPad)</span>
-          <span class="sm:hidden">Docs</span>
-        </button>
+        <button type="button" class="screen-tab is-active" data-tab="tab-dashboard">Dashboard (Desktop)</button>
+        <button type="button" class="screen-tab" data-tab="tab-documentation">Documentation (iPad)</button>
       </div>
 
       <div class="screen-panel is-active" id="tab-dashboard">
-        <div class="flex items-center gap-3 flex-wrap mb-3">
-          <span class="tag tag-teal">Module 1</span>
-          <span class="font-inter text-[12px] text-[#888888]">Desktop &mdash; used by Maintenance Coordinators in control room</span>
-        </div>
-        <div class="image-block">
-          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-            <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
-              onerror="this.style.display='none'" style="display:block;" />
-            <div class="hotspot hotspot-below" style="top:11%;left:33%;">
-              <div class="hotspot-dot">1</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Fault Search modal</span>
-                Fault code entry as the primary action. Coordinator arrives with a SCADA alarm code and goes directly to search &mdash; zero navigation clicks.
-              </div>
-            </div>
-            <div class="hotspot hotspot-left" style="top:38%;left:4%;">
-              <div class="hotspot-dot">2</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Recent Alarms panel</span>
-                Active &amp; solved faults across the fleet with color-coded status. Gives coordinators situational awareness alongside search.
-              </div>
-            </div>
-            <div class="hotspot hotspot-right" style="top:66%;right:4%;">
-              <div class="hotspot-dot">3</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Site network overview</span>
-                Visual map of turbine assets and connections. Designed for spatial orientation &mdash; coordinators think in terms of physical topology, not lists.
-              </div>
-            </div>
-          </div>
-          <div class="image-caption">
-            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
-          </div>
-        </div>
-      </div>
-
-      <div class="screen-panel" id="tab-workorder">
-        <div class="flex items-center gap-3 flex-wrap mb-3">
-          <span class="tag tag-teal">Module 1</span>
-          <span class="font-inter text-[12px] text-[#888888]">Desktop &mdash; coordinator drafts tasks for the offshore technician</span>
-        </div>
-        <div class="image-block">
-          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-            <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
-              onerror="this.style.display='none'" style="display:block;" />
-            <div class="hotspot hotspot-below" style="top:15%;left:50%;">
-              <div class="hotspot-dot">1</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Auto-populated from root cause</span>
-                Fault details, selected root cause, and recommended actions pre-fill from Module 1&rsquo;s search. The coordinator edits, not writes from scratch.
-              </div>
-            </div>
-            <div class="hotspot" style="top:50%;left:30%;">
-              <div class="hotspot-dot">2</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Structured task fields</span>
-                Instead of free-text, each action is a discrete row. This ensures the technician gets clear, step-by-step instructions on their iPad.
-              </div>
-            </div>
-            <div class="hotspot hotspot-left" style="bottom:15%;right:25%;">
-              <div class="hotspot-dot">3</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Direct flow to Module 2</span>
-                Submitted work orders automatically appear in the technician&rsquo;s documentation queue. This is the handoff bridge between the two modules.
-              </div>
-            </div>
-          </div>
-          <div class="image-caption">
-            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
-          </div>
+        <div class="image-block" style="background:#F4F3EF;">
+          <img src="./images/hq/screen-dashboard.jpg" alt="Dashboard" onerror="this.style.display='none'" />
+          <div class="image-caption">Module 1: Search-first interface for fast cross-site lookups in the control room.</div>
         </div>
       </div>
 
       <div class="screen-panel" id="tab-documentation">
-        <div class="flex items-center gap-3 flex-wrap mb-3">
-          <span class="tag tag-teal">Module 2</span>
-          <span class="font-inter text-[12px] text-[#888888]">iPad &mdash; used by Technicians offshore with gloved hands</span>
-        </div>
-        <div class="image-block">
-          <div class="relative screen-annotated" style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-            <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad" class="w-full block"
-              onerror="this.style.display='none'" style="display:block;" />
-            <div class="hotspot hotspot-below" style="top:10%;left:45%;">
-              <div class="hotspot-dot">1</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Photo-first capture</span>
-                Large camera button at the top. Technicians photograph the fault first, then add structured metadata. Designed for gloved hands in harsh conditions.
-              </div>
-            </div>
-            <div class="hotspot hotspot-right" style="top:40%;left:20%;">
-              <div class="hotspot-dot">2</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Structured fields, not free-text</span>
-                Repair outcome, root cause confirmation, and parts used are dropdowns/selects, not text entry. Consistent data feeds back into Module 1&rsquo;s knowledge base.
-              </div>
-            </div>
-            <div class="hotspot" style="top:70%;right:30%;">
-              <div class="hotspot-dot">3</div>
-              <div class="hotspot-tip">
-                <span class="hotspot-tip-title">Offline sync indicator</span>
-                Clear status showing whether data has synced to the server. Designed for unreliable offshore connectivity &mdash; the technician knows their work is saved locally even without network.
-              </div>
-            </div>
-          </div>
-          <div class="image-caption">
-            Hover the numbered hotspots to explore design decisions. Click anywhere to zoom.
-          </div>
+        <div class="image-block" style="background:#F4F3EF;">
+          <img src="./images/hq/screen-documentation.jpg" alt="iPad Documentation" onerror="this.style.display='none'" />
+          <div class="image-caption">Module 2: Photo-first, large touch-target design for offshore gloved usage.</div>
         </div>
       </div>
     </div>
 
-    <div class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-      <span class="label-accent">Design system &amp; scalability</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Building patterns, not just screens</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          This project wasn&rsquo;t a one-off prototype. RWE planned to extend the tool to additional turbine types, new wind farm sites, and potentially onshore wind operations. Every design decision needed to account for that future scale &mdash; not just the immediate 3-month scope.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I built a modular component library in Figma that served both modules and both device contexts (desktop + iPad). Here&rsquo;s how I approached scalability:
-        </p>
+    <div id="sec-decisions" class="flex-col fade-up" style="gap:24px;">
+      <span class="label-accent">08 &middot; Key decisions</span>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">Decisions that shaped the product</h2>
+      
+      <div class="info-card">
+        <h3 class="font-sora" style="font-size:17px; font-weight:700; color:#111; margin:0;">Search-first Information Architecture</h3>
+        <p style="font-size:14px; color:#555; margin:0;"><strong>Tradeoff:</strong> I chose a central search bar over a nested folder navigation. Coordinators arrive with a specific SCADA alarm code; they are hunting, not exploring. Zero clicks to start the search saves critical time.</p>
       </div>
 
-      <div class="cs-grid-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#0D7377" stroke-width="1.3"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#0D7377" stroke-width="1.3"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#0D7377" stroke-width="1.3"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#0D7377" stroke-width="1.3"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Shared component library</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Fault cards, status indicators, search patterns, and form elements were designed as reusable components across both modules. New turbine types or fault categories could be added without designing new UI &mdash; just new data.</p>
-        </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V16M2 9H16" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="#0D7377" stroke-width="1.3"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Device-adaptive patterns</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 1 (desktop) and Module 2 (iPad) share the same data model and interaction grammar, but the UI adapts to context. Large tap targets and photo-first capture for offshore iPad use; dense data tables and keyboard-driven search for the control room.</p>
-        </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 12L9 6L15 12" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16L9 10L15 16" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Edge case handling</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">What happens when a fault has zero matches? When a technician is offline at sea? When two sites document contradictory root causes? I designed empty states, offline indicators, and conflict resolution flows &mdash; not just the happy path.</p>
-        </div>
-      </div>
-
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6">
-        <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
-          <strong>Why this matters for scalability:</strong> The component library and pattern system meant the BCG designer I steered could produce consistent screens faster. It also meant the development team (who received the handoff) had clear, repeatable patterns to implement &mdash; reducing the gap between design intent and production output. I documented every component with usage guidelines, not just visual specs.
-        </p>
+      <div class="info-card">
+        <h3 class="font-sora" style="font-size:17px; font-weight:700; color:#111; margin:0;">Offline-first iPad Architecture</h3>
+        <p style="font-size:14px; color:#555; margin:0;"><strong>Context:</strong> Discovered during shadowing that offshore connectivity is terrible. Designed the iPad flow to cache inputs and photos locally with persistent sync indicators, rather than failing gracefully.</p>
       </div>
     </div>
 
-    <div class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-      <span class="label-accent">Accessibility &amp; context-aware design</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Designing for harsh environments, not just screens</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          This wasn&rsquo;t a typical office SaaS product. One module is used in a control room under time pressure; the other on an iPad offshore, in rain, with gloved hands. Every design decision had to account for the physical reality of the user&rsquo;s environment.
-        </p>
-      </div>
-
-      <div class="cs-grid-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#0D7377" stroke-width="1.3"/><path d="M6 9L8.5 11.5L12.5 6.5" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Touch targets for gloved hands</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 2 (iPad) uses minimum 48&times;48px touch targets &mdash; 10px above Apple&rsquo;s guideline. Buttons are spaced with 12px gutters to prevent mis-taps. Photo capture is a single large button, not a small icon. Tested by simulating gloved interaction with thickened fingertips on the prototype.</p>
-        </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#0D7377" stroke-width="1.3"/><path d="M5 9H13" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round"/><path d="M9 5V13" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Color contrast &amp; outdoor visibility</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">All status indicators use WCAG AA contrast ratios minimum. Critical fault statuses use both color and icon (red + warning triangle) to work for color-blind users. The iPad module uses higher contrast ratios (5.5:1+) because offshore screens compete with direct sunlight and salt spray.</p>
-        </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="5" width="12" height="8" rx="1.5" stroke="#0D7377" stroke-width="1.3"/><path d="M2 7H16M6 5V13" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Desktop &harr; iPad responsive logic</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Not just responsive breakpoints &mdash; a fundamentally different interaction model per device. Module 1 (desktop) prioritizes keyboard-driven search and data density for the control room. Module 2 (iPad) prioritizes one-handed operation, camera-first workflows, and progressive disclosure to reduce cognitive load while on a turbine.</p>
-        </div>
-        <div class="bg-white rounded-[12px] border border-[#E8E5DF] p-5 sm:p-6 flex flex-col gap-3">
-          <div class="w-9 h-9 rounded-[8px] bg-[#ECFDF5] flex items-center justify-center shrink-0">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2V4M9 14V16M2 9H4M14 9H16M4.2 4.2L5.6 5.6M12.4 12.4L13.8 13.8M4.2 13.8L5.6 12.4M12.4 5.6L13.8 4.2" stroke="#0D7377" stroke-width="1.3" stroke-linecap="round"/></svg>
-          </div>
-          <h3 class="font-sora text-[14px] font-bold text-[#111111]">Offline-first architecture</h3>
-          <p class="font-inter text-[#666666] text-[12px] leading-[1.6]">Module 2 works without network by default. All form data saves locally, photos store on-device, and a persistent sync status bar tells the technician execution exactly what&rsquo;s uploaded and what&rsquo;s pending. This wasn&rsquo;t a graceful degradation &mdash; it was the primary design constraint discovered during shadowing.</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="sec-decisions" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-      <span class="label-accent">08 &middot; Key design decisions</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">Three decisions that shaped the product</h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
-        Every design decision involved trade-offs. Here are three strategic choices I made &mdash; and the alternatives I considered before committing.
-      </p>
-
-      <div class="flex flex-col gap-8">
-
-        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
-          <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">A</span>
-            <div class="flex flex-col gap-2">
-              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Cross-site fault search as the entry point</h3>
-              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">The biggest unlock was making fault resolutions searchable across all RWE wind farms. Previously, a technician at Site A had no way to know that Site B had already solved the exact same fault.</p>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
-            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
-            <div class="flex flex-col gap-2">
-              <div class="tradeoff-chosen tradeoff-option">
-                <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
-                <span class="font-inter text-[#333333]"><strong>Search-first IA</strong> &mdash; search bar as the primary entry point, zero clicks to start</span>
-              </div>
-              <div class="tradeoff-option">
-                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-                <span class="font-inter text-[#888888]"><strong>Navigation-first IA</strong> &mdash; browse by site &rarr; turbine &rarr; fault. Too many clicks for the most common scenario.</span>
-              </div>
-            </div>
-            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
-              <strong style="color:#444;">The conceptual reasoning:</strong> Navigation-first works when users browse. But in fault resolution, coordinators arrive with a specific SCADA alarm code in hand. They need to go from &ldquo;I have error code X&rdquo; to &ldquo;here&rsquo;s how other sites resolved it&rdquo; in one action. A search-first IA mirrors their mental model &mdash; they&rsquo;re not exploring, they&rsquo;re hunting. The IA needed to match that intent.
-            </p>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
-          <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">B</span>
-            <div class="flex flex-col gap-2">
-              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Consolidated root cause comparison</h3>
-              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">When a fault has been resolved at multiple sites, the tool shows all root causes side-by-side with frequency data. This eliminates one of the biggest time sinks in the as-is workflow &mdash; calling colleagues at other sites.</p>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
-            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
-            <div class="flex flex-col gap-2">
-              <div class="tradeoff-chosen tradeoff-option">
-                <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
-                <span class="font-inter text-[#333333]"><strong>Consolidated view with frequency</strong> &mdash; side-by-side comparison with occurrence counts across sites</span>
-              </div>
-              <div class="tradeoff-option">
-                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-                <span class="font-inter text-[#888888]"><strong>Flat list of resolutions</strong> &mdash; simpler to build but doesn&rsquo;t help the coordinator pick the most likely cause</span>
-              </div>
-            </div>
-            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
-              <strong style="color:#444;">The conceptual reasoning:</strong> A flat list puts the cognitive burden on the coordinator &mdash; they have to read every resolution and mentally rank them. The consolidated view with frequency counts does that work for them. If 4 out of 5 sites resolved the same fault with &ldquo;sensor recalibration,&rdquo; that signal should be visually obvious, not buried in a list. This is about reducing decision-making time under pressure, not just information display.
-            </p>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
-          <div class="flex items-start gap-4">
-            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">C</span>
-            <div class="flex flex-col gap-2">
-              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Integrated work order &rarr; documentation loop</h3>
-              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">Work orders created in Module 1 flow directly into Module 2 as structured documentation templates on the technician&rsquo;s iPad. This closes the feedback loop: the diagnosis informs the task, and the task outcome feeds back into the knowledge base.</p>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
-            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Why this matters</span>
-            <div class="callout px-5 py-4">
-              <p class="font-inter text-[#555555] text-[13px] leading-[1.7]">
-                The documentation flow is the flywheel, not a secondary feature. Without structured contributions from technicians, the fault database stays empty. I designed the documentation module to make contributing feel effortless &mdash; so the knowledge base would grow organically over time.
-              </p>
-            </div>
-            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
-              <strong style="color:#444;">The conceptual reasoning:</strong> The BCG team initially wanted to treat documentation as a separate backlog item &mdash; &ldquo;ship troubleshooting first, add documentation later.&rdquo; I pushed back because the tool&rsquo;s value compounds over time &mdash; it only works if the knowledge base grows. Module 2 isn&rsquo;t a feature; it&rsquo;s the product strategy. Without the documentation loop, you&rsquo;re building a search engine with no content. I framed this as an operational risk, not a design preference, which is what finally got stakeholder buy-in.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div id="sec-outcome" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+    <div id="sec-outcome" class="flex-col fade-up" style="gap:24px;">
       <span class="label-accent">09 &middot; Outcome</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I shipped in 12 weeks</h2>
-      <div class="flex flex-col gap-4 max-w-[720px]">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The production-ready prototype was delivered in 3 months &mdash; from first stakeholder interview to annotated handoff documentation. The product is now in development. Here&rsquo;s what I can measure directly:
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:flex-row w-full">
-        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#0D7377]">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">7 &rarr; 3</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Fault diagnosis workflow steps reduced &mdash; from 4 disconnected systems to 1 unified platform</p>
+      <h2 class="font-sora text-[#111111]" style="font-size:clamp(24px, 3vw, 30px); font-weight:700; line-height:1.2;">Impact in 12 weeks</h2>
+      <div class="cs-grid-4">
+        <div style="border-top:2px solid #0D7377; padding-top:16px;">
+          <span class="font-sora" style="font-size:36px; font-weight:700; color:#111;">7 &rarr; 3</span>
+          <p style="font-size:13px; color:#666;">Steps to resolution</p>
         </div>
-        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">15+</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Production-ready screens across 2 modules, with interaction specs and handoff docs</p>
+        <div style="border-top:2px solid #E8E5DF; padding-top:16px;">
+          <span class="font-sora" style="font-size:36px; font-weight:700; color:#111;">15+</span>
+          <p style="font-size:13px; color:#666;">Screens shipped</p>
         </div>
-        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">3</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Stakeholder review cycles to full alignment (vs. the typical 6+ for cross-functional projects at RWE)</p>
-        </div>
-        <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-          <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">0 &rarr; 1</span>
-          <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Cross-site knowledge sharing tools before this project: zero. Now: a searchable fleet-wide fault database</p>
-        </div>
-      </div>
-
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 mt-2">
-        <span class="label-accent" style="font-size:10px;">Broader impact</span>
-        <div class="flex flex-col gap-3 max-w-[720px]">
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
-            <strong>Before this project:</strong> Each RWE wind farm was an island. Knowledge stayed local, experienced technicians were single points of failure, and fault diagnosis depended on who you knew.
-          </p>
-          <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
-            <strong>After this project:</strong> A single platform connects all sites. Every resolved fault becomes a searchable resource for the entire fleet. New technicians can access institutional knowledge from day one &mdash; reducing onboarding risk and operational dependency on senior staff.
-          </p>
+        <div style="border-top:2px solid #E8E5DF; padding-top:16px;">
+          <span class="font-sora" style="font-size:36px; font-weight:700; color:#111;">0 &rarr; 1</span>
+          <p style="font-size:13px; color:#666;">Cross-site tools created</p>
         </div>
       </div>
     </div>
 
-    <div id="sec-learnings" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-      <span class="label-accent">10 &middot; Learnings</span>
-      <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I took from this project</h2>
-      <div class="flex flex-col gap-6 max-w-[720px]">
-
-        <div class="flex gap-4">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">01</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The scope fight that shaped the product</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              The hardest moment in this project was Week 5, when BCG pushed to merge both modules into a single monolithic tool to &ldquo;simplify development.&rdquo; I argued that the two modules serve fundamentally different contexts (desktop control room vs. offshore iPad with gloved hands), and merging them would compromise both. The debate lasted two review cycles. I won it by showing the journey map with physical location transitions highlighted &mdash; you can&rsquo;t use the same UI in a control room and on a turbine nacelle. <strong>This taught me that defending a design decision requires evidence, not conviction.</strong>
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">02</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">Steering someone&rsquo;s output requires principles, not preferences</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              When I first reviewed the BCG designer&rsquo;s screens, the quality was inconsistent &mdash; not because they lacked skill, but because I hadn&rsquo;t given them clear enough constraints. Saying &ldquo;make the spacing feel better&rdquo; doesn&rsquo;t work across review cycles. I formalized my thinking into documented design principles: &ldquo;search is always the entry point,&rdquo; &ldquo;status information is visible without interaction,&rdquo; &ldquo;one primary action per screen.&rdquo; Once I did that, their output snapped into place.
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">03</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">The technical constraint that improved the design</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Offshore iPad connectivity is unreliable &mdash; technicians often work with intermittent or no network access. This wasn&rsquo;t in the original brief; I discovered it during shadowing. It forced a design rethink: Module 2&rsquo;s documentation flow had to work offline-first, with sync-when-available. This constraint actually made the design better &mdash; structured capture fields instead of free-form text, local photo storage before upload, and clear sync status indicators. <strong>The best constraints come from real user environments, not product specs.</strong>
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          <div class="shrink-0 mt-1">
-            <div class="w-8 h-8 rounded-[6px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[12px] font-bold text-[#0D7377]">04</span>
-            </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[15px] font-bold text-[#111111]">What I&rsquo;d do differently &mdash; a specific testing plan</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              We validated through stakeholder reviews and workflow analysis, but I didn&rsquo;t get prototype-in-hand testing with actual end users until late in the process. If I did this again, here&rsquo;s the testing plan I&rsquo;d run:
-            </p>
-            <ul style="list-style:none;padding:0;margin:8px 0 0 0;display:flex;flex-direction:column;gap:8px;">
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#0D7377;font-weight:700;">1.</span><strong>Week 3 &mdash; First-click test</strong> with 3&ndash;4 onshore coordinators on a static Figma prototype of the dashboard. Goal: validate that search-first IA matches their mental model. Can run remotely in 20-minute sessions.</li>
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#0D7377;font-weight:700;">2.</span><strong>Week 6 &mdash; Task completion test</strong> with 2&ndash;3 coordinators using the interactive prototype. Three tasks: search a fault code, compare root causes, draft a work order. Measure completion rate and time-on-task.</li>
-              <li class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.7]" style="padding-left:20px;position:relative;"><span style="position:absolute;left:0;color:#0D7377;font-weight:700;">3.</span><strong>Week 9 &mdash; Contextual walkthrough</strong> of Module 2 with 1&ndash;2 technicians on-site or via video call with screen share to an iPad. Test the documentation flow with gloved-hand simulation and offline scenario.</li>
-            </ul>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]" style="margin-top:8px;">
-              The logistics of offshore access made this genuinely hard &mdash; technicians are on rotating schedules and travel to turbines days in advance. But I should have prioritized the remote coordinator tests (steps 1&ndash;2), which had no logistical barrier. I&rsquo;d also invest more upfront in the component library, because the speed gains would have compounded through prototyping.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 max-w-[720px]" style="border-left-color:#7C3AED;">
-        <span class="font-inter text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing for AI &mdash; the intelligence layer this platform needs</span>
-        <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-          This project is a knowledge retrieval system at its core &mdash; and that&rsquo;s exactly where AI creates the most impact. The design decisions I made were shaped by awareness of where intelligent features would eventually plug in:
-        </p>
-        <div class="flex flex-col gap-3">
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">NLP-powered fault search</strong> &mdash; The search-first IA I chose (Decision A) assumed keyword-based search initially, but I structured the search results UI to display relevance scores and confidence indicators. This was deliberate: when NLP-based semantic search replaces keyword matching, the interface already supports ranked results with &ldquo;why this matched&rdquo; context &mdash; a core explainability pattern for AI-driven retrieval.
-            </p>
-          </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Automated root cause ranking</strong> &mdash; The consolidated comparison view (Decision B) displays frequency counts across sites. This is the manual version of what becomes a probabilistic recommendation: &ldquo;based on fleet-wide data, the most likely root cause is X with 78% confidence.&rdquo; I designed the comparison cards with expandable detail sections specifically to accommodate richer metadata like confidence scores and contributing factors.
-            </p>
-          </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">The documentation flywheel as training data</strong> &mdash; Module 2&rsquo;s structured documentation flow (Decision C) captures fault resolutions in categorised, machine-readable fields &mdash; not free-form text. This wasn&rsquo;t accidental. Structured data is what makes the knowledge base useful for both human search and future ML models. Every resolved fault documented through the system becomes training data for smarter recommendations.
-            </p>
-          </div>
-        </div>
+    <div class="info-card fade-up" style="background:#111111; border:none; padding:40px; margin-top:32px;">
+      <h2 class="font-sora text-[#FFF]" style="font-size:24px; font-weight:700; margin:0 0 16px 0;">Interested in working together?</h2>
+      <p style="font-size:14px; color:rgba(255,255,255,0.6); max-width:600px; margin:0 0 24px 0;">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</p>
+      <div style="display:flex; gap:16px;">
+        <a href="mailto:ayushbhamu7@gmail.com" style="background:#0D7377; color:#FFF; padding:10px 20px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none;">Email me</a>
+        <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" style="border:1px solid rgba(255,255,255,0.2); color:#FFF; padding:10px 20px; border-radius:6px; font-size:13px; font-weight:600; text-decoration:none;">LinkedIn &nearr;</a>
       </div>
     </div>
 
-    <div class="fade-up" style="background:#111111;border-radius:16px;padding:40px 32px;margin-top:8px;">
-      <div class="flex flex-col gap-6">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div class="flex flex-col gap-2">
-            <span class="font-sora text-[18px] sm:text-[22px] font-bold text-white leading-[1.3]">Interested in working together?</span>
-            <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
-          </div>
-          <div class="flex gap-3 shrink-0">
-            <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:#0D7377;color:#FFFFFF;text-decoration:none;">Email me</a>
-            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn &nearr;</a>
-          </div>
-        </div>
-        <p class="font-inter text-[13px] leading-[1.7]" style="color:rgba(255,255,255,0.4);max-width:680px;">
-          <strong style="color:rgba(255,255,255,0.55);">Why this translates to Indian B2B SaaS:</strong> The core problems I solved here &mdash; multi-stakeholder alignment, designing for complex enterprise workflows, building systems that scale across teams and geographies &mdash; are the same challenges facing product teams at Freshworks, Postman, Chargebee, and similar companies. I&rsquo;m looking to bring this enterprise complexity experience to the Indian SaaS ecosystem.
-        </p>
-      </div>
+    <div style="border-top:1px solid #E8E5DF; padding-top:40px; display:flex; justify-content:space-between; align-items:center;">
+      <a href="./case-study-2.html" class="font-sora" style="font-size:18px; font-weight:700; color:#111; text-decoration:none;">Delphi &mdash; Performance analysis &rarr;</a>
     </div>
 
-    <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
-        <a href="./case-study-2.html" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
-          Delphi &mdash; Wind turbine performance analysis platform &rarr;
-        </a>
+    </article>
+
+    <nav class="stepper-sidebar" id="stepperSidebar">
+      <div style="font-size:10px; font-weight:700; color:#AAA; text-transform:uppercase; margin-bottom:16px; letter-spacing:0.1em;">On this page</div>
+      <div class="flex-col">
+        <a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a>
+        <a href="#sec-users" class="stepper-link" data-section="sec-users">Users</a>
+        <a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a>
+        <a href="#sec-framing" class="stepper-link" data-section="sec-framing">Problem framing</a>
+        <a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a>
+        <a href="#sec-vision" class="stepper-link" data-section="sec-vision">Vision</a>
+        <a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a>
+        <a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Decisions</a>
+        <a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a>
       </div>
-      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr; All work</a>
-    </div>
-
-  </article>
-
-    <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
-      <div class="stepper-title">On this page</div>
-      <ul class="stepper-list">
-        <li><a href="#sec-context" class="stepper-link is-active" data-section="sec-context">Context</a></li>
-        <li><a href="#sec-users" class="stepper-link" data-section="sec-users">Users</a></li>
-        <li><a href="#sec-discovery" class="stepper-link" data-section="sec-discovery">Discovery</a></li>
-        <li><a href="#sec-framing" class="stepper-link" data-section="sec-framing">Problem framing</a></li>
-        <li><a href="#sec-process" class="stepper-link" data-section="sec-process">Process</a></li>
-        <li><a href="#sec-vision" class="stepper-link" data-section="sec-vision">Vision</a></li>
-        <li><a href="#sec-screens" class="stepper-link" data-section="sec-screens">Key screens</a></li>
-        <li><a href="#sec-decisions" class="stepper-link" data-section="sec-decisions">Design decisions</a></li>
-        <li><a href="#sec-outcome" class="stepper-link" data-section="sec-outcome">Outcome</a></li>
-        <li><a href="#sec-learnings" class="stepper-link" data-section="sec-learnings">Learnings</a></li>
-      </ul>
     </nav>
 
-  </div><footer class="cs-footer">
+  </div>
+
+  <footer class="cs-footer">
     <div class="cs-footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:24px;height:24px;border-radius:4px;background:#111111;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#FFFFFF;">A</span>
+      <div class="flex-center" style="gap:10px;">
+        <div class="cs-nav-logo-box" style="width:24px; height:24px;"><span>A</span></div>
+        <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu</span>
       </div>
-      <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:24px;">
-      <a href="mailto:ayushbhamu7@gmail.com" style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Email</a>
-      <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
-      <a href="https://bhamu.framer.website/" target="_blank" rel="noopener noreferrer" style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
-    </div>
+      <div class="flex-center" style="gap:24px;">
+        <a href="mailto:ayushbhamu7@gmail.com" style="color:#888; font-size:12px; text-decoration:none;">Email</a>
+        <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" style="color:#888; font-size:12px; text-decoration:none;">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
   <div class="lightbox" id="lightbox">
-    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-    <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
-    <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
-    <div class="lightbox-img-wrap">
-      <img id="lightboxImg" src="" alt="" />
-    </div>
+    <button type="button" class="lightbox-close" id="lightboxClose">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev">&lsaquo;</button>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext">&rsaquo;</button>
+    <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt="" /></div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 
@@ -2032,8 +680,7 @@
     window.addEventListener('scroll', function() {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      progressBar.style.width = progress + '%';
+      progressBar.style.width = (scrollTop / docHeight) * 100 + '%';
     });
 
     // ── Fade-in on scroll ──
@@ -2045,192 +692,95 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
-    fadeEls.forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight + 100) {
-        el.classList.add('is-visible');
-      } else {
-        observer.observe(el);
-      }
-    });
+    }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
 
     // ── Lightbox ──
-    const hqMap = {
-      './images/rwe-cover.jpg': './images/hq/rwe-cover.jpg',
-      './images/rwe-old-tools.jpg': './images/hq/rwe-old-tools.jpg',
-      './images/persona-coordinator.jpg': './images/hq/persona-coordinator.jpg',
-      './images/persona-technician.jpg': './images/hq/persona-technician.jpg',
-      './images/journey-as-is.jpg': './images/hq/journey-as-is.jpg',
-      './images/journey-vision.jpg': './images/hq/journey-vision.jpg',
-      './images/screen-dashboard.jpg': './images/hq/screen-dashboard.jpg',
-      './images/screen-work-order.jpg': './images/hq/screen-work-order.jpg',
-      './images/screen-documentation.jpg': './images/hq/screen-documentation.jpg',
-    };
-
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
-
-    // Build gallery array carefully to prevent index mismatches
     const gallery = [];
-    
-    // 1. Map Cover Image
-    const coverImg = document.getElementById('coverImg');
-    if (coverImg && coverImg.getAttribute('src')) {
-      const src = coverImg.getAttribute('src');
-      gallery.push({
-        src: src,
-        hq: hqMap[src] || src,
-        alt: coverImg.alt || '',
-        caption: 'RWE Troubleshooting Tool — Cover',
-        triggerEl: document.getElementById('coverContainer')
-      });
-    }
-
-    // 2. Map Block Images
-    document.querySelectorAll('.image-block').forEach(function(block) {
-      const img = block.querySelector('img');
-      const caption = block.querySelector('.image-caption');
-      if (img && img.getAttribute('src')) {
-        const src = img.getAttribute('src');
-        gallery.push({
-          src: src,
-          hq: hqMap[src] || src,
-          alt: img.alt || '',
-          caption: caption ? caption.textContent.trim() : '',
-          triggerEl: block
-        });
-      }
-    });
-
     let currentIndex = -1;
 
-    function openLightbox(index) {
-      if (index < 0 || index >= gallery.length) return;
-      currentIndex = index;
-      const item = gallery[currentIndex];
-      lightboxImg.src = item.hq;
-      lightboxImg.alt = item.alt;
-      lightboxCaption.textContent = item.caption;
-      lightbox.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
-      lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
-    }
+    document.querySelectorAll('.image-block, #coverContainer').forEach(block => {
+      const img = block.querySelector('img');
+      if (!img) return;
+      
+      const captionEl = block.querySelector('.image-caption, p');
+      const item = {
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt') || '',
+        caption: captionEl ? captionEl.textContent.trim() : ''
+      };
+      gallery.push(item);
+      
+      const index = gallery.length - 1;
+      block.style.cursor = 'zoom-in';
+      block.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentIndex = index;
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+        lightboxCaption.textContent = item.caption;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
 
     function closeLightbox() {
       lightbox.classList.remove('is-open');
       document.body.style.overflow = '';
       lightboxImg.src = '';
-      currentIndex = -1;
     }
 
-    // Apply exact index clicks to triggers
-    gallery.forEach((item, index) => {
-        if(item.triggerEl) {
-            item.triggerEl.style.cursor = 'zoom-in';
-            item.triggerEl.addEventListener('click', function(e) {
-                e.preventDefault();
-                openLightbox(index);
-            });
-        }
-    });
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    lightboxPrev.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (currentIndex > 0) openLightbox(currentIndex - 1);
-    });
-    lightboxNext.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('is-open') || gallery.length === 0) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
-      if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
-    });
-
-    // ── Stepper sidebar scroll tracking ──
-    const stepperLinks = document.querySelectorAll('.stepper-link');
-    const sectionIds = Array.from(stepperLinks).map(link => link.getAttribute('data-section'));
-
-    // Smooth scroll on click
-    stepperLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.getElementById(link.getAttribute('data-section'));
-        if (target) {
-          const offset = 120;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      });
-    });
-
-    // Highlight active section and show/hide stepper on scroll
-    const stepperNav = document.getElementById('stepperSidebar');
-    const articleEl = document.querySelector('article');
-
-    function updateStepper() {
-      const scrollPos = window.scrollY + 160;
-
-      // Show stepper only when article is in view
-      if (articleEl) {
-        const artTop = articleEl.getBoundingClientRect().top + window.scrollY - 200;
-        const artBottom = artTop + articleEl.offsetHeight - 100;
-        if (scrollPos > artTop && scrollPos < artBottom) {
-          stepperNav.classList.add('is-visible');
-        } else {
-          stepperNav.classList.remove('is-visible');
-        }
-      }
-
-      // Update active link
-      let activeId = sectionIds[0];
-      for (let i = 0; i < sectionIds.length; i++) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el && (el.getBoundingClientRect().top + window.scrollY) <= scrollPos) {
-          activeId = sectionIds[i];
-        }
-      }
-      stepperLinks.forEach(function(link) {
-        if (link.getAttribute('data-section') === activeId) {
-          link.classList.add('is-active');
-        } else {
-          link.classList.remove('is-active');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateStepper, { passive: true });
-    updateStepper();
-
-    // ── Screen tabs ──
+    // ── Tabs ──
     const tabs = document.querySelectorAll('.screen-tab');
     const panels = document.querySelectorAll('.screen-panel');
-    tabs.forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        const targetId = tab.getAttribute('data-tab');
-        tabs.forEach(function(t) { t.classList.remove('is-active'); });
-        panels.forEach(function(p) { p.classList.remove('is-active'); });
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('is-active'));
+        panels.forEach(p => p.classList.remove('is-active'));
         tab.classList.add('is-active');
-        const target = document.getElementById(targetId);
-        if (target) target.classList.add('is-active');
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('is-active');
       });
+    });
+
+    // ── Stepper ──
+    const stepperNav = document.getElementById('stepperSidebar');
+    const stepperLinks = document.querySelectorAll('.stepper-link');
+    const sectionIds = Array.from(stepperLinks).map(l => l.getAttribute('data-section'));
+
+    stepperLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(link.getAttribute('data-section'));
+        if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!document.querySelector('article')) return;
+      const scrollPos = window.scrollY + 150;
+      let activeId = sectionIds[0];
+      
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && (el.getBoundingClientRect().top + window.scrollY) <= scrollPos) activeId = id;
+      });
+
+      stepperLinks.forEach(link => {
+        if (link.getAttribute('data-section') === activeId) link.classList.add('is-active');
+        else link.classList.remove('is-active');
+      });
+
+      const artTop = document.querySelector('article').getBoundingClientRect().top + window.scrollY;
+      if (scrollPos > artTop - 100) stepperNav.classList.add('is-visible');
+      else stepperNav.classList.remove('is-visible');
     });
   })();
   </script>
-
 </body>
-
 </html>
