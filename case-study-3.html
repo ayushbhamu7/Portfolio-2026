@@ -24,7 +24,8 @@
       color: #111111;
     }
 
-    .font-sora {
+    .font-sora,
+    .font-heading {
       font-family: 'Epilogue', sans-serif;
     }
 
@@ -371,41 +372,6 @@
       border-radius: 0 8px 8px 0;
     }
 
-    /* Decision card */
-    .decision-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 12px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .decision-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #0D7377, #14B8A6);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .decision-card:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-      border-color: #D8D5CE;
-    }
-
-    .decision-card:hover::before {
-      opacity: 1;
-    }
-
     /* Trade-off option styling */
     .tradeoff-option {
       display: flex;
@@ -523,18 +489,9 @@
       background: linear-gradient(to bottom, #0D7377, #E8E5DF);
     }
 
-    /* Section divider with number */
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #E8E5DF;
+    /* Soft section alternation */
+    .section-tint {
+      background: #F4F3EF;
     }
 
     /* Content + stepper layout */
@@ -642,18 +599,6 @@
       }
     }
 
-    /* Stat card */
-    .stat-card {
-      background: #FFFFFF;
-      border: 1px solid #E8E5DF;
-      border-radius: 12px;
-      padding: 24px;
-      transition: box-shadow 0.2s;
-    }
-
-    .stat-card:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    }
 
     /* Screen grid */
     .screen-grid {
@@ -912,96 +857,101 @@
 
       <!-- Impact metrics — card grid -->
       <div class="cs-grid-4">
-        <div class="stat-card fade-up">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
             style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed</p>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">High-fidelity screens designed</p>
         </div>
-        <div class="stat-card fade-up">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">4 &rarr;
             1</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated into one platform</p>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Tools consolidated into one platform</p>
         </div>
-        <div class="stat-card fade-up">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
             style="color:#0D7377;">3-step</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Wizard replaced flat 15-field form</p>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Wizard replaced flat 15-field form</p>
         </div>
-        <div class="stat-card fade-up">
+        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
             style="color:#0D7377;">AI-powered</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Virtual Analyst for NLP querying</p>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Virtual Analyst for NLP querying</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Cover Image -->
-  <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
-    <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
+  <section class="cs-section-cover" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
+    <div style="max-width:1000px;margin:0 auto;padding:0 20px;">
       <div
         style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
         <img id="coverImg" src="./images/Main dashboard.png"
           alt="TPA Next Evolution — Analysis Results dashboard with turbine card view grouped by site, severity indicators, and filtering controls"
           class="w-full block" style="display:block;" />
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center mt-4">TPA Next Evolution &middot; Analysis Results
+      <p style="font-size:12px;color:#999999;text-align:center;margin-top:16px;">TPA Next Evolution &middot; Analysis Results
         dashboard with turbine-level severity indicators across sites</p>
-    </div>
-  </section>
-
-  <!-- Result banner -->
-  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
-    <div class="max-w-[1100px] mx-auto">
-      <div class="callout p-6 sm:p-8 fade-up">
-        <div class="font-inter text-[11px] font-semibold tracking-[0.08em] uppercase mb-2" style="color:#0D7377;">
-          Result
-        </div>
-        <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.8]">
-          Shipped and adopted across the performance analysis team. Designed 15+ screens covering incident management,
-          analysis results, a multi-step incident creation wizard, and an AI-powered Virtual Analyst. Replaced a
-          fragmented Excel/email/SharePoint workflow with a single platform &mdash; and redesigned incident creation from
-          a flat 15-field form into a 3-step guided wizard with smart pre-fill, now in production.
-        </p>
-      </div>
     </div>
   </section>
 
   <!-- Main content with stepper -->
   <div class="case-layout">
 
-    <article class="px-5 sm:px-8 w-full flex flex-col gap-16 sm:gap-24 pb-20">
+    <article class="cs-flex-col w-full flex flex-col gap-16 sm:gap-24" style="padding:56px 20px;">
+
+      <!-- ============================================ -->
+      <!-- TL;DR — Executive Summary -->
+      <!-- ============================================ -->
+      <div class="fade-up"
+        style="background:#FFFFFF;border:1.5px solid #E8E5DF;border-radius:16px;padding:28px 28px 32px;box-shadow:0 2px 12px rgba(0,0,0,0.03);">
+        <div class="flex items-center gap-2 mb-4">
+          <div style="width:6px;height:6px;border-radius:50%;background:#0D7377;"></div>
+          <span class="font-inter text-[10px] font-bold tracking-[0.14em] uppercase" style="color:#0A5C5F;">TL;DR
+            &mdash; 30-second summary</span>
+        </div>
+        <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.85] max-w-[760px]">
+          RWE&rsquo;s performance analysts managed turbine and solar incidents across 4+ disconnected tools (Excel,
+          email, SharePoint, SCADA exports) with no single source of truth. As the sole UI/UX designer, I designed the
+          TPA Next Evolution portal &mdash; a unified incident management platform with a 3-step creation wizard with
+          smart pre-fill, an AI-powered Virtual Analyst for natural language querying, and turbine-level analysis
+          dashboards. Shipped 15+ production-ready screens over 10+ months, replacing a flat 15-field form with a guided
+          workflow now in production. <strong style="color:#111111;">The same enterprise B2B complexity &mdash;
+            multi-user workflows, cross-team alignment, system-level thinking &mdash; that drives products at
+            Freshworks, Razorpay, or Postman.</strong>
+        </p>
+      </div>
 
       <!-- ============================================ -->
       <!-- 01 - CONTEXT -->
       <!-- ============================================ -->
-      <div id="sec-context" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">01 &middot; Context</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-context" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">01 &middot; Context</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           The problem: incidents lost between spreadsheets, emails, and SharePoint
         </h2>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          RWE manages thousands of wind turbines and solar assets across offshore and onshore sites in multiple
-          countries. When a turbine or solar panel exhibits abnormal behaviour &mdash; a gearbox temperature spike, a
-          power curve deviation, a blade pitch fault &mdash; performance analysts need to investigate, categorise the
-          incident, and relay findings to operations stakeholders so corrective action can be taken.
-        </p>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          The existing workflow was held together with duct tape. Analysts pulled data from SCADA and monitoring systems,
-          documented findings in Excel spreadsheets, emailed incident reports to stakeholders, and tracked status updates
-          in SharePoint. There was no single source of truth for incident status, no structured categorisation, and no
-          way for stakeholders to see what was being investigated in real time. Incidents slipped through the cracks,
-          duplicates were common, and the handoff from analyst to operations was slow and error-prone.
-        </p>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          I was brought in as the sole UI/UX designer to help build the TPA Next Evolution portal &mdash; a
-          purpose-built web application that would consolidate the entire incident lifecycle into one platform: from
-          automated detection through analyst categorisation to stakeholder communication. The project also included a
-          Virtual Analyst &mdash; an AI-powered chatbot built on Azure AI that lets analysts query data and generate
-          reports using natural language.
-        </p>
+        <div class="flex flex-col gap-4 max-w-[720px]">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            RWE manages thousands of wind turbines and solar assets across offshore and onshore sites in multiple
+            countries. When a turbine or solar panel exhibits abnormal behaviour &mdash; a gearbox temperature spike, a
+            power curve deviation, a blade pitch fault &mdash; performance analysts need to investigate, categorise the
+            incident, and relay findings to operations stakeholders so corrective action can be taken.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            The existing workflow was held together with duct tape. Analysts pulled data from SCADA and monitoring systems,
+            documented findings in Excel spreadsheets, emailed incident reports to stakeholders, and tracked status updates
+            in SharePoint. There was no single source of truth for incident status, no structured categorisation, and no
+            way for stakeholders to see what was being investigated in real time. Incidents slipped through the cracks,
+            duplicates were common, and the handoff from analyst to operations was slow and error-prone.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            I was brought in as the sole UI/UX designer to help build the TPA Next Evolution portal &mdash; a
+            purpose-built web application that would consolidate the entire incident lifecycle into one platform: from
+            automated detection through analyst categorisation to stakeholder communication. The project also included a
+            Virtual Analyst &mdash; an AI-powered chatbot built on Azure AI that lets analysts query data and generate
+            reports using natural language.
+          </p>
+        </div>
 
         <!-- Before state image -->
         <div class="image-block">
@@ -1015,43 +965,43 @@
       <!-- ============================================ -->
       <!-- 02 - DISCOVERY -->
       <!-- ============================================ -->
-      <div id="sec-discovery" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">02 &middot; Discovery</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-discovery" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">02 &middot; Discovery</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           Understanding the analyst&rsquo;s daily reality
         </h2>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          I started with requirement gathering sessions with the Product Owner, translating business objectives into
-          well-defined PBIs for the development backlog. In parallel, I conducted user interviews with performance
-          analysts and stakeholders to understand their actual workflows &mdash; how they investigated, what information
-          they needed, and where the existing process broke down.
-        </p>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          Three patterns surfaced across every conversation:
-        </p>
+        <div class="flex flex-col gap-4 max-w-[720px]">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            I started with requirement gathering sessions with the Product Owner, translating business objectives into
+            well-defined PBIs for the development backlog. In parallel, I conducted user interviews with performance
+            analysts and stakeholders to understand their actual workflows &mdash; how they investigated, what information
+            they needed, and where the existing process broke down.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            Three patterns surfaced across every conversation:
+          </p>
+        </div>
 
         <!-- Discovery stat cards -->
         <div class="cs-grid-3" style="gap:16px;">
-          <div class="stat-card">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">4+</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Disconnected tools in the workflow
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Disconnected tools in the workflow
               &mdash; SCADA data, Excel for documentation, email for handoff, SharePoint for tracking. No single source
               of truth.</p>
           </div>
-          <div class="stat-card">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">15+</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Fields on the incident creation form
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Fields on the incident creation form
               &mdash; all visible at once, with no grouping, no guidance, and no data pre-filled from the analysis that
               triggered the incident</p>
           </div>
-          <div class="stat-card">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">Manual</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Every step of the process was manual
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Every step of the process was manual
               &mdash; from categorisation to stakeholder notification. Analysts spent more time on administration than on
               actual analysis</p>
           </div>
@@ -1061,11 +1011,9 @@
       <!-- ============================================ -->
       <!-- 03 - PROCESS -->
       <!-- ============================================ -->
-      <div id="sec-process" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">03 &middot; Process</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-process" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">03 &middot; Process</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           How I structured the work
         </h2>
 
@@ -1155,145 +1103,138 @@
       <!-- ============================================ -->
       <!-- 04 - KEY DESIGN DECISIONS -->
       <!-- ============================================ -->
-      <div id="sec-decisions" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">04 &middot; Design decisions</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-decisions" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">04 &middot; Design decisions</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           Four decisions that shaped the product
         </h2>
 
         <!-- Decision A -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">A</span>
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">A</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Multi-step wizard
+                with smart pre-fill &mdash; balancing automation and analyst control</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">
+                This was the hardest design problem on the project. The old incident creation form had 15+ fields on a
+                single page &mdash; all visible at once with no hierarchy, no grouping, and critically, no data carried
+                forward from the analysis that triggered the incident.
+              </p>
             </div>
-            <h3 class="font-sora text-[15px] sm:text-[17px] font-bold text-[#111111] leading-[1.3]">Multi-step wizard
-              with smart pre-fill &mdash; balancing automation and analyst control</h3>
           </div>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            This was the hardest design problem on the project. The old incident creation form had 15+ fields on a
-            single page &mdash; Incident Details, Device information, Issue specifics, Additional Details &mdash; all
-            visible at once with no hierarchy, no grouping, and critically, no data carried forward from the analysis
-            that triggered the incident. Analysts had to manually re-enter information they&rsquo;d already seen during
-            investigation.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            The solution was a 3-step guided wizard: Device &rarr; Incident Details &rarr; Additional Details. Each step
-            focused on one category of information, with a progress stepper at the top showing where the user was. The
-            key innovation was the live Summary sidebar on the right &mdash; as analysts filled in each field, the
-            summary updated in real time, giving them a running view of the complete incident before submission. This
-            addressed a common complaint: &ldquo;I fill everything out and then realise I selected the wrong device at
-            the top.&rdquo;
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            The &ldquo;semi-automatic&rdquo; part was the smart pre-fill. When an analyst clicked &ldquo;Create
-            Incident&rdquo; from an analysis result, the system pre-populated Device, Technology, Site, Component, and
-            the relevant analysis data &mdash; pulling directly from the context the analyst was already working in.
-            Analysts could review and override any pre-filled field, keeping them in control while eliminating redundant
-            data entry. This balance between automation and manual control was critical: analysts needed to trust the
-            data, not feel like the system was making decisions for them.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            During usability testing, this was the feature that got the strongest positive reaction. Analysts described
-            it as &ldquo;finally, the system remembers what I was just looking at.&rdquo; The wizard is now in
-            production.
-          </p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <p class="font-inter text-[#555555] text-[13px] leading-[1.7]">
+              The solution was a 3-step guided wizard: Device &rarr; Incident Details &rarr; Additional Details. Each step
+              focused on one category of information, with a progress stepper at the top. The key innovation was the live
+              Summary sidebar &mdash; as analysts filled in each field, the summary updated in real time, giving them a
+              running view of the complete incident before submission.
+            </p>
+            <p class="font-inter text-[#555555] text-[13px] leading-[1.7]">
+              The &ldquo;semi-automatic&rdquo; part was the smart pre-fill. When an analyst clicked &ldquo;Create
+              Incident&rdquo; from an analysis result, the system pre-populated Device, Technology, Site, Component, and
+              the relevant analysis data. Analysts could review and override any pre-filled field, keeping them in control
+              while eliminating redundant data entry.
+            </p>
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> The balance between automation and manual
+              control was critical: analysts needed to trust the data, not feel like the system was making decisions for
+              them. During usability testing, this was the feature that got the strongest positive reaction. Analysts
+              described it as &ldquo;finally, the system remembers what I was just looking at.&rdquo; The wizard is now
+              in production.
+            </p>
+          </div>
         </div>
 
         <!-- Decision B -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">B</span>
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">B</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Virtual Analyst
+                &mdash; designing a conversational AI interface for domain experts</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">
+                The Virtual Analyst was an AI-powered chatbot built on Azure AI that let analysts query incident data,
+                generate reports, and analyse patterns using natural language. The design challenge wasn&rsquo;t building
+                a chat interface &mdash; it was designing one that domain experts would actually trust and use.
+              </p>
             </div>
-            <h3 class="font-sora text-[15px] sm:text-[17px] font-bold text-[#111111] leading-[1.3]">Virtual Analyst
-              &mdash; designing a conversational AI interface for domain experts</h3>
           </div>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            The Virtual Analyst was an AI-powered chatbot built on Azure AI capabilities that let analysts query incident
-            data, generate reports, and analyse patterns using natural language. The design challenge wasn&rsquo;t
-            building a chat interface &mdash; it was designing one that domain experts would actually trust and use.
-            Engineers and analysts are sceptical of AI tools that feel like toys. The interface needed to feel like a
-            professional tool, not a consumer chatbot.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            I designed a split-panel layout: a chat history sidebar on the left (with saved conversations, similar to how
-            analysts bookmark investigations) and the conversation panel on the right. The conversation UI supported
-            natural language queries like &ldquo;How many incidents are currently open at Site 1?&rdquo; with structured
-            responses from the Virtual Analyst. Critically, I added a &ldquo;Download Chat&rdquo; feature and the
-            ability to request SQL queries behind the responses &mdash; because analysts wanted to verify the AI&rsquo;s
-            answers against their own data sources. Transparency built trust.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            Voice input was also included (microphone icon in the input bar) for analysts who preferred speaking over
-            typing &mdash; especially useful during hands-busy field scenarios. The interface balanced conversational
-            ease with the data rigor that domain experts demand.
-          </p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <p class="font-inter text-[#555555] text-[13px] leading-[1.7]">
+              I designed a split-panel layout: a chat history sidebar on the left and the conversation panel on the right.
+              Critically, I added a &ldquo;Download Chat&rdquo; feature and the ability to request SQL queries behind
+              the responses &mdash; because analysts wanted to verify the AI&rsquo;s answers against their own data
+              sources. Transparency built trust.
+            </p>
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> Engineers and analysts are sceptical of AI
+              tools that feel like toys. The interface needed to feel like a professional tool, not a consumer chatbot.
+              Voice input was also included for hands-busy field scenarios. The interface balanced conversational ease
+              with the data rigor that domain experts demand.
+            </p>
+          </div>
         </div>
 
         <!-- Decision C -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">C</span>
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">C</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Analysis Results
+                dashboard &mdash; turbine-level visibility at a glance</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">
+                The Analysis Results page needed to answer a simple question: &ldquo;Which turbines need attention right
+                now?&rdquo; The dashboard shows turbines as visual cards grouped by site, each with color-coded severity
+                badges indicating the number and severity of active issues.
+              </p>
             </div>
-            <h3 class="font-sora text-[15px] sm:text-[17px] font-bold text-[#111111] leading-[1.3]">Analysis Results
-              dashboard &mdash; turbine-level visibility at a glance</h3>
           </div>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            The Analysis Results page needed to answer a simple question: &ldquo;Which turbines need attention right
-            now?&rdquo; The dashboard shows turbines as visual cards grouped by site, each with color-coded severity
-            badges (red, orange, green) indicating the number and severity of active issues. Analysts can toggle between
-            a KPI View (metrics-focused) and a Card View (visual overview), and filter by score, analysis type, review
-            status, and device.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            The card-based layout was a deliberate choice over a table. During interviews, analysts told me they mentally
-            map turbines spatially &mdash; by site and physical location &mdash; not as rows in a spreadsheet. The card
-            view mirrored their mental model: &ldquo;I see Bartelsdorf A, I see turbine 821085 has a red badge, I click
-            in.&rdquo; From the card, they could drill into the component-level analysis view showing detailed results
-            with embedded charts and one-click incident creation.
-          </p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> The card-based layout was a deliberate choice
+              over a table. During interviews, analysts told me they mentally map turbines spatially &mdash; by site and
+              physical location &mdash; not as rows in a spreadsheet. The card view mirrored their mental model:
+              &ldquo;I see Bartelsdorf A, I see turbine 821085 has a red badge, I click in.&rdquo; From the card, they
+              could drill into the component-level analysis view with embedded charts and one-click incident creation.
+            </p>
+          </div>
         </div>
 
         <!-- Decision D -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">D</span>
+        <div class="bg-white rounded-[16px] border border-[#E8E5DF] p-6 sm:p-8 flex flex-col gap-5">
+          <div class="flex items-start gap-4">
+            <span class="font-sora text-[28px] sm:text-[36px] font-bold text-[#0D7377] leading-none shrink-0">D</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Structured incident
+                detail with tabbed information architecture</h3>
+              <p class="font-inter text-[#666666] text-[13px] sm:text-[14px] leading-[1.7]">
+                Each incident accumulates a lot of context over its lifecycle: metadata, descriptions, proposed actions,
+                SAP work orders, comments, change logs, performance plots, and watchers. Putting all of this on a single
+                scrollable page would recreate the same overwhelm problem as the old form.
+              </p>
             </div>
-            <h3 class="font-sora text-[15px] sm:text-[17px] font-bold text-[#111111] leading-[1.3]">Structured incident
-              detail with tabbed information architecture</h3>
           </div>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            Each incident accumulates a lot of context over its lifecycle: metadata, descriptions, proposed actions, SAP
-            work orders, comments from multiple analysts, change logs, performance plots, and watchers. Putting all of
-            this on a single scrollable page would recreate the same overwhelm problem as the old form.
-          </p>
-          <p class="font-inter text-[13px] sm:text-[14px] text-[#444444] leading-[1.8]">
-            I structured the incident detail view with a tabbed layout: Incident Details (core metadata + description +
-            plots), Comments (threaded discussion), Change Log (audit trail), Work Orders (SAP integration), and
-            Watchers (notification subscriptions). The default tab showed the most critical information &mdash; incident
-            metadata, severity, the full description, proposed action, and embedded performance charts &mdash; so
-            analysts could assess the situation without switching tabs. Secondary information lived one click away but
-            never cluttered the primary view.
-          </p>
+          <div class="flex flex-col gap-2 pl-0 sm:pl-[52px]">
+            <p class="font-inter text-[#555555] text-[12px] leading-[1.7] mt-2">
+              <strong style="color:#444;">The conceptual reasoning:</strong> I structured the incident detail view with
+              a tabbed layout: Incident Details, Comments, Change Log, Work Orders, and Watchers. The default tab showed
+              the most critical information &mdash; so analysts could assess the situation without switching tabs.
+              Secondary information lived one click away but never cluttered the primary view.
+            </p>
+          </div>
         </div>
       </div>
 
       <!-- ============================================ -->
       <!-- INCIDENT CREATION FLOW SHOWCASE -->
       <!-- ============================================ -->
-      <div id="sec-screens" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot; Screens</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[30px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-screens" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">05 &middot; Screens</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           From flat form to guided wizard &mdash; the before and after
         </h2>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] max-w-[720px]">
           The old single-page form (15+ fields, no guidance) was replaced with a 3-step wizard with smart pre-fill and a
           live Summary sidebar. This flow is now in production.
         </p>
@@ -1364,43 +1305,43 @@
       <!-- ============================================ -->
       <!-- 05 - OUTCOME -->
       <!-- ============================================ -->
-      <div id="sec-outcome" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot; Outcome</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-outcome" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">06 &middot; Outcome</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           What shipped and what it changed
         </h2>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          The TPA Next Evolution portal shipped in phases and is now actively used by the performance analysis team at
-          RWE. The incident creation wizard &mdash; the centrepiece of the redesign &mdash; is in production and has
-          replaced the old flat form entirely. The Virtual Analyst is providing analysts with a new way to query and
-          generate insights from incident data using natural language.
-        </p>
+        <div class="flex flex-col gap-4 max-w-[720px]">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            The TPA Next Evolution portal shipped in phases and is now actively used by the performance analysis team at
+            RWE. The incident creation wizard &mdash; the centrepiece of the redesign &mdash; is in production and has
+            replaced the old flat form entirely. The Virtual Analyst is providing analysts with a new way to query and
+            generate insights from incident data using natural language.
+          </p>
+        </div>
 
         <div class="cs-grid-4">
-          <div class="stat-card fade-up">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">15+</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed &mdash;
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">High-fidelity screens designed &mdash;
               dashboard, analysis detail, incidents, creation wizard, Virtual Analyst, and component views</p>
           </div>
-          <div class="stat-card fade-up">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">4
               &rarr; 1</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Tools consolidated &mdash; replaced
               Excel + email + SharePoint + SCADA exports with a single incident management platform</p>
           </div>
-          <div class="stat-card fade-up">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">3-step</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Guided wizard with smart pre-fill
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Guided wizard with smart pre-fill
               replaced a flat 15-field form &mdash; now in production, with strong positive user feedback</p>
           </div>
-          <div class="stat-card fade-up">
+          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">AI-powered</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Virtual Analyst shipped &mdash;
+            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Virtual Analyst shipped &mdash;
               NLP-based querying and report generation built on Azure AI, integrated into the analyst workflow</p>
           </div>
         </div>
@@ -1409,39 +1350,69 @@
       <!-- ============================================ -->
       <!-- 06 - LEARNINGS -->
       <!-- ============================================ -->
-      <div id="sec-learnings" class="fade-up flex flex-col gap-6">
-        <div class="section-divider">
-          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">07 &middot; Learnings</span>
-        </div>
-        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+      <div id="sec-learnings" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
+        <span class="label-accent">07 &middot; Learnings</span>
+        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
           What I&rsquo;d do differently
         </h2>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          The balance between automation and analyst control was the defining challenge of this project, and the lesson I
-          took away is that trust has to be earned incrementally. The smart pre-fill feature was well received precisely
-          because analysts could see and override every pre-filled field. Early in the design process, I explored a
-          version where the system auto-submitted low-severity incidents without analyst review &mdash; the team rejected
-          it immediately. Analysts need to feel that they are the decision-makers, with the system supporting them, not
-          replacing them. That principle shaped every automation decision after.
-        </p>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          The Virtual Analyst also taught me that designing AI interfaces for domain experts is fundamentally different
-          from designing consumer chatbots. The &ldquo;Download Chat&rdquo; and &ldquo;show SQL&rdquo; features were not
-          in my original design &mdash; they came from usability testing when analysts said they wouldn&rsquo;t trust
-          answers they couldn&rsquo;t verify. Transparency features that might seem like edge cases in a consumer product
-          are table stakes in enterprise AI tools.
-        </p>
-        <p class="font-inter text-[14px] sm:text-[15px] text-[#444444] leading-[1.8]">
-          Front-end developer steering was another key learning. On this project, I didn&rsquo;t just hand off specs
-          &mdash; I worked directly with developers on interaction details, component behaviour, and edge cases. This
-          reduced the gap between design intent and implementation significantly, and I&rsquo;d advocate for this working
-          model on any future project. The designer&rsquo;s job doesn&rsquo;t end at the Figma file.
-        </p>
+        <div class="flex flex-col gap-4 max-w-[720px]">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            The balance between automation and analyst control was the defining challenge of this project, and the lesson I
+            took away is that trust has to be earned incrementally. The smart pre-fill feature was well received precisely
+            because analysts could see and override every pre-filled field. Early in the design process, I explored a
+            version where the system auto-submitted low-severity incidents without analyst review &mdash; the team rejected
+            it immediately. Analysts need to feel that they are the decision-makers, with the system supporting them, not
+            replacing them. That principle shaped every automation decision after.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            The Virtual Analyst also taught me that designing AI interfaces for domain experts is fundamentally different
+            from designing consumer chatbots. The &ldquo;Download Chat&rdquo; and &ldquo;show SQL&rdquo; features were not
+            in my original design &mdash; they came from usability testing when analysts said they wouldn&rsquo;t trust
+            answers they couldn&rsquo;t verify. Transparency features that might seem like edge cases in a consumer product
+            are table stakes in enterprise AI tools.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            Front-end developer steering was another key learning. On this project, I didn&rsquo;t just hand off specs
+            &mdash; I worked directly with developers on interaction details, component behaviour, and edge cases. This
+            reduced the gap between design intent and implementation significantly, and I&rsquo;d advocate for this working
+            model on any future project. The designer&rsquo;s job doesn&rsquo;t end at the Figma file.
+          </p>
+        </div>
       </div>
 
       <!-- ============================================ -->
-      <!-- NEXT CASE STUDY -->
+      <!-- CTA FOOTER -->
       <!-- ============================================ -->
+      <div class="fade-up" style="background:#111111;border-radius:16px;padding:40px 32px;margin-top:8px;">
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="flex flex-col gap-2">
+              <span class="font-sora text-[18px] sm:text-[22px] font-bold text-white leading-[1.3]">Interested in
+                working together?</span>
+              <span class="font-inter text-[14px]" style="color:rgba(255,255,255,0.5);">I&rsquo;m looking for product
+                design roles in B2B SaaS, enterprise, or energy. Based in India, open to remote.</span>
+            </div>
+            <div class="flex gap-3 shrink-0">
+              <a href="mailto:ayushbhamu7@gmail.com"
+                class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all"
+                style="background:#0D7377;color:#FFFFFF;text-decoration:none;">Email me</a>
+              <a href="https://linkedin.com/in/ayushbhamu" target="_blank"
+                class="font-inter text-[13px] font-semibold px-5 py-2.5 rounded-[8px] transition-all"
+                style="background:rgba(255,255,255,0.1);color:#FFFFFF;border:1px solid rgba(255,255,255,0.15);text-decoration:none;">LinkedIn
+                &nearr;</a>
+            </div>
+          </div>
+          <p class="font-inter text-[13px] leading-[1.7]" style="color:rgba(255,255,255,0.4);max-width:680px;">
+            <strong style="color:rgba(255,255,255,0.55);">Why this translates to Indian B2B SaaS:</strong> The core
+            problems I solved here &mdash; designing AI-augmented enterprise tools, multi-step wizard flows for complex
+            data entry, and building systems that balance automation with user control &mdash; are the same challenges
+            facing product teams at Freshworks, Postman, Chargebee, and similar companies. I&rsquo;m looking to bring
+            this enterprise complexity experience to the Indian SaaS ecosystem.
+          </p>
+        </div>
+      </div>
+
+      <!-- Next case study -->
       <div
         class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div class="flex flex-col gap-1">
@@ -1453,7 +1424,7 @@
           </a>
         </div>
         <a href="./index.html#work"
-          class="font-inter text-[13px] font-semibold text-[#444444] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr;
+          class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr;
           All work</a>
       </div>
 
@@ -1492,8 +1463,6 @@
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
         <a href="https://bhamu.framer.website/" target="_blank"
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
-        <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank"
-          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume</a>
       </div>
     </div>
   </footer>
