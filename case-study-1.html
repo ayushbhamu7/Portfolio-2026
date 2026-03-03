@@ -438,13 +438,20 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      object-fit: cover;
+      overflow: hidden;
       border: 2px solid #E8E5DF;
       flex-shrink: 0;
       background: #ECFDF5;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .persona-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .persona-body {
@@ -1487,6 +1494,7 @@
               <div class="persona-avatar">
                 <img src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator"
                   class="w-full h-full object-cover rounded-full"
+                  style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
                   onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>MC</span>'" />
               </div>
               <div>
@@ -1526,6 +1534,7 @@
               <div class="persona-avatar">
                 <img src="./images/persona-technician.jpg" alt="Technician"
                   class="w-full h-full object-cover rounded-full"
+                  style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
                   onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>T</span>'" />
               </div>
               <div>
