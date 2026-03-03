@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Delphi: Wind Turbine Performance Analysis — Ayush Bhamu</title>
-  <meta name="description" content="Case study: Designing a performance analysis tool for offshore wind operations at RWE. Sole UI/UX designer — 15+ screens, progressive filters, interactive charts, 10+ months." />
+  <meta name="description"
+    content="Case study: Designing a performance analysis tool for offshore wind operations at RWE. Sole UI/UX designer — 15+ screens, progressive filters, interactive charts, 10+ months." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -13,7 +14,9 @@
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -21,22 +24,289 @@
       color: #111111;
     }
 
-    .font-sora { font-family: 'Epilogue', sans-serif; }
-    .font-inter { font-family: 'DM Sans', sans-serif; }
+    .font-sora {
+      font-family: 'Epilogue', sans-serif;
+    }
+
+    .font-inter {
+      font-family: 'DM Sans', sans-serif;
+    }
 
     /* Frosted glass nav */
     .nav-glass {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 20px;
       background: rgba(250, 250, 248, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
-    /* Sticky nav */
-    nav {
+    nav.cs-nav {
       position: sticky;
       top: 0;
       z-index: 50;
+    }
+
+    .cs-nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cs-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .cs-nav-logo-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #111111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cs-nav-logo-box span {
+      font-family: 'Epilogue', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .cs-nav-logo-name {
+      font-family: 'Epilogue', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111111;
+    }
+
+    .cs-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cs-nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555555;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .cs-nav-link:hover {
+      color: #111111;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .cs-nav-contact {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #111111;
+      text-decoration: none;
+      margin-left: 8px;
+      padding: 6px 16px;
+      border-radius: 6px;
+      border: 1px solid #D8D5CE;
+      transition: border-color 0.15s;
+    }
+
+    .cs-nav-contact:hover {
+      border-color: #999999;
+    }
+
+    .cs-container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .cs-section {
+      padding: 64px 20px;
+      width: 100%;
+    }
+
+    .cs-section-hero {
+      padding: 56px 20px 48px;
+      width: 100%;
+    }
+
+    .cs-section-cover {
+      padding: 40px 20px;
+      width: 100%;
+    }
+
+    .cs-hero-inner {
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cs-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cs-hero-title {
+      font-family: 'Epilogue', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #111111;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .cs-hero-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: #555555;
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .cs-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cs-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .cs-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .cs-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .cs-flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-gap-4 {
+      gap: 16px;
+    }
+
+    .cs-gap-6 {
+      gap: 24px;
+    }
+
+    .cs-gap-8 {
+      gap: 32px;
+    }
+
+    .cs-article {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .cs-article img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .cs-footer {
+      border-top: 1px solid #E8E5DF;
+      padding: 32px 20px;
+    }
+
+    .cs-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 640px) {
+      .nav-glass {
+        padding: 20px 80px;
+      }
+
+      .cs-container {
+        padding: 0 80px;
+      }
+
+      .cs-section {
+        padding: 96px 80px;
+      }
+
+      .cs-section-hero {
+        padding: 80px 80px 64px;
+      }
+
+      .cs-section-cover {
+        padding: 48px 80px;
+      }
+
+      .cs-hero-inner {
+        gap: 24px;
+      }
+
+      .cs-hero-title {
+        font-size: 48px;
+        letter-spacing: -2px;
+      }
+
+      .cs-hero-desc {
+        font-size: 17px;
+      }
+
+      .cs-grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cs-grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .cs-grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .cs-article {
+        padding: 0 80px;
+      }
+
+      .cs-footer {
+        padding: 32px 80px;
+      }
+
+      .cs-nav-logo-name {
+        font-size: 16px;
+      }
     }
 
     /* Accent underline for section labels */
@@ -50,6 +320,7 @@
       font-weight: 700;
       color: #0A5C5F;
     }
+
     .label-accent::before {
       content: '';
       display: block;
@@ -73,15 +344,25 @@
       padding: 4px 10px;
       border-radius: 100px;
     }
+
     .tag-neutral {
       background: #EFEFEF;
       color: #555555;
     }
 
     /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F4F3EF; }
-    ::-webkit-scrollbar-thumb { background: #D8D5CE; border-radius: 10px; }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #F4F3EF;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #D8D5CE;
+      border-radius: 10px;
+    }
 
     /* Callout box */
     .callout {
@@ -98,11 +379,17 @@
       border: 1px solid #E8E5DF;
       cursor: zoom-in;
     }
-    .image-block:hover { border-color: #CCCCCC; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+
+    .image-block:hover {
+      border-color: #CCCCCC;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
     .image-block img {
       width: 100%;
       display: block;
     }
+
     .image-caption {
       padding: 14px 18px;
       background: #F9F8F5;
@@ -149,6 +436,7 @@
       transform: translateY(12px);
       transition: opacity 0.25s ease-out, transform 0.25s ease-out;
     }
+
     .fade-up.is-visible {
       opacity: 1;
       transform: translateY(0);
@@ -166,10 +454,12 @@
       padding: 5px 14px;
       border-radius: 100px;
     }
+
     .compare-before {
       background: #FEE2E2;
       color: #B91C1C;
     }
+
     .compare-after {
       background: #D1FAE5;
       color: #065F46;
@@ -187,10 +477,12 @@
       background: #F9F8F5;
       border: 1px solid #E8E5DF;
     }
+
     .tradeoff-chosen {
       background: #F0FDFA;
       border-color: #0D7377;
     }
+
     .tradeoff-badge {
       font-size: 10px;
       font-weight: 700;
@@ -218,6 +510,7 @@
       align-items: center;
       gap: 16px;
     }
+
     .section-divider::after {
       content: '';
       flex: 1;
@@ -233,7 +526,8 @@
       padding: 0 20px;
       gap: 0;
     }
-    .case-layout > article {
+
+    .case-layout>article {
       flex: 1;
       min-width: 0;
     }
@@ -253,11 +547,13 @@
       transition: opacity 0.3s, transform 0.3s;
       pointer-events: none;
     }
+
     .stepper-sidebar.is-visible {
       opacity: 1;
       transform: translateX(0);
       pointer-events: auto;
     }
+
     .stepper-title {
       font-family: 'DM Sans', sans-serif;
       font-size: 10px;
@@ -267,6 +563,7 @@
       color: #AAAAAA;
       margin-bottom: 16px;
     }
+
     .stepper-list {
       list-style: none;
       margin: 0;
@@ -276,6 +573,7 @@
       gap: 0;
       border-left: 2px solid #E8E5DF;
     }
+
     .stepper-link {
       display: block;
       position: relative;
@@ -288,6 +586,7 @@
       transition: color 0.2s;
       line-height: 1.4;
     }
+
     .stepper-link::before {
       content: '';
       position: absolute;
@@ -300,20 +599,28 @@
       opacity: 0;
       transition: opacity 0.2s;
     }
+
     .stepper-link:hover {
       color: #555555;
     }
+
     .stepper-link.is-active {
       color: #111111;
       font-weight: 600;
     }
+
     .stepper-link.is-active::before {
       opacity: 1;
     }
 
     @media (max-width: 768px) {
-      .stepper-sidebar { display: none; }
-      .case-layout { padding: 0; }
+      .stepper-sidebar {
+        display: none;
+      }
+
+      .case-layout {
+        padding: 0;
+      }
     }
 
     /* ── Decision card ── */
@@ -329,6 +636,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .decision-card::before {
       content: '';
       position: absolute;
@@ -340,10 +648,12 @@
       opacity: 0;
       transition: opacity 0.2s;
     }
+
     .decision-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
       border-color: #D8D5CE;
     }
+
     .decision-card:hover::before {
       opacity: 1;
     }
@@ -356,8 +666,9 @@
       padding: 24px;
       transition: box-shadow 0.2s;
     }
+
     .stat-card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
     }
 
     /* ── Screen grid ── */
@@ -398,22 +709,33 @@
       transition: box-shadow 0.2s, border-color 0.2s;
       cursor: zoom-in;
     }
+
     .showcase-image-block:hover {
       border-color: #CCCCCC;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
+
     .showcase-image-block img {
       width: 100%;
       display: block;
     }
 
     @media (max-width: 900px) {
-      .screen-grid { grid-template-columns: 1fr; }
-      .screen-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screen-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 560px) {
-      .lightbox-nav { width: 36px; height: 36px; font-size: 16px; }
+      .lightbox-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
     }
 
     /* ── Lightbox overlay ── */
@@ -421,7 +743,7 @@
       position: fixed;
       inset: 0;
       z-index: 200;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0, 0, 0, 0.88);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       display: flex;
@@ -433,10 +755,12 @@
       transition: opacity 0.25s, visibility 0.25s;
       cursor: zoom-out;
     }
+
     .lightbox.is-open {
       opacity: 1;
       visibility: visible;
     }
+
     .lightbox-img-wrap {
       position: relative;
       max-width: 95vw;
@@ -447,13 +771,15 @@
       overflow: auto;
       border-radius: 8px;
     }
+
     .lightbox-img-wrap img {
       max-width: 95vw;
       max-height: 90vh;
       object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
     }
+
     .lightbox-close {
       position: absolute;
       top: 16px;
@@ -461,8 +787,8 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -472,13 +798,17 @@
       transition: background 0.15s;
       z-index: 210;
     }
-    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
     .lightbox-caption {
       position: absolute;
       bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       color: #CCCCCC;
       font-family: 'DM Sans', sans-serif;
       font-size: 12px;
@@ -491,6 +821,7 @@
       text-overflow: ellipsis;
       z-index: 210;
     }
+
     .lightbox-nav {
       position: absolute;
       top: 50%;
@@ -498,8 +829,8 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -509,9 +840,819 @@
       transition: background 0.15s;
       z-index: 210;
     }
-    .lightbox-nav:hover { background: rgba(255,255,255,0.25); }
-    .lightbox-prev { left: 16px; }
-    .lightbox-next { right: 16px; }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .lightbox-prev {
+      left: 16px;
+    }
+
+    .lightbox-next {
+      right: 16px;
+    }
+
+    /* ══════════════════════════════════════════════════════ */
+    /* CSS Utility Fallbacks (replace Tailwind CDN dependency) */
+    /* ══════════════════════════════════════════════════════ */
+
+    /* ── Display & Flex ── */
+    .flex {
+      display: flex;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .block {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .inline {
+      display: inline;
+    }
+
+    .inline-flex {
+      display: inline-flex;
+    }
+
+    .relative {
+      position: relative;
+    }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .shrink-0 {
+      flex-shrink: 0;
+    }
+
+    .flex-1 {
+      flex: 1 1 0%;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .flex-row {
+      flex-direction: row;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .items-start {
+      align-items: flex-start;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .items-end {
+      align-items: flex-end;
+    }
+
+    .items-baseline {
+      align-items: baseline;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .overflow-x-hidden {
+      overflow-x: hidden;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Gap ── */
+    .gap-1 {
+      gap: 4px;
+    }
+
+    .gap-2 {
+      gap: 8px;
+    }
+
+    .gap-3 {
+      gap: 12px;
+    }
+
+    .gap-4 {
+      gap: 16px;
+    }
+
+    .gap-5 {
+      gap: 20px;
+    }
+
+    .gap-6 {
+      gap: 24px;
+    }
+
+    .gap-8 {
+      gap: 32px;
+    }
+
+    .gap-10 {
+      gap: 40px;
+    }
+
+    .gap-16 {
+      gap: 64px;
+    }
+
+    .gap-24 {
+      gap: 96px;
+    }
+
+    /* ── Padding ── */
+    .p-5 {
+      padding: 20px;
+    }
+
+    .p-6 {
+      padding: 24px;
+    }
+
+    .p-7 {
+      padding: 28px;
+    }
+
+    .p-8 {
+      padding: 32px;
+    }
+
+    .px-5 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .px-6 {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .px-8 {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .py-5 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .py-6 {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .py-8 {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .py-10 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .py-12 {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    .py-14 {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .py-20 {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .pb-20 {
+      padding-bottom: 80px;
+    }
+
+    .pl-0 {
+      padding-left: 0;
+    }
+
+    /* ── Margin ── */
+    .mt-1 {
+      margin-top: 4px;
+    }
+
+    .mt-2 {
+      margin-top: 8px;
+    }
+
+    .mt-4 {
+      margin-top: 16px;
+    }
+
+    .mb-2 {
+      margin-bottom: 8px;
+    }
+
+    .mb-3 {
+      margin-bottom: 12px;
+    }
+
+    .ml-2 {
+      margin-left: 8px;
+    }
+
+    /* ── Width / Height ── */
+    .w-full {
+      width: 100%;
+    }
+
+    .w-2 {
+      width: 8px;
+    }
+
+    .w-8 {
+      width: 32px;
+    }
+
+    .w-9 {
+      width: 36px;
+    }
+
+    .w-10 {
+      width: 40px;
+    }
+
+    .h-2 {
+      height: 8px;
+    }
+
+    .h-8 {
+      height: 32px;
+    }
+
+    .h-9 {
+      height: 36px;
+    }
+
+    .h-10 {
+      height: 40px;
+    }
+
+    .h-full {
+      height: 100%;
+    }
+
+    .max-w-\[720px\] {
+      max-width: 720px;
+    }
+
+    .max-w-\[760px\] {
+      max-width: 760px;
+    }
+
+    .max-w-\[1000px\] {
+      max-width: 1000px;
+    }
+
+    .max-w-\[1100px\] {
+      max-width: 1100px;
+    }
+
+    /* ── Background ── */
+    .bg-white {
+      background-color: #FFFFFF;
+    }
+
+    .bg-\[\#ECFDF5\] {
+      background-color: #ECFDF5;
+    }
+
+    .bg-\[\#111111\] {
+      background-color: #111111;
+    }
+
+    .bg-\[\#F0FDFA\] {
+      background-color: #F0FDFA;
+    }
+
+    /* ── Border ── */
+    .border {
+      border: 1px solid #E8E5DF;
+    }
+
+    .border-2 {
+      border-width: 2px;
+      border-style: solid;
+    }
+
+    .border-t {
+      border-top: 1px solid #E8E5DF;
+    }
+
+    .border-t-2 {
+      border-top: 2px solid;
+    }
+
+    .border-\[\#E8E5DF\] {
+      border-color: #E8E5DF;
+    }
+
+    .border-\[\#0D7377\] {
+      border-color: #0D7377;
+    }
+
+    .border-\[\#111111\] {
+      border-color: #111111;
+    }
+
+    .border-\[\#DDDDDD\] {
+      border-color: #DDDDDD;
+    }
+
+    /* ── Border Radius ── */
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .rounded-\[6px\] {
+      border-radius: 6px;
+    }
+
+    .rounded-\[8px\] {
+      border-radius: 8px;
+    }
+
+    .rounded-\[10px\] {
+      border-radius: 10px;
+    }
+
+    .rounded-\[12px\] {
+      border-radius: 12px;
+    }
+
+    .rounded-\[16px\] {
+      border-radius: 16px;
+    }
+
+    /* ── Text Color ── */
+    .text-white {
+      color: #FFFFFF;
+    }
+
+    .text-\[\#111111\] {
+      color: #111111;
+    }
+
+    .text-\[\#333333\] {
+      color: #333333;
+    }
+
+    .text-\[\#444444\] {
+      color: #444444;
+    }
+
+    .text-\[\#555555\] {
+      color: #555555;
+    }
+
+    .text-\[\#666666\] {
+      color: #666666;
+    }
+
+    .text-\[\#777777\] {
+      color: #777777;
+    }
+
+    .text-\[\#888888\] {
+      color: #888888;
+    }
+
+    .text-\[\#999999\] {
+      color: #999999;
+    }
+
+    .text-\[\#AAAAAA\] {
+      color: #AAAAAA;
+    }
+
+    .text-\[\#0D7377\] {
+      color: #0D7377;
+    }
+
+    .text-\[\#0A5C5F\] {
+      color: #0A5C5F;
+    }
+
+    /* ── Font Size ── */
+    .text-\[9px\] {
+      font-size: 9px;
+    }
+
+    .text-\[10px\] {
+      font-size: 10px;
+    }
+
+    .text-\[11px\] {
+      font-size: 11px;
+    }
+
+    .text-\[12px\] {
+      font-size: 12px;
+    }
+
+    .text-\[13px\] {
+      font-size: 13px;
+    }
+
+    .text-\[14px\] {
+      font-size: 14px;
+    }
+
+    .text-\[15px\] {
+      font-size: 15px;
+    }
+
+    .text-\[16px\] {
+      font-size: 16px;
+    }
+
+    .text-\[17px\] {
+      font-size: 17px;
+    }
+
+    .text-\[18px\] {
+      font-size: 18px;
+    }
+
+    .text-\[20px\] {
+      font-size: 20px;
+    }
+
+    .text-\[22px\] {
+      font-size: 22px;
+    }
+
+    .text-\[24px\] {
+      font-size: 24px;
+    }
+
+    .text-\[26px\] {
+      font-size: 26px;
+    }
+
+    .text-\[28px\] {
+      font-size: 28px;
+    }
+
+    .text-\[30px\] {
+      font-size: 30px;
+    }
+
+    .text-\[32px\] {
+      font-size: 32px;
+    }
+
+    .text-\[34px\] {
+      font-size: 34px;
+    }
+
+    .text-\[38px\] {
+      font-size: 38px;
+    }
+
+    .text-\[42px\] {
+      font-size: 42px;
+    }
+
+    /* ── Font Weight ── */
+    .font-medium {
+      font-weight: 500;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-extrabold {
+      font-weight: 800;
+    }
+
+    /* ── Line Height / Tracking / Leading ── */
+    .leading-none {
+      line-height: 1;
+    }
+
+    .leading-\[1\.1\] {
+      line-height: 1.1;
+    }
+
+    .leading-\[1\.15\] {
+      line-height: 1.15;
+    }
+
+    .leading-\[1\.2\] {
+      line-height: 1.2;
+    }
+
+    .leading-\[1\.3\] {
+      line-height: 1.3;
+    }
+
+    .leading-\[1\.4\] {
+      line-height: 1.4;
+    }
+
+    .leading-\[1\.5\] {
+      line-height: 1.5;
+    }
+
+    .leading-\[1\.6\] {
+      line-height: 1.6;
+    }
+
+    .leading-\[1\.7\] {
+      line-height: 1.7;
+    }
+
+    .leading-\[1\.75\] {
+      line-height: 1.75;
+    }
+
+    .leading-\[1\.8\] {
+      line-height: 1.8;
+    }
+
+    .leading-\[1\.85\] {
+      line-height: 1.85;
+    }
+
+    .tracking-\[-0\.5px\] {
+      letter-spacing: -0.5px;
+    }
+
+    .tracking-\[-1px\] {
+      letter-spacing: -1px;
+    }
+
+    .tracking-\[-1\.5px\] {
+      letter-spacing: -1.5px;
+    }
+
+    .tracking-\[-2px\] {
+      letter-spacing: -2px;
+    }
+
+    .tracking-\[0\.02em\] {
+      letter-spacing: 0.02em;
+    }
+
+    .tracking-\[0\.04em\] {
+      letter-spacing: 0.04em;
+    }
+
+    .tracking-\[0\.08em\] {
+      letter-spacing: 0.08em;
+    }
+
+    .tracking-\[0\.10em\] {
+      letter-spacing: 0.10em;
+    }
+
+    .tracking-\[0\.12em\] {
+      letter-spacing: 0.12em;
+    }
+
+    .tracking-\[0\.14em\] {
+      letter-spacing: 0.14em;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+
+    .whitespace-nowrap {
+      white-space: nowrap;
+    }
+
+    /* ── Object Fit ── */
+    .object-cover {
+      object-fit: cover;
+    }
+
+    /* ── Misc ── */
+    .transition-all {
+      transition: all 0.2s;
+    }
+
+    .transition-colors {
+      transition: color 0.15s;
+    }
+
+    /* ── Grid columns ── */
+    .grid-cols-1 {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ── Responsive: sm (640px+) ── */
+    @media (min-width: 640px) {
+      .sm\:inline {
+        display: inline;
+      }
+
+      .sm\:hidden {
+        display: none;
+      }
+
+      .sm\:flex-row {
+        flex-direction: row;
+      }
+
+      .sm\:flex-1 {
+        flex: 1 1 0%;
+      }
+
+      .sm\:items-center {
+        align-items: center;
+      }
+
+      .sm\:gap-4 {
+        gap: 16px;
+      }
+
+      .sm\:gap-8 {
+        gap: 32px;
+      }
+
+      .sm\:gap-24 {
+        gap: 96px;
+      }
+
+      .sm\:p-6 {
+        padding: 24px;
+      }
+
+      .sm\:p-7 {
+        padding: 28px;
+      }
+
+      .sm\:p-8 {
+        padding: 32px;
+      }
+
+      .sm\:px-5 {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .sm\:px-8 {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .sm\:py-6 {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+
+      .sm\:py-8 {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
+
+      .sm\:py-12 {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      .sm\:py-14 {
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+
+      .sm\:py-20 {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+
+      .sm\:pl-8 {
+        padding-left: 32px;
+      }
+
+      .sm\:pl-\[52px\] {
+        padding-left: 52px;
+      }
+
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sm\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .sm\:grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .sm\:text-\[15px\] {
+        font-size: 15px;
+      }
+
+      .sm\:text-\[17px\] {
+        font-size: 17px;
+      }
+
+      .sm\:text-\[18px\] {
+        font-size: 18px;
+      }
+
+      .sm\:text-\[20px\] {
+        font-size: 20px;
+      }
+
+      .sm\:text-\[22px\] {
+        font-size: 22px;
+      }
+
+      .sm\:text-\[24px\] {
+        font-size: 24px;
+      }
+
+      .sm\:text-\[30px\] {
+        font-size: 30px;
+      }
+
+      .sm\:text-\[32px\] {
+        font-size: 32px;
+      }
+
+      .sm\:text-\[36px\] {
+        font-size: 36px;
+      }
+
+      .sm\:text-\[38px\] {
+        font-size: 38px;
+      }
+
+      .sm\:text-\[42px\] {
+        font-size: 42px;
+      }
+
+      .sm\:text-\[12px\] {
+        font-size: 12px;
+      }
+
+      .sm\:text-\[13px\] {
+        font-size: 13px;
+      }
+
+      .sm\:text-\[14px\] {
+        font-size: 14px;
+      }
+
+      .sm\:border-t-2 {
+        border-top: 2px solid;
+      }
+    }
   </style>
 </head>
 
@@ -521,82 +1662,89 @@
   <div class="reading-progress" id="readingProgress"></div>
 
   <!-- Navigation -->
-  <nav class="nav-glass py-4 px-5 sm:py-5 sm:px-20 w-full">
-    <div class="max-w-[1100px] mx-auto flex items-center justify-between">
-    <a href="./index.html" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-[6px] bg-[#111111] flex items-center justify-center shrink-0">
-        <span class="font-sora text-[15px] font-bold text-white">A</span>
+  <nav class="nav-glass cs-nav">
+    <div class="cs-nav-inner">
+      <a href="./index.html" class="cs-nav-logo">
+        <div class="cs-nav-logo-box"><span>A</span></div>
+        <span class="cs-nav-logo-name">Ayush Bhamu</span>
+      </a>
+      <div class="cs-nav-links">
+        <a href="./index.html#work" class="cs-nav-link">&larr; All work</a>
+        <a href="./index.html#contact" class="cs-nav-contact">Contact</a>
       </div>
-      <span class="font-sora text-[15px] sm:text-[16px] font-semibold text-[#111111]">Ayush Bhamu</span>
-    </a>
-    <div class="flex items-center gap-1">
-      <a href="./index.html#work"
-        class="font-inter text-[#555555] text-[13px] sm:text-[14px] font-medium hover:text-[#111111] transition-colors px-3 py-1.5 rounded-[6px] hover:bg-black/5">&larr; All work</a>
-      <a href="./index.html#contact"
-        class="font-inter text-[13px] sm:text-[14px] font-semibold text-[#111111] ml-2 px-4 py-1.5 rounded-[6px] border border-[#D8D5CE] hover:border-[#999999] transition-colors hidden sm:inline-flex">Contact</a>
-    </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="px-5 sm:px-20 pt-14 sm:pt-20 pb-12 sm:pb-16 w-full" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(13,115,119,0.08) 0%, transparent 70%), #FAFAF8;">
-    <div class="max-w-[1100px] mx-auto">
-    <div class="max-w-[820px] flex flex-col gap-5 sm:gap-6">
-      <div class="flex items-center gap-2 flex-wrap">
-        <span class="tag">Energy &middot; B2B</span>
-        <span class="tag tag-neutral">Internal Platform</span>
-        <span class="tag tag-neutral">Sole UI/UX Designer</span>
+  <section class="cs-section-hero"
+    style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(13,115,119,0.08) 0%, transparent 70%), #FAFAF8;">
+    <div class="cs-container">
+      <div class="cs-hero-inner">
+        <div class="cs-tag-row">
+          <span class="tag">Energy &middot; B2B</span>
+          <span class="tag tag-neutral">Internal Platform</span>
+          <span class="tag tag-neutral">Sole UI/UX Designer</span>
+        </div>
+        <h1 class="cs-hero-title">
+          Designing a performance analysis tool for offshore wind operations
+        </h1>
+        <p class="cs-hero-desc">
+          Replaced fragmented PI Vision / SCADA workflows with a purpose-built web application &mdash; giving analysts
+          and engineers interactive charts, event overlays, and a progressive filter system to diagnose turbine issues
+          in minutes instead of hours.
+        </p>
       </div>
-      <h1 class="font-sora text-[30px] sm:text-[48px] font-bold text-[#111111] leading-[1.1] tracking-[-1px] sm:tracking-[-2px]">
-        Designing a performance analysis tool for offshore wind operations
-      </h1>
-      <p class="font-inter text-[#555555] text-[15px] sm:text-[17px] leading-[1.75] max-w-[680px]">
-        Replaced fragmented PI Vision / SCADA workflows with a purpose-built web application &mdash; giving analysts and engineers interactive charts, event overlays, and a progressive filter system to diagnose turbine issues in minutes instead of hours.
-      </p>
-    </div>
     </div>
   </section>
 
   <!-- Project overview strip -->
-  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
-    <div class="max-w-[1100px] mx-auto flex flex-col gap-8">
+  <section class="cs-section" style="padding-top:40px;padding-bottom:56px;">
+    <div class="cs-container cs-flex-col cs-gap-8">
 
       <!-- Role & context — inline pills -->
-      <div class="flex flex-wrap gap-3">
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+      <div class="cs-pill-row">
+        <div
+          style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Role</span>
           <span class="font-inter text-[#111111] text-[13px] font-semibold">Sole UI/UX Designer</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+        <div
+          style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Timeline</span>
           <span class="font-inter text-[#111111] text-[13px] font-semibold">10+ months (ongoing)</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+        <div
+          style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Team</span>
-          <span class="font-inter text-[#111111] text-[13px] font-semibold">5+ cross-functional (PO, devs, data engineers)</span>
+          <span class="font-inter text-[#111111] text-[13px] font-semibold">5+ cross-functional (PO, devs, data
+            engineers)</span>
         </div>
-        <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
+        <div
+          style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;">
           <span class="font-inter text-[10px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Tools</span>
           <span class="font-inter text-[#111111] text-[13px] font-semibold">Figma, Jira, Mural</span>
         </div>
       </div>
 
       <!-- Impact metrics — card grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="cs-grid-4">
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
           <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">High-fidelity screens designed</p>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr; 1</span>
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr;
+            1</span>
           <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Tools consolidated into one</p>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr; Min</span>
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr;
+            Min</span>
           <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Time to identify critical issues</p>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Adopted</span>
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+            style="color:#0D7377;">Adopted</span>
           <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Shipped &amp; used by analysts daily</p>
         </div>
       </div>
@@ -606,10 +1754,14 @@
   <!-- Cover Image -->
   <section class="w-full py-8 sm:py-12" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
     <div class="max-w-[1000px] mx-auto px-5 sm:px-8">
-      <div style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
-        <img id="coverImg" src="./images/Delphi hero image.png" alt="Delphi main interface — Parameters panel with filters on the left, interactive time-series chart results on the right" class="w-full block" style="display:block;" />
+      <div
+        style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
+        <img id="coverImg" src="./images/Delphi hero image.png"
+          alt="Delphi main interface — Parameters panel with filters on the left, interactive time-series chart results on the right"
+          class="w-full block" style="display:block;" />
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center mt-4">Delphi &middot; Wind turbine ad-hoc performance analysis platform</p>
+      <p class="font-inter text-[12px] text-[#999999] text-center mt-4">Delphi &middot; Wind turbine ad-hoc performance
+        analysis platform</p>
     </div>
   </section>
 
@@ -617,9 +1769,12 @@
   <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
     <div class="max-w-[1100px] mx-auto">
       <div class="callout p-6 sm:p-8 fade-up">
-        <div class="font-inter text-[11px] font-semibold tracking-[0.08em] uppercase mb-2" style="color:#0D7377;">Result</div>
+        <div class="font-inter text-[11px] font-semibold tracking-[0.08em] uppercase mb-2" style="color:#0D7377;">Result
+        </div>
         <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.8]">
-          Shipped and adopted across the performance analysis team. Designed 15+ screens covering interactive time-series charts, event diagnostics, turbine comparison, and data export. Reduced the time to identify critical turbine issues from hours of manual data digging to minutes of visual analysis.
+          Shipped and adopted across the performance analysis team. Designed 15+ screens covering interactive
+          time-series charts, event diagnostics, turbine comparison, and data export. Reduced the time to identify
+          critical turbine issues from hours of manual data digging to minutes of visual analysis.
         </p>
       </div>
     </div>
@@ -628,552 +1783,735 @@
   <!-- Main content with stepper -->
   <div class="case-layout">
 
-  <article class="px-5 sm:px-8 w-full flex flex-col gap-16 sm:gap-24 pb-20">
+    <article class="px-5 sm:px-8 w-full flex flex-col gap-16 sm:gap-24 pb-20">
 
-    <!-- ============================================ -->
-    <!-- 01 · CONTEXT -->
-    <!-- ============================================ -->
-    <div id="sec-context" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">01 &middot; Context</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        The problem: finding a needle in a data haystack
-      </h2>
-      <div class="flex flex-col gap-4">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          RWE operates thousands of wind turbines across offshore and onshore sites. When a turbine underperforms or triggers an event &mdash; a pitch fault, a grid dropout, an unexpected shutdown &mdash; performance analysts and engineers need to investigate quickly. The question is always the same: <em>what happened, when, and why?</em>
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The existing workflow relied on PI Vision and SCADA dashboards &mdash; powerful but generic tools designed for real-time monitoring, not for ad-hoc investigation. Analysts would pull 10-minute interval data into Excel, manually cross-reference event logs, build their own charts, and compare turbines side by side &mdash; all in disconnected tools. A single investigation could take hours of data wrangling before any actual analysis began.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I was brought in as the sole UI/UX designer to help build <strong>Delphi</strong> &mdash; a purpose-built web application that would consolidate event data and historical performance metrics into a single interface with interactive, visual charting. The goal: let analysts go from question to answer without leaving the tool.
-        </p>
-      </div>
-
-      <!-- Before → After comparison -->
-      <div class="flex flex-col gap-6 fade-up">
-        <div class="flex flex-col gap-3">
-          <div class="flex items-center gap-3">
-            <span class="compare-before compare-label">Before</span>
-            <span class="font-inter text-[15px] font-semibold text-[#333333]">Existing Issue Management tool</span>
-          </div>
-          <div class="image-block">
-            <img src="./images/Before state.png" alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
-            <div class="image-caption">15+ filters exposed at once &mdash; functional but overwhelming for ad-hoc investigation</div>
-          </div>
+      <!-- ============================================ -->
+      <!-- 01 · CONTEXT -->
+      <!-- ============================================ -->
+      <div id="sec-context" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">01 &middot;
+            Context</span>
         </div>
-        <div class="flex flex-col gap-3">
-          <div class="flex items-center gap-3">
-            <span class="compare-after compare-label">After</span>
-            <span class="font-inter text-[15px] font-semibold text-[#333333]">Delphi &mdash; purpose-built analysis platform</span>
-          </div>
-          <div class="image-block">
-            <img src="./images/Delphi hero image.png" alt="Delphi main interface — Parameters panel with progressive filters on the left, interactive time-series chart on the right" />
-            <div class="image-caption">Progressive filters + interactive charts &mdash; analysts go from question to answer in one tool</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- 02 · DISCOVERY -->
-    <!-- ============================================ -->
-    <div id="sec-discovery" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">02 &middot; Discovery</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        Understanding how analysts actually investigate
-      </h2>
-      <div class="flex flex-col gap-4">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          I started with requirement gathering sessions with the Product Owner, translating business needs into well-defined PBIs. In parallel, I conducted user interviews with performance analysts and site engineers to understand their actual investigation workflows &mdash; not what documentation said they did, but what they <em>really</em> did day to day.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          Three patterns surfaced clearly across every conversation:
-        </p>
-      </div>
-
-      <!-- Research methodology callout -->
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 fade-up">
-        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Research approach</span>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="flex flex-col gap-1">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">Requirement gathering</span>
-            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Working sessions with PO to translate business needs into prioritised PBIs with clear acceptance criteria</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">User interviews</span>
-            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Performance analysts and site engineers; focused on actual investigation workflows, not documented processes</span>
-          </div>
-          <div class="flex flex-col gap-1">
-            <span class="font-sora text-[14px] font-bold text-[#111111]">Iterative usability testing</span>
-            <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Prototype walkthroughs with analysts; tested filter behaviour, chart interactions, and information density</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Discovery stats -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">3&ndash;4</span>
-          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">disconnected tools required for a single investigation &mdash; PI Vision, SCADA exports, Excel, and sometimes Python scripts</p>
-        </div>
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">filter parameters analysts wanted &mdash; but couldn&rsquo;t specify upfront. They explored iteratively, narrowing as they went</p>
-        </div>
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]" style="color:#0D7377;">Hours</span>
-          <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">spent on data preparation before actual analysis. Most time was wasted formatting and cross-referencing, not thinking</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- 03 · PROCESS -->
-    <!-- ============================================ -->
-    <div id="sec-process" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">03 &middot; Process</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        How I structured the work
-      </h2>
-
-      <div class="flex flex-col gap-8">
-        <!-- Step 1 -->
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1 relative">
-            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[14px] font-bold text-[#0D7377]">1</span>
-            </div>
-            <div class="step-line"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Requirement gathering &amp; PBI refinement</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Worked closely with the PO to translate business objectives into prioritised product backlog items. Defined acceptance criteria for each feature and identified dependencies between the charting engine, event system, and filter infrastructure &mdash; ensuring design and development stayed aligned sprint over sprint.
-            </p>
-          </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          The problem: finding a needle in a data haystack
+        </h2>
+        <div class="flex flex-col gap-4">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            RWE operates thousands of wind turbines across offshore and onshore sites. When a turbine underperforms or
+            triggers an event &mdash; a pitch fault, a grid dropout, an unexpected shutdown &mdash; performance analysts
+            and engineers need to investigate quickly. The question is always the same: <em>what happened, when, and
+              why?</em>
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            The existing workflow relied on PI Vision and SCADA dashboards &mdash; powerful but generic tools designed
+            for real-time monitoring, not for ad-hoc investigation. Analysts would pull 10-minute interval data into
+            Excel, manually cross-reference event logs, build their own charts, and compare turbines side by side
+            &mdash; all in disconnected tools. A single investigation could take hours of data wrangling before any
+            actual analysis began.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            I was brought in as the sole UI/UX designer to help build <strong>Delphi</strong> &mdash; a purpose-built
+            web application that would consolidate event data and historical performance metrics into a single interface
+            with interactive, visual charting. The goal: let analysts go from question to answer without leaving the
+            tool.
+          </p>
         </div>
 
-        <!-- Step 2 -->
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1 relative">
-            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[14px] font-bold text-[#0D7377]">2</span>
-            </div>
-            <div class="step-line"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">User interviews &amp; workflow mapping</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Interviewed performance analysts and engineers to map their actual investigation process. Documented the typical path from alert &rarr; data pull &rarr; chart creation &rarr; comparison &rarr; root-cause hypothesis. This revealed that the investigation flow was non-linear &mdash; users backtrack, re-filter, and compare constantly. The UI needed to support that fluidity.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1 relative">
-            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[14px] font-bold text-[#0D7377]">3</span>
-            </div>
-            <div class="step-line"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Low-fidelity wireframes &amp; concept exploration</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Explored 3 layout approaches for the core analysis view: a single-panel chart with overlay controls, a split-panel chart + data table view, and a modular dashboard with draggable chart tiles. Tested with users &mdash; the split-panel approach won clearly because analysts needed raw data alongside the visual for validation.
-            </p>
-          </div>
-        </div>
-
-        <!-- Alternatives explored callout -->
-        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="margin-left:56px;">
-          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">3 layout approaches tested</span>
+        <!-- Before → After comparison -->
+        <div class="flex flex-col gap-6 fade-up">
           <div class="flex flex-col gap-3">
-            <div class="tradeoff-option">
-              <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-              <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single-panel chart</strong> with overlay controls &mdash; analysts needed raw data alongside visuals for validation</span>
+            <div class="flex items-center gap-3">
+              <span class="compare-before compare-label">Before</span>
+              <span class="font-inter text-[15px] font-semibold text-[#333333]">Existing Issue Management tool</span>
             </div>
-            <div class="tradeoff-option">
-              <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-              <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Modular dashboard</strong> with draggable tiles &mdash; too much flexibility created cognitive overload for focused investigation</span>
-            </div>
-            <div class="tradeoff-chosen tradeoff-option">
-              <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
-              <span class="font-inter text-[#333333] text-[13px]"><strong>Split-panel: chart + data table</strong> &mdash; analysts validated specific data points directly from the chart; bidirectional linking was the key interaction pattern</span>
+            <div class="image-block">
+              <img src="./images/Before state.png"
+                alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
+              <div class="image-caption">15+ filters exposed at once &mdash; functional but overwhelming for ad-hoc
+                investigation</div>
             </div>
           </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1 relative">
-            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[14px] font-bold text-[#0D7377]">4</span>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <span class="compare-after compare-label">After</span>
+              <span class="font-inter text-[15px] font-semibold text-[#333333]">Delphi &mdash; purpose-built analysis
+                platform</span>
             </div>
-            <div class="step-line"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">High-fidelity design &amp; usability testing</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Built 15+ high-fidelity screens in Figma covering the dashboard, chart views, event overlays, filter panels, turbine comparison, data tables, and export flows. Ran usability tests on interactive prototypes with analysts &mdash; iterated on filter behaviour, chart interaction patterns, and information density based on direct feedback.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="flex gap-4 fade-up">
-          <div class="shrink-0 mt-1">
-            <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
-              <span class="font-sora text-[14px] font-bold text-[#0D7377]">5</span>
+            <div class="image-block">
+              <img src="./images/Delphi hero image.png"
+                alt="Delphi main interface — Parameters panel with progressive filters on the left, interactive time-series chart on the right" />
+              <div class="image-caption">Progressive filters + interactive charts &mdash; analysts go from question to
+                answer in one tool</div>
             </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="font-sora text-[16px] font-bold text-[#111111]">Iterative delivery &amp; ongoing refinement</h3>
-            <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-              Delphi shipped in phases over 10+ months. Each sprint included design QA, developer pairing on interaction details, and feedback loops with the analyst team. The ongoing nature of the project meant I continuously refined features post-release based on real usage patterns &mdash; not just initial assumptions.
-            </p>
           </div>
         </div>
       </div>
 
-      <!-- Wireframes image -->
-      <div class="image-block fade-up">
-        <img src="./images/Wireframes.png" alt="Low-fidelity wireframes exploring navigation structure, filter layouts, and chart view configurations" />
-        <div class="image-caption">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis view</div>
-      </div>
-    </div>
+      <!-- ============================================ -->
+      <!-- 02 · DISCOVERY -->
+      <!-- ============================================ -->
+      <div id="sec-discovery" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">02 &middot;
+            Discovery</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          Understanding how analysts actually investigate
+        </h2>
+        <div class="flex flex-col gap-4">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            I started with requirement gathering sessions with the Product Owner, translating business needs into
+            well-defined PBIs. In parallel, I conducted user interviews with performance analysts and site engineers to
+            understand their actual investigation workflows &mdash; not what documentation said they did, but what they
+            <em>really</em> did day to day.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+            Three patterns surfaced clearly across every conversation:
+          </p>
+        </div>
 
-    <!-- ============================================ -->
-    <!-- 04 · KEY DESIGN DECISIONS -->
-    <!-- ============================================ -->
-    <div id="sec-decisions" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">04 &middot; Key design decisions</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        Four decisions that shaped the product
-      </h2>
-
-      <div class="flex flex-col gap-6">
-        <!-- Decision A -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">A</span>
+        <!-- Research methodology callout -->
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 fade-up">
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Research
+            approach</span>
+          <div class="cs-grid-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="flex flex-col gap-1">
+              <span class="font-sora text-[14px] font-bold text-[#111111]">Requirement gathering</span>
+              <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Working sessions with PO to translate
+                business needs into prioritised PBIs with clear acceptance criteria</span>
             </div>
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Progressive filter system &mdash; show less, let users dig deeper</h3>
+            <div class="flex flex-col gap-1">
+              <span class="font-sora text-[14px] font-bold text-[#111111]">User interviews</span>
+              <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Performance analysts and site engineers;
+                focused on actual investigation workflows, not documented processes</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <span class="font-sora text-[14px] font-bold text-[#111111]">Iterative usability testing</span>
+              <span class="font-inter text-[#666666] text-[12px] leading-[1.6]">Prototype walkthroughs with analysts;
+                tested filter behaviour, chart interactions, and information density</span>
+            </div>
           </div>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            This was the hardest design problem on the project. Analysts needed 15+ filter parameters &mdash; turbine ID, site, date range, event type, severity, operational status, wind speed range, power curve deviation, and more. Showing all of them at once was overwhelming. Hiding them behind a single search bar meant too many clicks.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The solution was a progressive disclosure model: the filter panel opens with the 4 most-used parameters (site, turbine, date range, event type) visible by default. Below that, an &ldquo;Advanced filters&rdquo; section expands to reveal the remaining parameters grouped by category &mdash; operational, environmental, and event-specific. Each filter showed active state counts so analysts could see at a glance how many constraints were applied.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Critically, I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar investigations, the system remembered their last 5 filter combinations. This came directly from a user interview where an analyst said he kept a sticky note with his common filter setups.
-          </p>
-          <div class="flex flex-col gap-2 mt-2">
-            <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives considered</span>
+        </div>
+
+        <!-- Discovery stats -->
+        <div class="cs-grid-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">3&ndash;4</span>
+            <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">disconnected tools required for a single
+              investigation &mdash; PI Vision, SCADA exports, Excel, and sometimes Python scripts</p>
+          </div>
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">15+</span>
+            <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">filter parameters analysts wanted
+              &mdash; but couldn&rsquo;t specify upfront. They explored iteratively, narrowing as they went</p>
+          </div>
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[28px] sm:text-[32px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">Hours</span>
+            <p class="font-inter text-[13px] text-[#666666] leading-[1.6] mt-2">spent on data preparation before actual
+              analysis. Most time was wasted formatting and cross-referencing, not thinking</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 03 · PROCESS -->
+      <!-- ============================================ -->
+      <div id="sec-process" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">03 &middot;
+            Process</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          How I structured the work
+        </h2>
+
+        <div class="flex flex-col gap-8">
+          <!-- Step 1 -->
+          <div class="flex gap-4 fade-up">
+            <div class="shrink-0 mt-1 relative">
+              <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+                <span class="font-sora text-[14px] font-bold text-[#0D7377]">1</span>
+              </div>
+              <div class="step-line"></div>
+            </div>
             <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] font-bold text-[#111111]">Requirement gathering &amp; PBI refinement</h3>
+              <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+                Worked closely with the PO to translate business objectives into prioritised product backlog items.
+                Defined acceptance criteria for each feature and identified dependencies between the charting engine,
+                event system, and filter infrastructure &mdash; ensuring design and development stayed aligned sprint
+                over sprint.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-4 fade-up">
+            <div class="shrink-0 mt-1 relative">
+              <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+                <span class="font-sora text-[14px] font-bold text-[#0D7377]">2</span>
+              </div>
+              <div class="step-line"></div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] font-bold text-[#111111]">User interviews &amp; workflow mapping</h3>
+              <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+                Interviewed performance analysts and engineers to map their actual investigation process. Documented the
+                typical path from alert &rarr; data pull &rarr; chart creation &rarr; comparison &rarr; root-cause
+                hypothesis. This revealed that the investigation flow was non-linear &mdash; users backtrack, re-filter,
+                and compare constantly. The UI needed to support that fluidity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-4 fade-up">
+            <div class="shrink-0 mt-1 relative">
+              <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+                <span class="font-sora text-[14px] font-bold text-[#0D7377]">3</span>
+              </div>
+              <div class="step-line"></div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] font-bold text-[#111111]">Low-fidelity wireframes &amp; concept
+                exploration</h3>
+              <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+                Explored 3 layout approaches for the core analysis view: a single-panel chart with overlay controls, a
+                split-panel chart + data table view, and a modular dashboard with draggable chart tiles. Tested with
+                users &mdash; the split-panel approach won clearly because analysts needed raw data alongside the visual
+                for validation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Alternatives explored callout -->
+          <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="margin-left:56px;">
+            <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">3 layout approaches
+              tested</span>
+            <div class="flex flex-col gap-3">
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single-panel
+                    chart</strong> with overlay controls &mdash; analysts needed raw data alongside visuals for
+                  validation</span>
+              </div>
+              <div class="tradeoff-option">
+                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Modular
+                    dashboard</strong> with draggable tiles &mdash; too much flexibility created cognitive overload for
+                  focused investigation</span>
+              </div>
               <div class="tradeoff-chosen tradeoff-option">
                 <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
-                <span class="font-inter text-[#333333] text-[13px]"><strong>Progressive disclosure</strong> &mdash; 4 primary filters visible, &ldquo;Advanced&rdquo; section for the rest, grouped by category</span>
-              </div>
-              <div class="tradeoff-option">
-                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Show all 15+ filters</strong> &mdash; overwhelming; analysts couldn&rsquo;t parse constraints at a glance</span>
-              </div>
-              <div class="tradeoff-option">
-                <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
-                <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single search bar</strong> &mdash; too many clicks; analysts explore iteratively, not with exact queries</span>
+                <span class="font-inter text-[#333333] text-[13px]"><strong>Split-panel: chart + data table</strong>
+                  &mdash; analysts validated specific data points directly from the chart; bidirectional linking was the
+                  key interaction pattern</span>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Decision B -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">B</span>
+          <!-- Step 4 -->
+          <div class="flex gap-4 fade-up">
+            <div class="shrink-0 mt-1 relative">
+              <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+                <span class="font-sora text-[14px] font-bold text-[#0D7377]">4</span>
+              </div>
+              <div class="step-line"></div>
             </div>
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Event overlays on time-series charts &mdash; making incidents visible in context</h3>
-          </div>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The core value of Delphi was the interactive time-series chart plotting 10-minute interval data &mdash; power output, wind speed, rotor RPM, pitch angle &mdash; over user-defined time ranges. But raw performance data alone doesn&rsquo;t tell the story. Analysts needed to see <em>when events happened</em> in the context of the performance curve.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            I designed event markers as vertical annotations on the chart timeline &mdash; color-coded by severity (critical, warning, informational) with expandable tooltips showing event details on hover. Users could toggle event categories on and off so the chart wouldn&rsquo;t become cluttered during dense-event periods. For multi-turbine comparisons, events from different turbines used distinct marker styles to remain distinguishable.
-          </p>
-        </div>
-
-        <!-- Decision C -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">C</span>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] font-bold text-[#111111]">High-fidelity design &amp; usability testing
+              </h3>
+              <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+                Built 15+ high-fidelity screens in Figma covering the dashboard, chart views, event overlays, filter
+                panels, turbine comparison, data tables, and export flows. Ran usability tests on interactive prototypes
+                with analysts &mdash; iterated on filter behaviour, chart interaction patterns, and information density
+                based on direct feedback.
+              </p>
             </div>
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Modular onboarding &mdash; per-chart-type walkthroughs with progress tracking</h3>
           </div>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Delphi was replacing workflows analysts had used for years. Even though the new tool was more efficient, the switch itself was a friction point &mdash; people don&rsquo;t abandon familiar tools willingly. The challenge: Delphi had multiple chart types (Scatter Plot, Time Series, Box Plot, Wind Roses) each with their own parameter sets and interaction patterns. A single generic walkthrough wouldn&rsquo;t work because each module had different controls and concepts to learn.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The solution was a modular onboarding system. On first login, users see a welcome modal (&ldquo;Welcome to Delphi&rdquo;) with a clear choice: &ldquo;Skip For Now&rdquo; or &ldquo;Yes, Let&rsquo;s Go!&rdquo; &mdash; respecting the user&rsquo;s autonomy from the first interaction. If they opt in, the tour begins with the Alarms module, then offers to continue to Scatter Plot, Time Series, and so on. Each module has its own dedicated walkthrough.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Within each module tour, a progress stepper at the top (Parameters &rarr; Assets &rarr; Scatter Measures &rarr; Color Gradient) shows users exactly where they are and how much is left. The walkthrough highlights relevant UI sections with a spotlight border and presents contextual tooltips explaining what each control does and how to use it &mdash; including shortcut tips like &ldquo;select &lsquo;Power Curves&rsquo; to automatically populate X and Y axes.&rdquo; A persistent &ldquo;Skip Tour&rdquo; option in the header lets users exit at any point without penalty.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            At the end of each module tour, a completion screen gives users two paths: &ldquo;Continue To Time Series Onboarding&rdquo; to keep learning, or &ldquo;Finish&rdquo; to start working &mdash; with a reminder that they can always re-access the tour from the help icon. This modular approach meant experienced users could skip modules they already understood and only tour the ones that were new to them, while new hires could walk through the entire system end to end.
-          </p>
-        </div>
 
-        <!-- Decision D -->
-        <div class="decision-card fade-up">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
-              <span class="font-sora text-[13px] font-bold text-white">D</span>
+          <!-- Step 5 -->
+          <div class="flex gap-4 fade-up">
+            <div class="shrink-0 mt-1">
+              <div class="w-10 h-10 rounded-[10px] bg-[#ECFDF5] flex items-center justify-center">
+                <span class="font-sora text-[14px] font-bold text-[#0D7377]">5</span>
+              </div>
             </div>
-            <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Dedicated Feedback Area &mdash; making user input a first-class feature, not an afterthought</h3>
+            <div class="flex flex-col gap-2">
+              <h3 class="font-sora text-[16px] font-bold text-[#111111]">Iterative delivery &amp; ongoing refinement
+              </h3>
+              <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+                Delphi shipped in phases over 10+ months. Each sprint included design QA, developer pairing on
+                interaction details, and feedback loops with the analyst team. The ongoing nature of the project meant I
+                continuously refined features post-release based on real usage patterns &mdash; not just initial
+                assumptions.
+              </p>
+            </div>
           </div>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Since Delphi was an ongoing, iteratively shipped product, I needed a mechanism to capture user feedback continuously &mdash; not just during scheduled usability tests. Analysts are busy; they won&rsquo;t send an email or fill out an external survey when something frustrates them. They&rsquo;ll work around the issue and move on. The feedback channel needed to be built into the tool itself, not bolted on.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            Rather than a small floating widget that limits what users can express, I designed a dedicated Feedback Area as a full page in the main navigation &mdash; giving it the same status as Alarms, Scatter Plot, or Time Series. The page has two tabs: &ldquo;Leave Feedback&rdquo; for submission and &ldquo;Reported Feedback&rdquo; for tracking.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The submission form lets users categorise their feedback upfront &mdash; Issue or Bug, Enhancement or New Feature Request, or Other Feedback &mdash; with a title, a rich-text description field (supporting formatting, lists, and emphasis for detailed bug reports), and a drag-and-drop attachment zone for screenshots, videos, or supporting files (up to 5 files, 8MB each). This structure meant the PO and I received consistently well-formatted, actionable feedback instead of vague one-liners.
-          </p>
-          <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
-            The &ldquo;Reported Feedback&rdquo; tab was equally important &mdash; it showed users a table of all submitted feedback with priority levels (High, Medium, Low), current status (New, In Progress, Recognized, Done, Rejected), reporter name, release target, and a direct &ldquo;View in ADO&rdquo; link to the Azure DevOps work item. This transparency closed the loop: users could see that their feedback was acknowledged, prioritised, and tracked &mdash; not disappearing into a void. It also reduced duplicate submissions because users could check if an issue was already reported before filing a new one.
-          </p>
         </div>
-      </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- ONBOARDING FLOW SHOWCASE -->
-    <!-- ============================================ -->
-    <div id="sec-onboarding" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Onboarding flow</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        The complete walkthrough sequence
-      </h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-        Four stages of the modular onboarding &mdash; from the initial welcome prompt through module-specific guided tours to completion.
-      </p>
-
-      <div class="screen-grid-4">
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Onboarding Walkthrough v1 - 1.png" alt="Step 1 — Welcome to Delphi modal with Skip For Now and Yes Let's Go options" />
-          <div class="screen-label">1 &middot; Welcome prompt</div>
-        </div>
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Scatter Plot Onboarding v1 - 2.png" alt="Step 2 — Welcome to Scatter Plot Onboarding module-specific entry" />
-          <div class="screen-label">2 &middot; Module entry</div>
-        </div>
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Scatter Plot Onboarding v1 - 16.png" alt="Step 3 — Mid-tour with highlighted section, tooltip, and progress stepper" />
-          <div class="screen-label">3 &middot; Guided tooltip tour</div>
-        </div>
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Scatter Plot Onboarding v1 - 13.png" alt="Step 4 — Tour completion with option to continue to next module or finish" />
-          <div class="screen-label">4 &middot; Completion + next module</div>
-        </div>
-      </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Onboarding flow &middot; Welcome &rarr; Module-specific tour &rarr; Guided tooltips with progress &rarr; Completion with continuation option</p>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- FEEDBACK AREA SHOWCASE -->
-    <!-- ============================================ -->
-    <div id="sec-feedback" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Feedback Area</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        Submission and tracking &mdash; both sides of the loop
-      </h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-        The Feedback Area lives in the main navigation and has two tabs: a structured submission form for reporting issues and requesting features, and a transparent tracker showing all reported feedback with priority, status, and ADO integration.
-      </p>
-
-      <div class="screen-grid">
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Feedback Area v1 - 1.png" alt="Leave Feedback tab — categorised form with rich text editor and file attachments" />
-          <div class="screen-label">Leave Feedback &middot; Submission form</div>
-        </div>
-        <div class="showcase-image-block fade-up">
-          <img src="./images/Feedback Area v1 - 3.png" alt="Reported Feedback tab — tracker table with priority, status, reporter, and ADO link" />
-          <div class="screen-label">Reported Feedback &middot; Status tracker</div>
-        </div>
-      </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Feedback Area &middot; Structured submission form (left) and transparent feedback tracker with ADO integration (right)</p>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- KEY SCREENS -->
-    <!-- ============================================ -->
-    <div id="sec-screens" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Key screens</span>
-      </div>
-
-      <div class="screen-grid">
+        <!-- Wireframes image -->
         <div class="image-block fade-up">
-          <img src="./images/Filters extended.png" alt="Progressive filter panel — Scatter Plot view with grouped parameters: Assets, Scatter Measures, and Other Options" />
-          <div class="image-caption">Progressive filter panel &middot; Scatter Plot parameters</div>
-        </div>
-        <div class="image-block fade-up">
-          <img src="./images/Dummy chart.png" alt="Expanded chart view with interactive tooltip showing data point details on hover" />
-          <div class="image-caption">Expanded chart &middot; Interactive tooltip on hover</div>
-        </div>
-        <div class="image-block fade-up">
-          <img src="./images/Scatter Plot Onboarding v1 - 16.png" alt="Onboarding walkthrough — highlighted UI section with tooltip explanation and progress stepper" />
-          <div class="image-caption">Onboarding mid-tour &middot; Guided tooltip with progress</div>
-        </div>
-        <div class="image-block fade-up">
-          <img src="./images/Feedback Area v1 - 1.png" alt="Feedback Area — Leave Feedback tab with type selector, title, rich text description, and file attachments" />
-          <div class="image-caption">Feedback submission &middot; Categorised form with attachments</div>
+          <img src="./images/Wireframes.png"
+            alt="Low-fidelity wireframes exploring navigation structure, filter layouts, and chart view configurations" />
+          <div class="image-caption">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis
+            view</div>
         </div>
       </div>
-      <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Core interface screens &middot; Progressive filter panel, expanded chart with tooltip, onboarding mid-tour, feedback submission</p>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- 06 · OUTCOME -->
-    <!-- ============================================ -->
-    <div id="sec-outcome" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot; Outcome</span>
+      <!-- ============================================ -->
+      <!-- 04 · KEY DESIGN DECISIONS -->
+      <!-- ============================================ -->
+      <div id="sec-decisions" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">04 &middot; Key
+            design decisions</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          Four decisions that shaped the product
+        </h2>
+
+        <div class="flex flex-col gap-6">
+          <!-- Decision A -->
+          <div class="decision-card fade-up">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+                <span class="font-sora text-[13px] font-bold text-white">A</span>
+              </div>
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Progressive filter system
+                &mdash; show less, let users dig deeper</h3>
+            </div>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              This was the hardest design problem on the project. Analysts needed 15+ filter parameters &mdash; turbine
+              ID, site, date range, event type, severity, operational status, wind speed range, power curve deviation,
+              and more. Showing all of them at once was overwhelming. Hiding them behind a single search bar meant too
+              many clicks.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              The solution was a progressive disclosure model: the filter panel opens with the 4 most-used parameters
+              (site, turbine, date range, event type) visible by default. Below that, an &ldquo;Advanced filters&rdquo;
+              section expands to reveal the remaining parameters grouped by category &mdash; operational, environmental,
+              and event-specific. Each filter showed active state counts so analysts could see at a glance how many
+              constraints were applied.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              Critically, I added a &ldquo;recent filters&rdquo; feature &mdash; since analysts often re-run similar
+              investigations, the system remembered their last 5 filter combinations. This came directly from a user
+              interview where an analyst said he kept a sticky note with his common filter setups.
+            </p>
+            <div class="flex flex-col gap-2 mt-2">
+              <span class="font-inter text-[10px] font-semibold tracking-[0.10em] uppercase text-[#AAAAAA]">Alternatives
+                considered</span>
+              <div class="flex flex-col gap-2">
+                <div class="tradeoff-chosen tradeoff-option">
+                  <span class="tradeoff-badge" style="background:#E6F4F1;color:#1A7A6A;">Chosen</span>
+                  <span class="font-inter text-[#333333] text-[13px]"><strong>Progressive disclosure</strong> &mdash; 4
+                    primary filters visible, &ldquo;Advanced&rdquo; section for the rest, grouped by category</span>
+                </div>
+                <div class="tradeoff-option">
+                  <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                  <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Show all 15+
+                      filters</strong> &mdash; overwhelming; analysts couldn&rsquo;t parse constraints at a
+                    glance</span>
+                </div>
+                <div class="tradeoff-option">
+                  <span class="tradeoff-badge" style="background:#F4F3EF;color:#888888;">Rejected</span>
+                  <span class="font-inter text-[#888888] text-[13px]"><strong style="color:#666;">Single search
+                      bar</strong> &mdash; too many clicks; analysts explore iteratively, not with exact queries</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision B -->
+          <div class="decision-card fade-up">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+                <span class="font-sora text-[13px] font-bold text-white">B</span>
+              </div>
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Event overlays on time-series
+                charts &mdash; making incidents visible in context</h3>
+            </div>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              The core value of Delphi was the interactive time-series chart plotting 10-minute interval data &mdash;
+              power output, wind speed, rotor RPM, pitch angle &mdash; over user-defined time ranges. But raw
+              performance data alone doesn&rsquo;t tell the story. Analysts needed to see <em>when events happened</em>
+              in the context of the performance curve.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              I designed event markers as vertical annotations on the chart timeline &mdash; color-coded by severity
+              (critical, warning, informational) with expandable tooltips showing event details on hover. Users could
+              toggle event categories on and off so the chart wouldn&rsquo;t become cluttered during dense-event
+              periods. For multi-turbine comparisons, events from different turbines used distinct marker styles to
+              remain distinguishable.
+            </p>
+          </div>
+
+          <!-- Decision C -->
+          <div class="decision-card fade-up">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+                <span class="font-sora text-[13px] font-bold text-white">C</span>
+              </div>
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Modular onboarding &mdash;
+                per-chart-type walkthroughs with progress tracking</h3>
+            </div>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              Delphi was replacing workflows analysts had used for years. Even though the new tool was more efficient,
+              the switch itself was a friction point &mdash; people don&rsquo;t abandon familiar tools willingly. The
+              challenge: Delphi had multiple chart types (Scatter Plot, Time Series, Box Plot, Wind Roses) each with
+              their own parameter sets and interaction patterns. A single generic walkthrough wouldn&rsquo;t work
+              because each module had different controls and concepts to learn.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              The solution was a modular onboarding system. On first login, users see a welcome modal (&ldquo;Welcome to
+              Delphi&rdquo;) with a clear choice: &ldquo;Skip For Now&rdquo; or &ldquo;Yes, Let&rsquo;s Go!&rdquo;
+              &mdash; respecting the user&rsquo;s autonomy from the first interaction. If they opt in, the tour begins
+              with the Alarms module, then offers to continue to Scatter Plot, Time Series, and so on. Each module has
+              its own dedicated walkthrough.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              Within each module tour, a progress stepper at the top (Parameters &rarr; Assets &rarr; Scatter Measures
+              &rarr; Color Gradient) shows users exactly where they are and how much is left. The walkthrough highlights
+              relevant UI sections with a spotlight border and presents contextual tooltips explaining what each control
+              does and how to use it &mdash; including shortcut tips like &ldquo;select &lsquo;Power Curves&rsquo; to
+              automatically populate X and Y axes.&rdquo; A persistent &ldquo;Skip Tour&rdquo; option in the header lets
+              users exit at any point without penalty.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              At the end of each module tour, a completion screen gives users two paths: &ldquo;Continue To Time Series
+              Onboarding&rdquo; to keep learning, or &ldquo;Finish&rdquo; to start working &mdash; with a reminder that
+              they can always re-access the tour from the help icon. This modular approach meant experienced users could
+              skip modules they already understood and only tour the ones that were new to them, while new hires could
+              walk through the entire system end to end.
+            </p>
+          </div>
+
+          <!-- Decision D -->
+          <div class="decision-card fade-up">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-[8px] bg-[#111111] flex items-center justify-center shrink-0">
+                <span class="font-sora text-[13px] font-bold text-white">D</span>
+              </div>
+              <h3 class="font-sora text-[16px] sm:text-[17px] font-bold text-[#111111]">Dedicated Feedback Area &mdash;
+                making user input a first-class feature, not an afterthought</h3>
+            </div>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              Since Delphi was an ongoing, iteratively shipped product, I needed a mechanism to capture user feedback
+              continuously &mdash; not just during scheduled usability tests. Analysts are busy; they won&rsquo;t send
+              an email or fill out an external survey when something frustrates them. They&rsquo;ll work around the
+              issue and move on. The feedback channel needed to be built into the tool itself, not bolted on.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              Rather than a small floating widget that limits what users can express, I designed a dedicated Feedback
+              Area as a full page in the main navigation &mdash; giving it the same status as Alarms, Scatter Plot, or
+              Time Series. The page has two tabs: &ldquo;Leave Feedback&rdquo; for submission and &ldquo;Reported
+              Feedback&rdquo; for tracking.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              The submission form lets users categorise their feedback upfront &mdash; Issue or Bug, Enhancement or New
+              Feature Request, or Other Feedback &mdash; with a title, a rich-text description field (supporting
+              formatting, lists, and emphasis for detailed bug reports), and a drag-and-drop attachment zone for
+              screenshots, videos, or supporting files (up to 5 files, 8MB each). This structure meant the PO and I
+              received consistently well-formatted, actionable feedback instead of vague one-liners.
+            </p>
+            <p class="font-inter text-[#444444] text-[14px] leading-[1.8]">
+              The &ldquo;Reported Feedback&rdquo; tab was equally important &mdash; it showed users a table of all
+              submitted feedback with priority levels (High, Medium, Low), current status (New, In Progress, Recognized,
+              Done, Rejected), reporter name, release target, and a direct &ldquo;View in ADO&rdquo; link to the Azure
+              DevOps work item. This transparency closed the loop: users could see that their feedback was acknowledged,
+              prioritised, and tracked &mdash; not disappearing into a void. It also reduced duplicate submissions
+              because users could check if an issue was already reported before filing a new one.
+            </p>
+          </div>
+        </div>
       </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        What shipped and what it changed
-      </h2>
-      <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-        Delphi shipped in phases and is now actively used by the performance analysis team at RWE for ad-hoc wind turbine investigation. The tool consolidated what previously required 3&ndash;4 disconnected tools into a single interface &mdash; and the visual, interactive approach to data analysis fundamentally changed how analysts work.
-      </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed &mdash; dashboard, charts, filters, comparison, data tables, export flows</p>
+      <!-- ============================================ -->
+      <!-- ONBOARDING FLOW SHOWCASE -->
+      <!-- ============================================ -->
+      <div id="sec-onboarding" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Onboarding
+            flow</span>
         </div>
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr; 1</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced fragmented PI Vision / SCADA / Excel workflow with a single platform</p>
-        </div>
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs &rarr; Min</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Time to identify critical issues &mdash; visual charts surface problems that previously required hours of manual data digging</p>
-        </div>
-        <div class="stat-card fade-up">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Adopted</span>
-          <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Shipped and actively used by performance analysts and engineers across the team for daily investigation workflows</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================ -->
-    <!-- 07 · LEARNINGS -->
-    <!-- ============================================ -->
-    <div id="sec-learnings" class="fade-up flex flex-col gap-6">
-      <div class="section-divider">
-        <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot; Learnings</span>
-      </div>
-      <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
-        What I&rsquo;d do differently
-      </h2>
-
-      <div class="flex flex-col gap-4">
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
-          The progressive filter system works well now, but the first iteration was too conservative &mdash; I hid too many parameters behind the &ldquo;Advanced&rdquo; toggle, and analysts felt they had to click twice to get to filters they used daily. The lesson: progressive disclosure only works if the &ldquo;default visible&rdquo; set genuinely covers 80% of use cases. I had to revise what counted as &ldquo;primary&rdquo; filters twice after watching real usage.
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          The complete walkthrough sequence
+        </h2>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          Four stages of the modular onboarding &mdash; from the initial welcome prompt through module-specific guided
+          tours to completion.
         </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
-          The other insight was about chart interaction density. In early prototypes, I designed hover tooltips that showed every data point on the chart. During usability testing, analysts told me the tooltips were too noisy at high zoom levels (months of data at 10-minute intervals means thousands of data points). I switched to a &ldquo;snap to nearest point&rdquo; model with an intelligent tooltip that only appeared at meaningful intervals. That small interaction change made the charts genuinely usable for long time ranges.
-        </p>
-        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
-          Working on a 10+ month, ongoing project also taught me that the design is never &ldquo;done&rdquo; &mdash; features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding of analyst workflows deepened. Designing for enterprise tools means building in the expectation that you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
-        </p>
+
+        <div class="screen-grid-4">
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Onboarding Walkthrough v1 - 1.png"
+              alt="Step 1 — Welcome to Delphi modal with Skip For Now and Yes Let's Go options" />
+            <div class="screen-label">1 &middot; Welcome prompt</div>
+          </div>
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Scatter Plot Onboarding v1 - 2.png"
+              alt="Step 2 — Welcome to Scatter Plot Onboarding module-specific entry" />
+            <div class="screen-label">2 &middot; Module entry</div>
+          </div>
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Scatter Plot Onboarding v1 - 16.png"
+              alt="Step 3 — Mid-tour with highlighted section, tooltip, and progress stepper" />
+            <div class="screen-label">3 &middot; Guided tooltip tour</div>
+          </div>
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Scatter Plot Onboarding v1 - 13.png"
+              alt="Step 4 — Tour completion with option to continue to next module or finish" />
+            <div class="screen-label">4 &middot; Completion + next module</div>
+          </div>
+        </div>
+        <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Onboarding flow &middot; Welcome &rarr;
+          Module-specific tour &rarr; Guided tooltips with progress &rarr; Completion with continuation option</p>
       </div>
 
-      <!-- Designing for AI callout -->
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="border-left-color:#7C3AED;">
-        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing for AI &mdash; where this product goes next</span>
-        <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-          Delphi&rsquo;s architecture was designed with intelligent automation in mind. Several features I designed are the foundation for AI-powered capabilities the team is now scoping:
+      <!-- ============================================ -->
+      <!-- FEEDBACK AREA SHOWCASE -->
+      <!-- ============================================ -->
+      <div id="sec-feedback" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Feedback Area</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          Submission and tracking &mdash; both sides of the loop
+        </h2>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The Feedback Area lives in the main navigation and has two tabs: a structured submission form for reporting
+          issues and requesting features, and a transparent tracker showing all reported feedback with priority, status,
+          and ADO integration.
         </p>
-        <div class="flex flex-col gap-3">
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Anomaly detection surfacing</strong> &mdash; The event overlay system I designed (Decision B) was built to display machine-flagged anomalies, not just manual event entries. The color-coded severity system and expandable tooltips were designed to handle ML-generated confidence scores, so when the data engineering team ships anomaly detection, the UI already supports it without redesign.
-            </p>
+
+        <div class="screen-grid">
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Feedback Area v1 - 1.png"
+              alt="Leave Feedback tab — categorised form with rich text editor and file attachments" />
+            <div class="screen-label">Leave Feedback &middot; Submission form</div>
           </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Smart filter suggestions</strong> &mdash; The &ldquo;recent filters&rdquo; feature I shipped is the manual version of what will become AI-recommended filter configurations. I designed the progressive disclosure system to accommodate a &ldquo;Suggested&rdquo; section above the primary filters &mdash; where the system recommends parameter combinations based on the analyst&rsquo;s current context (selected turbine, time range, common investigation patterns).
-            </p>
+          <div class="showcase-image-block fade-up">
+            <img src="./images/Feedback Area v1 - 3.png"
+              alt="Reported Feedback tab — tracker table with priority, status, reporter, and ADO link" />
+            <div class="screen-label">Reported Feedback &middot; Status tracker</div>
           </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Trust calibration as a design problem</strong> &mdash; The biggest design challenge for AI features in this domain isn&rsquo;t the AI itself &mdash; it&rsquo;s trust. Analysts won&rsquo;t act on an anomaly flag they can&rsquo;t verify. That&rsquo;s why I designed the split-panel layout with bidirectional linking: the chart surfaces the insight, the data table lets the analyst verify it. This &ldquo;show your work&rdquo; pattern is the same principle that makes explainable AI usable &mdash; I built it into the interaction model from day one.
-            </p>
+        </div>
+        <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Feedback Area &middot; Structured submission
+          form (left) and transparent feedback tracker with ADO integration (right)</p>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- KEY SCREENS -->
+      <!-- ============================================ -->
+      <div id="sec-screens" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">Key screens</span>
+        </div>
+
+        <div class="screen-grid">
+          <div class="image-block fade-up">
+            <img src="./images/Filters extended.png"
+              alt="Progressive filter panel — Scatter Plot view with grouped parameters: Assets, Scatter Measures, and Other Options" />
+            <div class="image-caption">Progressive filter panel &middot; Scatter Plot parameters</div>
+          </div>
+          <div class="image-block fade-up">
+            <img src="./images/Dummy chart.png"
+              alt="Expanded chart view with interactive tooltip showing data point details on hover" />
+            <div class="image-caption">Expanded chart &middot; Interactive tooltip on hover</div>
+          </div>
+          <div class="image-block fade-up">
+            <img src="./images/Scatter Plot Onboarding v1 - 16.png"
+              alt="Onboarding walkthrough — highlighted UI section with tooltip explanation and progress stepper" />
+            <div class="image-caption">Onboarding mid-tour &middot; Guided tooltip with progress</div>
+          </div>
+          <div class="image-block fade-up">
+            <img src="./images/Feedback Area v1 - 1.png"
+              alt="Feedback Area — Leave Feedback tab with type selector, title, rich text description, and file attachments" />
+            <div class="image-caption">Feedback submission &middot; Categorised form with attachments</div>
+          </div>
+        </div>
+        <p class="font-inter text-[12px] text-[#999999] text-center mt-2">Core interface screens &middot; Progressive
+          filter panel, expanded chart with tooltip, onboarding mid-tour, feedback submission</p>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- 06 · OUTCOME -->
+      <!-- ============================================ -->
+      <div id="sec-outcome" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">05 &middot;
+            Outcome</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          What shipped and what it changed
+        </h2>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          Delphi shipped in phases and is now actively used by the performance analysis team at RWE for ad-hoc wind
+          turbine investigation. The tool consolidated what previously required 3&ndash;4 disconnected tools into a
+          single interface &mdash; and the visual, interactive approach to data analysis fundamentally changed how
+          analysts work.
+        </p>
+
+        <div class="cs-grid-4">
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">15+</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed &mdash;
+              dashboard, charts, filters, comparison, data tables, export flows</p>
+          </div>
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3 &rarr;
+              1</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced
+              fragmented PI Vision / SCADA / Excel workflow with a single platform</p>
+          </div>
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">Hrs
+              &rarr; Min</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Time to identify critical issues &mdash;
+              visual charts surface problems that previously required hours of manual data digging</p>
+          </div>
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">Adopted</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Shipped and actively used by performance
+              analysts and engineers across the team for daily investigation workflows</p>
           </div>
         </div>
       </div>
 
-      <!-- Iteration evidence callout -->
-      <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up">
-        <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Specific iterations that shaped the product</span>
-        <div class="flex flex-col gap-3">
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Filter defaults revised twice</strong> &mdash; First iteration hid too many parameters behind &ldquo;Advanced&rdquo;; revised the primary set to cover 80% of daily use cases after observing real analysis sessions
-            </p>
+      <!-- ============================================ -->
+      <!-- 07 · LEARNINGS -->
+      <!-- ============================================ -->
+      <div id="sec-learnings" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot;
+            Learnings</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          What I&rsquo;d do differently
+        </h2>
+
+        <div class="flex flex-col gap-4">
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+            The progressive filter system works well now, but the first iteration was too conservative &mdash; I hid too
+            many parameters behind the &ldquo;Advanced&rdquo; toggle, and analysts felt they had to click twice to get
+            to filters they used daily. The lesson: progressive disclosure only works if the &ldquo;default
+            visible&rdquo; set genuinely covers 80% of use cases. I had to revise what counted as &ldquo;primary&rdquo;
+            filters twice after watching real usage.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+            The other insight was about chart interaction density. In early prototypes, I designed hover tooltips that
+            showed every data point on the chart. During usability testing, analysts told me the tooltips were too noisy
+            at high zoom levels (months of data at 10-minute intervals means thousands of data points). I switched to a
+            &ldquo;snap to nearest point&rdquo; model with an intelligent tooltip that only appeared at meaningful
+            intervals. That small interaction change made the charts genuinely usable for long time ranges.
+          </p>
+          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8] fade-up">
+            Working on a 10+ month, ongoing project also taught me that the design is never &ldquo;done&rdquo; &mdash;
+            features I considered finished in month 3 needed redesign by month 8 because the team&rsquo;s understanding
+            of analyst workflows deepened. Designing for enterprise tools means building in the expectation that
+            you&rsquo;ll iterate indefinitely, and structuring your Figma files and component libraries to support that.
+          </p>
+        </div>
+
+        <!-- Designing for AI callout -->
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up" style="border-left-color:#7C3AED;">
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing for
+            AI &mdash; where this product goes next</span>
+          <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+            Delphi&rsquo;s architecture was designed with intelligent automation in mind. Several features I designed
+            are the foundation for AI-powered capabilities the team is now scoping:
+          </p>
+          <div class="flex flex-col gap-3">
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Anomaly detection surfacing</strong> &mdash; The event overlay system I
+                designed (Decision B) was built to display machine-flagged anomalies, not just manual event entries. The
+                color-coded severity system and expandable tooltips were designed to handle ML-generated confidence
+                scores, so when the data engineering team ships anomaly detection, the UI already supports it without
+                redesign.
+              </p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Smart filter suggestions</strong> &mdash; The &ldquo;recent
+                filters&rdquo; feature I shipped is the manual version of what will become AI-recommended filter
+                configurations. I designed the progressive disclosure system to accommodate a &ldquo;Suggested&rdquo;
+                section above the primary filters &mdash; where the system recommends parameter combinations based on
+                the analyst&rsquo;s current context (selected turbine, time range, common investigation patterns).
+              </p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Trust calibration as a design problem</strong> &mdash; The biggest design
+                challenge for AI features in this domain isn&rsquo;t the AI itself &mdash; it&rsquo;s trust. Analysts
+                won&rsquo;t act on an anomaly flag they can&rsquo;t verify. That&rsquo;s why I designed the split-panel
+                layout with bidirectional linking: the chart surfaces the insight, the data table lets the analyst
+                verify it. This &ldquo;show your work&rdquo; pattern is the same principle that makes explainable AI
+                usable &mdash; I built it into the interaction model from day one.
+              </p>
+            </div>
           </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Tooltip model redesigned</strong> &mdash; Switched from showing every data point to a &ldquo;snap to nearest&rdquo; model after usability testing revealed tooltip noise at high zoom levels
-            </p>
-          </div>
-          <div class="flex gap-3 items-start">
-            <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
-            <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-              <strong class="text-[#111111]">Onboarding added mid-project</strong> &mdash; Not in original scope; emerged from watching analysts struggle with the tool switch during early rollout phases
-            </p>
+        </div>
+
+        <!-- Iteration evidence callout -->
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up">
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Specific iterations
+            that shaped the product</span>
+          <div class="flex flex-col gap-3">
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Filter defaults revised twice</strong> &mdash; First iteration hid too
+                many parameters behind &ldquo;Advanced&rdquo;; revised the primary set to cover 80% of daily use cases
+                after observing real analysis sessions
+              </p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Tooltip model redesigned</strong> &mdash; Switched from showing every
+                data point to a &ldquo;snap to nearest&rdquo; model after usability testing revealed tooltip noise at
+                high zoom levels
+              </p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <div class="w-2 h-2 rounded-full bg-[#0D7377] mt-[7px] shrink-0"></div>
+              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
+                <strong class="text-[#111111]">Onboarding added mid-project</strong> &mdash; Not in original scope;
+                emerged from watching analysts struggle with the tool switch during early rollout phases
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Next case study -->
-    <div class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div class="flex flex-col gap-1">
-        <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case study</span>
-        <a href="#" class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
-          Personal finance app &mdash; product design at Grassrootlab &rarr;
-        </a>
+      <!-- Next case study -->
+      <div
+        class="border-t border-[#E8E5DF] pt-10 sm:pt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div class="flex flex-col gap-1">
+          <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case
+            study</span>
+          <a href="#"
+            class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
+            Personal finance app &mdash; product design at Grassrootlab &rarr;
+          </a>
+        </div>
+        <a href="./index.html#work"
+          class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr;
+          All work</a>
       </div>
-      <a href="./index.html#work" class="font-inter text-[13px] font-semibold text-[#555555] hover:text-[#111111] transition-colors whitespace-nowrap shrink-0">&larr; All work</a>
-    </div>
 
-  </article>
+    </article>
 
     <!-- Stepper sidebar -->
     <nav class="stepper-sidebar" id="stepperSidebar" aria-label="Case study sections">
@@ -1194,20 +2532,25 @@
   </div><!-- end case-layout -->
 
   <!-- Footer -->
-  <footer class="py-6 sm:py-7 px-5 sm:px-20 w-full border-t border-[#E8E5DF]">
-    <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0">
-    <div class="flex items-center gap-2.5">
-      <div class="w-6 h-6 rounded-[4px] bg-[#111111] flex items-center justify-center shrink-0">
-        <span class="font-sora text-[11px] font-bold text-white">A</span>
+  <footer class="cs-footer">
+    <div class="cs-footer-inner">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div
+          style="width:24px;height:24px;border-radius:4px;background:#111111;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#FFFFFF;">A</span>
+        </div>
+        <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
       </div>
-      <span class="font-inter text-[#999999] text-[12px]">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
-    </div>
-    <div class="flex items-center gap-5 sm:gap-6">
-      <a href="mailto:ayushbhamu7@gmail.com" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Email</a>
-      <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">LinkedIn</a>
-      <a href="https://bhamu.framer.website/" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Framer &nearr;</a>
-      <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="font-inter text-[#888888] text-[12px] font-medium hover:text-[#111111] transition-colors">Resume</a>
-    </div>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <a href="mailto:ayushbhamu7@gmail.com"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Email</a>
+        <a href="https://linkedin.com/in/ayushbhamu" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
+        <a href="https://bhamu.framer.website/" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
+        <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume</a>
+      </div>
     </div>
   </footer>
 
@@ -1223,184 +2566,185 @@
   </div>
 
   <script>
-  (function() {
-    // ── Reading progress bar ──
-    const progressBar = document.getElementById('readingProgress');
-    window.addEventListener('scroll', function() {
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      progressBar.style.width = progress + '%';
-    });
+    (function () {
+      // ── Reading progress bar ──
+      const progressBar = document.getElementById('readingProgress');
+      window.addEventListener('scroll', function () {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        progressBar.style.width = progress + '%';
+      });
 
-    // ── Fade-in on scroll ──
-    const fadeEls = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+      // ── Fade-in on scroll ──
+      const fadeEls = document.querySelectorAll('.fade-up');
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
+      fadeEls.forEach(function (el) {
+        if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+          el.classList.add('is-visible');
+        } else {
+          observer.observe(el);
         }
       });
-    }, { threshold: 0.01, rootMargin: '0px 0px 200px 0px' });
-    fadeEls.forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight + 100) {
-        el.classList.add('is-visible');
-      } else {
-        observer.observe(el);
-      }
-    });
 
-    // ── Lightbox ──
-    const imageBlocks = document.querySelectorAll('.image-block, .showcase-image-block');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxPrev = document.getElementById('lightboxPrev');
-    const lightboxNext = document.getElementById('lightboxNext');
+      // ── Lightbox ──
+      const imageBlocks = document.querySelectorAll('.image-block, .showcase-image-block');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
 
-    const gallery = [];
+      const gallery = [];
 
-    // Add cover image first
-    const coverImg = document.getElementById('coverImg');
-    if (coverImg && coverImg.src) {
-      gallery.push({
-        src: coverImg.getAttribute('src'),
-        alt: coverImg.alt || '',
-        caption: 'Delphi — Parameters panel with filters and interactive time-series chart'
-      });
-    }
-
-    imageBlocks.forEach(function(block) {
-      const img = block.querySelector('img');
-      const caption = block.querySelector('.image-caption') || block.querySelector('.screen-label');
-      if (img && img.src) {
+      // Add cover image first
+      const coverImg = document.getElementById('coverImg');
+      if (coverImg && coverImg.src) {
         gallery.push({
-          src: img.getAttribute('src'),
-          alt: img.alt || '',
-          caption: caption ? caption.textContent.trim() : ''
+          src: coverImg.getAttribute('src'),
+          alt: coverImg.alt || '',
+          caption: 'Delphi — Parameters panel with filters and interactive time-series chart'
         });
       }
-    });
 
-    let currentIndex = -1;
-
-    function openLightbox(index) {
-      if (index < 0 || index >= gallery.length) return;
-      currentIndex = index;
-      const item = gallery[currentIndex];
-      lightboxImg.src = item.src;
-      lightboxImg.alt = item.alt;
-      lightboxCaption.textContent = item.caption;
-      lightbox.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
-      lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('is-open');
-      document.body.style.overflow = '';
-      lightboxImg.src = '';
-      currentIndex = -1;
-    }
-
-    // Cover image click
-    if (coverImg) {
-      coverImg.parentElement.style.cursor = 'zoom-in';
-      coverImg.parentElement.addEventListener('click', function(e) {
-        e.preventDefault();
-        openLightbox(0);
-      });
-    }
-
-    imageBlocks.forEach(function(block, i) {
-      block.addEventListener('click', function(e) {
-        e.preventDefault();
-        var offset = coverImg ? 1 : 0;
-        openLightbox(i + offset);
-      });
-    });
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    lightboxPrev.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (currentIndex > 0) openLightbox(currentIndex - 1);
-    });
-    lightboxNext.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('is-open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
-      if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
-    });
-
-    // ── Stepper sidebar scroll tracking ──
-    var stepperLinks = document.querySelectorAll('.stepper-link');
-    var sectionIds = [];
-    stepperLinks.forEach(function(link) {
-      sectionIds.push(link.getAttribute('data-section'));
-    });
-
-    stepperLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var target = document.getElementById(link.getAttribute('data-section'));
-        if (target) {
-          var offset = 120;
-          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top: top, behavior: 'smooth' });
+      imageBlocks.forEach(function (block) {
+        const img = block.querySelector('img');
+        const caption = block.querySelector('.image-caption') || block.querySelector('.screen-label');
+        if (img && img.src) {
+          gallery.push({
+            src: img.getAttribute('src'),
+            alt: img.alt || '',
+            caption: caption ? caption.textContent.trim() : ''
+          });
         }
       });
-    });
 
-    var stepperNav = document.getElementById('stepperSidebar');
-    var articleEl = document.querySelector('article');
+      let currentIndex = -1;
 
-    function getDocTop(el) {
-      return el.getBoundingClientRect().top + window.pageYOffset;
-    }
-
-    function updateStepper() {
-      var scrollPos = window.pageYOffset + 160;
-      if (articleEl) {
-        var artTop = getDocTop(articleEl) - 200;
-        var artBottom = artTop + articleEl.offsetHeight - 100;
-        if (scrollPos > artTop && scrollPos < artBottom) {
-          stepperNav.classList.add('is-visible');
-        } else {
-          stepperNav.classList.remove('is-visible');
-        }
+      function openLightbox(index) {
+        if (index < 0 || index >= gallery.length) return;
+        currentIndex = index;
+        const item = gallery[currentIndex];
+        lightboxImg.src = item.src;
+        lightboxImg.alt = item.alt;
+        lightboxCaption.textContent = item.caption;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        lightboxPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
+        lightboxNext.style.display = currentIndex < gallery.length - 1 ? 'flex' : 'none';
       }
-      var activeId = sectionIds[0];
-      for (var i = 0; i < sectionIds.length; i++) {
-        var el = document.getElementById(sectionIds[i]);
-        if (el && getDocTop(el) <= scrollPos) {
-          activeId = sectionIds[i];
-        }
-      }
-      stepperLinks.forEach(function(link) {
-        if (link.getAttribute('data-section') === activeId) {
-          link.classList.add('is-active');
-        } else {
-          link.classList.remove('is-active');
-        }
-      });
-    }
 
-    window.addEventListener('scroll', updateStepper);
-    updateStepper();
-  })();
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+        currentIndex = -1;
+      }
+
+      // Cover image click
+      if (coverImg) {
+        coverImg.parentElement.style.cursor = 'zoom-in';
+        coverImg.parentElement.addEventListener('click', function (e) {
+          e.preventDefault();
+          openLightbox(0);
+        });
+      }
+
+      imageBlocks.forEach(function (block, i) {
+        block.addEventListener('click', function (e) {
+          e.preventDefault();
+          var offset = coverImg ? 1 : 0;
+          openLightbox(i + offset);
+        });
+      });
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      lightboxPrev.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (currentIndex > 0) openLightbox(currentIndex - 1);
+      });
+      lightboxNext.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
+        if (e.key === 'ArrowRight' && currentIndex < gallery.length - 1) openLightbox(currentIndex + 1);
+      });
+
+      // ── Stepper sidebar scroll tracking ──
+      var stepperLinks = document.querySelectorAll('.stepper-link');
+      var sectionIds = [];
+      stepperLinks.forEach(function (link) {
+        sectionIds.push(link.getAttribute('data-section'));
+      });
+
+      stepperLinks.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var target = document.getElementById(link.getAttribute('data-section'));
+          if (target) {
+            var offset = 120;
+            var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        });
+      });
+
+      var stepperNav = document.getElementById('stepperSidebar');
+      var articleEl = document.querySelector('article');
+
+      function getDocTop(el) {
+        return el.getBoundingClientRect().top + window.pageYOffset;
+      }
+
+      function updateStepper() {
+        var scrollPos = window.pageYOffset + 160;
+        if (articleEl) {
+          var artTop = getDocTop(articleEl) - 200;
+          var artBottom = artTop + articleEl.offsetHeight - 100;
+          if (scrollPos > artTop && scrollPos < artBottom) {
+            stepperNav.classList.add('is-visible');
+          } else {
+            stepperNav.classList.remove('is-visible');
+          }
+        }
+        var activeId = sectionIds[0];
+        for (var i = 0; i < sectionIds.length; i++) {
+          var el = document.getElementById(sectionIds[i]);
+          if (el && getDocTop(el) <= scrollPos) {
+            activeId = sectionIds[i];
+          }
+        }
+        stepperLinks.forEach(function (link) {
+          if (link.getAttribute('data-section') === activeId) {
+            link.classList.add('is-active');
+          } else {
+            link.classList.remove('is-active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateStepper);
+      updateStepper();
+    })();
   </script>
 
 </body>
+
 </html>
