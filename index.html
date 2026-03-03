@@ -11,7 +11,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -59,6 +58,10 @@
 
     /* ── Frosted glass nav ───────────────────── */
     .nav-glass {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
       background: rgba(250, 250, 248, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -68,6 +71,17 @@
       position: sticky;
       top: 0;
       z-index: 100;
+    }
+    .nav-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     /* ── Section tint ─────────────────────── */
@@ -820,6 +834,23 @@
       cursor: pointer;
       padding: 4px;
       color: #111111;
+      z-index: 101;
+    }
+    .nav-mobile-toggle svg {
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .nav-mobile-toggle.is-open svg rect {
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: center;
+    }
+    .nav-mobile-toggle.is-open svg rect:nth-child(1) {
+      transform: translateY(6.1px) rotate(45deg);
+    }
+    .nav-mobile-toggle.is-open svg rect:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-mobile-toggle.is-open svg rect:nth-child(3) {
+      transform: translateY(-6.1px) rotate(-45deg);
     }
 
     /* Placeholder mock lines */
@@ -1059,10 +1090,27 @@
        RESPONSIVE
     ════════════════════════════════════════ */
     @media (max-width: 900px) {
-      nav .nav-inner { padding: 0 24px; }
+      .nav-glass { padding: 14px 24px; }
       .nav-links .nav-link { display: none; }
       .nav-links .nav-cta { display: none; }
       .nav-mobile-toggle { display: flex; }
+      
+      /* Mobile Menu Open State */
+      .nav-links.is-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        border-bottom: 1px solid #E8E5DF;
+        padding: 12px 16px 16px;
+        gap: 2px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      }
+      .nav-links.is-open .nav-link,
+      .nav-links.is-open .nav-cta { display: block; }
 
       .container { padding: 0 24px; }
       .section { padding: 72px 0; }
@@ -1141,20 +1189,18 @@
 
 <body>
 
-  <!-- Scroll progress bar -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- ══ NAV ═══════════════════════════════════════════ -->
-  <nav class="nav-glass flex items-center justify-between py-4 px-5 sm:py-5 sm:px-12 w-full">
-    <a href="#" class="flex items-center gap-2.5" style="text-decoration:none;">
+  <nav class="nav-glass">
+    <a href="#" class="nav-logo-link">
       <div class="nav-logo-mark">A</div>
       <span class="nav-logo-name">Ayush Bhamu</span>
     </a>
-    <div class="nav-links flex items-center gap-1">
+    <div class="nav-links">
       <a href="#work" class="nav-link">Work</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#contact" class="nav-link">Contact</a>
-      <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="nav-cta">Resume ↗</a>
+      <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="nav-cta">Resume ↗</a>
     </div>
     <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -1165,12 +1211,10 @@
     </button>
   </nav>
 
-  <!-- ══ HERO ══════════════════════════════════════════ -->
   <section class="hero" style="background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(201,150,46,0.08) 0%, transparent 70%), #FAFAF8;">
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
 
-    <!-- Signature dot grid -->
     <div class="hero-grid" aria-hidden="true">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -1216,7 +1260,7 @@
 
       <div class="hero-ctas hero-reveal">
         <a href="#work" class="btn btn-dark">View Case Studies ↓</a>
-        <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="btn btn-outline">Download Resume ↗</a>
+        <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Download Resume ↗</a>
       </div>
 
       <div class="hero-strip hero-reveal">
@@ -1235,7 +1279,6 @@
     </div>
   </section>
 
-  <!-- ══ METRICS BAR ════════════════════════════════════ -->
   <div class="metrics-bar">
     <div class="container">
       <div class="metrics-inner">
@@ -1264,12 +1307,10 @@
     </div>
   </div>
 
-  <!-- Organic divider after metrics -->
   <svg class="section-divider" viewBox="0 0 1440 24" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;background:#FAFAF8;">
     <path d="M0 0h1440v0C1200 16 960 22 720 18 480 14 240 6 0 0Z" fill="#F4F3EF"/>
   </svg>
 
-  <!-- ══ WORK ══════════════════════════════════════════ -->
   <section class="section" id="work">
     <div class="container">
 
@@ -1281,15 +1322,12 @@
         <p class="work-subtitle scroll-reveal reveal-right">3 case studies covering B2B platforms, internal tools, and consumer finance.</p>
       </div>
 
-      <!-- ── FEATURED: Case Study 1 ── -->
       <a href="./case-study-1.html" class="cs-featured scroll-reveal reveal-up">
         <span class="cs-watermark" aria-hidden="true">01</span>
 
-        <!-- Left: image / mockup -->
         <div class="cs-img-placeholder">
           <img src="./images/rwe-cover.jpg" alt="RWE Internal Platform" class="cs-img"
             onerror="this.style.display='none'">
-          <!-- decorative placeholder lines when image missing -->
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:40px;">
             <div style="width:100%;max-width:280px;display:flex;flex-direction:column;gap:8px;">
               <div style="height:10px;background:#E8E5DF;border-radius:3px;width:60%"></div>
@@ -1302,7 +1340,6 @@
           </div>
         </div>
 
-        <!-- Right: content -->
         <div class="cs-body">
           <div class="cs-body-top">
             <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -1344,14 +1381,12 @@
         </div>
       </a>
 
-      <!-- ── GRID: Case Studies 2 & 3 ── -->
       <div class="cs-grid">
 
-        <!-- Case Study 2 -->
         <a href="./case-study-2.html" class="cs-card scroll-reveal reveal-up" data-delay="0">
           <span class="cs-watermark" aria-hidden="true">02</span>
           <div class="cs-card-img-placeholder">
-            <img src="./images/Delphi hero image.png" alt="Delphi Performance Analysis" class="cs-card-img"
+            <img src="./images/Delphi%20hero%20image.png" alt="Delphi Performance Analysis" class="cs-card-img"
               onerror="this.style.display='none'">
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
               <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
@@ -1390,11 +1425,10 @@
           </div>
         </a>
 
-        <!-- Case Study 3 -->
         <a href="./case-study-3.html" class="cs-card scroll-reveal reveal-up" data-delay="1">
           <span class="cs-watermark" aria-hidden="true">03</span>
           <div class="cs-card-img-placeholder">
-            <img src="./images/Main dashboard.png" alt="TPA Portal — Incident Management" class="cs-card-img"
+            <img src="./images/Main%20dashboard.png" alt="TPA Portal — Incident Management" class="cs-card-img"
               onerror="this.style.display='none'">
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
               <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
@@ -1436,12 +1470,10 @@
     </div>
   </section>
 
-  <!-- Organic divider into approach -->
   <svg class="section-divider" viewBox="0 0 1440 28" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;background:#F4F3EF;">
     <path d="M0 0h1440v2C1200 18 960 26 720 22 480 18 240 10 0 2V0Z" fill="#FAFAF8"/>
   </svg>
 
-  <!-- ══ APPROACH ═══════════════════════════════════════ -->
   <section style="background:#F4F3EF;" class="section">
     <div class="container">
       <div class="label-accent" style="margin-bottom:20px;">How I work</div>
@@ -1470,17 +1502,14 @@
     </div>
   </section>
 
-  <!-- Organic divider after approach -->
   <svg class="section-divider-bottom" viewBox="0 0 1440 28" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;background:#F4F3EF;">
     <path d="M0 28h1440v-2C1200 10 960 2 720 6 480 10 240 18 0 26v2Z" fill="#FAFAF8"/>
   </svg>
 
-  <!-- ══ ABOUT ══════════════════════════════════════════ -->
   <section class="section" id="about">
     <div class="container">
       <div class="about-grid">
 
-        <!-- Left: Bio -->
         <div class="scroll-reveal reveal-left">
           <div class="label-accent" style="margin-bottom:20px;">About</div>
           <div class="about-bio">
@@ -1496,14 +1525,12 @@
           </div>
           <div class="about-bio-links">
             <a href="mailto:ayushbhamu7@gmail.com" class="btn btn-dark" style="font-size:13px;padding:10px 20px;">ayushbhamu7@gmail.com</a>
-            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="btn btn-outline" style="font-size:13px;padding:10px 20px;">LinkedIn ↗</a>
+            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:13px;padding:10px 20px;">LinkedIn ↗</a>
           </div>
         </div>
 
-        <!-- Right: Experience + Tools -->
         <div class="about-right scroll-reveal reveal-right">
 
-          <!-- Experience -->
           <div>
             <div class="label-accent" style="margin-bottom:12px;">Experience</div>
             <div class="exp-table">
@@ -1530,7 +1557,6 @@
             </div>
           </div>
 
-          <!-- Education -->
           <div>
             <div class="label-accent" style="margin-bottom:12px;">Education</div>
             <div class="exp-table">
@@ -1547,7 +1573,6 @@
             </div>
           </div>
 
-          <!-- Tools -->
           <div>
             <div class="label-accent" style="margin-bottom:12px;">Tools & skills</div>
             <div class="tools-row">
@@ -1571,7 +1596,6 @@
     </div>
   </section>
 
-  <!-- ══ CONTACT ════════════════════════════════════════ -->
   <section class="section-sm" id="contact">
     <div class="container">
       <div class="contact-wrap scroll-reveal reveal-scale">
@@ -1582,7 +1606,7 @@
           </p>
           <div class="contact-ctas">
             <a href="mailto:ayushbhamu7@gmail.com" class="btn btn-dark">Send me an email ↗</a>
-            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+            <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn ↗</a>
           </div>
         </div>
         <div class="contact-right">
@@ -1607,7 +1631,6 @@
     </div>
   </section>
 
-  <!-- ══ FOOTER ═════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
@@ -1617,9 +1640,9 @@
         </div>
         <div class="footer-links">
           <a href="mailto:ayushbhamu7@gmail.com" class="footer-link">Email</a>
-          <a href="https://linkedin.com/in/ayushbhamu" target="_blank" class="footer-link">LinkedIn</a>
-          <a href="https://bhamu.framer.website/" target="_blank" class="footer-link">Framer ↗</a>
-          <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank" class="footer-link">Resume ↗</a>
+          <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <a href="https://bhamu.framer.website/" target="_blank" rel="noopener noreferrer" class="footer-link">Framer ↗</a>
+          <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Resume ↗</a>
         </div>
       </div>
     </div>
@@ -1629,42 +1652,30 @@
     // ── Mobile nav toggle ──
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.querySelector('.nav-links');
-    let open = false;
     if (toggle) {
       toggle.addEventListener('click', () => {
-        open = !open;
-        if (open) {
-          navLinks.style.display = 'flex';
-          navLinks.style.flexDirection = 'column';
-          navLinks.style.position = 'absolute';
-          navLinks.style.top = '60px';
-          navLinks.style.left = '0';
-          navLinks.style.right = '0';
-          navLinks.style.background = '#FFFFFF';
-          navLinks.style.borderBottom = '1px solid #E8E5DF';
-          navLinks.style.padding = '12px 16px 16px';
-          navLinks.style.gap = '2px';
-          navLinks.querySelectorAll('.nav-link, .nav-cta').forEach(el => {
-            el.style.display = 'block';
-          });
-        } else {
-          navLinks.style.cssText = '';
-          navLinks.querySelectorAll('.nav-link').forEach(el => el.style.cssText = '');
-          navLinks.querySelector('.nav-cta').style.cssText = '';
-        }
+        navLinks.classList.toggle('is-open');
+        toggle.classList.toggle('is-open');
       });
     }
     document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => { if (open) toggle.click(); });
+      link.addEventListener('click', () => { 
+        if (navLinks.classList.contains('is-open')) toggle.click(); 
+      });
     });
 
     // ── Hero entrance animation ──
+    function revealHero() {
+      var hero = document.querySelector('.hero');
+      if (hero && !hero.classList.contains('hero-loaded')) {
+        hero.classList.add('hero-loaded');
+      }
+    }
     document.fonts.ready.then(function() {
-      requestAnimationFrame(function() {
-        var hero = document.querySelector('.hero');
-        if (hero) hero.classList.add('hero-loaded');
-      });
+      requestAnimationFrame(revealHero);
     });
+    // Fallback just in case fonts hang
+    setTimeout(revealHero, 1500);
 
     // ── Hero dot grid parallax ──
     (function() {
@@ -1750,7 +1761,7 @@
           el.style.transform = 'translate(' + (x * strength) + 'px, ' + (y * strength) + 'px)';
         });
         el.addEventListener('mouseleave', function() {
-          el.style.transform = 'translate(0, 0)';
+          el.style.transform = ''; // Fixed to allow CSS hover states to resume control
         });
       });
     })();
