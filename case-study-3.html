@@ -7,6 +7,25 @@
   <title>Portal & Virtual Analyst — Ayush Bhamu</title>
   <meta name="description"
     content="Case study: Building a semi-automatic incident management portal for wind & solar operations at RWE. Sole UI/UX designer — 15+ screens, 3-step wizard, AI-powered Virtual Analyst, 10+ months." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="TPA Portal & Virtual Analyst — Ayush Bhamu" />
+  <meta property="og:description" content="Case study: Building a semi-automatic incident management portal with AI Virtual Analyst. 4→1 tools consolidated." />
+  <meta property="og:image" content="./images/Main%20dashboard.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TPA Portal & Virtual Analyst — Ayush Bhamu" />
+  <meta name="twitter:description" content="Case study: Building a semi-automatic incident management portal with AI Virtual Analyst." />
+  <meta name="twitter:image" content="./images/Main%20dashboard.png" />
+
+  <!-- View Transitions -->
+  <meta name="view-transition" content="same-origin" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -1609,6 +1628,22 @@
         border-top: 2px solid;
       }
     }
+
+    /* ── View Transitions ── */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: vt-fade-out 0.2s ease-out; }
+    ::view-transition-new(root) { animation: vt-fade-in 0.3s ease-in; }
+    @keyframes vt-fade-out { to { opacity: 0; } }
+    @keyframes vt-fade-in { from { opacity: 0; } }
+
+    /* ── Focus indicators ── */
+    :focus-visible { outline: 2px solid #0D7377; outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 
@@ -1640,6 +1675,10 @@
           <span class="tag">Energy &middot; B2B</span>
           <span class="tag tag-neutral">Internal Platform</span>
           <span class="tag tag-neutral">Sole UI/UX Designer</span>
+          <span class="tag tag-neutral" style="gap:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            7 min read
+          </span>
         </div>
         <h1 class="cs-hero-title">
           Building a semi-automatic incident management portal for wind &amp; solar operations
@@ -1798,7 +1837,7 @@
 
         <!-- Before state image -->
         <div class="image-block">
-          <img src="./images/Old way of creating incidents.png"
+          <img loading="lazy" src="./images/Old way of creating incidents.png"
             alt="Before — the old Create Incident form with all 15+ fields exposed on a single page, no guidance or grouping" />
           <div class="image-caption">Before &middot; The original incident creation form &mdash; all fields on a
             single page, no progressive disclosure, no smart pre-fill</div>
@@ -2084,22 +2123,22 @@
 
         <div class="screen-grid-4" style="gap:12px;">
           <div class="showcase-image-block">
-            <img src="./images/Old way of creating incidents.png"
+            <img loading="lazy" src="./images/Old way of creating incidents.png"
               alt="Before — old flat form with all fields visible" />
             <div class="screen-label">Before &middot; Flat form</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Desing testing 1.png"
+            <img loading="lazy" src="./images/Desing testing 1.png"
               alt="Step 2 — Incident Details with severity, detection areas, status, and live Summary sidebar" />
             <div class="screen-label">Step 2 &middot; Incident Details</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Design testing 2.png"
+            <img loading="lazy" src="./images/Design testing 2.png"
               alt="Step 3 — Additional Details with description, proposed action, image upload, and Report to Ops" />
             <div class="screen-label">Step 3 &middot; Additional Details</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Design testing 4.png"
+            <img loading="lazy" src="./images/Design testing 4.png"
               alt="Success — Incident Created Successfully confirmation modal" />
             <div class="screen-label">Success &middot; Incident created</div>
           </div>
@@ -2121,22 +2160,22 @@
 
         <div class="screen-grid" style="gap:16px;">
           <div class="showcase-image-block">
-            <img src="./images/Analysis.png"
+            <img loading="lazy" src="./images/Analysis.png"
               alt="Analysis Results detail — component-level view with Gearbox analysis, Oil Pressure Difference, embedded chart, and incident creation actions" />
             <div class="screen-label">Analysis detail &middot; Component view</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Incident detail.png"
+            <img loading="lazy" src="./images/Incident detail.png"
               alt="Incident detail — tabbed layout with metadata, SAP integration, proposed action, and embedded performance plots" />
             <div class="screen-label">Incident detail &middot; Tabbed layout</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Virtual analyst.png"
+            <img loading="lazy" src="./images/Virtual analyst.png"
               alt="Virtual Analyst — AI chatbot with chat history sidebar, NLP querying, and Download Chat feature" />
             <div class="screen-label">Virtual Analyst &middot; AI chatbot</div>
           </div>
           <div class="showcase-image-block">
-            <img src="./images/Design testing 3.png"
+            <img loading="lazy" src="./images/Design testing 3.png"
               alt="Incident wizard Step 2 — asset selector showing German sites with device selection chips" />
             <div class="screen-label">Wizard &middot; Asset selection</div>
           </div>
@@ -2301,7 +2340,7 @@
           style="width:24px;height:24px;border-radius:4px;background:#111111;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#FFFFFF;">A</span>
         </div>
-        <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
+        <span style="color:#999999;font-size:12px;">&copy; 2026 Ayush Bhamu &middot; Ajmer, India.</span>
       </div>
       <div style="display:flex;align-items:center;gap:24px;">
         <a href="mailto:ayushbhamu7@gmail.com"
@@ -2310,6 +2349,8 @@
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
         <a href="https://bhamu.framer.website/" target="_blank"
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
+        <a href="./Ayush-Bhamu-Resume.pdf" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume &nearr;</a>
       </div>
     </div>
   </footer>
@@ -2320,7 +2361,7 @@
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
     <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
     <div class="lightbox-img-wrap">
-      <img id="lightboxImg" src="" alt="" />
+      <img loading="lazy" id="lightboxImg" src="" alt="" />
     </div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>

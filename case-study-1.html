@@ -7,6 +7,25 @@
   <title>RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu</title>
   <meta name="description"
     content="Case study: Designing a cross-site troubleshooting platform for offshore wind technicians at RWE. Sole UI/UX designer — 15+ screens, 2 modules, 11 stakeholders aligned in 12 weeks." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu" />
+  <meta property="og:description" content="Case study: Designing a cross-site troubleshooting platform for offshore wind technicians. 7→3 step diagnosis, 11 stakeholders aligned." />
+  <meta property="og:image" content="./images/rwe-cover.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu" />
+  <meta name="twitter:description" content="Case study: Designing a cross-site troubleshooting platform for offshore wind technicians." />
+  <meta name="twitter:image" content="./images/rwe-cover.jpg" />
+
+  <!-- View Transitions -->
+  <meta name="view-transition" content="same-origin" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -2036,6 +2055,22 @@
     .h-\[300px\] {
       height: 300px;
     }
+
+    /* ── View Transitions ── */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: vt-fade-out 0.2s ease-out; }
+    ::view-transition-new(root) { animation: vt-fade-in 0.3s ease-in; }
+    @keyframes vt-fade-out { to { opacity: 0; } }
+    @keyframes vt-fade-in { from { opacity: 0; } }
+
+    /* ── Focus indicators ── */
+    :focus-visible { outline: 2px solid #0D7377; outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 
@@ -2067,6 +2102,10 @@
           <span class="tag">Energy &middot; B2B</span>
           <span class="tag tag-neutral">Internal Platform</span>
           <span class="tag tag-neutral">UI/UX Designer</span>
+          <span class="tag tag-neutral" style="gap:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            12 min read
+          </span>
         </div>
         <h1 class="cs-hero-title">
           Designing a troubleshooting tool for offshore wind technicians at RWE
@@ -2221,7 +2260,7 @@
       <!-- Image: old tools -->
       <div class="image-block fade-up">
         <div style="min-height:200px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-          <img src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
+          <img loading="lazy" src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
             onerror="this.style.display='none'" style="display:block;" />
         </div>
         <div class="image-caption">
@@ -2323,7 +2362,7 @@
           <div class="persona-card">
             <div class="persona-header">
               <div class="persona-avatar">
-                <img src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator"
+                <img loading="lazy" src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator"
                   class="w-full h-full object-cover rounded-full"
                   style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
                   onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>MC</span>'" />
@@ -2363,7 +2402,7 @@
           <div class="persona-card">
             <div class="persona-header">
               <div class="persona-avatar">
-                <img src="./images/persona-technician.jpg" alt="Technician"
+                <img loading="lazy" src="./images/persona-technician.jpg" alt="Technician"
                   class="w-full h-full object-cover rounded-full"
                   style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
                   onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>T</span>'" />
@@ -2486,7 +2525,7 @@
         <div class="image-block">
           <div class="journey-scroll">
             <div style="min-width: 1400px;" class="relative">
-              <img src="./images/journey-as-is.jpg" alt="As-Is troubleshooting user journey map" class="w-full block"
+              <img loading="lazy" src="./images/journey-as-is.jpg" alt="As-Is troubleshooting user journey map" class="w-full block"
                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                 style="display:block" />
               <div class="img-placeholder h-[300px]" style="display:none;">
@@ -2829,7 +2868,7 @@
         <div class="image-block">
           <div class="journey-scroll">
             <div style="min-width: 1400px;" class="relative">
-              <img src="./images/journey-vision.jpg" alt="Vision troubleshooting user journey map with new tool"
+              <img loading="lazy" src="./images/journey-vision.jpg" alt="Vision troubleshooting user journey map with new tool"
                 class="w-full block" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                 style="display:block" />
               <div class="img-placeholder h-[300px]" style="display:none;">
@@ -2880,7 +2919,7 @@
         <div class="grid grid-cols-3 gap-3 sm:gap-4 items-end">
           <div class="flex flex-col gap-2">
             <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-              <img src="./images/screen-dashboard.jpg" alt="Step 1: Dashboard & fault search" class="w-full block"
+              <img loading="lazy" src="./images/screen-dashboard.jpg" alt="Step 1: Dashboard & fault search" class="w-full block"
                 style="display:block;" onerror="this.parentElement.style.display='none'" />
             </div>
             <div class="flex items-center gap-2">
@@ -2890,7 +2929,7 @@
           </div>
           <div class="flex flex-col gap-2">
             <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-              <img src="./images/screen-work-order.jpg" alt="Step 2: Draft work order" class="w-full block"
+              <img loading="lazy" src="./images/screen-work-order.jpg" alt="Step 2: Draft work order" class="w-full block"
                 style="display:block;" onerror="this.parentElement.style.display='none'" />
             </div>
             <div class="flex items-center gap-2">
@@ -2901,7 +2940,7 @@
           </div>
           <div class="flex flex-col gap-2">
             <div style="border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);">
-              <img src="./images/screen-documentation.jpg" alt="Step 3: Document on iPad" class="w-full block"
+              <img loading="lazy" src="./images/screen-documentation.jpg" alt="Step 3: Document on iPad" class="w-full block"
                 style="display:block;" onerror="this.parentElement.style.display='none'" />
             </div>
             <div class="flex items-center gap-2">
@@ -2947,7 +2986,7 @@
           <div class="image-block">
             <div class="relative screen-annotated"
               style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-              <img src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
+              <img loading="lazy" src="./images/screen-dashboard.jpg" alt="Dashboard with fault search" class="w-full block"
                 onerror="this.style.display='none'" style="display:block;" />
               <div class="hotspot hotspot-below" style="top:11%;left:33%;">
                 <div class="hotspot-dot">1</div>
@@ -2990,7 +3029,7 @@
           <div class="image-block">
             <div class="relative screen-annotated"
               style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-              <img src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
+              <img loading="lazy" src="./images/screen-work-order.jpg" alt="Work order draft" class="w-full block"
                 onerror="this.style.display='none'" style="display:block;" />
               <div class="hotspot hotspot-below" style="top:15%;left:50%;">
                 <div class="hotspot-dot">1</div>
@@ -3033,7 +3072,7 @@
           <div class="image-block">
             <div class="relative screen-annotated"
               style="min-height:280px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-              <img src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad"
+              <img loading="lazy" src="./images/screen-documentation.jpg" alt="Documentation flow for technicians on iPad"
                 class="w-full block" onerror="this.style.display='none'" style="display:block;" />
               <div class="hotspot hotspot-below" style="top:10%;left:45%;">
                 <div class="hotspot-dot">1</div>
@@ -3640,7 +3679,7 @@
           style="width:24px;height:24px;border-radius:4px;background:#111111;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#FFFFFF;">A</span>
         </div>
-        <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
+        <span style="color:#999999;font-size:12px;">&copy; 2026 Ayush Bhamu &middot; Ajmer, India.</span>
       </div>
       <div style="display:flex;align-items:center;gap:24px;">
         <a href="mailto:ayushbhamu7@gmail.com"
@@ -3649,6 +3688,8 @@
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
         <a href="https://bhamu.framer.website/" target="_blank"
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
+        <a href="./Ayush-Bhamu-Resume.pdf" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume &nearr;</a>
       </div>
     </div>
   </footer>
@@ -3659,7 +3700,7 @@
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
     <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
     <div class="lightbox-img-wrap">
-      <img id="lightboxImg" src="" alt="" />
+      <img loading="lazy" id="lightboxImg" src="" alt="" />
     </div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>

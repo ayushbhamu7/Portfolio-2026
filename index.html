@@ -6,6 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayush Bhamu — Product Designer</title>
   <meta name="description" content="Product Designer with 5+ years building B2B SaaS, energy, and fintech products. Based in India, open to full-time roles." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ayush Bhamu — Product Designer" />
+  <meta property="og:description" content="Product Designer with 5+ years building B2B SaaS, energy, and fintech products. Based in India, open to full-time roles." />
+  <meta property="og:image" content="./images/rwe-cover.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ayush Bhamu — Product Designer" />
+  <meta name="twitter:description" content="Product Designer with 5+ years building B2B SaaS, energy, and fintech products." />
+  <meta name="twitter:image" content="./images/rwe-cover.jpg" />
+
+  <!-- View Transitions -->
+  <meta name="view-transition" content="same-origin" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayush Bhamu",
+    "jobTitle": "Product Designer",
+    "url": "https://ayushbhamu.com",
+    "email": "ayushbhamu7@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Ajmer", "addressCountry": "IN" },
+    "sameAs": ["https://linkedin.com/in/ayushbhamu"],
+    "knowsAbout": ["UX Design", "UI Design", "Product Design", "B2B SaaS", "Design Systems", "Enterprise Software"]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -660,7 +694,7 @@
        CONTACT
     ════════════════════════════════════════ */
     .contact-wrap {
-      background: #FFFFFF;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAFFFE 100%);
       border: 1px solid #E8E5DF;
       border-radius: 20px;
       padding: 64px;
@@ -668,6 +702,11 @@
       grid-template-columns: 1fr auto;
       gap: 48px;
       align-items: center;
+      transition: box-shadow 0.4s cubic-bezier(0.19, 1, 0.22, 1), transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .contact-wrap:hover {
+      box-shadow: 0 20px 60px rgba(13, 115, 119, 0.07), 0 4px 12px rgba(0,0,0,0.03);
+      transform: translateY(-3px);
     }
     .contact-heading {
       font-family: 'Epilogue', sans-serif;
@@ -1087,6 +1126,53 @@
     }
 
     /* ════════════════════════════════════════
+       CUSTOM CURSOR
+    ════════════════════════════════════════ */
+    .cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #0D7377;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s cubic-bezier(0.19, 1, 0.22, 1),
+                  height 0.25s cubic-bezier(0.19, 1, 0.22, 1),
+                  background 0.25s,
+                  opacity 0.25s;
+      mix-blend-mode: difference;
+      opacity: 0;
+    }
+    .cursor-dot.is-visible { opacity: 1; }
+    .cursor-dot.is-hovering {
+      width: 44px;
+      height: 44px;
+      background: rgba(13, 115, 119, 0.12);
+      border: 1.5px solid rgba(13, 115, 119, 0.4);
+    }
+    @media (hover: none) { .cursor-dot { display: none !important; } }
+    @media (prefers-reduced-motion: reduce) { .cursor-dot { display: none !important; } }
+
+    /* ════════════════════════════════════════
+       VIEW TRANSITIONS
+    ════════════════════════════════════════ */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: vt-fade-out 0.2s ease-out; }
+    ::view-transition-new(root) { animation: vt-fade-in 0.3s ease-in; }
+    @keyframes vt-fade-out { from { opacity: 1; } to { opacity: 0; } }
+    @keyframes vt-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ════════════════════════════════════════
+       FOCUS INDICATORS
+    ════════════════════════════════════════ */
+    :focus-visible {
+      outline: 2px solid #0D7377;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════ */
     @media (max-width: 900px) {
@@ -1201,7 +1287,7 @@
       <a href="#work" class="nav-link">Work</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#contact" class="nav-link">Contact</a>
-      <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="nav-cta">Resume ↗</a>
+      <a href="./Ayush-Bhamu-Resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-cta">Resume ↗</a>
     </div>
     <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -1261,7 +1347,7 @@
 
       <div class="hero-ctas hero-reveal">
         <a href="#work" class="btn btn-dark">View Case Studies ↓</a>
-        <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Download Resume ↗</a>
+        <a href="./Ayush-Bhamu-Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Download Resume ↗</a>
       </div>
 
       <div class="hero-strip hero-reveal">
@@ -1329,16 +1415,6 @@
         <div class="cs-img-placeholder">
           <img src="./images/rwe-cover.jpg" alt="RWE Internal Platform" class="cs-img"
             onerror="this.style.display='none'">
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:40px;">
-            <div style="width:100%;max-width:280px;display:flex;flex-direction:column;gap:8px;">
-              <div style="height:10px;background:#E8E5DF;border-radius:3px;width:60%"></div>
-              <div style="height:6px;background:#ECFDF5;border-radius:3px;width:85%"></div>
-              <div style="height:6px;background:#ECFDF5;border-radius:3px;width:70%"></div>
-              <div style="height:40px;background:#F4F3EF;border-radius:6px;margin-top:8px;width:100%"></div>
-              <div style="height:40px;background:#F4F3EF;border-radius:6px;width:100%"></div>
-              <div style="height:40px;background:#F4F3EF;border-radius:6px;width:100%"></div>
-            </div>
-          </div>
         </div>
 
         <div class="cs-body">
@@ -1387,19 +1463,8 @@
         <a href="./case-study-2.html" class="cs-card scroll-reveal reveal-up" data-delay="0">
           <span class="cs-watermark" aria-hidden="true">02</span>
           <div class="cs-card-img-placeholder">
-            <img src="./images/Delphi%20hero%20image.png" alt="Delphi Performance Analysis" class="cs-card-img"
+            <img loading="lazy" src="./images/Delphi%20hero%20image.png" alt="Delphi Performance Analysis" class="cs-card-img"
               onerror="this.style.display='none'">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
-              <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
-                <div style="height:8px;background:#E8E5DF;border-radius:3px;width:50%"></div>
-                <div style="height:5px;background:#ECFDF5;border-radius:3px;width:80%"></div>
-                <div style="height:5px;background:#ECFDF5;border-radius:3px;width:65%"></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-                  <div style="height:36px;background:#F4F3EF;border-radius:5px;"></div>
-                  <div style="height:36px;background:#F4F3EF;border-radius:5px;"></div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="cs-card-body">
             <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -1429,18 +1494,8 @@
         <a href="./case-study-3.html" class="cs-card scroll-reveal reveal-up" data-delay="1">
           <span class="cs-watermark" aria-hidden="true">03</span>
           <div class="cs-card-img-placeholder">
-            <img src="./images/Main%20dashboard.png" alt="TPA Portal — Incident Management" class="cs-card-img"
+            <img loading="lazy" src="./images/Main%20dashboard.png" alt="TPA Portal — Incident Management" class="cs-card-img"
               onerror="this.style.display='none'">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:28px;">
-              <div style="width:100%;max-width:200px;display:flex;flex-direction:column;gap:6px;">
-                <div style="height:8px;background:#E8E5DF;border-radius:3px;width:55%"></div>
-                <div style="height:5px;background:#ECFDF5;border-radius:3px;width:75%"></div>
-                <div style="height:60px;background:#F4F3EF;border-radius:8px;margin-top:6px;width:100%;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:32px;height:32px;border-radius:50%;background:#E8E5DF;"></div>
-                </div>
-                <div style="height:5px;background:#ECFDF5;border-radius:3px;width:60%"></div>
-              </div>
-            </div>
           </div>
           <div class="cs-card-body">
             <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -1468,6 +1523,14 @@
         </a>
 
       </div>
+
+      <!-- Domain bridge callout -->
+      <div class="scroll-reveal reveal-up" style="margin-top:36px;padding:22px 28px;background:#F4F3EF;border-radius:12px;border-left:3px solid #0D7377;">
+        <p style="font-size:13.5px;color:#666666;line-height:1.75;">
+          <strong style="color:#111111;">Same problems, different domain.</strong> Multi-stakeholder alignment, complex data dashboards, AI integration, design systems at scale &mdash; the work I did at RWE maps directly to the challenges product designers face at Indian B2B companies.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -1512,6 +1575,9 @@
       <div class="about-grid">
 
         <div class="scroll-reveal reveal-left">
+          <div style="width:88px;height:88px;border-radius:16px;background:linear-gradient(135deg,#0D7377 0%,#14B8A6 50%,#C9962E 100%);display:flex;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 8px 24px rgba(13,115,119,0.15);">
+            <span style="font-family:'Epilogue',sans-serif;font-size:38px;font-weight:800;color:#FAFAF8;letter-spacing:-0.02em;">A</span>
+          </div>
           <div class="label-accent" style="margin-bottom:20px;">About</div>
           <div class="about-bio">
             <p>
@@ -1627,6 +1693,10 @@
             <span class="contact-info-label">Phone</span>
             <span class="contact-info-val">+91 63775 25244</span>
           </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Response time</span>
+            <span class="contact-info-val">Usually within 24 hours</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1637,13 +1707,13 @@
       <div class="footer-inner">
         <div class="footer-left">
           <div class="nav-logo-mark" style="width:24px;height:24px;font-size:11px;">A</div>
-          <span class="footer-copy">© 2025 Ayush Bhamu · Ajmer, India</span>
+          <span class="footer-copy">© 2026 Ayush Bhamu · Ajmer, India</span>
         </div>
         <div class="footer-links">
           <a href="mailto:ayushbhamu7@gmail.com" class="footer-link">Email</a>
           <a href="https://linkedin.com/in/ayushbhamu" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
           <a href="https://bhamu.framer.website/" target="_blank" rel="noopener noreferrer" class="footer-link">Framer ↗</a>
-          <a href="./Ayush%20Bhamu%20Resume%20January%202026.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Resume ↗</a>
+          <a href="./Ayush-Bhamu-Resume.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Resume ↗</a>
         </div>
       </div>
     </div>
@@ -1778,6 +1848,27 @@
           bar.style.transform = 'scaleX(' + (scrollTop / docHeight) + ')';
         }
       }, { passive: true });
+    })();
+
+    // ── Custom cursor ──
+    (function() {
+      if (window.matchMedia('(hover: none)').matches) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var dot = document.createElement('div');
+      dot.className = 'cursor-dot';
+      document.body.appendChild(dot);
+      document.addEventListener('mousemove', function(e) {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+        if (!dot.classList.contains('is-visible')) dot.classList.add('is-visible');
+      });
+      document.addEventListener('mouseleave', function() {
+        dot.classList.remove('is-visible');
+      });
+      document.querySelectorAll('a, button, .cs-featured, .cs-card, input, textarea').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { dot.classList.add('is-hovering'); });
+        el.addEventListener('mouseleave', function() { dot.classList.remove('is-hovering'); });
+      });
     })();
 
     // ── Label accent line animation on scroll ──

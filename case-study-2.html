@@ -7,6 +7,25 @@
   <title>Delphi: Wind Turbine Performance Analysis — Ayush Bhamu</title>
   <meta name="description"
     content="Case study: Designing a performance analysis tool for offshore wind operations at RWE. Sole UI/UX designer — 15+ screens, progressive filters, interactive charts, 10+ months." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Delphi: Wind Turbine Performance Analysis — Ayush Bhamu" />
+  <meta property="og:description" content="Case study: Designing a performance analysis tool for offshore wind operations. Hours→Minutes data access, adopted daily." />
+  <meta property="og:image" content="./images/Delphi%20hero%20image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Delphi: Wind Turbine Performance Analysis — Ayush Bhamu" />
+  <meta name="twitter:description" content="Case study: Designing a performance analysis tool for offshore wind operations." />
+  <meta name="twitter:image" content="./images/Delphi%20hero%20image.png" />
+
+  <!-- View Transitions -->
+  <meta name="view-transition" content="same-origin" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -1653,6 +1672,22 @@
         border-top: 2px solid;
       }
     }
+
+    /* ── View Transitions ── */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: vt-fade-out 0.2s ease-out; }
+    ::view-transition-new(root) { animation: vt-fade-in 0.3s ease-in; }
+    @keyframes vt-fade-out { to { opacity: 0; } }
+    @keyframes vt-fade-in { from { opacity: 0; } }
+
+    /* ── Focus indicators ── */
+    :focus-visible { outline: 2px solid #0D7377; outline-offset: 3px; border-radius: 4px; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .fade-up { opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </head>
 
@@ -1684,6 +1719,10 @@
           <span class="tag">Energy &middot; B2B</span>
           <span class="tag tag-neutral">Internal Platform</span>
           <span class="tag tag-neutral">Sole UI/UX Designer</span>
+          <span class="tag tag-neutral" style="gap:5px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            8 min read
+          </span>
         </div>
         <h1 class="cs-hero-title">
           Designing a performance analysis tool for offshore wind operations
@@ -1848,7 +1887,7 @@
               <span class="font-inter text-[15px] font-semibold text-[#333333]">Existing Issue Management tool</span>
             </div>
             <div class="image-block">
-              <img src="./images/Before state.png"
+              <img loading="lazy" src="./images/Before state.png"
                 alt="Before Delphi — Issue Management interface with 15+ exposed filter parameters, overwhelming for ad-hoc analysis" />
               <div class="image-caption">15+ filters exposed at once &mdash; functional but overwhelming for ad-hoc
                 investigation</div>
@@ -1861,7 +1900,7 @@
                 platform</span>
             </div>
             <div class="image-block">
-              <img src="./images/Delphi hero image.png"
+              <img loading="lazy" src="./images/Delphi hero image.png"
                 alt="Delphi main interface — Parameters panel with progressive filters on the left, interactive time-series chart on the right" />
               <div class="image-caption">Progressive filters + interactive charts &mdash; analysts go from question to
                 answer in one tool</div>
@@ -2078,7 +2117,7 @@
 
         <!-- Wireframes image -->
         <div class="image-block fade-up">
-          <img src="./images/Wireframes.png"
+          <img loading="lazy" src="./images/Wireframes.png"
             alt="Low-fidelity wireframes exploring navigation structure, filter layouts, and chart view configurations" />
           <div class="image-caption">Wireframe exploration &middot; Testing 3 layout approaches for the core analysis
             view</div>
@@ -2271,22 +2310,22 @@
 
         <div class="screen-grid-4">
           <div class="showcase-image-block fade-up">
-            <img src="./images/Onboarding Walkthrough v1 - 1.png"
+            <img loading="lazy" src="./images/Onboarding Walkthrough v1 - 1.png"
               alt="Step 1 — Welcome to Delphi modal with Skip For Now and Yes Let's Go options" />
             <div class="screen-label">1 &middot; Welcome prompt</div>
           </div>
           <div class="showcase-image-block fade-up">
-            <img src="./images/Scatter Plot Onboarding v1 - 2.png"
+            <img loading="lazy" src="./images/Scatter Plot Onboarding v1 - 2.png"
               alt="Step 2 — Welcome to Scatter Plot Onboarding module-specific entry" />
             <div class="screen-label">2 &middot; Module entry</div>
           </div>
           <div class="showcase-image-block fade-up">
-            <img src="./images/Scatter Plot Onboarding v1 - 16.png"
+            <img loading="lazy" src="./images/Scatter Plot Onboarding v1 - 16.png"
               alt="Step 3 — Mid-tour with highlighted section, tooltip, and progress stepper" />
             <div class="screen-label">3 &middot; Guided tooltip tour</div>
           </div>
           <div class="showcase-image-block fade-up">
-            <img src="./images/Scatter Plot Onboarding v1 - 13.png"
+            <img loading="lazy" src="./images/Scatter Plot Onboarding v1 - 13.png"
               alt="Step 4 — Tour completion with option to continue to next module or finish" />
             <div class="screen-label">4 &middot; Completion + next module</div>
           </div>
@@ -2313,12 +2352,12 @@
 
         <div class="screen-grid">
           <div class="showcase-image-block fade-up">
-            <img src="./images/Feedback Area v1 - 1.png"
+            <img loading="lazy" src="./images/Feedback Area v1 - 1.png"
               alt="Leave Feedback tab — categorised form with rich text editor and file attachments" />
             <div class="screen-label">Leave Feedback &middot; Submission form</div>
           </div>
           <div class="showcase-image-block fade-up">
-            <img src="./images/Feedback Area v1 - 3.png"
+            <img loading="lazy" src="./images/Feedback Area v1 - 3.png"
               alt="Reported Feedback tab — tracker table with priority, status, reporter, and ADO link" />
             <div class="screen-label">Reported Feedback &middot; Status tracker</div>
           </div>
@@ -2337,22 +2376,22 @@
 
         <div class="screen-grid">
           <div class="image-block fade-up">
-            <img src="./images/Filters extended.png"
+            <img loading="lazy" src="./images/Filters extended.png"
               alt="Progressive filter panel — Scatter Plot view with grouped parameters: Assets, Scatter Measures, and Other Options" />
             <div class="image-caption">Progressive filter panel &middot; Scatter Plot parameters</div>
           </div>
           <div class="image-block fade-up">
-            <img src="./images/Dummy chart.png"
+            <img loading="lazy" src="./images/Dummy chart.png"
               alt="Expanded chart view with interactive tooltip showing data point details on hover" />
             <div class="image-caption">Expanded chart &middot; Interactive tooltip on hover</div>
           </div>
           <div class="image-block fade-up">
-            <img src="./images/Scatter Plot Onboarding v1 - 16.png"
+            <img loading="lazy" src="./images/Scatter Plot Onboarding v1 - 16.png"
               alt="Onboarding walkthrough — highlighted UI section with tooltip explanation and progress stepper" />
             <div class="image-caption">Onboarding mid-tour &middot; Guided tooltip with progress</div>
           </div>
           <div class="image-block fade-up">
-            <img src="./images/Feedback Area v1 - 1.png"
+            <img loading="lazy" src="./images/Feedback Area v1 - 1.png"
               alt="Feedback Area — Leave Feedback tab with type selector, title, rich text description, and file attachments" />
             <div class="image-caption">Feedback submission &middot; Categorised form with attachments</div>
           </div>
@@ -2523,9 +2562,9 @@
         <div class="flex flex-col gap-1">
           <span class="font-inter text-[11px] font-semibold text-[#AAAAAA] tracking-[0.08em] uppercase">Next case
             study</span>
-          <a href="#"
+          <a href="./case-study-3.html"
             class="font-sora text-[17px] sm:text-[20px] font-bold text-[#111111] hover:text-[#0D7377] transition-colors leading-[1.3]">
-            Personal finance app &mdash; product design at Grassrootlab &rarr;
+            TPA Portal &mdash; Semi-automatic incident management with AI Virtual Analyst &rarr;
           </a>
         </div>
         <a href="./index.html#work"
@@ -2561,7 +2600,7 @@
           style="width:24px;height:24px;border-radius:4px;background:#111111;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <span style="font-family:'Epilogue',sans-serif;font-size:11px;font-weight:700;color:#FFFFFF;">A</span>
         </div>
-        <span style="color:#999999;font-size:12px;">&copy; 2025 Ayush Bhamu &middot; Ajmer, India.</span>
+        <span style="color:#999999;font-size:12px;">&copy; 2026 Ayush Bhamu &middot; Ajmer, India.</span>
       </div>
       <div style="display:flex;align-items:center;gap:24px;">
         <a href="mailto:ayushbhamu7@gmail.com"
@@ -2570,8 +2609,8 @@
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">LinkedIn</a>
         <a href="https://bhamu.framer.website/" target="_blank"
           style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Framer &nearr;</a>
-        <a href="./Ayush Bhamu Resume January 2026.pdf" target="_blank"
-          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume</a>
+        <a href="./Ayush-Bhamu-Resume.pdf" target="_blank"
+          style="color:#888888;font-size:12px;font-weight:500;text-decoration:none;">Resume &nearr;</a>
       </div>
     </div>
   </footer>
@@ -2582,7 +2621,7 @@
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
     <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
     <div class="lightbox-img-wrap">
-      <img id="lightboxImg" src="" alt="" />
+      <img loading="lazy" id="lightboxImg" src="" alt="" />
     </div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
