@@ -878,6 +878,19 @@
       background: #E8E5DF;
     }
 
+    /* ── Stat card ── */
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
     /* ── Interactive annotation hotspots ── */
     .screen-annotated {
       position: relative;
@@ -3330,49 +3343,50 @@
       <!-- ============================================ -->
       <!-- 09 OUTCOME -->
       <!-- ============================================ -->
-      <div id="sec-outcome" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-        <span class="label-accent">09 &middot; Outcome</span>
-        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I
-          shipped in 12 weeks</h2>
-        <div class="flex flex-col gap-4 max-w-[720px]">
-          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-            The production-ready prototype was delivered in 3 months &mdash; from first stakeholder interview to
-            annotated handoff documentation. The product is now in development. Here&rsquo;s what I can measure
-            directly:
-          </p>
+      <div id="sec-outcome" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">09 &middot;
+            Outcome</span>
         </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
+          What I shipped in 12 weeks
+        </h2>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The production-ready prototype was delivered in 3 months &mdash; from first stakeholder interview to
+          annotated handoff documentation. The product is now in development. Here&rsquo;s what I can measure
+          directly:
+        </p>
 
-        <!-- Metrics — concrete measurable impact -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-0 sm:flex sm:flex-row w-full">
-          <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#0D7377]">
-            <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">7
-              &rarr; 3</span>
-            <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Fault diagnosis workflow steps
+        <div class="cs-grid-4">
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">7 &rarr; 3</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Fault diagnosis workflow steps
               reduced &mdash; from 4 disconnected systems to 1 unified platform</p>
           </div>
-          <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-            <span
-              class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">15+</span>
-            <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Production-ready screens
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">15+</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Production-ready screens
               across 2 modules, with interaction specs and handoff docs</p>
           </div>
-          <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-            <span
-              class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">3</span>
-            <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Stakeholder review cycles to
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">3</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Stakeholder review cycles to
               full alignment (vs. the typical 6+ for cross-functional projects at RWE)</p>
           </div>
-          <div class="flex flex-col gap-2 py-6 sm:py-8 sm:flex-1 sm:border-t-2 border-t-2 border-[#DDDDDD] sm:pl-8">
-            <span class="font-sora text-[34px] sm:text-[42px] font-bold text-[#111111] tracking-[-1.5px] leading-none">0
-              &rarr; 1</span>
-            <p class="font-inter text-[#666666] text-[12px] sm:text-[13px] leading-[1.5]">Cross-site knowledge sharing
+          <div class="stat-card fade-up">
+            <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
+              style="color:#0D7377;">0 &rarr; 1</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Cross-site knowledge sharing
               tools before this project: zero. Now: a searchable fleet-wide fault database</p>
           </div>
         </div>
 
         <!-- What the project changed callout -->
         <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 mt-2">
-          <span class="label-accent" style="font-size:10px;">Broader impact</span>
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase text-[#0A5C5F]">Broader impact</span>
           <div class="flex flex-col gap-3 max-w-[720px]">
             <p class="font-inter text-[#444444] text-[13px] sm:text-[14px] leading-[1.8]">
               <strong>Before this project:</strong> Each RWE wind farm was an island. Knowledge stayed local,
@@ -3390,9 +3404,12 @@
       <!-- ============================================ -->
       <!-- 10 LEARNINGS -->
       <!-- ============================================ -->
-      <div id="sec-learnings" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-        <span class="label-accent">10 &middot; Learnings</span>
-        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">What I
+      <div id="sec-learnings" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">10 &middot;
+            Learnings</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">What I
           took from this project</h2>
         <div class="flex flex-col gap-6 max-w-[720px]">
 
@@ -3502,9 +3519,9 @@
         </div>
 
         <!-- Designing for AI callout -->
-        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 max-w-[720px]"
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up"
           style="border-left-color:#7C3AED;">
-          <span class="font-inter text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing
+          <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing
             for AI &mdash; the intelligence layer this platform needs</span>
           <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
             This project is a knowledge retrieval system at its core &mdash; and that&rsquo;s exactly where AI creates

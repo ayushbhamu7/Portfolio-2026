@@ -372,6 +372,33 @@
       border-radius: 0 8px 8px 0;
     }
 
+    /* ── Section divider with number ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #E8E5DF;
+    }
+
+    /* ── Stat card ── */
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid #E8E5DF;
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+
     /* Trade-off option styling */
     .tradeoff-option {
       display: flex;
@@ -2121,43 +2148,44 @@
       <!-- ============================================ -->
       <!-- 05 - OUTCOME -->
       <!-- ============================================ -->
-      <div id="sec-outcome" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-        <span class="label-accent">06 &middot; Outcome</span>
-        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
+      <div id="sec-outcome" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">06 &middot;
+            Outcome</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
           What shipped and what it changed
         </h2>
-        <div class="flex flex-col gap-4 max-w-[720px]">
-          <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-            The TPA Next Evolution portal shipped in phases and is now actively used by the performance analysis team at
-            RWE. The incident creation wizard &mdash; the centrepiece of the redesign &mdash; is in production and has
-            replaced the old flat form entirely. The Virtual Analyst is providing analysts with a new way to query and
-            generate insights from incident data using natural language.
-          </p>
-        </div>
+        <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
+          The TPA Next Evolution portal shipped in phases and is now actively used by the performance analysis team at
+          RWE. The incident creation wizard &mdash; the centrepiece of the redesign &mdash; is in production and has
+          replaced the old flat form entirely. The Virtual Analyst is providing analysts with a new way to query and
+          generate insights from incident data using natural language.
+        </p>
 
         <div class="cs-grid-4">
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">15+</span>
-            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">High-fidelity screens designed &mdash;
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">High-fidelity screens designed &mdash;
               dashboard, analysis detail, incidents, creation wizard, Virtual Analyst, and component views</p>
           </div>
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">4
               &rarr; 1</span>
-            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Tools consolidated &mdash; replaced
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Tools consolidated &mdash; replaced
               Excel + email + SharePoint + SCADA exports with a single incident management platform</p>
           </div>
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">3-step</span>
-            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Guided wizard with smart pre-fill
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Guided wizard with smart pre-fill
               replaced a flat 15-field form &mdash; now in production, with strong positive user feedback</p>
           </div>
-          <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
+          <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
               style="color:#0D7377;">AI-powered</span>
-            <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Virtual Analyst shipped &mdash;
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Virtual Analyst shipped &mdash;
               NLP-based querying and report generation built on Azure AI, integrated into the analyst workflow</p>
           </div>
         </div>
@@ -2166,9 +2194,12 @@
       <!-- ============================================ -->
       <!-- 06 - LEARNINGS -->
       <!-- ============================================ -->
-      <div id="sec-learnings" class="cs-flex-col cs-gap-6 flex flex-col gap-6 sm:gap-8 fade-up">
-        <span class="label-accent">07 &middot; Learnings</span>
-        <h2 class="font-sora text-[22px] sm:text-[30px] font-bold text-[#111111] leading-[1.2] tracking-[-0.5px]">
+      <div id="sec-learnings" class="fade-up flex flex-col gap-6">
+        <div class="section-divider">
+          <span class="font-sora text-[11px] font-bold tracking-[0.14em] uppercase text-[#AAAAAA]">07 &middot;
+            Learnings</span>
+        </div>
+        <h2 class="font-sora text-[24px] sm:text-[32px] font-bold text-[#111111] leading-[1.15] tracking-[-0.5px]">
           What I&rsquo;d do differently
         </h2>
         <div class="flex flex-col gap-4 max-w-[720px]">
