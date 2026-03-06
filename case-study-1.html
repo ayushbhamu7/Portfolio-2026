@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RWE Offshore Wind Troubleshooting Tool — Ayush Bhamu</title>
   <meta name="description"
-    content="Case study: Designing a cross-site troubleshooting platform for offshore wind technicians at RWE. Sole UI/UX designer — 15+ screens, 2 modules, 11 stakeholders aligned in 12 weeks." />
+    content="Case study: Redesigning fault diagnosis for offshore wind — from 7 steps across 4 tools to 3 steps in one platform. Sole UI/UX designer at RWE — 2 modules, 11 stakeholders aligned in 12 weeks." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
@@ -2108,7 +2108,7 @@
           </span>
         </div>
         <h1 class="cs-hero-title">
-          Designing a troubleshooting tool for offshore wind technicians at RWE
+          Redesigning fault diagnosis for offshore wind &mdash; from 7 steps across 4 tools to 3 steps in one platform
         </h1>
         <p class="cs-hero-desc">
           Offshore technicians were diagnosing turbine faults using SAP screens, PDF manuals, and phone calls &mdash;
@@ -2156,8 +2156,8 @@
           <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Diagnosis steps reduced</p>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
-          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">15+</span>
-          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Production-ready screens</p>
+          <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">2</span>
+          <p class="font-inter text-[12px] text-[#888888] leading-[1.5] mt-1">Modules across desktop + iPad contexts</p>
         </div>
         <div style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;padding:20px;">
           <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]" style="color:#0D7377;">3</span>
@@ -2174,15 +2174,15 @@
   </section>
 
   <!-- Cover image -->
-  <section class="cs-section-cover" style="background:linear-gradient(135deg, #F4F3EF 0%, #ECFDF5 100%);">
+  <section class="cs-section-cover" style="background:#1A1A1A;">
     <div style="max-width:1000px;margin:0 auto;padding:0 20px;">
       <div
-        style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.06);">
+        style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.30), 0 2px 8px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.08);">
         <img id="coverImg" src="./images/hq/rwe-cover.jpg" alt="RWE Troubleshooting Tool — Key screens"
           class="w-full block" style="display:block;width:100%;"
           onerror="this.onerror=null;this.src='./images/rwe-cover.jpg'" />
       </div>
-      <p style="font-size:12px;color:#999999;text-align:center;margin-top:16px;">Fault search results &amp; cross-site
+      <p style="font-size:12px;color:rgba(255,255,255,0.4);text-align:center;margin-top:16px;">Fault search results &amp; cross-site
         root cause comparison &mdash; the core screen of Module 1</p>
     </div>
   </section>
@@ -2195,8 +2195,8 @@
         </div>
         <p class="font-inter text-[#333333] text-[14px] sm:text-[15px] leading-[1.8]">
           Designed a unified troubleshooting platform that collapses a 7-step, 4-tool diagnosis workflow into 3 steps
-          within a single tool. Delivered 15+ production-ready screens across 2 modules, aligned 11 stakeholders in 3
-          review cycles, and handed off a prototype now in active development.
+          within a single tool. Delivered a full design system across 2 modules (desktop + iPad), aligned 11 stakeholders in 3
+          review cycles, and handed off a production-ready prototype accepted by engineering.
         </p>
       </div>
     </div>
@@ -2223,10 +2223,8 @@
           PDFs, phone calls, tribal knowledge). As the sole UI/UX designer, I designed a unified troubleshooting
           platform that consolidates this into 3 steps within a single tool &mdash; with cross-site fault search,
           consolidated root cause comparison, and an integrated iPad documentation flow for offshore technicians.
-          Delivered 15+ production-ready screens across 2 modules, aligned 11+ stakeholders in 3 review cycles, and
-          handed off a prototype now in active development. <strong style="color:#111111;">The same enterprise B2B
-            complexity &mdash; multi-user workflows, cross-team alignment, system-level thinking &mdash; that drives
-            products at Freshworks, Razorpay, or Postman.</strong>
+          Delivered a full design system covering 2 device types and 4 fault scenarios across 2 modules, aligned 11+ stakeholders in 3 review cycles, and
+          handed off a production-ready prototype accepted by engineering.
         </p>
       </div>
 
@@ -2240,9 +2238,7 @@
         </h2>
         <div class="flex flex-col gap-4 max-w-[720px]">
           <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-            RWE operates one of the world&rsquo;s largest offshore wind fleets across multiple countries. When a turbine
-            faults, maintenance teams need to diagnose the issue, find root causes, and create work orders &mdash; often
-            under time pressure and harsh offshore conditions.
+            When a wind turbine faults offshore, every hour of downtime costs the operator tens of thousands of euros. RWE&rsquo;s maintenance teams need to diagnose, resolve, and document these faults &mdash; often under time pressure and in physically demanding conditions 80km from shore.
           </p>
           <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
             The problem: there was <strong>no dedicated troubleshooting tool</strong>. Teams relied on SAP transaction
@@ -2257,15 +2253,32 @@
         </div>
       </div>
 
-      <!-- Image: old tools -->
-      <div class="image-block fade-up">
-        <div style="min-height:200px;background:linear-gradient(135deg, #ECFDF5 0%, #EEF0F3 100%);">
-          <img loading="lazy" src="./images/rwe-old-tools.jpg" alt="Existing tools — SAP screens and PDF manuals" class="w-full block"
-            onerror="this.style.display='none'" style="display:block;" />
-        </div>
-        <div class="image-caption">
-          Before: SAP transaction screens and PDF manuals &mdash; the only tools available for fault diagnosis. Click to
-          zoom.
+      <!-- Before state: fragmented tools diagram -->
+      <div class="fade-up" style="background:#FFFFFF;border:1px solid #E8E5DF;border-radius:12px;overflow:hidden;">
+        <div style="padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:24px;">
+          <span class="compare-label compare-before">Before</span>
+          <div style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;max-width:600px;">
+            <div style="background:#FEE2E2;border:1px solid #FECACA;border-radius:12px;padding:16px 20px;text-align:center;min-width:100px;">
+              <span style="font-size:24px;display:block;margin-bottom:6px;">📊</span>
+              <span class="font-sora" style="font-size:12px;font-weight:700;color:#B91C1C;">SCADA</span>
+            </div>
+            <span style="font-size:18px;color:#D1D5DB;">&#8594;</span>
+            <div style="background:#FEE2E2;border:1px solid #FECACA;border-radius:12px;padding:16px 20px;text-align:center;min-width:100px;">
+              <span style="font-size:24px;display:block;margin-bottom:6px;">🗄️</span>
+              <span class="font-sora" style="font-size:12px;font-weight:700;color:#B91C1C;">SAP</span>
+            </div>
+            <span style="font-size:18px;color:#D1D5DB;">&#8594;</span>
+            <div style="background:#FEE2E2;border:1px solid #FECACA;border-radius:12px;padding:16px 20px;text-align:center;min-width:100px;">
+              <span style="font-size:24px;display:block;margin-bottom:6px;">📄</span>
+              <span class="font-sora" style="font-size:12px;font-weight:700;color:#B91C1C;">PDF Manuals</span>
+            </div>
+            <span style="font-size:18px;color:#D1D5DB;">&#8594;</span>
+            <div style="background:#FEE2E2;border:1px solid #FECACA;border-radius:12px;padding:16px 20px;text-align:center;min-width:100px;">
+              <span style="font-size:24px;display:block;margin-bottom:6px;">📞</span>
+              <span class="font-sora" style="font-size:12px;font-weight:700;color:#B91C1C;">Phone Calls</span>
+            </div>
+          </div>
+          <p class="font-inter" style="font-size:13px;color:#777777;text-align:center;max-width:500px;line-height:1.6;">4 disconnected systems, zero cross-site search, and tribal knowledge as the primary diagnostic resource.</p>
         </div>
       </div>
 
@@ -2361,11 +2374,8 @@
           <!-- Persona 1: Maintenance Coordinator -->
           <div class="persona-card">
             <div class="persona-header">
-              <div class="persona-avatar">
-                <img loading="lazy" src="./images/persona-coordinator.jpg" alt="Maintenance Coordinator"
-                  class="w-full h-full object-cover rounded-full"
-                  style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                  onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>MC</span>'" />
+              <div class="persona-avatar" style="border-radius:12px;width:56px;height:56px;background:#E6F4F1;border:none;">
+                <span style="font-size:24px;">🖥️</span>
               </div>
               <div>
                 <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Maintenance Coordinator
@@ -2390,6 +2400,10 @@
                 <span class="persona-attr-val">Information scattered across SAP, PDFs, and colleagues&rsquo; memory. No
                   way to search previous fault resolutions from other wind farms.</span>
               </div>
+              <div style="background:#F0FDFA;border-radius:8px;padding:12px 14px;border-left:3px solid #0D7377;">
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:#0A5C5F;">Design implication</span>
+                <p style="font-size:12px;color:#444444;line-height:1.6;margin-top:4px;">Keyboard-first search, data-dense tables, multi-monitor support assumption.</p>
+              </div>
               <div class="flex gap-2 flex-wrap">
                 <span class="tag tag-teal">Desktop</span>
                 <span class="tag tag-neutral">SCADA / SAP</span>
@@ -2401,11 +2415,8 @@
           <!-- Persona 2: Technician -->
           <div class="persona-card">
             <div class="persona-header">
-              <div class="persona-avatar">
-                <img loading="lazy" src="./images/persona-technician.jpg" alt="Technician"
-                  class="w-full h-full object-cover rounded-full"
-                  style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
-                  onerror="this.onerror=null;this.style.display='none';this.parentElement.innerHTML='<span style=\&quot;font-family:Epilogue,sans-serif;font-size:20px;font-weight:700;color:#0D7377\&quot;>T</span>'" />
+              <div class="persona-avatar" style="border-radius:12px;width:56px;height:56px;background:#E6F4F1;border:none;">
+                <span style="font-size:24px;">🌊</span>
               </div>
               <div>
                 <h3 class="font-sora text-[16px] font-bold text-[#111111] leading-[1.2]">Technician</h3>
@@ -2428,6 +2439,10 @@
                 <span class="persona-attr-label">Pain points</span>
                 <span class="persona-attr-val">Relies heavily on personal experience. No structured way to access
                   troubleshooting guides on-site. Documentation is an afterthought done post-trip.</span>
+              </div>
+              <div style="background:#F0FDFA;border-radius:8px;padding:12px 14px;border-left:3px solid #0D7377;">
+                <span style="font-size:10px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:#0A5C5F;">Design implication</span>
+                <p style="font-size:12px;color:#444444;line-height:1.6;margin-top:4px;">Touch-first, gloved hands (48px+ tap targets), offline-first, camera-priority workflow.</p>
               </div>
               <div class="flex gap-2 flex-wrap">
                 <span class="tag tag-teal">iPad</span>
@@ -2454,9 +2469,13 @@
               interviews</strong> across both user groups, focusing on their actual behaviors &mdash; not just the
             official process.
           </p>
+          <div class="callout px-6 py-5 sm:px-8 sm:py-6" style="margin:8px 0;">
+            <p class="font-sora text-[16px] sm:text-[18px] font-bold text-[#111111] leading-[1.4]" style="margin:0;">
+              &ldquo;The most valuable research came from watching, not asking.&rdquo;
+            </p>
+          </div>
           <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-            The critical insight: <strong>the most valuable research came from watching, not asking.</strong> In
-            interviews, participants described the standard process. In shadowing, I saw the workarounds &mdash; the
+            In interviews, participants described the standard process. In shadowing, I saw the workarounds &mdash; the
             sticky notes on monitors, the WhatsApp groups for fault advice, the informal knowledge networks that
             actually kept operations running.
           </p>
@@ -2493,25 +2512,19 @@
         <div class="cs-grid-3" style="gap:16px;">
           <div
             style="background:#FFFFFF;border-radius:12px;border:1px solid #E8E5DF;padding:24px;display:flex;flex-direction:column;gap:12px;">
-            <span class="font-sora" style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">0</span>
-            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">Dedicated digital tools for
-              troubleshooting
-              &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
+            <span class="font-sora" style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">Zero</span>
+            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">No dedicated diagnostic tool existed across the entire fleet &mdash; teams relied entirely on SAP, PDFs, and personal experience</p>
           </div>
           <div
             style="background:#FFFFFF;border-radius:12px;border:1px solid #E8E5DF;padding:24px;display:flex;flex-direction:column;gap:12px;">
-            <span class="font-sora" style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">4+</span>
-            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">Disconnected systems touched
-              during a single
-              fault resolution &mdash; SCADA, SAP, email, phone calls, PDF manuals</p>
+            <span class="font-sora" style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">4+ tools</span>
+            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">Per single fault &mdash; SCADA, SAP, email, phone, PDF manuals all touched during one resolution</p>
           </div>
           <div
             style="background:#FFFFFF;border-radius:12px;border:1px solid #E8E5DF;padding:24px;display:flex;flex-direction:column;gap:12px;">
             <span class="font-sora"
-              style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">100%</span>
-            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">Knowledge loss risk when
-              experienced staff
-              retired or transferred &mdash; no structured capture of tribal knowledge</p>
+              style="font-size:32px;font-weight:700;color:#0D7377;letter-spacing:-1px;">100% tribal</span>
+            <p class="font-inter" style="font-size:14px;color:#444444;line-height:1.7;">Every fault resolution lived in someone&rsquo;s head, not a system &mdash; no structured capture of institutional knowledge</p>
           </div>
         </div>
       </div>
@@ -3301,6 +3314,9 @@
                 action. A search-first IA mirrors their mental model &mdash; they&rsquo;re not exploring, they&rsquo;re
                 hunting. The IA needed to match that intent.
               </p>
+              <p class="font-inter text-[12px] leading-[1.7] mt-1" style="color:#7C3AED;">
+                <strong>AI-ready:</strong> I structured the search results UI with relevance scores and confidence indicators &mdash; when NLP-based semantic search replaces keyword matching, the interface already supports ranked results with explainability context.
+              </p>
             </div>
           </div>
 
@@ -3339,6 +3355,9 @@
                 &ldquo;sensor recalibration,&rdquo; that signal should be visually obvious, not buried in a list. This
                 is about reducing decision-making time under pressure, not just information display.
               </p>
+              <p class="font-inter text-[12px] leading-[1.7] mt-1" style="color:#7C3AED;">
+                <strong>AI-ready:</strong> The frequency counts are the manual version of what becomes probabilistic ranking &mdash; &ldquo;based on fleet-wide data, the most likely root cause is X with 78% confidence.&rdquo; I designed comparison cards with expandable detail sections to accommodate richer AI metadata.
+              </p>
             </div>
           </div>
 
@@ -3369,9 +3388,16 @@
                 <strong style="color:#444;">The conceptual reasoning:</strong> The BCG team initially wanted to treat
                 documentation as a separate backlog item &mdash; &ldquo;ship troubleshooting first, add documentation
                 later.&rdquo; I pushed back because the tool&rsquo;s value compounds over time &mdash; it only works if
-                the knowledge base grows. Module 2 isn&rsquo;t a feature; it&rsquo;s the product strategy. Without the
-                documentation loop, you&rsquo;re building a search engine with no content. I framed this as an
+                the knowledge base grows. I framed this as an
                 operational risk, not a design preference, which is what finally got stakeholder buy-in.
+              </p>
+              <div class="callout px-5 py-4 mt-3" style="border-left-color:#0D7377;">
+                <p class="font-sora text-[13px] sm:text-[14px] font-bold text-[#111111] leading-[1.5]" style="margin:0;">
+                  Core insight: Module 2 isn&rsquo;t a feature &mdash; it&rsquo;s the product strategy. Without the documentation loop, you&rsquo;re building a search engine with no content.
+                </p>
+              </div>
+              <p class="font-inter text-[12px] leading-[1.7] mt-2" style="color:#7C3AED;">
+                <strong>AI-ready:</strong> Module 2&rsquo;s structured documentation captures fault resolutions in categorised, machine-readable fields &mdash; not free-form text. Every resolved fault becomes training data for smarter recommendations.
               </p>
             </div>
           </div>
@@ -3391,8 +3417,8 @@
           What I shipped in 12 weeks
         </h2>
         <p class="font-inter text-[#444444] text-[14px] sm:text-[15px] leading-[1.8]">
-          The production-ready prototype was delivered in 3 months &mdash; from first stakeholder interview to
-          annotated handoff documentation. The product is now in development. Here&rsquo;s what I can measure
+          Production-ready prototype delivered and accepted by engineering in 3 months &mdash; from first stakeholder interview to
+          annotated handoff documentation. Module 1 entered development sprint cycle in Q1 2025. Here&rsquo;s what I can measure
           directly:
         </p>
 
@@ -3405,9 +3431,8 @@
           </div>
           <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
-              style="color:#0D7377;">15+</span>
-            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Production-ready screens
-              across 2 modules, with interaction specs and handoff docs</p>
+              style="color:#0D7377;">2 modules</span>
+            <p class="font-inter text-[12px] text-[#666666] leading-[1.5] mt-2">Full design system covering 2 device types (desktop + iPad) and 4 fault scenarios</p>
           </div>
           <div class="stat-card fade-up">
             <span class="font-sora text-[26px] sm:text-[30px] font-bold tracking-[-1px]"
@@ -3557,48 +3582,16 @@
 
         </div>
 
-        <!-- Designing for AI callout -->
-        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-4 fade-up"
+        <!-- Designing for AI callout (condensed — details woven into design decisions above) -->
+        <div class="callout px-6 py-5 sm:px-8 sm:py-6 flex flex-col gap-3 fade-up"
           style="border-left-color:#7C3AED;">
           <span class="font-sora text-[10px] font-bold tracking-[0.12em] uppercase" style="color:#7C3AED;">Designing
-            for AI &mdash; the intelligence layer this platform needs</span>
+            for AI</span>
           <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
             This project is a knowledge retrieval system at its core &mdash; and that&rsquo;s exactly where AI creates
-            the most impact. The design decisions I made were shaped by awareness of where intelligent features would
-            eventually plug in:
+            the most impact. Each of the three design decisions above was shaped by awareness of where intelligent features would
+            eventually plug in: semantic search for Decision A, probabilistic ranking for Decision B, and structured training data for Decision C. The details are woven into each decision&rsquo;s reasoning above.
           </p>
-          <div class="flex flex-col gap-3">
-            <div class="flex gap-3 items-start">
-              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-                <strong class="text-[#111111]">NLP-powered fault search</strong> &mdash; The search-first IA I chose
-                (Decision A) assumed keyword-based search initially, but I structured the search results UI to display
-                relevance scores and confidence indicators. This was deliberate: when NLP-based semantic search replaces
-                keyword matching, the interface already supports ranked results with &ldquo;why this matched&rdquo;
-                context &mdash; a core explainability pattern for AI-driven retrieval.
-              </p>
-            </div>
-            <div class="flex gap-3 items-start">
-              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-                <strong class="text-[#111111]">Automated root cause ranking</strong> &mdash; The consolidated comparison
-                view (Decision B) displays frequency counts across sites. This is the manual version of what becomes a
-                probabilistic recommendation: &ldquo;based on fleet-wide data, the most likely root cause is X with 78%
-                confidence.&rdquo; I designed the comparison cards with expandable detail sections specifically to
-                accommodate richer metadata like confidence scores and contributing factors.
-              </p>
-            </div>
-            <div class="flex gap-3 items-start">
-              <div class="w-2 h-2 rounded-full mt-[7px] shrink-0" style="background:#7C3AED;"></div>
-              <p class="font-inter text-[#444444] text-[13px] leading-[1.7]">
-                <strong class="text-[#111111]">The documentation flywheel as training data</strong> &mdash; Module
-                2&rsquo;s structured documentation flow (Decision C) captures fault resolutions in categorised,
-                machine-readable fields &mdash; not free-form text. This wasn&rsquo;t accidental. Structured data is
-                what makes the knowledge base useful for both human search and future ML models. Every resolved fault
-                documented through the system becomes training data for smarter recommendations.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -3625,10 +3618,9 @@
             </div>
           </div>
           <p class="font-inter text-[13px] leading-[1.7]" style="color:rgba(255,255,255,0.4);max-width:680px;">
-            <strong style="color:rgba(255,255,255,0.55);">Why this translates to Indian B2B SaaS:</strong> The core
-            problems I solved here &mdash; multi-stakeholder alignment, designing for complex enterprise workflows,
-            building systems that scale across teams and geographies &mdash; are the same challenges facing product
-            teams at Freshworks, Postman, Chargebee, and similar companies. I&rsquo;m looking to bring this enterprise
+            <strong style="color:rgba(255,255,255,0.55);">Why this translates to Indian B2B SaaS:</strong> The same enterprise B2B complexity &mdash; multi-user workflows, cross-team alignment, system-level thinking &mdash; that drives products at Freshworks, Razorpay, or Postman. The core
+            problems I solved here are the same challenges facing product
+            teams at Chargebee, Zoho, and similar companies. I&rsquo;m looking to bring this enterprise
             complexity experience to the Indian SaaS ecosystem.
           </p>
         </div>
