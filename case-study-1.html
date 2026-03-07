@@ -159,17 +159,17 @@
     }
 
     .cs-section {
-      padding: 64px 20px;
+      padding: 64px 0;
       width: 100%;
     }
 
     .cs-section-hero {
-      padding: 56px 20px 48px;
+      padding: 56px 0 48px;
       width: 100%;
     }
 
     .cs-section-cover {
-      padding: 40px 20px;
+      padding: 40px 0;
       width: 100%;
     }
 
@@ -286,15 +286,15 @@
       }
 
       .cs-section {
-        padding: 96px 80px;
+        padding: 96px 0;
       }
 
       .cs-section-hero {
-        padding: 80px 80px 64px;
+        padding: 80px 0 64px;
       }
 
       .cs-section-cover {
-        padding: 48px 80px;
+        padding: 48px 0;
       }
 
       .cs-hero-inner {
@@ -1107,7 +1107,7 @@
     /* ── Content + stepper layout ── */
     .case-layout {
       display: flex;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
       gap: 0;
@@ -1116,6 +1116,12 @@
     .case-layout>article {
       flex: 1;
       min-width: 0;
+    }
+
+    @media (min-width: 640px) {
+      .case-layout {
+        padding: 0 80px;
+      }
     }
 
     /* ── Sidebar stepper navigation ── */
@@ -1202,10 +1208,6 @@
     @media (max-width: 768px) {
       .stepper-sidebar {
         display: none;
-      }
-
-      .case-layout {
-        padding: 0;
       }
     }
 
@@ -2188,7 +2190,7 @@
   </section>
 
   <!-- Result banner -->
-  <section class="px-5 sm:px-8 py-10 sm:py-14 w-full">
+  <section class="px-5 sm:px-20 py-10 sm:py-14 w-full">
     <div class="max-w-[1100px] mx-auto">
       <div class="callout p-6 sm:p-8 fade-up">
         <div class="font-inter text-[11px] font-semibold tracking-[0.08em] uppercase mb-2" style="color:#0D7377;">Result
@@ -2206,7 +2208,7 @@
   <div class="case-layout">
 
     <!-- Content -->
-    <article class="cs-flex-col w-full flex flex-col gap-16 sm:gap-24" style="padding:56px 20px;">
+    <article class="cs-flex-col w-full flex flex-col gap-16 sm:gap-24" style="padding:56px 0;">
 
       <!-- ============================================ -->
       <!-- TL;DR — Executive Summary -->
