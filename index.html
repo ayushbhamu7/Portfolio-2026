@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Epilogue:wght@700;800&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -69,8 +69,8 @@
       color: #0A5C5F;
     }
 
-    /* ── Noise / grain texture overlay ────────── */
-    body::after {
+    /* ── Noise / grain texture overlay (deferred via JS for faster FCP) ────────── */
+    body.noise-loaded::after {
       content: '';
       position: fixed;
       inset: 0;
@@ -1426,7 +1426,7 @@
 
         <div class="cs-img-placeholder">
           <img src="./images/rwe-cover.jpg" alt="RWE Internal Platform" class="cs-img"
-            onerror="this.style.display='none'">
+            fetchpriority="high" onerror="this.style.display='none'">
         </div>
 
         <div class="cs-body">
@@ -1577,7 +1577,7 @@
       <div class="about-grid">
 
         <div class="scroll-reveal reveal-left">
-          <img src="./images/ayush-profile.jpg" alt="Ayush Bhamu" style="width:140px;height:140px;border-radius:16px;object-fit:cover;margin-bottom:12px;box-shadow:0 8px 24px rgba(0,0,0,0.1);" />
+          <img src="./images/ayush-profile-opt.jpg" alt="Ayush Bhamu" width="140" height="140" loading="lazy" style="width:140px;height:140px;border-radius:16px;object-fit:cover;margin-bottom:12px;box-shadow:0 8px 24px rgba(0,0,0,0.1);" />
           <div class="label-accent" style="margin-bottom:12px;">About</div>
           <div class="about-bio">
             <p style="font-style:italic;">
@@ -1738,6 +1738,9 @@
   </footer>
 
   <script>
+    // ── Defer noise overlay for faster FCP ──
+    window.addEventListener('load', function() { document.body.classList.add('noise-loaded'); });
+
     // ── Mobile nav toggle ──
     const toggle = document.getElementById('mobileToggle');
     const navLinks = document.querySelector('.nav-links');
