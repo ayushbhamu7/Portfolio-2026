@@ -29,13 +29,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Epilogue:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Epilogue:wght@700;800&display=swap"
     rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     * {
       box-sizing: border-box;
     }
+    /* Tailwind utility replacements */
+    .bg-\[\#0D7377\] { background-color: #0D7377; }
+    .hover\:text-\[\#0D7377\]:hover { color: #0D7377; }
+    .hover\:text-\[\#111111\]:hover { color: #111111; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-\[7px\] { margin-top: 7px; }
+    .px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -1762,7 +1769,7 @@
         style="border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.06);">
         <img id="coverImg" src="./images/Main dashboard.png"
           alt="TPA Next Evolution — Analysis Results dashboard with turbine card view grouped by site, severity indicators, and filtering controls"
-          class="w-full block" style="display:block;" />
+          class="w-full block" style="display:block;" fetchpriority="high" />
       </div>
       <p style="font-size:12px;color:#777777;text-align:center;margin-top:16px;">TPA Next Evolution &middot; Analysis Results
         dashboard with turbine-level severity indicators across sites</p>
